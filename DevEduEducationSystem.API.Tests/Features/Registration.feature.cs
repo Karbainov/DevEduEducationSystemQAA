@@ -137,6 +137,56 @@ this.ScenarioInitialize(scenarioInfo);
 #line 13
  testRunner.Then("Should User Models coincide with the returned models of these entities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table2.AddRow(new string[] {
+                            "Малыш",
+                            "Малышев",
+                            "Малышович",
+                            "Малыш1@mail.ru",
+                            "БоссМолокосос",
+                            "северусСнейп",
+                            "SaintPetersburg",
+                            "09.01.2021",
+                            "string",
+                            "89991234567"});
+                table2.AddRow(new string[] {
+                            "Альбрехт",
+                            "Вильгельм",
+                            "Эдуардович",
+                            "Вильгельм1@mail.ru",
+                            "Альбрехт",
+                            "Вильгельм",
+                            "SaintPetersburg",
+                            "04.03.1800",
+                            "string",
+                            "89991234567"});
+                table2.AddRow(new string[] {
+                            "Телефон",
+                            "Телефонов",
+                            "Телефонович",
+                            "Телефон1@mail.ru",
+                            "Телефончик",
+                            "Телефонама",
+                            "SaintPetersburg",
+                            "04.03.2003",
+                            "string",
+                            "Чукча кушать хочет"});
+#line 14
+ testRunner.Given("Create too old, too young and write a thong in the phone number string", ((string)(null)), table2, "Given ");
+#line hidden
+#line 19
+ testRunner.Then("Should return UnprocessableEntity response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

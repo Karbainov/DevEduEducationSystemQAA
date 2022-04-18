@@ -64,5 +64,23 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.AreEqual(expectedUserModel[0].PhoneNumber, actualUserModel[0].PhoneNumber);
         }
 
+        [Given(@"Create too old, too young and write a thong in the phone number string")]
+        public void GivenCreateTooOldTooYoungAndWriteAThongInThePhoneNumberString(Table table)
+        {
+            FeatureContext.Current["ModelRegistrUser"] = table.CreateSet<RegisterRequestModel>().ToList();
+        }
+
+        [Then(@"Should return UnprocessableEntity response")]
+        public void ThenShouldReturnUnprocessableEntityResponse()
+        {
+            List<RegisterRequestModel> user = (List<RegisterRequestModel>)FeatureContext.Current["ModelRegistrUser"];
+            Auth registr = new Auth();
+            List<RegistrationResponsesModel> userResponses = registr.Registration(user);
+            FeatureContext.Current["RegistrationResponsesUserActual"] = userResponses;
+            for (int i = 0; i < userResponses.Count; i++)
+            {
+                FeatureContext.Current["IdUser"] = userResponses[i].Id;
+            }
+        }
     }
 }
