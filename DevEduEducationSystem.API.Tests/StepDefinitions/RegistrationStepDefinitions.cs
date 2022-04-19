@@ -65,8 +65,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.AreEqual(expectedUserModel[0].PhoneNumber, actualUserModel[0].PhoneNumber);
         }
 
-<<<<<<< Updated upstream
-=======
 <<<<<<< HEAD
         [Given(@"New model User")]
         public void GivenNewModelUser(Table table)
@@ -121,7 +119,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Delete.DeleteUserById((string)FeatureContext.Current["TokenAdmin"], (int)FeatureContext.Current["IdUser"]);
             Get.GetUserByIdAfterDeleted((string)FeatureContext.Current["TokenAdmin"], (int)FeatureContext.Current["IdUser"]);
 =======
->>>>>>> Stashed changes
         [Given(@"Create too old, too young and write a thong in the phone number string")]
         public void GivenCreateTooOldTooYoungAndWriteAThongInThePhoneNumberString(Table table)
         {
@@ -139,10 +136,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             {
                 FeatureContext.Current["IdUser"] = userResponses[i].Id;
             }
-<<<<<<< Updated upstream
-=======
 >>>>>>> TestScenarioRegistrUpdateAndDelete
->>>>>>> Stashed changes
         }
     }
 }

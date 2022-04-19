@@ -187,8 +187,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 19
  testRunner.Then("Should return UnprocessableEntity response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-<<<<<<< Updated upstream
-=======
             }
             this.ScenarioCleanup();
         }
@@ -263,7 +261,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 25
  testRunner.And("Delete user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
->>>>>>> Stashed changes
             }
             this.ScenarioCleanup();
         }
