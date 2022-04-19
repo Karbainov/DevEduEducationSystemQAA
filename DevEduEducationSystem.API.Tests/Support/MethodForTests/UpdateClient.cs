@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
-    public class Update
+    public class UpdateClient
     {
         public static void UpdateUser(RegistrationResponsesModel newUserModel, int id, string token)
         {           

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
-    public class Auth
+    public class AuthClient
     {
         public List<RegistrationResponsesModel> Registration(List<RegisterRequestModel> userModel)
         {
@@ -33,6 +33,22 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 userResponses.Add(JsonSerializer.Deserialize<RegistrationResponsesModel>(s));
             }
             return userResponses;
+        }
+
+        public HttpResponseMessage Registration(RegisterRequestModel userModel)
+        {
+            List<RegistrationResponsesModel> userResponses = new List<RegistrationResponsesModel>();
+                string url = "https://piter-education.ru:7070/register";
+                string json = JsonSerializer.Serialize(userModel);
+                HttpClient client = new HttpClient();
+                HttpRequestMessage request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(url),
+                    Content = new StringContent(json, Encoding.UTF8, "application/json")
+                };
+            
+            return client.Send(request);
         }
 
         public static string AuthUser(string email, string password)

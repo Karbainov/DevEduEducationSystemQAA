@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
-    public class Delete
+    public class DeleteClient
     {
         public static void DeleteUserById(string token, int id)
         {

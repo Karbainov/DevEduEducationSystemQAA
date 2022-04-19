@@ -16,7 +16,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         public string Username { get; set; }
 
         [JsonPropertyName("registrationDate")]
-        public string RegistrationDate { get; set; } = $"{DateTime.Now}";
+        public string RegistrationDate { get; set; } = $"{DateTime.Now.ToString("dd.MM.yyyy")}";
 
         [JsonPropertyName("birthDate")]
         public string BirthDate { get; set; }

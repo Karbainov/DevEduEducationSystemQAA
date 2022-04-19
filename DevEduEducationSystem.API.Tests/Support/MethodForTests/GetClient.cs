@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
-    public class Get
+    public class GetClient
     {
         public static List<RegistrationResponsesModel> GetUserById(string token, int id)
         {
