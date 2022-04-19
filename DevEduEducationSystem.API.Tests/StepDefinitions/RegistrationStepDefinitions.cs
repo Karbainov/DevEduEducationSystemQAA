@@ -2,6 +2,7 @@ using DevEduEducationSystem.API.Tests.Support.MethodForTests;
 using DevEduEducationSystem.API.Tests.Support.Models;
 using DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel;
 using System;
+using System.Net;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -10,132 +11,108 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
     [Binding]
     public class RegistrationStepDefinitions
     {
-        [Given(@"Create registration model")]
-        public void GivenCreateRegistrationModel(Table table)
+        [When(@"I register")]
+        [Given(@"I register")]
+        public void IRegister(Table table)
         {
-            FeatureContext.Current["ModelRegistrUser"] = table.CreateSet<RegisterRequestModel>().ToList();
-        }
-
-        [When(@"Activate registration endpoint")]
-        public void WhenActivateRegistrationEndpoint()
-        {
-            List<RegisterRequestModel> user = (List<RegisterRequestModel>)FeatureContext.Current["ModelRegistrUser"];
-            Auth registr = new Auth();
+            List<RegisterRequestModel> user = table.CreateSet<RegisterRequestModel>().ToList();
+            AuthClient registr = new AuthClient();
             List<RegistrationResponsesModel> userResponses = registr.Registration(user);
-            FeatureContext.Current["RegistrationResponsesUserActual"] = userResponses;
+            FeatureContext.Current["RegisterRequestModels"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {
                 FeatureContext.Current["IdUser"] = userResponses[i].Id;
             }
         }
 
-        [When(@"Activate Authorization method")]
-        public void WhenActivateAuthorizationMethod()
+        [When(@"Autorized by (.*) and (.*)")]
+        public void AutorizedByEmailAndPassword(string email, string password)
         {
-            List<RegisterRequestModel> userModel = (List<RegisterRequestModel>)FeatureContext.Current["ModelRegistrUser"];
-                string email = userModel[0].Email;
-                string password = userModel[0].Password;
-               FeatureContext.Current["TokenUser"] = Auth.AuthUser(email, password);
+            FeatureContext.Current["TokenUser"] = AuthClient.AuthUser(email, password);
         }
 
-
-        [When(@"Get User Models by id")]
-        public void WhenGetUserModelsById()
+        [When(@"Get User by my Id")]
+        public void WhenGetUserByMyId()
         {
-            //string token = (string)FeatureContext.Current["TokenUser"];
-            //int id = (int)FeatureContext.Current["IdUser"];
-
-            FeatureContext.Current["ActualUserModel"] = Get.GetUserById((string)FeatureContext.Current["TokenUser"], 
-                (int)FeatureContext.Current["IdUser"]);
+            var token = (string)FeatureContext.Current["TokenUser"];
+            var idUser=(int)FeatureContext.Current["IdUser"];
+            FeatureContext.Current["ActualUserModel"] = GetClient.GetUserById(token, idUser);
         }
 
         [Then(@"Should User Models coincide with the returned models of these entities")]
         public void ThenShouldUserModelsCoincideWithTheReturnedModelsOfTheseEntities()
         {
-            List<RegisterRequestModel> expectedUserModel = (List<RegisterRequestModel>)FeatureContext.Current["ModelRegistrUser"];
-            List<RegistrationResponsesModel> actualUserModel = (List<RegistrationResponsesModel>)FeatureContext.Current["ActualUserModel"];
-            Assert.AreEqual(expectedUserModel[0].FirstName, actualUserModel[0].FirstName);
-            Assert.AreEqual(expectedUserModel[0].LastName, actualUserModel[0].LastName);
-            Assert.AreEqual(expectedUserModel[0].Patronymic, actualUserModel[0].Patronymic);
-            Assert.AreEqual(expectedUserModel[0].Email, actualUserModel[0].Email);
-            Assert.AreEqual(expectedUserModel[0].Username, actualUserModel[0].Username);
-            Assert.AreEqual(expectedUserModel[0].City, actualUserModel[0].City);
-            Assert.AreEqual(expectedUserModel[0].BirthDate, actualUserModel[0].BirthDate);
-            Assert.AreEqual(expectedUserModel[0].GitHubAccount, actualUserModel[0].GitHubAccount);
-            Assert.AreEqual(expectedUserModel[0].PhoneNumber, actualUserModel[0].PhoneNumber);
+            if (FeatureContext.Current["RegisterRequestModels"] is List<RegisterRequestModel>)
+            {
+                Mapper mapper = new Mapper();
+                List<RegisterRequestModel> expectedUserModels = (List<RegisterRequestModel>)FeatureContext.Current["RegisterRequestModels"];
+                foreach (var m in expectedUserModels)
+                {
+                    m.Password = null;
+                }
+
+                List<RegistrationResponsesModel> registerRequestModels = (List<RegistrationResponsesModel>)FeatureContext.Current["ActualUserModel"];
+                List<RegisterRequestModel> actualUserModels = new List<RegisterRequestModel>();
+                foreach (var m in registerRequestModels)
+                {
+                    actualUserModels.Add(mapper.MapRegistrationResponsesModelToRegisterRequestModel(m));
+                }
+
+                CollectionAssert.AreEqual(expectedUserModels, actualUserModels);
+            }
+            else if(FeatureContext.Current["RegisterRequestModels"] is RegistrationResponsesModel)
+            {
+                RegistrationResponsesModel expectedUserModel = (RegistrationResponsesModel)FeatureContext.Current["RegisterRequestModels"];
+                expectedUserModel.City = "SaintPetersburg";
+                 RegistrationResponsesModel actualUserModel = ((List<RegistrationResponsesModel>)FeatureContext.Current["ActualUserModel"])[0];
+
+                Assert.AreEqual(expectedUserModel, actualUserModel);
+            }
         }
 
-        [Given(@"New model User")]
-        public void GivenNewModelUser(Table table)
+        [When(@"I try to register as")]
+        public void WhenITryToRegisterAs(Table table)
         {
-            FeatureContext.Current["NewModelUser"] = table.CreateSet<RegistrationResponsesModel>().ToList().First();
+            AuthClient registr = new AuthClient();
+            
+            RegisterRequestModel user = table.CreateInstance<RegisterRequestModel>();
+            HttpResponseMessage httpResponse = registr.Registration(user);
+            FeatureContext.Current["StatusCode"] = httpResponse.StatusCode;
         }
 
-
-        [When(@"I want update user model")]
-        public void WhenIWantUpdateUserModel()
+        [Then(@"Should return (.*) status code response")]
+        public void ThenShouldReturnUnprocessableEntityResponse(int statusCode)
         {
-            RegistrationResponsesModel newUserModel = (RegistrationResponsesModel)FeatureContext.Current["NewModelUser"];
+            HttpStatusCode expected = (HttpStatusCode)statusCode;
+            
+            HttpStatusCode actual = (HttpStatusCode)FeatureContext.Current["StatusCode"];
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [When(@"I Update myself")]
+        public void WhenIUpdateMyself(Table table)
+        {
+            RegistrationResponsesModel newUserModel = table.CreateInstance<RegistrationResponsesModel>();
             newUserModel.Id = (int)FeatureContext.Current["IdUser"];
             newUserModel.City = "1";
-            Update.UpdateUser(newUserModel, (int)FeatureContext.Current["IdUser"], (string)FeatureContext.Current["TokenUser"]);
+            FeatureContext.Current["RegisterRequestModels"] = newUserModel;
+            UpdateClient.UpdateUser(newUserModel, (int)FeatureContext.Current["IdUser"], (string)FeatureContext.Current["TokenUser"]);
         }
 
-        [When(@"Get new User Model by id")]
-        public void WhenGetNewUserModelById()
-        {            
-            FeatureContext.Current["newGetUser"] = Get.GetUserByIdReturnModel((string)FeatureContext.Current["TokenUser"], 
-                (int)FeatureContext.Current["IdUser"]);
-        }
 
-        //[Then(@"Should my new model user with the returned models of these entities")]
-        //public void ThenShouldMyNewModelUserWithTheReturnedModelsOfTheseEntities()
-        //{
-        //    RegistrationResponsesModel expectedUserModel = (RegistrationResponsesModel)FeatureContext.Current["NewModelUser"];
-        //    StudentModel actualUserModel = (StudentModel)FeatureContext.Current["newGetUser"];
-        //    Assert.AreEqual(expectedUserModel.FirstName, actualUserModel.FirstName);
-        //    Assert.AreEqual(expectedUserModel.LastName, actualUserModel.LastName);
-        //    Assert.AreEqual(expectedUserModel.Patronymic, actualUserModel.Patronymic);
-        //    Assert.AreEqual(expectedUserModel.Email, actualUserModel.Email);
-        //    Assert.AreEqual(expectedUserModel.Username, actualUserModel.Username);
-        //    Assert.AreEqual(expectedUserModel.City, actualUserModel.City);
-        //    Assert.AreEqual(expectedUserModel.BirthDate, actualUserModel.BirthDate);
-        //    Assert.AreEqual(expectedUserModel.PhoneNumber, actualUserModel.PhoneNumber);
-        //}
 
-        [Then(@"Get Admins Token")]
-        public void ThenGetAdminsToken(Table table)
+        [AfterScenario]
+        public void AfterScenario()
         {
-            FeatureContext.Current["Admin"] = table.CreateSet<LoginRequestModel>().ToList().First();
-            LoginRequestModel adminEnterRequestModel = (LoginRequestModel)FeatureContext.Current["Admin"];
-            FeatureContext.Current["TokenAdmin"] = Auth.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-        }
-
-
-        [Then(@"Delete user")]
-        public void ThenDeleteUser()
-        {
-            Delete.DeleteUserById((string)FeatureContext.Current["TokenAdmin"], (int)FeatureContext.Current["IdUser"]);
-            Get.GetUserByIdAfterDeleted((string)FeatureContext.Current["TokenAdmin"], (int)FeatureContext.Current["IdUser"]);
-        }
-
-        [Given(@"Create too old, too young and write a thong in the phone number string")]
-        public void GivenCreateTooOldTooYoungAndWriteAThongInThePhoneNumberString(Table table)
-        {
-            FeatureContext.Current["ModelRegistrUser"] = table.CreateSet<RegisterRequestModel>().ToList();
-        }
-
-        [Then(@"Should return UnprocessableEntity response")]
-        public void ThenShouldReturnUnprocessableEntityResponse()
-        {
-            List<RegisterRequestModel> user = (List<RegisterRequestModel>)FeatureContext.Current["ModelRegistrUser"];
-            Auth registr = new Auth();
-            List<RegistrationResponsesModel> userResponses = registr.Registration(user);
-            FeatureContext.Current["RegistrationResponsesUserActual"] = userResponses;
-            for (int i = 0; i < userResponses.Count; i++)
+            LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
             {
-                FeatureContext.Current["IdUser"] = userResponses[i].Id;
-            }
+                Email = "user@example.com",
+                Password = "stringst"
+            };
+            string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
+            DeleteClient.DeleteUserById(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
+            GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
         }
     }
 }
