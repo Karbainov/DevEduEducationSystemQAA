@@ -12,13 +12,10 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class Update
     {
-        public void UpdateUser(List<UpdateUserModel> updateUser, int id, string token)
-        {
-            foreach (var user in updateUser)
-            {
+        public static void UpdateUser(RegistrationResponsesModel newUserModel, int id, string token)
+        {           
                 string url = $"https://piter-education.ru:7070/api/Users/{id}";
-                //ChangeCustomerModel customerModel = new ChangeCustomerModel(customer);
-                string json = JsonSerializer.Serialize(user);
+                string json = JsonSerializer.Serialize(newUserModel);
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -28,13 +25,10 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                     Content = new StringContent(json, Encoding.UTF8, "application/json")
                 };
                 HttpResponseMessage response = client.Send(request);
-
-
                 string s = response.Content.ReadAsStringAsync().Result;
                 HttpStatusCode expected = HttpStatusCode.Created;
                 HttpStatusCode actual = response.StatusCode;
                 Assert.AreEqual(expected, actual);
-            }
         }
     }
 }

@@ -74,12 +74,12 @@ namespace DevEduEducationSystem.API.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Registration in system")]
-        public virtual void RegistrationInSystem()
+        [NUnit.Framework.DescriptionAttribute("1Registration in system")]
+        public virtual void _1RegistrationInSystem()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Registration in system", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1Registration in system", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Северус",
                             "Снейп",
                             "Аланович",
-                            "Severus9@mail.ru",
+                            "Severus9wedr8990yggiпlfd09gdfdklоkfрhlрlj@mail.ru",
                             "север",
                             "северусСнейп",
                             "SaintPetersburg",
@@ -187,6 +187,83 @@ this.ScenarioInitialize(scenarioInfo);
 #line 19
  testRunner.Then("Should return UnprocessableEntity response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+<<<<<<< Updated upstream
+=======
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("2Authorization in system and Update User")]
+        public virtual void _2AuthorizationInSystemAndUpdateUser()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2Authorization in system and Update User", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 15
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table2.AddRow(new string[] {
+                            "Богданов",
+                            "Арутр",
+                            "Ашотович",
+                            "Ashotikew8d009fdgfygоkllkfdfgрlgjпfрlh@mail.ru",
+                            "Ashot",
+                            "Qwerty123",
+                            "SaintPetersburg",
+                            "01.01.1993",
+                            "string",
+                            "89991234563"});
+#line 16
+ testRunner.Given("New model User", ((string)(null)), table2, "Given ");
+#line hidden
+#line 19
+ testRunner.When("I want update user model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.And("Get new User Model by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table3.AddRow(new string[] {
+                            "user@example.com",
+                            "stringst"});
+#line 22
+ testRunner.Then("Get Admins Token", ((string)(null)), table3, "Then ");
+#line hidden
+#line 25
+ testRunner.And("Delete user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+>>>>>>> Stashed changes
             }
             this.ScenarioCleanup();
         }

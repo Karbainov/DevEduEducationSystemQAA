@@ -1,12 +1,6 @@
-﻿using DevEduEducationSystem.API.Tests.Support.Models.UserModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
-namespace DevEduEducationSystem.API.Tests.Support.Models.StudentModel
+namespace DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel
 {
     public class Group
     {

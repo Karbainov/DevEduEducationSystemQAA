@@ -35,7 +35,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return userResponses;
         }
 
-        public string AuthUser(string email, string password)
+        public static string AuthUser(string email, string password)
         {
             string url = "https://piter-education.ru:7070/sign-in";
             LoginRequestModel login = new LoginRequestModel()

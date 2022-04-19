@@ -1,14 +1,9 @@
-﻿using DevEduEducationSystem.API.Tests.Support.Models.StudentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
-namespace DevEduEducationSystem.API.Tests.Support.Models
+namespace DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel
+
 {
-    public class StudentModelGetToken
+    public class StudentModel
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -57,7 +52,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
 
         public override bool Equals(object? obj)
         {
-            return obj is StudentModelGetToken token &&
+            return obj is StudentModel token &&
                    Id == token.Id &&
                    FirstName == token.FirstName &&
                    LastName == token.LastName &&
