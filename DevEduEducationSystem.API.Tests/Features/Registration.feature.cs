@@ -198,7 +198,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2Authorization in system and Update User", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 15
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -218,7 +218,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -229,7 +229,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table2.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "Богданов",
                             "Арутр",
                             "Ашотович",
@@ -240,25 +240,25 @@ this.ScenarioInitialize(scenarioInfo);
                             "01.01.1993",
                             "string",
                             "89991234563"});
-#line 16
- testRunner.Given("New model User", ((string)(null)), table2, "Given ");
-#line hidden
-#line 19
- testRunner.When("I want update user model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 20
- testRunner.And("Get new User Model by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Email",
-                            "Password"});
-                table3.AddRow(new string[] {
-                            "user@example.com",
-                            "stringst"});
 #line 22
- testRunner.Then("Get Admins Token", ((string)(null)), table3, "Then ");
+ testRunner.Given("New model User", ((string)(null)), table3, "Given ");
 #line hidden
 #line 25
+ testRunner.When("I want update user model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 26
+ testRunner.And("Get new User Model by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table4.AddRow(new string[] {
+                            "user@example.com",
+                            "stringst"});
+#line 28
+ testRunner.Then("Get Admins Token", ((string)(null)), table4, "Then ");
+#line hidden
+#line 31
  testRunner.And("Delete user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

@@ -5,8 +5,8 @@
 
 Scenario: 1Registration in system
 	Given Create registration model
-	| FirstName | LastName | Patronymic | Email                                   | Username | Password      | City            | BirthDate  | GitHubAccount | PhoneNumber  |
-	| Северус   | Снейп    | Аланович   | Severus9wedr8990yggiпlfd09gdfdklоkfрhlрlj@mail.ru | север    | северусСнейп  | SaintPetersburg | 01.01.1993 |   string      | 89991234567  |
+	| FirstName | LastName | Patronymic | Email                                             | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber |
+	| Северус   | Снейп    | Аланович   | Severus9wedr8990yggiпlfd09gdfdklоkfрhlрlj@mail.ru | север    | северусСнейп | SaintPetersburg | 01.01.1993 | string        | 89991234567 |
 	When Activate registration endpoint
 	And Activate Authorization method
 	And Get User Models by id
