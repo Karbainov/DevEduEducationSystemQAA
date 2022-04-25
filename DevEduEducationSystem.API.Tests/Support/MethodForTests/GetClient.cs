@@ -81,5 +81,19 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        public static HttpResponseMessage GetGroupById(int idGroup, string token)
+        {
+            string url = $"https://piter-education.ru:7072/api/Groups/{idGroup}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+            return client.Send(request);
+        }
     }
 }
