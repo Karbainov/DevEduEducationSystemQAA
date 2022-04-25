@@ -102,17 +102,17 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
 
 
-        [AfterScenario]
-        public void AfterScenario()
-        {
-            LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
-            {
-                Email = "user@example.com",
-                Password = "stringst"
-            };
-            string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-            DeleteClient.DeleteUserById(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
-            GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
-        }
+        //[AfterScenario]
+        //public void AfterScenario()
+        //{
+        //    LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
+        //    {
+        //        Email = "user@example.com",
+        //        Password = "stringst"
+        //    };
+        //    string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
+        //    DeleteClient.DeleteUserById(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
+        //    GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
+        //}
     }
 }

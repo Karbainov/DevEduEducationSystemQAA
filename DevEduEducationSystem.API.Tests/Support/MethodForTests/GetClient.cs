@@ -15,7 +15,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
         public static List<RegistrationResponsesModel> GetUserById(string token, int id)
         {
             List<RegistrationResponsesModel> user = new List<RegistrationResponsesModel>();
-            string url = $"https://piter-education.ru:7070/api/Users/{id}";
+            string url = $"https://piter-education.ru:7072/api/Users/{id}";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -39,7 +39,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
         public static StudentModel GetUserByIdReturnModel (string token, int id)
         {
-            string url = $"https://piter-education.ru:7070/api/Users/{id}";
+            string url = $"https://piter-education.ru:7072/api/Users/{id}";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -62,7 +62,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
         }
         public static void GetUserByIdAfterDeleted(string token, int id)
         {
-            string url = $"https://piter-education.ru:7070/api/Users/{id}";
+            string url = $"https://piter-education.ru:7072/api/Users/{id}";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
