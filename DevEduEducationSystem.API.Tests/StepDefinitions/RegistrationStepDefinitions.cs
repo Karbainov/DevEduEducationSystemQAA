@@ -18,40 +18,40 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             List<RegisterRequestModel> user = table.CreateSet<RegisterRequestModel>().ToList();
             AuthClient registr = new AuthClient();
             List<RegistrationResponsesModel> userResponses = registr.Registration(user);
-            FeatureContext.Current["RegisterRequestModels"] = user;
+            ScenarioContext.Current["RegisterRequestModels"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {
-                FeatureContext.Current["IdUser"] = userResponses[i].Id;
+                ScenarioContext.Current["IdUser"] = userResponses[i].Id;
             }
         }
 
         [When(@"Autorized by (.*) and (.*)")]
         public void AutorizedByEmailAndPassword(string email, string password)
         {
-            FeatureContext.Current["TokenUser"] = AuthClient.AuthUser(email, password);
+            ScenarioContext.Current["TokenUser"] = AuthClient.AuthUser(email, password);
         }
 
         [When(@"Get User by my Id")]
         public void WhenGetUserByMyId()
         {
-            var token = (string)FeatureContext.Current["TokenUser"];
-            var idUser=(int)FeatureContext.Current["IdUser"];
-            FeatureContext.Current["ActualUserModel"] = GetClient.GetUserById(token, idUser);
+            var token = (string)ScenarioContext.Current["TokenUser"];
+            var idUser=(int)ScenarioContext.Current["IdUser"];
+            ScenarioContext.Current["ActualUserModel"] = GetClient.GetUserById(token, idUser);
         }
 
         [Then(@"Should User Models coincide with the returned models of these entities")]
         public void ThenShouldUserModelsCoincideWithTheReturnedModelsOfTheseEntities()
         {
-            if (FeatureContext.Current["RegisterRequestModels"] is List<RegisterRequestModel>)
+            if (ScenarioContext.Current["RegisterRequestModels"] is List<RegisterRequestModel>)
             {
                 Mapper mapper = new Mapper();
-                List<RegisterRequestModel> expectedUserModels = (List<RegisterRequestModel>)FeatureContext.Current["RegisterRequestModels"];
+                List<RegisterRequestModel> expectedUserModels = (List<RegisterRequestModel>)ScenarioContext.Current["RegisterRequestModels"];
                 foreach (var m in expectedUserModels)
                 {
                     m.Password = null;
                 }
 
-                List<RegistrationResponsesModel> registerRequestModels = (List<RegistrationResponsesModel>)FeatureContext.Current["ActualUserModel"];
+                List<RegistrationResponsesModel> registerRequestModels = (List<RegistrationResponsesModel>)ScenarioContext.Current["ActualUserModel"];
                 List<RegisterRequestModel> actualUserModels = new List<RegisterRequestModel>();
                 foreach (var m in registerRequestModels)
                 {
@@ -60,11 +60,11 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
                 CollectionAssert.AreEqual(expectedUserModels, actualUserModels);
             }
-            else if(FeatureContext.Current["RegisterRequestModels"] is RegistrationResponsesModel)
+            else if(ScenarioContext.Current["RegisterRequestModels"] is RegistrationResponsesModel)
             {
-                RegistrationResponsesModel expectedUserModel = (RegistrationResponsesModel)FeatureContext.Current["RegisterRequestModels"];
+                RegistrationResponsesModel expectedUserModel = (RegistrationResponsesModel)ScenarioContext.Current["RegisterRequestModels"];
                 expectedUserModel.City = "SaintPetersburg";
-                 RegistrationResponsesModel actualUserModel = ((List<RegistrationResponsesModel>)FeatureContext.Current["ActualUserModel"])[0];
+                 RegistrationResponsesModel actualUserModel = ((List<RegistrationResponsesModel>)ScenarioContext.Current["ActualUserModel"])[0];
 
                 Assert.AreEqual(expectedUserModel, actualUserModel);
             }
@@ -77,7 +77,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             
             RegisterRequestModel user = table.CreateInstance<RegisterRequestModel>();
             HttpResponseMessage httpResponse = registr.Registration(user);
-            FeatureContext.Current["StatusCode"] = httpResponse.StatusCode;
+            ScenarioContext.Current["StatusCode"] = httpResponse.StatusCode;
         }
 
         [Then(@"Should return (.*) status code response")]
@@ -85,7 +85,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             HttpStatusCode expected = (HttpStatusCode)statusCode;
             
-            HttpStatusCode actual = (HttpStatusCode)FeatureContext.Current["StatusCode"];
+            HttpStatusCode actual = (HttpStatusCode)ScenarioContext.Current["StatusCode"];
 
             Assert.AreEqual(expected, actual);
         }
@@ -94,10 +94,10 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void WhenIUpdateMyself(Table table)
         {
             RegistrationResponsesModel newUserModel = table.CreateInstance<RegistrationResponsesModel>();
-            newUserModel.Id = (int)FeatureContext.Current["IdUser"];
+            newUserModel.Id = (int)ScenarioContext.Current["IdUser"];
             newUserModel.City = "1";
-            FeatureContext.Current["RegisterRequestModels"] = newUserModel;
-            UpdateClient.UpdateUser(newUserModel, (int)FeatureContext.Current["IdUser"], (string)FeatureContext.Current["TokenUser"]);
+            ScenarioContext.Current["RegisterRequestModels"] = newUserModel;
+            UpdateClient.UpdateUser(newUserModel, (int)ScenarioContext.Current["IdUser"], (string)ScenarioContext.Current["TokenUser"]);
         }
 
 
@@ -111,8 +111,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Password = "stringst"
             };
             string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-            DeleteClient.DeleteUserById(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
-            GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
+            DeleteClient.DeleteUserById(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
+            GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
         }
     }
 }
