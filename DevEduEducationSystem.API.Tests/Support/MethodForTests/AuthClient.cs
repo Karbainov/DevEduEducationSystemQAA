@@ -16,7 +16,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             List<RegistrationResponsesModel> userResponses = new List<RegistrationResponsesModel>();
             foreach (var user in userModel)
             {
-                string url = "https://piter-education.ru:7070/register";
+                string url = "https://piter-education.ru:7072/register";
                 string json = JsonSerializer.Serialize(user);
                 HttpClient client = new HttpClient();
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -38,7 +38,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
         public HttpResponseMessage Registration(RegisterRequestModel userModel)
         {
             List<RegistrationResponsesModel> userResponses = new List<RegistrationResponsesModel>();
-                string url = "https://piter-education.ru:7070/register";
+                string url = "https://piter-education.ru:7072/register";
                 string json = JsonSerializer.Serialize(userModel);
                 HttpClient client = new HttpClient();
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -53,7 +53,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
         public static string AuthUser(string email, string password)
         {
-            string url = "https://piter-education.ru:7070/sign-in";
+            string url = "https://piter-education.ru:7072/sign-in";
             LoginRequestModel login = new LoginRequestModel()
             {
                 Email = email,

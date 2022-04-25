@@ -12,7 +12,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
     {
         public static void DeleteUserById(string token, int id)
         {
-            string url = $"https://piter-education.ru:7070/api/Users/{id}"; 
+            string url = $"https://piter-education.ru:7072/api/Users/{id}"; 
 
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
