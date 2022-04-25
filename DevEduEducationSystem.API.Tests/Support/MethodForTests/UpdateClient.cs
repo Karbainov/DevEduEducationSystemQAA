@@ -14,7 +14,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
     {
         public static void UpdateUser(RegistrationResponsesModel newUserModel, int id, string token)
         {           
-                string url = $"https://piter-education.ru:7070/api/Users/{id}";
+                string url = $"https://piter-education.ru:7072/api/Users/{id}";
                 string json = JsonSerializer.Serialize(newUserModel);
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

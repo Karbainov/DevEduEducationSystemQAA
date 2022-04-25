@@ -75,8 +75,8 @@ namespace DevEduEducationSystem.API.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Registration in system")]
-        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "zqqqqqqqqqq@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", null)]
-        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "qqqqqqqqqqq@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "rlwy@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "qlpy@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", null)]
         public virtual void RegistrationInSystem(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -153,9 +153,9 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Registration in system. Negative")]
         [NUnit.Framework.CategoryAttribute("Negative")]
-        [NUnit.Framework.TestCaseAttribute("Малыш", "Малышев", "Малышович", "Малыш1@mail.ru", "БоссМолокосос", "северусСнейп", "SaintPetersburg", "09.01.2021", "string", "89991234567", null)]
-        [NUnit.Framework.TestCaseAttribute("Альбрехт", "Вильгельм", "Эдуардович", "Вильгельм1@mail.ru", "Альбрехт", "Вильгельм", "SaintPetersburg", "04.03.1800", "string", "89991234567", null)]
-        [NUnit.Framework.TestCaseAttribute("Телефон", "Телефонов", "Телефонович", "Телефон1@mail.ru", "Телефончик", "Телефонама", "SaintPetersburg", "04.03.2003", "string", "Чукча кушать хочет", null)]
+        [NUnit.Framework.TestCaseAttribute("Малыш", "Малышев", "Малышович", "Малышqf1y2@mail.ru", "БоссМолокосос", "северусСнейп", "SaintPetersburg", "09.01.2021", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("Альбрехт", "Вильгельм", "Эдуардович", "Вильгельмqf12y@mail.ru", "Альбрехт", "Вильгельм", "SaintPetersburg", "04.03.1800", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("Телефон", "Телефонов", "Телефонович", "Телефон12y@mail.ru", "Телефончик", "Телефонама", "SaintPetersburg", "04.03.2003", "string", "Чукча кушать хочет", null)]
         [NUnit.Framework.TestCaseAttribute("", "", "", "", "", "", "", "", "", "", null)]
         public virtual void RegistrationInSystem_Negative(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string[] exampleTags)
         {
@@ -232,7 +232,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Update User")]
-        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "zqqqqqqqqqqqqqqqqqq@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", "Богданов", "Арутр", "Ашотович", "zzzzqqqqqqqqq@mail.ru", "Ashot", "Qwerty123", "SaintPetersburg", "01.01.1993", "string", "89991234563", null)]
+        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "zayf@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", "Богданов", "Арутр", "Ашотович", "zzzzqqqqqqqqq@mail.ru", "Ashot", "Qwerty123", "SaintPetersburg", "01.01.1993", "string", "89991234563", null)]
         public virtual void UpdateUser(
                     string firstName, 
                     string lastName, 
@@ -357,6 +357,92 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 41
  testRunner.Then("Should User Models coincide with the returned models of these entities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Delete User")]
+        [NUnit.Framework.CategoryAttribute("Negative")]
+        [NUnit.Framework.TestCaseAttribute("QQQ", "YYY", "AAA", "QQQYYYAAAqqqfqy@mail.ru", "QYA", "qwerty123", "SaintPetersburg", "02.02.1992", "string", "89991234567", null)]
+        public virtual void DeleteUser(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Negative"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FirstName", firstName);
+            argumentsOfScenario.Add("LastName", lastName);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Username", username);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("City", city);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete User", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 48
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table5.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+#line 49
+ testRunner.Given("I register", ((string)(null)), table5, "Given ");
+#line hidden
+#line 52
+ testRunner.When(string.Format("Autorized by {0} and {1}", email, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 53
+ testRunner.And("I Deleted created User By ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 54
+ testRunner.Then(string.Format("Delete user can not pass authorization by {0} and {1}", email, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 55
+ testRunner.And("Delete user not found in list all Users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
