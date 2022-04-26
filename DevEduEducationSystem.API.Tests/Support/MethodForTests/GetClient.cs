@@ -1,4 +1,5 @@
 ﻿using DevEduEducationSystem.API.Tests.Support.Models;
+using DevEduEducationSystem.API.Tests.Support.Models.AllGroupsModels;
 using DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class GetClient
     {
-        public static List<RegistrationResponsesModel> GetUserById(string token, int id)
+        public static List<RegistrationResponseModel> GetUserById(string token, int id)
         {
-            List<RegistrationResponsesModel> user = new List<RegistrationResponsesModel>();
+            List<RegistrationResponseModel> user = new List<RegistrationResponseModel>();
             string url = $"https://piter-education.ru:7072/api/Users/{id}";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -33,7 +34,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
 
             Assert.AreEqual(expected, actual);
-            user.Add(JsonSerializer.Deserialize<RegistrationResponsesModel>(s));
+            user.Add(JsonSerializer.Deserialize<RegistrationResponseModel>(s));
             return user;
         }
 
@@ -73,16 +74,13 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             };
 
             HttpResponseMessage response = client.Send(request);
-
             string s = response.Content.ReadAsStringAsync().Result;
-
             HttpStatusCode expected = HttpStatusCode.NoContent;
             HttpStatusCode actual = response.StatusCode;
-
             Assert.AreEqual(expected, actual);
         }
 
-        public static HttpResponseMessage GetGroupById(int idGroup, string token)
+        public static ReturnByIdGroupModel GetGroupById(int idGroup, string token) // должен возвращать модель большую группу
         {
             string url = $"https://piter-education.ru:7072/api/Groups/{idGroup}";
             HttpClient client = new HttpClient();
@@ -93,7 +91,12 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 Method = HttpMethod.Get,
                 RequestUri = new Uri(url),
             };
-            return client.Send(request);
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<ReturnByIdGroupModel>(s);
         }
     }
 }

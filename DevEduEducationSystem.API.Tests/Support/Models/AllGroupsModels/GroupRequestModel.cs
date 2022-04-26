@@ -28,6 +28,6 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         public string Timetable { get; set; }
 
         [JsonPropertyName("paymentPerMonth")]
-        public int PaymentPerMonth { get; set; }
+        public decimal PaymentPerMonth { get; set; }
     }
 }

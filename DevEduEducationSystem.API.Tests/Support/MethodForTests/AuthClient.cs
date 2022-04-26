@@ -11,9 +11,9 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class AuthClient
     {
-        public List<RegistrationResponsesModel> Registration(List<RegisterRequestModel> userModel)
+        public List<RegistrationResponseModel> Registration(List<RegistrationRequestModel> userModel)
         {
-            List<RegistrationResponsesModel> userResponses = new List<RegistrationResponsesModel>();
+            List<RegistrationResponseModel> userResponses = new List<RegistrationResponseModel>();
             foreach (var user in userModel)
             {
                 string url = "https://piter-education.ru:7072/register";
@@ -30,12 +30,12 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 HttpStatusCode expected = HttpStatusCode.Created;
                 HttpStatusCode actual = response.StatusCode;
                 Assert.AreEqual(expected, actual);
-                userResponses.Add(JsonSerializer.Deserialize<RegistrationResponsesModel>(s));
+                userResponses.Add(JsonSerializer.Deserialize<RegistrationResponseModel>(s));
             }
             return userResponses;
         }
 
-        public HttpResponseMessage Registration(RegisterRequestModel userModel)
+        public HttpResponseMessage Registration(RegistrationRequestModel userModel)
         {
                 string url = "https://piter-education.ru:7072/register";
                 string json = JsonSerializer.Serialize(userModel);

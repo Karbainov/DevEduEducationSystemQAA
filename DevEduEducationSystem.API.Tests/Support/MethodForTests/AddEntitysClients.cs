@@ -11,7 +11,9 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class AddEntitysClients
     {
-        public static CourseResponsesModel CreateCourse(string token, CourseRequestModel course)
+
+       static HttpResponseMessage _statusCodeCreateGroup;
+        public static CourseResponseModel CreateCourse(string token, CourseRequestModel course)
         {
             string url = "https://piter-education.ru:7072/api/Courses";
             string json = JsonSerializer.Serialize<CourseRequestModel>(course);
@@ -28,10 +30,10 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode expected = HttpStatusCode.Created;
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            return JsonSerializer.Deserialize<CourseResponsesModel>(s);
+            return JsonSerializer.Deserialize<CourseResponseModel>(s);
         }
 
-        public static GroupResponsesModel CreateGroupe(string token, GroupRequestModel group)
+        public static GroupResponseModel CreateGroupe(string token, GroupRequestModel group)
         {
             string url = "https://piter-education.ru:7072/api/Groups";
             string json = JsonSerializer.Serialize<GroupRequestModel>(group);
@@ -47,8 +49,14 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             string s = response.Content.ReadAsStringAsync().Result;
             HttpStatusCode expected = HttpStatusCode.Created;
             HttpStatusCode actual = response.StatusCode;
+            _statusCodeCreateGroup = response;
             Assert.AreEqual(expected, actual);
-            return JsonSerializer.Deserialize<GroupResponsesModel>(s); 
+            return JsonSerializer.Deserialize<GroupResponseModel>(s); 
+        }
+
+         public static HttpResponseMessage CreateGroupe()
+        {
+            return _statusCodeCreateGroup;
         }
     }
 }

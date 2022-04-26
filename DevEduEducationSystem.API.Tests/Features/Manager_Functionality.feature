@@ -1,6 +1,8 @@
 ﻿Feature: Manager_Functionality
 
-Как менеджер/админ, я хочу назначать роли юзерам
+1.)Как менеджер/админ, я хочу назначать роли юзерам
+2.) Как менеджер, я хочу создавать группу
+3.) Как менеджер, я хочу получить созданную группу по id 
 
 @tag1
 Scenario: As manadger I want to assign a role to users
@@ -41,8 +43,9 @@ Scenario: As a manager, I want to create groups
 	When Create Groupe
 	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
 	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
-	And Get group by id 
-	Then Compare group status code 200
+	Then Compare group status code 201
+	When Get group by id 
+	Then Compare the resulting group by id with group request
 	Examples: 
 	| FirstName | LastName    | Patronymic | Email         | Username | Password    | City            | BirthDate  | GitHubAccount | PhoneNumber | MehodistFirstName | MehodistLastName | MehodistPatronymic | MehodistEmail  | MehodistUsername | MehodistPassword | MehodistCity    | MehodistBirthDate | MehodistGitHubAccount | MehodistPhoneNumber | NameRole | MehodistNameRole |
 	| Миневра   | Макгонагалл | Смит       | Smit3@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид            | Рубеус           | Колтрейн           | Rubeus@mail.ru | Hagrid           | hagridRubeus     | SaintPetersburg | 01.03.2003        | string                | 89211111111         | Manager  | Methodist        |

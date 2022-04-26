@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DevEduEducationSystem.API.Tests.Support.Models
 {
-    public class GroupResponsesModel
+    public class GroupResponseModel
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -32,6 +32,6 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         public string Timetable { get; set; }
 
         [JsonPropertyName("paymentPerMonth")]
-        public int PaymentPerMonth { get; set; }
+        public decimal PaymentPerMonth { get; set; }
     }
 }
