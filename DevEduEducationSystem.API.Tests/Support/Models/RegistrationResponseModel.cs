@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DevEduEducationSystem.API.Tests.Support.Models
 {
-    public class RegistrationResponsesModel
+    public class RegistrationResponseModel
     {
         [JsonPropertyName("patronymic")]
         public string Patronymic { get; set; }
@@ -56,7 +56,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
 
         public override bool Equals(object? obj)
         {
-            return obj is RegistrationResponsesModel model &&
+            return obj is RegistrationResponseModel model &&
                    Patronymic == model.Patronymic &&
                    Username == model.Username &&
                    RegistrationDate == model.RegistrationDate &&
