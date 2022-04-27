@@ -79,7 +79,7 @@ namespace DevEduEducationSystem.API.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As manadger I want to assign a role to users")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
+        [NUnit.Framework.CategoryAttribute("Manager")]
         [NUnit.Framework.TestCaseAttribute("Миневра", "Макгонагалл", "Смит", "Smit@mail.ru", "Minevra", "minevraSmit", "SaintPetersburg", "01.01.1985", "string", "89991111111", "Хагрид", "Рубеус", "Колтрейн", "Rubeus6@mail.ru", "Hagrid", "hagridRubeus", "SaintPetersburg", "01.03.2003", "string", "89211111111", "Methodist", null)]
         [NUnit.Framework.TestCaseAttribute("Миневра", "Макгонагалл", "Смит", "Smit1@mail.ru", "Minevra", "minevraSmit", "SaintPetersburg", "01.01.1985", "string", "89991111111", "Римус", "Джон", "Люпин", "Djon6@mail.ru", "Rimus", "rimusDjon", "SaintPetersburg", "01.03.1990", "string", "89110001234", "Teacher", null)]
         [NUnit.Framework.TestCaseAttribute("Миневра", "Макгонагалл", "Смит", "Smit2@mail.ru", "Minevra", "minevraSmit", "SaintPetersburg", "01.01.1985", "string", "89991111111", "Златопуст", "Локонс", "Брана", "Brana6@mail.ru", "Zlatopust", "zlatopust", "SaintPetersburg", "01.12.2001", "string", "89210081122", "Tutor", null)]
@@ -108,7 +108,7 @@ namespace DevEduEducationSystem.API.Tests.Features
                     string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "tag1"};
+                    "Manager"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -337,7 +337,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", mehodistGitHubAccount),
                             string.Format("{0}", mehodistPhoneNumber)});
 #line 31
-    testRunner.Given("Create future manadger and methodist", ((string)(null)), table4, "Given ");
+    testRunner.Given("Create users", ((string)(null)), table4, "Given ");
 #line hidden
 #line 35
  testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -349,7 +349,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table5.AddRow(new string[] {
                             string.Format("{0}", mehodistNameRole)});
 #line 36
- testRunner.And("Assing Minevra and Methodist roles", ((string)(null)), table5, "And ");
+ testRunner.And("Assing Manager and Methodist roles", ((string)(null)), table5, "And ");
 #line hidden
 #line 40
  testRunner.When("Autorized by methodist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -503,7 +503,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", mehodistGitHubAccount),
                             string.Format("{0}", mehodistPhoneNumber)});
 #line 57
-  testRunner.Given("Create future manadger and methodist", ((string)(null)), table8, "Given ");
+  testRunner.Given("Create users", ((string)(null)), table8, "Given ");
 #line hidden
 #line 61
  testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -515,7 +515,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table9.AddRow(new string[] {
                             string.Format("{0}", mehodistNameRole)});
 #line 62
- testRunner.And("Assing Minevra and Methodist roles", ((string)(null)), table9, "And ");
+ testRunner.And("Assing Manager and Methodist roles", ((string)(null)), table9, "And ");
 #line hidden
 #line 66
  testRunner.When("Autorized by methodist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -603,13 +603,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Get Users by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 81
-  testRunner.When("Add three users Student, Teacher and Tutor in group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Add three users Student, Teacher and Tutor in group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 82
-  testRunner.And("Get my group by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Get my group by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 83
-  testRunner.Then("Compare the resulting filled group by id with group request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Compare the resulting filled group by id with group request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -722,7 +722,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", mehodistGitHubAccount),
                             string.Format("{0}", mehodistPhoneNumber)});
 #line 89
-    testRunner.Given("Create future manadger and methodist", ((string)(null)), table13, "Given ");
+    testRunner.Given("Create users", ((string)(null)), table13, "Given ");
 #line hidden
 #line 93
  testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -734,7 +734,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table14.AddRow(new string[] {
                             string.Format("{0}", mehodistNameRole)});
 #line 94
- testRunner.And("Assing Minevra and Methodist roles", ((string)(null)), table14, "And ");
+ testRunner.And("Assing Manager and Methodist roles", ((string)(null)), table14, "And ");
 #line hidden
 #line 98
  testRunner.When("Autorized by methodist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -766,7 +766,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "пн, ср, пт 17:00 - 20:00",
                             "5000"});
 #line 103
- testRunner.And("Create Groupe", ((string)(null)), table16, "And ");
+ testRunner.And("Create Groupe number three", ((string)(null)), table16, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -789,7 +789,7 @@ this.ScenarioInitialize(scenarioInfo);
    testRunner.And("Get group number three by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 110
-   testRunner.Then("Compare the resulting group chench group number three", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("Сompare changed group and returned group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

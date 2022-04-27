@@ -93,7 +93,9 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
         // new Scenario 
 
-        [Given(@"Create future manadger and methodist")]
+
+
+        [Given(@"Create users")]
         public void GivenCreateFutureManadgerAndMethodist(Table table)
         {
             List<int> idList = new List<int>();
@@ -108,7 +110,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["UsersId"] = idList;
         }
 
-        [Given(@"Assing Minevra and Methodist roles")]
+        [Given(@"Assing Manager and Methodist roles")]
         public void GivenAssingMinevraAndMethodistRoles(Table table)
         {
             List<RoleModel> roles = table.CreateSet<RoleModel>().ToList();
@@ -201,21 +203,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
         // new Scenario 
 
-        // это скопированный метод на создании менеджера - ошибка, такой метод уже существует
-
-        //[Given(@"Create future manadger")]
-        //public void GivenCreateFutureManadger(Table table)
-        //{
-        //    List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
-        //    AuthClient registr = new AuthClient();
-        //    List<RegistrationResponseModel> userResponses = registr.Registration(user);
-        //    ScenarioContext.Current["Manager"] = user;
-        //    for (int i = 0; i < userResponses.Count; i++)
-        //    {
-        //        ScenarioContext.Current["IdManager"] = userResponses[i].Id;
-        //    }
-        //}
-
         [Given(@"Create Groupe")]
         public void GivenCreateGroupe(Table table)
         {
@@ -269,7 +256,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"Add three users Student, Teacher and Tutor in group")]
         public void WhenAddThreeUsersStudentTeacherAndTutorInGroup()
         {
-            // нужен метод по добавлению юзеров в группу
             GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
             int idGroup = groupResponse.Id;
             string token = (string)ScenarioContext.Current["ManagerToken"];
@@ -372,20 +358,22 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
         // new Scenario (update)
 
-        [Given(@"Create my group number three Groupe")]
-        public void GivenCreateMyGroupNumberThreeGroupe(Table table)
+        [Given(@"Create Groupe number three")]
+        public void GivenCreateGroupeNumberThree(Table table)
         {
-            string tokenManager = _tokenManager;
-            ScenarioContext.Current["TokenManadger"] = tokenManager;
+            ScenarioContext.Current["TokenManadger"] = _tokenManager;
+            string tokenManager = (string)ScenarioContext.Current["TokenManadger"];
             GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
-            ScenarioContext.Current["Group Response Model"] =  AddEntitysClients.CreateGroupe(tokenManager, groupRequest);
+            groupRequest.CourseId = _curseId;
+            ScenarioContext.Current["Group Response Model"] = AddEntitysClients.CreateGroupe(tokenManager, groupRequest);
         }
-
 
         [When(@"chanche group")]
         public void WhenChancheGroup(Table table)
         {
             GroupRequestModel groupChange = table.CreateSet<GroupRequestModel>().ToList().First();
+            groupChange.CourseId = _curseId;
+            ScenarioContext.Current["Update Request Model"] = groupChange;
             GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
             int idGroup = groupResponse.Id;
             string token = (string)ScenarioContext.Current["TokenManadger"];
@@ -395,13 +383,28 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"Get group number three by id")]
         public void WhenGetGroupNumberThreeById()
         {
-            
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
+            int idGroup = groupResponse.Id;
+            string token = (string)ScenarioContext.Current["TokenManadger"];
+            ScenarioContext.Current["Group Actual"] = GetClient.GetGroupById(idGroup,token);
         }
 
-        [Then(@"Compare the resulting group chench group number three")]
+        [Then(@"Сompare changed group and returned group")]
         public void ThenCompareTheResultingGroupChenchGroupNumberThree()
         {
-            throw new PendingStepException();
+            GroupRequestModel expected = (GroupRequestModel)ScenarioContext.Current["Update Request Model"];
+            ReturnByIdGroupModel actual = (ReturnByIdGroupModel)ScenarioContext.Current["Group Actual"];
+            if (actual.GroupStatus == "Forming")
+            {
+                actual.GroupStatus = "1";
+            }
+            Assert.AreEqual(expected.Name, actual.Name);
+            Assert.AreEqual(expected.CourseId, actual.Course.Id);
+            Assert.AreEqual(expected.GroupStatusId, actual.GroupStatus);
+            Assert.AreEqual(expected.StartDate, actual.StartDate);
+            Assert.AreEqual(expected.EndDate, actual.EndDate);
+            Assert.AreEqual(expected.Timetable, actual.Timetable);
+            Assert.AreEqual(expected.PaymentPerMonth, actual.PaymentPerMonth);
         }
 
     }
