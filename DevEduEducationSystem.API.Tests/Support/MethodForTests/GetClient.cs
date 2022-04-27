@@ -1,6 +1,7 @@
 ﻿using DevEduEducationSystem.API.Tests.Support.Models;
 using DevEduEducationSystem.API.Tests.Support.Models.AllGroupsModels;
 using DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel;
+using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
