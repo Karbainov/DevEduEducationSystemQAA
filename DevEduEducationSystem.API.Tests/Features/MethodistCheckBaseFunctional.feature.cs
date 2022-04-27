@@ -173,7 +173,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist update course")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "qqqetrrqqqqwerrrrrfhret@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "sdfsrsdfswrrkwfwdddo", "sdfsdfsrr rdf4www", "srdfsrjh4rdfdwww", "trtwrwff5ffw", "Methodist", null)]
+        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "m@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "sdfsrsdfswrrkwfwdddo", "sdfsdfsrr rdf4www", "srdfsrjh4rdfdwww", "trtwrwff5ffw", "Methodist", null)]
         public virtual void UserInRoleMethodistUpdateCourse(
                     string firstName, 
                     string lastName, 
