@@ -14,5 +14,11 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
 
         [JsonPropertyName("description")]
         public string Description { get; set; }
+        public override bool Equals(object? obj)
+        {
+            return obj is CourseRequestModel model &&
+                   Name == model.Name &&
+                   Description == model.Description;
+        }
     }
 }

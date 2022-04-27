@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DevEduEducationSystem.API.Tests.Support.Models
+namespace DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd
 {
-    public class CourseResponseModel
+    public class CourseResponseFullModel
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -22,9 +22,15 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         public string Description { get; set; }
 
         [JsonPropertyName("topics")]
-        public List<TopicModel> Topics { get; set; }      
-        
+        public List<TopicModel> Topics { get; set; }
+
+        [JsonPropertyName("materials")]
+        public List<MaterialResponseModel> Materials { get; set; }
+
+        [JsonPropertyName("tasks")]
+        public List<TaskResponseModel> Tasks { get; set; }
+
+        [JsonPropertyName("groups")]
+        public List<GroupResponseModel> Groups { get; set; }
     }
-
 }
-

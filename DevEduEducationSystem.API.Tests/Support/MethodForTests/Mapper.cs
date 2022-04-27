@@ -24,5 +24,14 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 PhoneNumber = model.PhoneNumber
             };
         }
+
+        public static CourseRequestModel MapCourseResponseModelToCourseRequestModel(CourseResponseModel model)
+        {
+            return new CourseRequestModel()
+            {
+                Name = model.Name,
+                Description = model.Description
+            };
+        }
     }
 }

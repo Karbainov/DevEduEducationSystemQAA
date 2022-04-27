@@ -5,9 +5,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DevEduEducationSystem.API.Tests.Support.Models
+namespace DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd
 {
-    public class CourseResponseModel
+    public class TaskResponseModel
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -15,16 +15,16 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("isDeleted")]
-        public bool IsDeleted { get; set; }
-
         [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonPropertyName("topics")]
-        public List<TopicModel> Topics { get; set; }      
-        
+        [JsonPropertyName("links")]
+        public string Links { get; set; }
+
+        [JsonPropertyName("isRequired")]
+        public bool IsRequired { get; set; }
+
+        [JsonPropertyName("isDeleted")]
+        public bool IsDeleted { get; set; }
     }
-
 }
-

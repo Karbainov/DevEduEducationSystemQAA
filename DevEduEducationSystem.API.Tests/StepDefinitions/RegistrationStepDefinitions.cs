@@ -18,53 +18,53 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
             AuthClient registr = new AuthClient();
             List<RegistrationResponseModel> userResponses = registr.Registration(user);
-            FeatureContext.Current["RegisterRequestModels"] = user;
+            ScenarioContext.Current["RegisterRequestModels"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {
-                FeatureContext.Current["IdUser"] = userResponses[i].Id;
+                ScenarioContext.Current["IdUser"] = userResponses[i].Id;
             }
         }
 
         [When(@"Autorized by (.*) and (.*)")]
         public void AutorizedByEmailAndPassword(string email, string password)
         {
-            FeatureContext.Current["TokenUser"] = AuthClient.AuthUser(email, password);
+            ScenarioContext.Current["TokenUser"] = AuthClient.AuthUser(email, password);
         }
 
         [When(@"Get User by my Id")]
         public void WhenGetUserByMyId()
         {
-            var token = (string)FeatureContext.Current["TokenUser"];
-            var idUser=(int)FeatureContext.Current["IdUser"];
-            FeatureContext.Current["ActualUserModel"] = GetClient.GetUserById(token, idUser);
+            var token = (string)ScenarioContext.Current["TokenUser"];
+            var idUser=(int)ScenarioContext.Current["IdUser"];
+            ScenarioContext.Current["ActualUserModel"] = GetClient.GetUserById(token, idUser);
         }
 
         [Then(@"Should User Models coincide with the returned models of these entities")]
         public void ThenShouldUserModelsCoincideWithTheReturnedModelsOfTheseEntities()
         {
-            if (FeatureContext.Current["RegisterRequestModels"] is List<RegistrationRequestModel>)
+            if (ScenarioContext.Current["RegisterRequestModels"] is List<RegistrationRequestModel>)
             {
                 Mapper mapper = new Mapper();
-                List<RegistrationRequestModel> expectedUserModels = (List<RegistrationRequestModel>)FeatureContext.Current["RegisterRequestModels"];
+                List<RegistrationRequestModel> expectedUserModels = (List<RegistrationRequestModel>)ScenarioContext.Current["RegisterRequestModels"];
                 foreach (var m in expectedUserModels)
                 {
                     m.Password = null;
                 }
 
-                List<RegistrationResponseModel> registerRequestModels = (List<RegistrationResponseModel>)FeatureContext.Current["ActualUserModel"];
+                List<RegistrationResponseModel> registerRequestModels = (List<RegistrationResponseModel>)ScenarioContext.Current["ActualUserModel"];
                 List<RegistrationRequestModel> actualUserModels = new List<RegistrationRequestModel>();
                 foreach (var m in registerRequestModels)
                 {
-                    actualUserModels.Add(mapper.MapRegistrationResponsesModelToRegisterRequestModel(m));
+                    actualUserModels.Add(mapper.MapRegistrationResponseModelToRegisterRequestModel(m));
                 }
 
                 CollectionAssert.AreEqual(expectedUserModels, actualUserModels);
             }
-            else if(FeatureContext.Current["RegisterRequestModels"] is RegistrationResponseModel)
+            else if(ScenarioContext.Current["RegisterRequestModels"] is RegistrationResponseModel)
             {
-                RegistrationResponseModel expectedUserModel = (RegistrationResponseModel)FeatureContext.Current["RegisterRequestModels"];
+                RegistrationResponseModel expectedUserModel = (RegistrationResponseModel)ScenarioContext.Current["RegisterRequestModels"];
                 expectedUserModel.City = "SaintPetersburg";
-                 RegistrationResponseModel actualUserModel = ((List<RegistrationResponseModel>)FeatureContext.Current["ActualUserModel"])[0];
+                 RegistrationResponseModel actualUserModel = ((List<RegistrationResponseModel>)ScenarioContext.Current["ActualUserModel"])[0];
 
                 Assert.AreEqual(expectedUserModel, actualUserModel);
             }
@@ -77,7 +77,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             
             RegistrationRequestModel user = table.CreateInstance<RegistrationRequestModel>();
             HttpResponseMessage httpResponse = registr.Registration(user);
-            FeatureContext.Current["StatusCode"] = httpResponse.StatusCode;
+            ScenarioContext.Current["StatusCode"] = httpResponse.StatusCode;
         }
 
         [Then(@"Should return (.*) status code response")]
@@ -85,7 +85,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             HttpStatusCode expected = (HttpStatusCode)statusCode;
             
-            HttpStatusCode actual = (HttpStatusCode)FeatureContext.Current["StatusCode"];
+            HttpStatusCode actual = (HttpStatusCode)ScenarioContext.Current["StatusCode"];
 
             Assert.AreEqual(expected, actual);
         }
@@ -94,13 +94,41 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void WhenIUpdateMyself(Table table)
         {
             RegistrationResponseModel newUserModel = table.CreateInstance<RegistrationResponseModel>();
-            newUserModel.Id = (int)FeatureContext.Current["IdUser"];
+            newUserModel.Id = (int)ScenarioContext.Current["IdUser"];
             newUserModel.City = "1";
-            FeatureContext.Current["RegisterRequestModels"] = newUserModel;
-            UpdateClient.UpdateUser(newUserModel, (int)FeatureContext.Current["IdUser"], (string)FeatureContext.Current["TokenUser"]);
+            ScenarioContext.Current["RegisterRequestModels"] = newUserModel;
+            UpdateClient.UpdateUser(newUserModel, (int)ScenarioContext.Current["IdUser"], (string)ScenarioContext.Current["TokenUser"]);
         }
 
+        [When(@"I Deleted created User By ID")]
+        public void WhenIDeletedCreatedUserByID()
+        {
+            LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
+            {
+                Email = "user@example.com",
+                Password = "stringst"
+            };
+            ScenarioContext.Current["AdminToken"] = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
+            DeleteClient.DeleteUserById((string)ScenarioContext.Current["AdminToken"], (int)ScenarioContext.Current["IdUser"]);
+        }
 
+        [Then(@"Delete user can not pass authorization by (.*) and (.*)")]
+        public void ThenDeleteUserCanNotPassAuthorizationByQQQYYYAAAMail_RuAndQwerty(string login, string password)
+        {
+            AuthClient.AuthUserErrorForNegativeTest(login, password);
+        }
+
+        [Then(@"Delete user not found in list all Users")]
+        public void ThenDeleteUserNotFoundInListAllUsers()
+        {
+            int idUser = (int) ScenarioContext.Current["IdUser"];
+            List<GetAllUsersResponseModel> allUsers = GetClient.GetAllClients((string)ScenarioContext.Current["AdminToken"]);
+            foreach (GetAllUsersResponseModel model in allUsers)
+            {
+                GetAllUsersResponseModel actualModel = allUsers.FirstOrDefault(C => C.Id == model.Id);
+                Assert.IsNull(actualModel);
+            }
+        }
 
         //[AfterScenario]
         //public void AfterScenario()
@@ -111,8 +139,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         //        Password = "stringst"
         //    };
         //    string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-        //    DeleteClient.DeleteUserById(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
-        //    GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)FeatureContext.Current["IdUser"]);
+        //    DeleteClient.DeleteUserById(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
+        //    GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
         //}
     }
 }
