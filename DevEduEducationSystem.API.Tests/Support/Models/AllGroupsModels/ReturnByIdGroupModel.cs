@@ -61,10 +61,29 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.AllGroupsModels
                     return false;
                 }
             }
-
-            //EqualityComparer<List<TeacherModel>>.Default.Equals(Teachers, model.Teachers) &&
-            //  EqualityComparer<List<TutorModel>>.Default.Equals(Tutors, model.Tutors) &&
-
+            if(Teachers.Count != model.Teachers.Count)
+            {
+                return false;
+            }
+            for(int i = 0; i < Teachers.Count; i++)
+            {
+                if(!Teachers[i].Equals(model.Teachers[i]))
+                {
+                    return false;
+                }
+            }
+            
+            if(Tutors.Count != model.Tutors.Count)
+            {
+                return false;
+            }
+            for(int i = 0; i < Tutors.Count; i++)
+            {
+                if(!Tutors[i].Equals(model.Tutors[i]))
+                {
+                    return false;
+                }
+            }
             return Id == model.Id &&
                    Name == model.Name &&
                    Course.Equals(model.Course) &&

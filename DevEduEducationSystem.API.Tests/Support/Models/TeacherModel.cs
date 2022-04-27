@@ -22,7 +22,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         public string Email { get; set; }
 
         [JsonPropertyName("photo")]
-        public object Photo { get; set; }
+        public string Photo { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -31,7 +31,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
                    FirstName == model.FirstName &&
                    LastName == model.LastName &&
                    Email == model.Email &&
-                   EqualityComparer<object>.Default.Equals(Photo, model.Photo);
+                   Photo == model.Photo;
         }
     }
 }
