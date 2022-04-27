@@ -143,5 +143,28 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             };  
             return client.Send(request);
         }
+        public static List<GetAllUsersResponseModel> GetAllClients(string token)
+        {           
+            string url = $"https://piter-education.ru:7072/api/Users";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+
+            HttpResponseMessage response = client.Send(request);
+
+            string s = response.Content.ReadAsStringAsync().Result;
+
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+
+            Assert.AreEqual(expected, actual);
+            List< GetAllUsersResponseModel> allUsers = JsonSerializer.Deserialize<List<GetAllUsersResponseModel>>(s);
+            return allUsers;
+        }
     }
 }
