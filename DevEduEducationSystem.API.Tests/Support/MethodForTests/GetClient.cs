@@ -83,7 +83,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             Assert.AreEqual(expected, actual);
         }
 
-        public static CourseResponseFullModel GetUserByIdCourseFullModel (string token, int id)
+        public static CourseResponseFullModel GetCourseByIdCourseFullModel (string token, int id)
         {
             string url = $"https://piter-education.ru:7072/api/Courses/{id}/full";
             HttpClient client = new HttpClient();
@@ -107,7 +107,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return JsonSerializer.Deserialize<CourseResponseFullModel>(s);
         }
 
-        public static CourseResponseModel GetUserByIdCourseSimpleModel(string token, int id)
+        public static CourseResponseModel GetCourseByIdCourseSimpleModel(string token, int id)
         {
             string url = $"https://piter-education.ru:7072/api/Courses/{id}/simple";
             HttpClient client = new HttpClient();
@@ -129,6 +129,19 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             Assert.AreEqual(expected, actual);
 
             return JsonSerializer.Deserialize<CourseResponseModel>(s);
+        }
+
+        public static HttpResponseMessage GetClientByIdError (int id, string token)
+        {            
+            string url = $"https://piter-education.ru:7072/api/Courses/{id}/simple";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),               
+            };  
+            return client.Send(request);
         }
     }
 }
