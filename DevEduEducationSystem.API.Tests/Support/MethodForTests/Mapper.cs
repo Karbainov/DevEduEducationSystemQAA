@@ -23,6 +23,6 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 GitHubAccount = model.GitHubAccount,
                 PhoneNumber = model.PhoneNumber
             };
-        }
+        }              
     }
 }

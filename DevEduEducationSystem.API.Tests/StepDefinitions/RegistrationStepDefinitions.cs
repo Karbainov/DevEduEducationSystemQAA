@@ -100,19 +100,47 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             UpdateClient.UpdateUser(newUserModel, (int)ScenarioContext.Current["IdUser"], (string)ScenarioContext.Current["TokenUser"]);
         }
 
-
-
-        [AfterScenario]
-        public void AfterScenario()
+        [When(@"I Deleted created User By ID")]
+        public void WhenIDeletedCreatedUserByID()
         {
             LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
             {
                 Email = "user@example.com",
                 Password = "stringst"
             };
-            string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-            DeleteClient.DeleteUserById(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
-            GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
+            ScenarioContext.Current["AdminToken"] = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
+            DeleteClient.DeleteUserById((string)ScenarioContext.Current["AdminToken"], (int)ScenarioContext.Current["IdUser"]);
         }
+
+        [Then(@"Delete user can not pass authorization by (.*) and (.*)")]
+        public void ThenDeleteUserCanNotPassAuthorizationByQQQYYYAAAMail_RuAndQwerty(string login, string password)
+        {
+            AuthClient.AuthUserErrorForNegativeTest(login, password);
+        }
+
+        [Then(@"Delete user not found in list all Users")]
+        public void ThenDeleteUserNotFoundInListAllUsers()
+        {
+            int idUser = (int) ScenarioContext.Current["IdUser"];
+            List<GetAllUsersResponseModel> allUsers = GetClient.GetAllClients((string)ScenarioContext.Current["AdminToken"]);
+            foreach (GetAllUsersResponseModel model in allUsers)
+            {
+                GetAllUsersResponseModel actualModel = allUsers.FirstOrDefault(C => C.Id == model.Id);
+                Assert.IsNull(actualModel);
+            }
+        }
+
+        //[AfterScenario]
+        //public void AfterScenario()
+        //{
+        //    LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
+        //    {
+        //        Email = "user@example.com",
+        //        Password = "stringst"
+        //    };
+        //    string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
+        //    DeleteClient.DeleteUserById(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
+        //    GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
+        //}
     }
 }
