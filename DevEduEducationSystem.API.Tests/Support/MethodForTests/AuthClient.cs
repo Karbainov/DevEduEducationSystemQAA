@@ -11,12 +11,12 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class AuthClient
     {
-        public List<RegistrationResponsesModel> Registration(List<RegisterRequestModel> userModel)
+        public List<RegistrationResponseModel> Registration(List<RegistrationRequestModel> userModel)
         {
-            List<RegistrationResponsesModel> userResponses = new List<RegistrationResponsesModel>();
+            List<RegistrationResponseModel> userResponses = new List<RegistrationResponseModel>();
             foreach (var user in userModel)
             {
-                string url = "https://piter-education.ru:7070/register";
+                string url = "https://piter-education.ru:7072/register";
                 string json = JsonSerializer.Serialize(user);
                 HttpClient client = new HttpClient();
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -30,15 +30,14 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 HttpStatusCode expected = HttpStatusCode.Created;
                 HttpStatusCode actual = response.StatusCode;
                 Assert.AreEqual(expected, actual);
-                userResponses.Add(JsonSerializer.Deserialize<RegistrationResponsesModel>(s));
+                userResponses.Add(JsonSerializer.Deserialize<RegistrationResponseModel>(s));
             }
             return userResponses;
         }
 
-        public HttpResponseMessage Registration(RegisterRequestModel userModel)
+        public HttpResponseMessage Registration(RegistrationRequestModel userModel)
         {
-            List<RegistrationResponsesModel> userResponses = new List<RegistrationResponsesModel>();
-                string url = "https://piter-education.ru:7070/register";
+                string url = "https://piter-education.ru:7072/register";
                 string json = JsonSerializer.Serialize(userModel);
                 HttpClient client = new HttpClient();
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -53,7 +52,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
         public static string AuthUser(string email, string password)
         {
-            string url = "https://piter-education.ru:7070/sign-in";
+            string url = "https://piter-education.ru:7072/sign-in";
             LoginRequestModel login = new LoginRequestModel()
             {
                 Email = email,
