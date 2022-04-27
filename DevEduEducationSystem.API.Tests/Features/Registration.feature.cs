@@ -407,7 +407,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -418,7 +418,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table5.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -430,7 +430,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 49
- testRunner.Given("I register", ((string)(null)), table5, "Given ");
+ testRunner.Given("I register", ((string)(null)), table13, "Given ");
 #line hidden
 #line 52
  testRunner.When(string.Format("Autorized by {0} and {1}", email, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
