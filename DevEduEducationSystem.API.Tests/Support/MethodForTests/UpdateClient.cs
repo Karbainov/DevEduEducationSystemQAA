@@ -12,7 +12,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class UpdateClient
     {
-        public static void UpdateUser(RegistrationResponsesModel newUserModel, int id, string token)
+        public static void UpdateUser(RegistrationResponseModel newUserModel, int id, string token)
         {           
                 string url = $"https://piter-education.ru:7072/api/Users/{id}";
                 string json = JsonSerializer.Serialize(newUserModel);
@@ -29,6 +29,25 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 HttpStatusCode expected = HttpStatusCode.Created;
                 HttpStatusCode actual = response.StatusCode;
                 Assert.AreEqual(expected, actual);
+        }
+
+        public static void UpdateGroup(int idGroup, GroupRequestModel groupUpdate, string token)
+        {
+            string url = $"https://piter-education.ru:7072/api/Groups/{idGroup}";
+            string json = JsonSerializer.Serialize(groupUpdate);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Put,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
         }
     }
 }

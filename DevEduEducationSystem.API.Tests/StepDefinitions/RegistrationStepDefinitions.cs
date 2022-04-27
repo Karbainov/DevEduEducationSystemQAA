@@ -15,9 +15,9 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [Given(@"I register")]
         public void IRegister(Table table)
         {
-            List<RegisterRequestModel> user = table.CreateSet<RegisterRequestModel>().ToList();
+            List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
             AuthClient registr = new AuthClient();
-            List<RegistrationResponsesModel> userResponses = registr.Registration(user);
+            List<RegistrationResponseModel> userResponses = registr.Registration(user);
             FeatureContext.Current["RegisterRequestModels"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {
@@ -42,17 +42,17 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [Then(@"Should User Models coincide with the returned models of these entities")]
         public void ThenShouldUserModelsCoincideWithTheReturnedModelsOfTheseEntities()
         {
-            if (FeatureContext.Current["RegisterRequestModels"] is List<RegisterRequestModel>)
+            if (FeatureContext.Current["RegisterRequestModels"] is List<RegistrationRequestModel>)
             {
                 Mapper mapper = new Mapper();
-                List<RegisterRequestModel> expectedUserModels = (List<RegisterRequestModel>)FeatureContext.Current["RegisterRequestModels"];
+                List<RegistrationRequestModel> expectedUserModels = (List<RegistrationRequestModel>)FeatureContext.Current["RegisterRequestModels"];
                 foreach (var m in expectedUserModels)
                 {
                     m.Password = null;
                 }
 
-                List<RegistrationResponsesModel> registerRequestModels = (List<RegistrationResponsesModel>)FeatureContext.Current["ActualUserModel"];
-                List<RegisterRequestModel> actualUserModels = new List<RegisterRequestModel>();
+                List<RegistrationResponseModel> registerRequestModels = (List<RegistrationResponseModel>)FeatureContext.Current["ActualUserModel"];
+                List<RegistrationRequestModel> actualUserModels = new List<RegistrationRequestModel>();
                 foreach (var m in registerRequestModels)
                 {
                     actualUserModels.Add(mapper.MapRegistrationResponsesModelToRegisterRequestModel(m));
@@ -60,11 +60,11 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
                 CollectionAssert.AreEqual(expectedUserModels, actualUserModels);
             }
-            else if(FeatureContext.Current["RegisterRequestModels"] is RegistrationResponsesModel)
+            else if(FeatureContext.Current["RegisterRequestModels"] is RegistrationResponseModel)
             {
-                RegistrationResponsesModel expectedUserModel = (RegistrationResponsesModel)FeatureContext.Current["RegisterRequestModels"];
+                RegistrationResponseModel expectedUserModel = (RegistrationResponseModel)FeatureContext.Current["RegisterRequestModels"];
                 expectedUserModel.City = "SaintPetersburg";
-                 RegistrationResponsesModel actualUserModel = ((List<RegistrationResponsesModel>)FeatureContext.Current["ActualUserModel"])[0];
+                 RegistrationResponseModel actualUserModel = ((List<RegistrationResponseModel>)FeatureContext.Current["ActualUserModel"])[0];
 
                 Assert.AreEqual(expectedUserModel, actualUserModel);
             }
@@ -75,7 +75,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             AuthClient registr = new AuthClient();
             
-            RegisterRequestModel user = table.CreateInstance<RegisterRequestModel>();
+            RegistrationRequestModel user = table.CreateInstance<RegistrationRequestModel>();
             HttpResponseMessage httpResponse = registr.Registration(user);
             FeatureContext.Current["StatusCode"] = httpResponse.StatusCode;
         }
@@ -93,7 +93,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"I Update myself")]
         public void WhenIUpdateMyself(Table table)
         {
-            RegistrationResponsesModel newUserModel = table.CreateInstance<RegistrationResponsesModel>();
+            RegistrationResponseModel newUserModel = table.CreateInstance<RegistrationResponseModel>();
             newUserModel.Id = (int)FeatureContext.Current["IdUser"];
             newUserModel.City = "1";
             FeatureContext.Current["RegisterRequestModels"] = newUserModel;
