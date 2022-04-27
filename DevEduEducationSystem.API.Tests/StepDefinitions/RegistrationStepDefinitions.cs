@@ -129,18 +129,5 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.IsNull(actualModel);
             }
         }
-
-        //[AfterScenario]
-        //public void AfterScenario()
-        //{
-        //    LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
-        //    {
-        //        Email = "user@example.com",
-        //        Password = "stringst"
-        //    };
-        //    string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-        //    DeleteClient.DeleteUserById(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
-        //    GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
-        //}
     }
 }

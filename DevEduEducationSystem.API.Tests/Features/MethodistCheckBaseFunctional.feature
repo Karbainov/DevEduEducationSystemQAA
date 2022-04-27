@@ -15,8 +15,8 @@ Scenario: User in role methodist create new course
 	And Delete new course
 	And Delete new user
 	Examples: 
-	| FirstName | LastName | Patronymic | Email                            | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name          | Description           | Role      |
-	| IIII      | III      | I          | qrtytret341qqq234drykrrerдq@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | dddfgrrfdа;rttd | Nqwhjhпsssrer;rwtto51 | Methodist |
+	| FirstName | LastName | Patronymic | Email        | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name                | Description         | Role      |
+	| IIII      | III      | I          | IIII@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | Samiy luchshiy kurs | Samiy luchshiy kurs | Methodist |
 
 Scenario: User in role methodist update course
 	Given I create new user and get his token
@@ -33,8 +33,8 @@ Scenario: User in role methodist update course
 	And Delete new course
 	And Delete new user
 	Examples: 
-	| FirstName | LastName | Patronymic | Email     | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name             | Description   | NewName          | NewDescription | Role      |
-	| IIII      | III      | I          | m@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | sdfsrsdfswrrkwfwdddo | sdfsdfsrr rdf4www | srdfsrjh4rdfdwww | trtwrwff5ffw   | Methodist |
+	| FirstName | LastName | Patronymic | Email            | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name                        | Description                 | NewName                     | NewDescription              | Role      |
+	| IIII      | III      | I          | IIIIIIII@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | Samiy luchshiy kurs v tvoei | Samiy luchshiy kurs v tvoei | Samiy luchshiy kurs v tvoei | Samiy luchshiy kurs v tvoei | Methodist |
 
 Scenario: User in role methodist can get course by ID
 	Given I create new user and get his token
@@ -48,8 +48,8 @@ Scenario: User in role methodist can get course by ID
 	And Delete new course
 	And Delete new user
 	Examples: 
-	| FirstName | LastName | Patronymic | Email                     | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name                | Description       | Role      |
-	| IIII      | III      | I          | vbjvrqqqqrcr2341rrrttefeb@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | 1gfdn hgdrfttdfsdfrrbtdg | dgffjk grjttrbrtd | Methodist |
+	| FirstName | LastName | Patronymic | Email             | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name                                | Description                         | Role      |
+	| IIII      | III      | I          | IIIIIIIIQ@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | Samiy luchshiy kurs v tvoei zchizni | Samiy luchshiy kurs v tvoei zchizni | Methodist |
 
 @Negative
 Scenario: User in role methodist can get course by ID.Negative
@@ -60,5 +60,5 @@ Scenario: User in role methodist can get course by ID.Negative
 	When I login as an Methodist and get course by not existing Id <Id>
 	Then Should return 404 code response status
 	Examples: 
-	| FirstName | LastName | Patronymic | Email                 | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name       | Description  | Role      | Id |
-	| IIII      | III      | I          | dddttqqqqpqq2341wfwd@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | frrrfwesdfsdfsduuu | lourr gffjjq | Methodist | -1 |
+	| FirstName | LastName | Patronymic | Email          | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name   | Description  | Role      | Id |
+	| IIII      | III      | I          | pakdre@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | jsldsd | l;sjdhsg     | Methodist | -1 |

@@ -75,8 +75,8 @@ namespace DevEduEducationSystem.API.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Registration in system")]
-        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "rlwy@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", null)]
-        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "qlpy@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "1rlhhwy@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "1qlhhpy@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", null)]
         public virtual void RegistrationInSystem(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -153,9 +153,9 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Registration in system. Negative")]
         [NUnit.Framework.CategoryAttribute("Negative")]
-        [NUnit.Framework.TestCaseAttribute("Малыш", "Малышев", "Малышович", "Малышqf1y2@mail.ru", "БоссМолокосос", "северусСнейп", "SaintPetersburg", "09.01.2021", "string", "89991234567", null)]
-        [NUnit.Framework.TestCaseAttribute("Альбрехт", "Вильгельм", "Эдуардович", "Вильгельмqf12y@mail.ru", "Альбрехт", "Вильгельм", "SaintPetersburg", "04.03.1800", "string", "89991234567", null)]
-        [NUnit.Framework.TestCaseAttribute("Телефон", "Телефонов", "Телефонович", "Телефон12y@mail.ru", "Телефончик", "Телефонама", "SaintPetersburg", "04.03.2003", "string", "Чукча кушать хочет", null)]
+        [NUnit.Framework.TestCaseAttribute("Малыш", "Малышев", "Малышович", "Малыш@mail.ru", "БоссМолокосос", "северусСнейп", "SaintPetersburg", "09.01.2021", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("Альбрехт", "Вильгельм", "Эдуардович", "Вильгельм@mail.ru", "Альбрехт", "Вильгельм", "SaintPetersburg", "04.03.1800", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("Телефон", "Телефонов", "Телефонович", "Телефон@mail.ru", "Телефончик", "Телефонама", "SaintPetersburg", "04.03.2003", "string", "Чукча кушать хочет", null)]
         [NUnit.Framework.TestCaseAttribute("", "", "", "", "", "", "", "", "", "", null)]
         public virtual void RegistrationInSystem_Negative(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string[] exampleTags)
         {
@@ -232,7 +232,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Update User")]
-        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "zayf@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", "Богданов", "Арутр", "Ашотович", "zzzzqqqqqqqqq@mail.ru", "Ashot", "Qwerty123", "SaintPetersburg", "01.01.1993", "string", "89991234563", null)]
+        [NUnit.Framework.TestCaseAttribute("Северус", "Снейп", "Аланович", "severus@mail.ru", "север", "северусСнейп", "SaintPetersburg", "01.01.1993", "string", "89991234567", "Богданов", "Арутр", "Ашотович", "jdyns@mail.ru", "Ashot", "Qwerty123", "SaintPetersburg", "01.01.1993", "string", "89991234563", null)]
         public virtual void UpdateUser(
                     string firstName, 
                     string lastName, 
@@ -365,7 +365,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Delete User")]
         [NUnit.Framework.CategoryAttribute("Negative")]
-        [NUnit.Framework.TestCaseAttribute("QQQ", "YYY", "AAA", "QQQYYYAAAqqqfqy@mail.ru", "QYA", "qwerty123", "SaintPetersburg", "02.02.1992", "string", "89991234567", null)]
+        [NUnit.Framework.TestCaseAttribute("QQQ", "YYY", "AAA", "QYA@mail.ru", "QYA", "qwerty123", "SaintPetersburg", "02.02.1992", "string", "89991234567", null)]
         public virtual void DeleteUser(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
