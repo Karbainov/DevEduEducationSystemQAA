@@ -2,12 +2,12 @@
 
 Check base functional for Methodist
 
-@tag1
+@Metodist
 Scenario: User in role methodist create new course
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
-	And I login as an admin and give new user role <Role> "Methodist"
+	And I login as an admin and give new user role <Role>
 	When I login as an Methodist and create new course
 	| Name   | Description   |
 	| <Name> | <Description> |
@@ -15,14 +15,14 @@ Scenario: User in role methodist create new course
 	And Delete new course
 	And Delete new user
 	Examples: 
-	| FirstName | LastName | Patronymic | Email                      | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name          | Description           | Role      |
-	| IIII      | III      | I          | qrtytretdrykrrerдq@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | dddfgrrа;rttd | Nqwhjhпsssrer;rwtto51 | Methodist |
+	| FirstName | LastName | Patronymic | Email                            | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name          | Description           | Role      |
+	| IIII      | III      | I          | qrtytret341qqq234drykrrerдq@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | dddfgrrfdа;rttd | Nqwhjhпsssrer;rwtto51 | Methodist |
 
 Scenario: User in role methodist update course
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
-	And I login as an admin and give new user role <Role> "Methodist"
+	And I login as an admin and give new user role <Role>
 	When I login as an Methodist and create new course
 	| Name   | Description   |
 	| <Name> | <Description> |
@@ -34,13 +34,13 @@ Scenario: User in role methodist update course
 	And Delete new user
 	Examples: 
 	| FirstName | LastName | Patronymic | Email                    | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name             | Description   | NewName          | NewDescription | Role      |
-	| IIII      | III      | I          | qqqetrrrrrrfhret@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | sdfsrwrrkwfwdddo | sdfrr rdf4www | srdfsrjh4rdfdwww | trtwrwff5ffw   | Methodist |
+	| IIII      | III      | I          | qqqetrrqqqqwerrrrrfhret@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | sdfsrsdfswrrkwfwdddo | sdfsdfsrr rdf4www | srdfsrjh4rdfdwww | trtwrwff5ffw   | Methodist |
 
 Scenario: User in role methodist can get course by ID
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
-	And I login as an admin and give new user role <Role> "Methodist"
+	And I login as an admin and give new user role <Role>
 	When I login as an Methodist and create new course
 	| Name   | Description   |
 	| <Name> | <Description> |	
@@ -49,16 +49,16 @@ Scenario: User in role methodist can get course by ID
 	And Delete new user
 	Examples: 
 	| FirstName | LastName | Patronymic | Email                     | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name                | Description       | Role      |
-	| IIII      | III      | I          | vbjvrrcrrrrttefeb@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | 1gfdn hgdrfttrrbtdg | dgffjk grjttrbrtd | Methodist |
+	| IIII      | III      | I          | vbjvrqqqqrcr2341rrrttefeb@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | 1gfdn hgdrfttdfsdfrrbtdg | dgffjk grjttrbrtd | Methodist |
 
 @Negative
 Scenario: User in role methodist can get course by ID.Negative
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
-	And I login as an admin and give new user role <Role> "Methodist" 
+	And I login as an admin and give new user role <Role> 
 	When I login as an Methodist and get course by not existing Id <Id>
 	Then Should return 404 code response status
 	Examples: 
 	| FirstName | LastName | Patronymic | Email                 | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name       | Description  | Role      | Id |
-	| IIII      | III      | I          | dddtttpqqwfwd@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | frrrfweuuu | lourr gffjjq | Methodist | -1 |
+	| IIII      | III      | I          | dddttqqqqpqq2341wfwd@mail.ru | iiii     | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | frrrfwesdfsdfsduuu | lourr gffjjq | Methodist | -1 |

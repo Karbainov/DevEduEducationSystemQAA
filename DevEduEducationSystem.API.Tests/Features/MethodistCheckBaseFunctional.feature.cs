@@ -75,12 +75,12 @@ namespace DevEduEducationSystem.API.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist create new course")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "qrtytretdrykrrerдq@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "dddfgrrа;rttd", "Nqwhjhпsssrer;rwtto51", "Methodist", null)]
+        [NUnit.Framework.CategoryAttribute("Metodist")]
+        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "qrtytret341qqq234drykrrerдq@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "dddfgrrfdа;rttd", "Nqwhjhпsssrer;rwtto51", "Methodist", null)]
         public virtual void UserInRoleMethodistCreateNewCourse(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "tag1"};
+                    "Metodist"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -147,7 +147,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I create new user and get his token", ((string)(null)), table1, "Given ");
 #line hidden
 #line 10
- testRunner.And(string.Format("I login as an admin and give new user role {0} \"Methodist\"", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -173,7 +173,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist update course")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "qqqetrrrrrrfhret@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "sdfsrwrrkwfwdddo", "sdfrr rdf4www", "srdfsrjh4rdfdwww", "trtwrwff5ffw", "Methodist", null)]
+        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "qqqetrrqqqqwerrrrrfhret@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "sdfsrsdfswrrkwfwdddo", "sdfsdfsrr rdf4www", "srdfsrjh4rdfdwww", "trtwrwff5ffw", "Methodist", null)]
         public virtual void UserInRoleMethodistUpdateCourse(
                     string firstName, 
                     string lastName, 
@@ -256,7 +256,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I create new user and get his token", ((string)(null)), table3, "Given ");
 #line hidden
 #line 25
- testRunner.And(string.Format("I login as an admin and give new user role {0} \"Methodist\"", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -291,7 +291,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist can get course by ID")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "vbjvrrcrrrrttefeb@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "1gfdn hgdrfttrrbtdg", "dgffjk grjttrbrtd", "Methodist", null)]
+        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "vbjvrqqqqrcr2341rrrttefeb@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "1gfdn hgdrfttdfsdfrrbtdg", "dgffjk grjttrbrtd", "Methodist", null)]
         public virtual void UserInRoleMethodistCanGetCourseByID(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -356,7 +356,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I create new user and get his token", ((string)(null)), table6, "Given ");
 #line hidden
 #line 43
- testRunner.And(string.Format("I login as an admin and give new user role {0} \"Methodist\"", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -383,7 +383,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist can get course by ID.Negative")]
         [NUnit.Framework.CategoryAttribute("Negative")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "dddtttpqqwfwd@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "frrrfweuuu", "lourr gffjjq", "Methodist", "-1", null)]
+        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "dddttqqqqpqq2341wfwd@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "frrrfwesdfsdfsduuu", "lourr gffjjq", "Methodist", "-1", null)]
         public virtual void UserInRoleMethodistCanGetCourseByID_Negative(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string id, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -455,7 +455,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("I create new user and get his token", ((string)(null)), table8, "Given ");
 #line hidden
 #line 59
- testRunner.And(string.Format("I login as an admin and give new user role {0} \"Methodist\"", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 60
  testRunner.When(string.Format("I login as an Methodist and get course by not existing Id {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

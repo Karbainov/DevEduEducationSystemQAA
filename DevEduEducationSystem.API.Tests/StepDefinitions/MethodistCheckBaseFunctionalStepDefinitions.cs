@@ -21,7 +21,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["TokenMethodist"] = tokenMethodist;
         }        
         
-        [Given(@"I login as an admin and give new user role Methodist ""([^""]*)""")]
+        [Given(@"I login as an admin and give new user role (.*)")]
         public void GivenILoginAsAnAdminAndGiveNewUserRoleMethodist(string methodist)
         {
             LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
