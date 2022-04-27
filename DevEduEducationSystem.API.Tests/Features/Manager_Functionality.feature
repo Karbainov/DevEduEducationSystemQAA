@@ -4,14 +4,15 @@
 2.) Как менеджер, я хочу создавать группу
 3.) Как менеджер, я хочу получить созданную группу по id 
 4.)Как менеджер. я хочу добавлять в группу студента, преподавателя и тьютора
+5.) Как менеджер, я хочу изменять группу 
 
 @tag1
 Scenario: As manadger I want to assign a role to users
-	Given Create future manadger
+	Given Create user
 	| FirstName   | LastName    | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName > | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And Autorized as admin
-	And Assing Minevra "Manager"
+	And Assing User "Manager"
 	Given Create new users for our roles
 	| FirstName      | LastName      | Patronymic      | Email      | Username      | Password      | City      | BirthDate      | GitHubAccount      | PhoneNumber      |
 	| <NewFirstName> | <NewLastName> | <NewPatronymic> | <NewEmail> | <NewUsername> | <NewPassword> | <NewCity> | <NewBirthDate> | <NewGitHubAccount> | <NewPhoneNumber> |
@@ -84,8 +85,32 @@ Scenario: As a manager, I want to create groups
 	 | FirstName | LastName    | Patronymic | Email         | Username | Password    | City            | BirthDate  | GitHubAccount | PhoneNumber | MehodistFirstName | MehodistLastName | MehodistPatronymic | MehodistEmail  | MehodistUsername | MehodistPassword | MehodistCity    | MehodistBirthDate | MehodistGitHubAccount | MehodistPhoneNumber | NameRole | MehodistNameRole |
 	 | Миневра   | Макгонагалл | Смит       | Smit4@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид            | Рубеус           | Колтрейн           | Rubeus1@mail.ru | Hagrid           | hagridRubeus     | SaintPetersburg | 01.03.2003        | string                | 89211111111         | Manager  | Methodist        |
 
-
-
+Scenario: As manager, I want change my created group
+    Given Create future manadger and methodist
+	| FirstName           | LastName            | Patronymic           | Email           | Username           | Password           | City           | BirthDate           | GitHubAccount           | PhoneNumber           |
+	| <FirstName>         | <LastName >         | <Patronymic>         | <Email>         | <Username>         | <Password>         | <City>         | <BirthDate>         | <GitHubAccount>         | <PhoneNumber>         |
+	| <MehodistFirstName> | <MehodistLastName > | <MehodistPatronymic> | <MehodistEmail> | <MehodistUsername> | <MehodistPassword> | <MehodistCity> | <MehodistBirthDate> | <MehodistGitHubAccount> | <MehodistPhoneNumber> |
+	And Autorized as admin
+	And Assing Minevra and Methodist roles
+	| NameRole           |
+	| <NameRole>         |
+	| <MehodistNameRole> |
+	When Autorized by methodist
+	Given Create Course by methodist
+	| Name            | Description                      |
+	| Юный натуралист | Чем double отличается от decimal |
+	And Autorized by manager
+	And Create Groupe
+	| Name    | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
+	| Група 3 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 17:00 - 20:00 | 5000            |
+   When chanche group
+   | Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
+   | Группа 3 | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 12:00 | 2500            |
+   And Get group number three by id
+   Then Compare the resulting group chench group number three
+   Examples: 
+	 | FirstName | LastName    | Patronymic | Email         | Username | Password    | City            | BirthDate  | GitHubAccount | PhoneNumber | MehodistFirstName | MehodistLastName | MehodistPatronymic | MehodistEmail   | MehodistUsername | MehodistPassword | MehodistCity    | MehodistBirthDate | MehodistGitHubAccount | MehodistPhoneNumber | NameRole | MehodistNameRole |
+	 | Миневра   | Макгонагалл | Смит       | Smitt@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид            | Рубеус           | Колтрейн           | Rubeuss@mail.ru | Hagrid           | hagridRubeus     | SaintPetersburg | 01.03.2003        | string                | 89211111111         | Manager  | Methodist        |
 	 
 	#Role      |
 	# Manager  |

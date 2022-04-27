@@ -10,12 +10,12 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
     public class Manager_FunctionalityStepDefinitions
     {
 
-        int _curseId;
-        string _tokenManager;
-        string _tokenAdmin;
+        private int _curseId;
+        private string _tokenManager;
+        private string _tokenAdmin;
 
-        [Given(@"Create future manadger")]
-        public void GivenCreateFutureManadger(Table table)
+        [Given(@"Create user")]
+        public void GivenCreateUser(Table table)
         {
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
             AuthClient registr = new AuthClient();
@@ -37,8 +37,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             _tokenAdmin = (string)ScenarioContext.Current["AdminToken"];
         }
 
-        [Given(@"Assing Minevra ""([^""]*)""")]
-        public void GivenAssingMinevra(string manager)
+        [Given(@"Assing User ""([^""]*)""")]
+        public void GivenAssingUser(string manager)
         {
             string token = (string)ScenarioContext.Current["AdminToken"];
             List<int> listId = new List<int>();
@@ -290,8 +290,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["Return By Id Model Actual"] = GetClient.GetGroupById(idGroup, token); // ReturnByIdGroupModel
         }
 
-        // тут идет реализованый метод получения модельки группы по айди - актуальной 
-
         [Then(@"Compare the resulting filled group by id with group request")]
         public void ThenCompareTheResultingFilledGroupByIdWithGroupRequest()
         {
@@ -370,6 +368,40 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.AreEqual(expected.Tutors[0].Id, actual.Tutors[0].Id);
             Assert.AreEqual(expected.Tutors[0].Email, actual.Tutors[0].Email);
             Assert.AreEqual(expected.Tutors[0].Photo, actual.Tutors[0].Photo);
+        }
+
+        // new Scenario (update)
+
+        [Given(@"Create my group number three Groupe")]
+        public void GivenCreateMyGroupNumberThreeGroupe(Table table)
+        {
+            string tokenManager = _tokenManager;
+            ScenarioContext.Current["TokenManadger"] = tokenManager;
+            GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
+            ScenarioContext.Current["Group Response Model"] =  AddEntitysClients.CreateGroupe(tokenManager, groupRequest);
+        }
+
+
+        [When(@"chanche group")]
+        public void WhenChancheGroup(Table table)
+        {
+            GroupRequestModel groupChange = table.CreateSet<GroupRequestModel>().ToList().First();
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
+            int idGroup = groupResponse.Id;
+            string token = (string)ScenarioContext.Current["TokenManadger"];
+            UpdateClient.UpdateGroup(idGroup, groupChange,token);
+        }
+
+        [When(@"Get group number three by id")]
+        public void WhenGetGroupNumberThreeById()
+        {
+            
+        }
+
+        [Then(@"Compare the resulting group chench group number three")]
+        public void ThenCompareTheResultingGroupChenchGroupNumberThree()
+        {
+            throw new PendingStepException();
         }
 
     }
