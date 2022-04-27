@@ -76,7 +76,7 @@ namespace DevEduEducationSystem.API.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist create new course")]
         [NUnit.Framework.CategoryAttribute("Metodist")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "ogfhg@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "lltd", "kljfhhgfd", "Methodist", null)]
+        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "IIII@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "Samiy luchshiy kurs", "Samiy luchshiy kurs", "Methodist", null)]
         public virtual void UserInRoleMethodistCreateNewCourse(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -173,7 +173,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist update course")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "jfdkslfad@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "xcvxcv", "fdhlkjlkj", "fghgfdhfghdfx", "fhdf", "Methodist", null)]
+        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "IIIIIIII@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "Samiy luchshiy kurs v tvoei", "Samiy luchshiy kurs v tvoei", "Samiy luchshiy kurs v tvoei", "Samiy luchshiy kurs v tvoei", "Methodist", null)]
         public virtual void UserInRoleMethodistUpdateCourse(
                     string firstName, 
                     string lastName, 
@@ -291,7 +291,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist can get course by ID")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "jkldowwnm,@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "psdsfdf", "ljkl", "Methodist", null)]
+        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "IIIIIIIIQ@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "Samiy luchshiy kurs v tvoei zchizni", "Samiy luchshiy kurs v tvoei zchizni", "Methodist", null)]
         public virtual void UserInRoleMethodistCanGetCourseByID(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
