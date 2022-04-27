@@ -45,13 +45,29 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.AllGroupsModels
 
         public override bool Equals(object? obj)
         {
-            return obj is ReturnByIdGroupModel model &&
-                   EqualityComparer<List<StudentModel>>.Default.Equals(Students, model.Students) &&
-                   EqualityComparer<List<TeacherModel>>.Default.Equals(Teachers, model.Teachers) &&
-                   EqualityComparer<List<TutorModel>>.Default.Equals(Tutors, model.Tutors) &&
-                   Id == model.Id &&
+
+            var model = (ReturnByIdGroupModel)obj!;
+
+            //EqualityComparer<List<StudentModel>>.Default.Equals(Students, model.Students) &&
+            if (Students.Count != model.Students.Count)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < Students.Count; i++)
+            {
+                if (!Students[i].Equals(model.Students[i]))
+                {
+                    return false;
+                }
+            }
+
+            //EqualityComparer<List<TeacherModel>>.Default.Equals(Teachers, model.Teachers) &&
+            //  EqualityComparer<List<TutorModel>>.Default.Equals(Tutors, model.Tutors) &&
+
+            return Id == model.Id &&
                    Name == model.Name &&
-                   EqualityComparer<Course>.Default.Equals(Course, model.Course) &&
+                   Course.Equals(model.Course) &&
                    GroupStatus == model.GroupStatus &&
                    StartDate == model.StartDate &&
                    EndDate == model.EndDate &&
