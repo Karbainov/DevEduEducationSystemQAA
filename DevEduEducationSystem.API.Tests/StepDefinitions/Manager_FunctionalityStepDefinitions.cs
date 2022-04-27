@@ -1,4 +1,5 @@
 
+using DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel;
 using System;
 using System.Net;
 using TechTalk.SpecFlow;
@@ -8,6 +9,11 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
     [Binding]
     public class Manager_FunctionalityStepDefinitions
     {
+
+        int _curseId;
+        string _tokenManager;
+        string _tokenAdmin;
+
         [Given(@"Create future manadger")]
         public void GivenCreateFutureManadger(Table table)
         {
@@ -27,13 +33,14 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             string email = "user@example.com";
             string password = "stringst";
-            FeatureContext.Current["AdminToken"] = AuthClient.AuthUser(email, password);
+            ScenarioContext.Current["AdminToken"] = AuthClient.AuthUser(email, password);
+            _tokenAdmin = (string)ScenarioContext.Current["AdminToken"];
         }
 
         [Given(@"Assing Minevra ""([^""]*)""")]
         public void GivenAssingMinevra(string manager)
         {
-            string token = (string)FeatureContext.Current["AdminToken"];
+            string token = (string)ScenarioContext.Current["AdminToken"];
             List<int> listId = new List<int>();
             listId.Add((int)ScenarioContext.Current["IdManager"]);
             int id = listId[0];
@@ -61,6 +68,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             string email = user[0].Email;
             string password = user[0].Password;
             ScenarioContext.Current["ManagerToken"] = AuthClient.AuthUser(email, password);
+            _tokenManager = (string)ScenarioContext.Current["ManagerToken"];
         }
 
         [When(@"Assing users role methodist, teacher, tutor")]
@@ -76,16 +84,11 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [Then(@"Сheck user roles")]
         public void ThenСheckUserRoles()
         {
-            List<RegistrationResponseModel> getUsersActual = new List<RegistrationResponseModel>();
             string token = (string)ScenarioContext.Current["ManagerToken"];
             int id = (int)ScenarioContext.Current["IdUser"];
-            getUsersActual = GetClient.GetUserById(token, id);
+            RegistrationResponseModel getUsersActual = GetClient.GetUserById(token, id);
             RoleModel roleExpected = (RoleModel)ScenarioContext.Current["Roles"];
-            for (int i = 0; i < getUsersActual.Count; i++)
-            {
-                Assert.AreEqual(roleExpected.NameRole, getUsersActual[i].Roles[1]);
-            }
-
+            Assert.AreEqual(roleExpected.NameRole, getUsersActual.Roles[1]);
         }
 
         // new Scenario 
@@ -109,7 +112,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenAssingMinevraAndMethodistRoles(Table table)
         {
             List<RoleModel> roles = table.CreateSet<RoleModel>().ToList();
-            string token = (string)FeatureContext.Current["AdminToken"];
+            string token = _tokenAdmin;
             List<int> idUsers = (List<int>)ScenarioContext.Current["UsersId"];
             for (int i = 0; i < roles.Count; i++)
             {
@@ -134,6 +137,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             string token = (string)ScenarioContext.Current["MethodistToken"];
             CourseResponseModel courseReturn = AddEntitysClients.CreateCourse(token, course);
             ScenarioContext.Current["CourseId"] = courseReturn.Id;
+            _curseId = courseReturn.Id;
         }
 
         [Given(@"Autorized by manager")]
@@ -143,6 +147,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             string email = requestModel[0].Email;
             string password = requestModel[0].Password;
             ScenarioContext.Current["ManagerToken"] = AuthClient.AuthUser(email, password);
+            _tokenManager = (string)ScenarioContext.Current["ManagerToken"];
         }
 
         [When(@"Create Groupe")]
@@ -195,5 +200,177 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         }
 
         // new Scenario 
+
+        // это скопированный метод на создании менеджера - ошибка, такой метод уже существует
+
+        //[Given(@"Create future manadger")]
+        //public void GivenCreateFutureManadger(Table table)
+        //{
+        //    List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
+        //    AuthClient registr = new AuthClient();
+        //    List<RegistrationResponseModel> userResponses = registr.Registration(user);
+        //    ScenarioContext.Current["Manager"] = user;
+        //    for (int i = 0; i < userResponses.Count; i++)
+        //    {
+        //        ScenarioContext.Current["IdManager"] = userResponses[i].Id;
+        //    }
+        //}
+
+        [Given(@"Create Groupe")]
+        public void GivenCreateGroupe(Table table)
+        {
+           GroupRequestModel group = table.CreateSet<GroupRequestModel>().ToList().First();
+           ScenarioContext.Current["CourseId"] = _curseId;
+           group.CourseId = _curseId;
+           ScenarioContext.Current["TokenManager"] = _tokenManager;
+           string token = (string)ScenarioContext.Current["TokenManager"];
+           ScenarioContext.Current["Group Response Model"] = AddEntitysClients.CreateGroupe(token, group);
+           ScenarioContext.Current["Group Request Model"] = group;
+        }
+
+        [Given(@"Create three users")]
+        public void GivenCreateThreeUsers(Table table)
+        {
+            List<RegistrationRequestModel> users = table.CreateSet<RegistrationRequestModel>().ToList();
+            ScenarioContext.Current["UsersRequest"] = users;
+            AuthClient register = new AuthClient();
+            ScenarioContext.Current["UsersResponse"] = register.Registration(users);
+        }
+
+        [Given(@"Assign two students roles ""([^""]*)"" and ""([^""]*)""")]
+        public void GivenAssignTwoStudentsRolesAnd(string teacher, string tutor)
+        {
+            string token = (string)ScenarioContext.Current["TokenManager"];
+            var responseUser = (List<RegistrationResponseModel>)ScenarioContext.Current["UsersResponse"];
+            int idTeacher = responseUser[1].Id;
+            int idTutor = responseUser[2].Id;
+            AddRoleUsers.AddRole(teacher, idTeacher, token);
+            AddRoleUsers.AddRole(tutor, idTutor, token);
+            List<int> idUsers = new List<int>(){ responseUser[0].Id,idTeacher,idTutor};
+            ScenarioContext.Current["IdUsers"] = idUsers;
+         }
+
+        [Given(@"Get Users by id")]
+        public void GivenGetUsersById()
+        {
+            string token = (string)ScenarioContext.Current["ManagerToken"];
+            List<RegistrationResponseModel> getUsers = new List<RegistrationResponseModel>();
+            List<int> idUsers = (List<int>)ScenarioContext.Current["IdUsers"];
+            for (int i = 0; i < idUsers.Count; i++)
+            {
+                 RegistrationResponseModel a = GetClient.GetUserById(token, idUsers[i]);
+                getUsers.Add(a);
+            }
+            List<string> rolesUsers = new List<string>() { getUsers[0].Roles[0], getUsers[1].Roles[1], getUsers[2].Roles[1] };
+            ScenarioContext.Current["IdStringRolesUsers"] = rolesUsers;
+        }
+
+
+        [When(@"Add three users Student, Teacher and Tutor in group")]
+        public void WhenAddThreeUsersStudentTeacherAndTutorInGroup()
+        {
+            // нужен метод по добавлению юзеров в группу
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
+            int idGroup = groupResponse.Id;
+            string token = (string)ScenarioContext.Current["ManagerToken"];
+            List<int> idUsers = (List<int>)ScenarioContext.Current["IdUsers"];
+            List<string> idRoles = (List<string>)ScenarioContext.Current["IdStringRolesUsers"];
+            for (int i = 0; i <idUsers.Count; i++)
+            {
+                AddEntitysClients.AddUserInGroup(idGroup, idUsers[i],idRoles[i], token);
+            }
+        }
+
+        [When(@"Get my group by id")]
+        public void WhenGetMyGroupById()
+        {
+            string token = (string)ScenarioContext.Current["ManagerToken"];
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
+            int idGroup = groupResponse.Id;
+            ScenarioContext.Current["Return By Id Model Actual"] = GetClient.GetGroupById(idGroup, token); // ReturnByIdGroupModel
+        }
+
+        // тут идет реализованый метод получения модельки группы по айди - актуальной 
+
+        [Then(@"Compare the resulting filled group by id with group request")]
+        public void ThenCompareTheResultingFilledGroupByIdWithGroupRequest()
+        {
+            ReturnByIdGroupModel actual = (ReturnByIdGroupModel)ScenarioContext.Current["Return By Id Model Actual"];
+            GroupRequestModel a = (GroupRequestModel)ScenarioContext.Current["Group Request Model"];
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
+            int idGroup = groupResponse.Id;
+            List<int> idUsers = (List<int>)ScenarioContext.Current["IdUsers"];
+            List<RegistrationRequestModel> users = (List<RegistrationRequestModel>)ScenarioContext.Current["UsersRequest"];
+            TutorModel tutor = new TutorModel()
+            {
+                Id = idUsers[2],
+                FirstName = users[2].FirstName,
+                LastName = users[2].LastName,
+                Email = users[2].Email,
+                Photo = null
+            };
+            TeacherModel teacher = new TeacherModel()
+            {
+                Id = idUsers[1],
+                FirstName = users[1].FirstName,
+                LastName= users[1].LastName,
+                Email = users[1].Email,
+                Photo = null
+            };
+            StudentModel student = new StudentModel()
+            {
+                Id = idUsers[0],
+                FirstName = users[0].FirstName,
+                LastName = users[0].LastName,
+                Email= users[0].Email,
+                Photo = null
+            };
+            Course course = new Course()
+            {
+                Id = _curseId,
+                Name = "Дрязяшки",
+                IsDeleted = false,
+            };
+            ReturnByIdGroupModel expected = new ReturnByIdGroupModel()
+           {
+               Students = new List<StudentModel>() { student },
+               Teachers = new List<TeacherModel>() { teacher },
+               Tutors = new List<TutorModel>() { tutor },
+               Id = idGroup,
+               Name = a.Name,
+               Course = course,
+               GroupStatus = "Forming", 
+               StartDate = a.StartDate,
+               EndDate = a.EndDate,
+               Timetable = a.Timetable,
+               PaymentPerMonth = a.PaymentPerMonth
+           };
+            Assert.AreEqual(expected.Name, actual.Name);
+            Assert.AreEqual(expected.Id, actual.Id);
+            Assert.AreEqual(expected.GroupStatus, actual.GroupStatus);
+            Assert.AreEqual(expected.StartDate, actual.StartDate);
+            Assert.AreEqual(expected.EndDate, actual.EndDate);
+            Assert.AreEqual(expected.Timetable, actual.Timetable);
+            Assert.AreEqual(expected.PaymentPerMonth, actual.PaymentPerMonth);
+            Assert.AreEqual(expected.Course.Name, actual.Course.Name);
+            Assert.AreEqual(expected.Course.Id, actual.Course.Id);
+            Assert.AreEqual(expected.Course.IsDeleted, actual.Course.IsDeleted);
+            Assert.AreEqual(expected.Students[0].LastName,actual.Students[0].LastName);
+            Assert.AreEqual(expected.Students[0].FirstName, actual.Students[0].FirstName);
+            Assert.AreEqual(expected.Students[0].Id, actual.Students[0].Id);
+            Assert.AreEqual(expected.Students[0].Email, actual.Students[0].Email);
+            Assert.AreEqual(expected.Students[0].Photo, actual.Students[0].Photo);
+            Assert.AreEqual(expected.Teachers[0].FirstName,actual.Teachers[0].FirstName);
+            Assert.AreEqual(expected.Teachers[0].LastName, actual.Teachers[0].LastName);
+            Assert.AreEqual(expected.Teachers[0].Id, actual.Teachers[0].Id);
+            Assert.AreEqual(expected.Teachers[0].Email, actual.Teachers[0].Email);
+            Assert.AreEqual(expected.Teachers[0].Photo, actual.Teachers[0].Photo);
+            Assert.AreEqual(expected.Tutors[0].LastName,actual.Tutors[0].LastName);
+            Assert.AreEqual(expected.Tutors[0].FirstName, actual.Tutors[0].FirstName);
+            Assert.AreEqual(expected.Tutors[0].Id, actual.Tutors[0].Id);
+            Assert.AreEqual(expected.Tutors[0].Email, actual.Tutors[0].Email);
+            Assert.AreEqual(expected.Tutors[0].Photo, actual.Tutors[0].Photo);
+        }
+
     }
 }

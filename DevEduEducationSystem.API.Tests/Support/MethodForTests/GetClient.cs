@@ -13,7 +13,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class GetClient
     {
-        public static List<RegistrationResponseModel> GetUserById(string token, int id)
+        public static RegistrationResponseModel GetUserById(string token, int id)
         {
             List<RegistrationResponseModel> user = new List<RegistrationResponseModel>();
             string url = $"https://piter-education.ru:7072/api/Users/{id}";
@@ -34,8 +34,8 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
 
             Assert.AreEqual(expected, actual);
-            user.Add(JsonSerializer.Deserialize<RegistrationResponseModel>(s));
-            return user;
+            ;
+            return JsonSerializer.Deserialize<RegistrationResponseModel>(s);
         }
 
         public static StudentModel GetUserByIdReturnModel (string token, int id)
