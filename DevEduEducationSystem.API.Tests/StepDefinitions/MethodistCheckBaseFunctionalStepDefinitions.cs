@@ -1,5 +1,6 @@
 using DevEduEducationSystem.API.Tests.Support.MethodForTests;
 using DevEduEducationSystem.API.Tests.Support.Models;
+using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
 using System;
 using System.Net;
 using TechTalk.SpecFlow;
@@ -42,7 +43,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["TokenMethodist"] = tokenMethodist;
             ScenarioContext.Current["NewCourse"] = table.CreateSet<CourseRequestModel>().ToList().First();
             CourseRequestModel courseModel = (CourseRequestModel)ScenarioContext.Current["NewCourse"]; 
-            CourseResponseModel newCourse = AddEntitysClients.CreateCourse((string)ScenarioContext.Current["TokenMethodist"], courseModel);          
+            CourseResponseModel newCourse = AddEntitysClients.CreateCourse((string)ScenarioContext.Current["TokenMethodist"], courseModel);
+            //ScenarioContext.Current["NewNewCourse"] = newCourse;
             ScenarioContext.Current["idNewCourse"] = newCourse.Id;
         }
 
@@ -96,6 +98,45 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             CourseRequestModel excpectedModelCourse = Mapper.MapCourseResponseModelToCourseRequestModel(model);           
 
             Assert.AreEqual(excpectedModelCourse, actualModelCourseNow);
-        }  
+        }
+
+        [When(@"I deleting new course")]
+        public void WhenIDeletingNewCourse()
+        {
+            DeleteClient.DeleteCourseById((string)ScenarioContext.Current["TokenMethodist"], (int)ScenarioContext.Current["idNewCourse"]);
+        }
+
+        [When(@"I get new course by id full models")]
+        public void WhenIGetNewCourseByIdFullModels()
+        {
+            CourseResponseFullModel fullCourseModel = GetClient.GetCourseByIdCourseFullModel((string)ScenarioContext.Current["TokenMethodist"], (int)ScenarioContext.Current["idNewCourse"]);
+            ScenarioContext.Current["NewCourseFullModel"] = fullCourseModel;
+        }
+
+        [When(@"I get all courses")]
+        public void WhenIGetAllCourses()
+        {
+            List<CourseResponseModel> listCourses = GetClient.GetAllCourses((string)ScenarioContext.Current["TokenMethodist"]);
+            ScenarioContext.Current["ListCourses"] = listCourses;
+        }
+
+        [Then(@"Field IsDeleted full models course must be true")]
+        public void ThenFieldIsDeletedFullModelsCourseMustBeTrue()
+        {
+            CourseResponseFullModel actualFullCourseModel = (CourseResponseFullModel)ScenarioContext.Current["NewCourseFullModel"];
+            bool actualField = actualFullCourseModel.IsDeleted;
+            bool expectedField = true;
+            Assert.AreEqual(actualField, expectedField);
+        }
+
+        [Then(@"In the list of all courses can't be a remote course")]
+        public void ThenInTheListOfAllCoursesCantBeARemoteCourse()
+        {
+            List<CourseResponseModel> listCourses = (List<CourseResponseModel>)ScenarioContext.Current["ListCourses"];
+            foreach (CourseResponseModel course in listCourses)
+            {
+                Assert.AreNotEqual(course.Id, (int)ScenarioContext.Current["idNewCourse"]);
+            }           
+        }
     }
 }

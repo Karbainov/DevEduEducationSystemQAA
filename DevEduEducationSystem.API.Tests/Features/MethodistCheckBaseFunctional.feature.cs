@@ -552,7 +552,19 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I login as an Methodist and create new course", ((string)(null)), table10, "When ");
 #line hidden
 #line 72
- testRunner.Then("Should course model coincide with the returned model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I deleting new course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 73
+ testRunner.And("I get new course by id full models", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 74
+ testRunner.And("I get all courses", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 75
+ testRunner.Then("Field IsDeleted full models course must be true", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 76
+ testRunner.Then("In the list of all courses can\'t be a remote course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
