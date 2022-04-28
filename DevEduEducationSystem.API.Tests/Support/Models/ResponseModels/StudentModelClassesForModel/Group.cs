@@ -30,10 +30,11 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForM
 
         public override bool Equals(object? obj)
         {
+            var model = (Group)obj;
             return obj is Group group &&
                    Id == group.Id &&
                    Name == group.Name &&
-                   EqualityComparer<Course>.Default.Equals(Course, group.Course) &&
+                   Course.Equals(model.Course) &&
                    GroupStatus == group.GroupStatus &&
                    StartDate == group.StartDate &&
                    EndDate == group.EndDate &&

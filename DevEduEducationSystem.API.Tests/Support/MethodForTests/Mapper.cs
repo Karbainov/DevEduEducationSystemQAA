@@ -9,7 +9,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class Mapper
     {
-        public RegistrationRequestModel MapRegistrationResponseModelToRegisterRequestModel(RegistrationResponseModel model)
+        public RegistrationRequestModel MapRegistrationResponsesModelToRegisterRequestModel(RegistrationResponseModel model)
         {
             return new RegistrationRequestModel()
             {
