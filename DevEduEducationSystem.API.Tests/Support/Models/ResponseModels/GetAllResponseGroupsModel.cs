@@ -6,9 +6,9 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DevEduEducationSystem.API.Tests.Support.Models
+namespace DevEduEducationSystem.API.Tests.Support.Models.ResponseModels
 {
-    public class GroupResponseModel
+    public class GetAllResponseGroupsModel
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -20,7 +20,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         public Course Course { get; set; }
 
         [JsonPropertyName("groupStatus")]
-        public string GroupStatus { get; set; }
+        public int GroupStatus { get; set; }
 
         [JsonPropertyName("startDate")]
         public string StartDate { get; set; }
@@ -33,18 +33,5 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
 
         [JsonPropertyName("paymentPerMonth")]
         public int PaymentPerMonth { get; set; }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is GroupResponseModel model &&
-                   Id == model.Id &&
-                   Name == model.Name &&
-                   Course.Equals(model.Course) &&
-                   GroupStatus == model.GroupStatus &&
-                   StartDate == model.StartDate &&
-                   EndDate == model.EndDate &&
-                   Timetable == model.Timetable &&
-                   PaymentPerMonth == model.PaymentPerMonth;
-        }
     }
 }

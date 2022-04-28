@@ -5,6 +5,7 @@
 3.) Как менеджер, я хочу получить созданную группу по id 
 4.)Как менеджер. я хочу добавлять в группу студента, преподавателя и тьютора
 5.) Как менеджер, я хочу изменять группу 
+6.)Как менеджер, я хочу удалять группу
 
 @Manager
 Scenario: As manadger I want to assign a role to users
@@ -112,6 +113,29 @@ Scenario: As manager, I want change my created group
 	 | FirstName | LastName    | Patronymic | Email         | Username | Password    | City            | BirthDate  | GitHubAccount | PhoneNumber | MehodistFirstName | MehodistLastName | MehodistPatronymic | MehodistEmail   | MehodistUsername | MehodistPassword | MehodistCity    | MehodistBirthDate | MehodistGitHubAccount | MehodistPhoneNumber | NameRole | MehodistNameRole |
 	 | Миневра   | Макгонагалл | Смит       | Smitt@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид            | Рубеус           | Колтрейн           | Rubeuss@mail.ru | Hagrid           | hagridRubeus     | SaintPetersburg | 01.03.2003        | string                | 89211111111         | Manager  | Methodist        |
 	 
+
+ Scenario: As a manager, I want to delete a group
+ Given Create user
+ | FirstName   | LastName    | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+ | <FirstName> | <LastName > | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+ And Autorized as admin
+ And Assign manager role to user
+ | NameRole   |
+ | <NameRole> |
+ And Create course
+ | Name   | Description   |
+ | <Name> | <Description> |
+ And Create Groupe QAA 
+ | Name     | GroupStatusId   | StartDate   | EndDate   | Timetable   | PaymentPerMonth   |
+ | <Name 1> | <GroupStatusId> | <StartDate> | <EndDate> | <Timetable> | <PaymentPerMonth> |
+ When Delete group by id
+ Then Get all groups 
+ Examples: 
+ | FirstName | LastName  | Patronymic | Email         | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | NameRole | Name     | Description              | Name 1 | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Manager  | Солнышки | Как опоздать на 10 минут | QAA    | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7000            |
+
+
+
 	#Role      |
 	# Manager  |
 	#Methodist |

@@ -1,4 +1,5 @@
 
+using DevEduEducationSystem.API.Tests.Support.Models.ResponseModels;
 using DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel;
 using System;
 using System.Net;
@@ -13,6 +14,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         private int _curseId;
         private string _tokenManager;
         private string _tokenAdmin;
+        private int _idUser;
 
         [Given(@"Create user")]
         public void GivenCreateUser(Table table)
@@ -25,6 +27,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             {
                 ScenarioContext.Current["IdManager"] = userResponses[i].Id;
             }
+            _idUser = userResponses[0].Id;
         }
 
 
@@ -92,8 +95,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         }
 
         // new Scenario 
-
-
 
         [Given(@"Create users")]
         public void GivenCreateFutureManadgerAndMethodist(Table table)
@@ -406,6 +407,56 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.AreEqual(expected.Timetable, actual.Timetable);
             Assert.AreEqual(expected.PaymentPerMonth, actual.PaymentPerMonth);
         }
+
+        // new Scenario (Delete)
+
+        [Given(@"Assign manager role to user")]
+        public void GivenAssignManagerRoleToUser(Table table)
+        {
+            string role = table.CreateInstance<string>();
+            AddRoleUsers.AddRole(role, _idUser, _tokenAdmin);
+        }
+
+
+        [Given(@"Create course")]
+        public void GivenCreateCourse(Table table)
+        {
+            CourseRequestModel course = table.CreateSet<CourseRequestModel>().ToList().First();
+            CourseResponseModel courseResponse = AddEntitysClients.CreateCourse(_tokenAdmin,course);
+            ScenarioContext.Current["IdCourse"] = courseResponse.Id;
+        }
+
+        [Given(@"Create Groupe QAA")]
+        public void GivenCreateGroupeQAA(Table table)
+        {
+            GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
+            groupRequest.CourseId = (int)ScenarioContext.Current["IdCourse"];
+            ScenarioContext.Current["TokenManager"] = _tokenManager;
+            GroupResponseModel groupResponse = AddEntitysClients.CreateGroupe(_tokenManager, groupRequest);
+            ScenarioContext.Current["iDGroup"] = groupResponse.Id;
+        }
+
+
+        [When(@"Delete group by id")]
+        public void WhenDeleteGroupById()
+        {
+            int id = (int)ScenarioContext.Current["iDGroup"];
+            string token = (string)ScenarioContext.Current["TokenManager"];
+            DeleteClient.DeleteGroupeById(token,id);
+        }
+
+        [Then(@"Get all groups")]
+        public void ThenGetGroupByIdAndCompareFieldIsDeleted()
+        {
+            int id = (int)ScenarioContext.Current["iDGroup"];
+            string token = (string)ScenarioContext.Current["TokenManager"];
+            List<GetAllResponseGroupsModel> allGroups = GetClient.GetAllGroups(token);
+            for(int i = 0;i < allGroups.Count;i++)
+            {
+                Assert.AreEqual(expected[i], actual);
+            }
+        }
+
 
     }
 }
