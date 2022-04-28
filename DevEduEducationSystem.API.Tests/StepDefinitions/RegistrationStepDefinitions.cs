@@ -60,6 +60,19 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["StatusCode"] = httpResponse.StatusCode;
         }
 
+        [When(@"I Deleted created User By ID")]
+        public void WhenIDeletedCreatedUserByID()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"Delete user can not pass authorization by QYA@mail\.ru and qwerty(.*)")]
+        public void ThenDeleteUserCanNotPassAuthorizationByQYAMail_RuAndQwerty(int p0)
+        {
+            throw new PendingStepException();
+        }
+
+
         [Then(@"Should User Models coincide with the returned models of these entities")]
         public void ThenShouldUserModelsCoincideWithTheReturnedModelsOfTheseEntities()
         {
@@ -72,20 +85,17 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                     m.Password = null;
                 }
 
-                List<RegistrationResponseModel> registerRequestModels = (List<RegistrationResponseModel>)ScenarioContext.Current["ActualUserModel"];
+                RegistrationResponseModel registerRequestModels = (RegistrationResponseModel)ScenarioContext.Current["ActualUserModel"];
                 List<RegistrationRequestModel> actualUserModels = new List<RegistrationRequestModel>();
-                foreach (var m in registerRequestModels)
-                {
-                    actualUserModels.Add(mapper.MapRegistrationResponsesModelToRegisterRequestModel(m));
-                }
-
+                actualUserModels.Add(mapper.MapRegistrationResponsesModelToRegisterRequestModel(registerRequestModels));    
+               
                 CollectionAssert.AreEqual(expectedUserModels, actualUserModels);
             }
             else if (ScenarioContext.Current["RegisterRequestModels"] is RegistrationResponseModel)
             {
                 RegistrationResponseModel expectedUserModel = (RegistrationResponseModel)ScenarioContext.Current["RegisterRequestModels"];
                 expectedUserModel.City = "Dnipro";
-                RegistrationResponseModel actualUserModel = ((List<RegistrationResponseModel>)ScenarioContext.Current["ActualUserModel"])[0];
+                RegistrationResponseModel actualUserModel = (RegistrationResponseModel)ScenarioContext.Current["ActualUserModel"];
 
                 Assert.AreEqual(expectedUserModel, actualUserModel);
             }

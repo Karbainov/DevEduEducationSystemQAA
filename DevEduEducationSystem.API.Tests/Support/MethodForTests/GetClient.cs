@@ -35,7 +35,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
 
             Assert.AreEqual(expected, actual);
-            ;
+            
             return JsonSerializer.Deserialize<RegistrationResponseModel>(s);
         }
 
