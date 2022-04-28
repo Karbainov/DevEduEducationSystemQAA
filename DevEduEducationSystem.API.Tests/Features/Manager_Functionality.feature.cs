@@ -798,7 +798,7 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As a manager, I want to delete a group")]
-        [NUnit.Framework.TestCaseAttribute("Альбус", "Персиваль", "Дамблдор", "Albus@mail.ru", "Dambldor", "AlbusDambdor", "SaintPetersburg", "01.01.1985", "string", "89991234566", "Manager", "Солнышки", "Как опоздать на 10 минут", "QAA", "1", "13.05.2022", "13.12.2022", "вт, пт, вс 09:00 - 17:00", "7000", null)]
+        [NUnit.Framework.TestCaseAttribute("Альбус", "Персиваль", "Дамблдор", "Albus@mail.ru", "Dambldor", "AlbusDambdor", "SaintPetersburg", "01.01.1985", "string", "89991234566", "Солнышки", "Как опоздать на 10 минут", "QAA", "1", "13.05.2022", "13.12.2022", "вт, пт, вс 09:00 - 17:00", "7000", null)]
         public virtual void AsAManagerIWantToDeleteAGroup(
                     string firstName, 
                     string lastName, 
@@ -810,7 +810,6 @@ this.ScenarioInitialize(scenarioInfo);
                     string birthDate, 
                     string gitHubAccount, 
                     string phoneNumber, 
-                    string nameRole, 
                     string name, 
                     string description, 
                     string name1, 
@@ -833,7 +832,6 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("BirthDate", birthDate);
             argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
             argumentsOfScenario.Add("PhoneNumber", phoneNumber);
-            argumentsOfScenario.Add("NameRole", nameRole);
             argumentsOfScenario.Add("Name", name);
             argumentsOfScenario.Add("Description", description);
             argumentsOfScenario.Add("Name 1", name1);
@@ -891,43 +889,42 @@ this.ScenarioInitialize(scenarioInfo);
 #line 121
  testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
-                            "NameRole"});
-                table19.AddRow(new string[] {
-                            string.Format("{0}", nameRole)});
 #line 122
- testRunner.And("Assign manager role to user", ((string)(null)), table19, "And ");
+ testRunner.And("Assign manager role to user \"Manager\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table20.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description)});
-#line 125
- testRunner.And("Create course", ((string)(null)), table20, "And ");
+#line 123
+ testRunner.And("Create course", ((string)(null)), table19, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+#line 126
+ testRunner.And("Autorized by manager", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "GroupStatusId",
                             "StartDate",
                             "EndDate",
                             "Timetable",
                             "PaymentPerMonth"});
-                table21.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             string.Format("{0}", name1),
                             string.Format("{0}", groupStatusId),
                             string.Format("{0}", startDate),
                             string.Format("{0}", endDate),
                             string.Format("{0}", timetable),
                             string.Format("{0}", paymentPerMonth)});
-#line 128
- testRunner.And("Create Groupe QAA", ((string)(null)), table21, "And ");
+#line 127
+ testRunner.And("Create Groupe QAA", ((string)(null)), table20, "And ");
 #line hidden
-#line 131
+#line 130
  testRunner.When("Delete group by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 132
+#line 131
  testRunner.Then("Get all groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

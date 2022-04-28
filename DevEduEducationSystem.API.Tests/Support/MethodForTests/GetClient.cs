@@ -9,7 +9,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using DevEduEducationSystem.API.Tests.Support.Models.ResponseModels;
 
 namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
@@ -185,7 +184,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return allUsers;
         }
 
-        public static List<GetAllResponseGroupsModel> GetAllGroups(string token)
+        public static List<GroupResponseModel> GetAllGroups(string token)
         {
             string url = "https://piter-education.ru:7072/api/Groups";
             HttpClient client = new HttpClient();
@@ -200,7 +199,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode expected = HttpStatusCode.OK;
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            List<GetAllResponseGroupsModel> allGroups = JsonSerializer.Deserialize<List<GetAllResponseGroupsModel>>(s);
+            List<GroupResponseModel> allGroups = JsonSerializer.Deserialize<List<GroupResponseModel>>(s);
             return allGroups;
         }
     }
