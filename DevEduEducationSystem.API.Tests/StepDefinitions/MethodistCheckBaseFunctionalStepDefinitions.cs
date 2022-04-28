@@ -96,19 +96,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             CourseRequestModel excpectedModelCourse = Mapper.MapCourseResponseModelToCourseRequestModel(model);           
 
             Assert.AreEqual(excpectedModelCourse, actualModelCourseNow);
-        }      
-
-        [Then(@"Delete new course")]
-        public void ThenDeleteNewCourse()
-        {
-            DeleteClient.DeleteCourseById((string)ScenarioContext.Current["TokenMethodist"], (int)ScenarioContext.Current["idNewCourse"]);
-        }
-
-        [Then(@"Delete new user")]
-        public void ThenDeleteNewUser()
-        {
-            DeleteClient.DeleteUserById((string)ScenarioContext.Current["TokenAdmin"], (int)ScenarioContext.Current["idNewUser"]);
-        }   
-
+        }  
     }
 }
