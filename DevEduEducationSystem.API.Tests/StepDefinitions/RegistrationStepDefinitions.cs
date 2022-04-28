@@ -38,6 +38,27 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             var idUser=(int)ScenarioContext.Current["IdUser"];
             ScenarioContext.Current["ActualUserModel"] = GetClient.GetUserById(token, idUser);
         }
+       
+
+        [When(@"I Update myself")]
+        public void WhenIUpdateMyself(Table table)
+        {
+            RegistrationResponseModel newUserModel = table.CreateInstance<RegistrationResponseModel>();
+            newUserModel.Id = (int)ScenarioContext.Current["IdUser"];
+            newUserModel.City = "2";
+            ScenarioContext.Current["RegisterRequestModels"] = newUserModel;
+            UpdateClient.UpdateUser(newUserModel, (int)ScenarioContext.Current["IdUser"], (string)ScenarioContext.Current["TokenUser"]);
+        }
+
+        [When(@"I try to register as")]
+        public void WhenITryToRegisterAs(Table table)
+        {
+            AuthClient registr = new AuthClient();
+            
+            RegistrationRequestModel user = table.CreateInstance<RegistrationRequestModel>();
+            HttpResponseMessage httpResponse = registr.Registration(user);
+            ScenarioContext.Current["StatusCode"] = httpResponse.StatusCode;
+        }
 
         [Then(@"Should User Models coincide with the returned models of these entities")]
         public void ThenShouldUserModelsCoincideWithTheReturnedModelsOfTheseEntities()
@@ -60,25 +81,17 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
                 CollectionAssert.AreEqual(expectedUserModels, actualUserModels);
             }
-            else if(ScenarioContext.Current["RegisterRequestModels"] is RegistrationResponseModel)
+            else if (ScenarioContext.Current["RegisterRequestModels"] is RegistrationResponseModel)
             {
                 RegistrationResponseModel expectedUserModel = (RegistrationResponseModel)ScenarioContext.Current["RegisterRequestModels"];
-                expectedUserModel.City = "SaintPetersburg";
-                 RegistrationResponseModel actualUserModel = ((List<RegistrationResponseModel>)ScenarioContext.Current["ActualUserModel"])[0];
+                expectedUserModel.City = "Dnipro";
+                RegistrationResponseModel actualUserModel = ((List<RegistrationResponseModel>)ScenarioContext.Current["ActualUserModel"])[0];
 
                 Assert.AreEqual(expectedUserModel, actualUserModel);
             }
         }
 
-        [When(@"I try to register as")]
-        public void WhenITryToRegisterAs(Table table)
-        {
-            AuthClient registr = new AuthClient();
-            
-            RegistrationRequestModel user = table.CreateInstance<RegistrationRequestModel>();
-            HttpResponseMessage httpResponse = registr.Registration(user);
-            ScenarioContext.Current["StatusCode"] = httpResponse.StatusCode;
-        }
+
 
         [Then(@"Should return (.*) status code response")]
         public void ThenShouldReturnUnprocessableEntityResponse(int statusCode)
@@ -90,29 +103,20 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.AreEqual(expected, actual);
         }
 
-        [When(@"I Update myself")]
-        public void WhenIUpdateMyself(Table table)
+     
+
+
+
+        [Then(@"Delete user not found in list all Users")]
+        public void ThenDeleteUserNotFoundInListAllUsers()
         {
-            RegistrationResponseModel newUserModel = table.CreateInstance<RegistrationResponseModel>();
-            newUserModel.Id = (int)ScenarioContext.Current["IdUser"];
-            newUserModel.City = "1";
-            ScenarioContext.Current["RegisterRequestModels"] = newUserModel;
-            UpdateClient.UpdateUser(newUserModel, (int)ScenarioContext.Current["IdUser"], (string)ScenarioContext.Current["TokenUser"]);
+            int idUser = (int) ScenarioContext.Current["IdUser"];
+            List<GetAllUsersResponseModel> allUsers = GetClient.GetAllClients((string)ScenarioContext.Current["AdminToken"]);
+            foreach (GetAllUsersResponseModel model in allUsers)
+            {
+                GetAllUsersResponseModel actualModel = allUsers.FirstOrDefault(C => C.Id == model.Id);
+                Assert.IsNull(actualModel);
+            }
         }
-
-
-
-        //[AfterScenario]
-        //public void AfterScenario()
-        //{
-        //    LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
-        //    {
-        //        Email = "user@example.com",
-        //        Password = "stringst"
-        //    };
-        //    string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-        //    DeleteClient.DeleteUserById(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
-        //    GetClient.GetUserByIdAfterDeleted(tokenAdmin, (int)ScenarioContext.Current["IdUser"]);
-        //}
     }
 }

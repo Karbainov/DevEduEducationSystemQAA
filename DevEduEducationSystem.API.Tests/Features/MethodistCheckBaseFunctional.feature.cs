@@ -76,7 +76,7 @@ namespace DevEduEducationSystem.API.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist create new course")]
         [NUnit.Framework.CategoryAttribute("Metodist")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "qrtytret341qqq234drykrrerдq@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "dddfgrrfdа;rttd", "Nqwhjhпsssrer;rwtto51", "Methodist", null)]
+        [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "Samiy luchshiy kurs", "Samiy luchshiy kurs", "Methodist", null)]
         public virtual void UserInRoleMethodistCreateNewCourse(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -161,19 +161,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.Then("Should Course Models coincide with the returned models of these entities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 15
- testRunner.And("Delete new course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 16
- testRunner.And("Delete new user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist update course")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "qqqetrrqqqqwerrrrrfhret@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "sdfsrsdfswrrkwfwdddo", "sdfsdfsrr rdf4www", "srdfsrjh4rdfdwww", "trtwrwff5ffw", "Methodist", null)]
+        [NUnit.Framework.CategoryAttribute("Metodist")]
+        [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "Samiy luchshiy kurs", "Samiy luchshiy kurs", "Samiy luchshiy kurs v tvoei", "Samiy luchshiy kurs v tvoei", "Methodist", null)]
         public virtual void UserInRoleMethodistUpdateCourse(
                     string firstName, 
                     string lastName, 
@@ -192,7 +187,13 @@ this.ScenarioInitialize(scenarioInfo);
                     string role, 
                     string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "Metodist"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("FirstName", firstName);
             argumentsOfScenario.Add("LastName", lastName);
@@ -210,7 +211,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("NewDescription", newDescription);
             argumentsOfScenario.Add("Role", role);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist update course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 21
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -252,10 +253,10 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", birthDate),
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
-#line 22
- testRunner.Given("I create new user and get his token", ((string)(null)), table20, "Given ");
+#line 21
+ testRunner.Given("I create new user and get his token", ((string)(null)), table3, "Given ");
 #line hidden
-#line 25
+#line 24
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
@@ -264,8 +265,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table21.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description)});
-#line 26
- testRunner.When("I login as an Methodist and create new course", ((string)(null)), table21, "When ");
+#line 25
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table4, "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -273,17 +274,11 @@ this.ScenarioInitialize(scenarioInfo);
                 table22.AddRow(new string[] {
                             string.Format("{0}", newName),
                             string.Format("{0}", newDescription)});
-#line 29
- testRunner.And("I update new course", ((string)(null)), table22, "And ");
+#line 28
+ testRunner.And("I update new course", ((string)(null)), table5, "And ");
 #line hidden
-#line 32
+#line 31
  testRunner.Then("Should new course model coincide with the returned model of changes entities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 33
- testRunner.And("Delete new course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 34
- testRunner.And("Delete new user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -291,10 +286,17 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist can get course by ID")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "vbjvrqqqqrcr2341rrrttefeb@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "1gfdn hgdrfttdfsdfrrbtdg", "dgffjk grjttrbrtd", "Methodist", null)]
+        [NUnit.Framework.CategoryAttribute("Metodist")]
+        [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "Samiy luchshiy kurs v tvoei zchizni", "Samiy luchshiy kurs v tvoei zchizni", "Methodist", null)]
         public virtual void UserInRoleMethodistCanGetCourseByID(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string[] exampleTags)
         {
-            string[] tagsOfScenario = exampleTags;
+            string[] @__tags = new string[] {
+                    "Metodist"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("FirstName", firstName);
             argumentsOfScenario.Add("LastName", lastName);
@@ -310,7 +312,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Description", description);
             argumentsOfScenario.Add("Role", role);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist can get course by ID", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 39
+#line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -352,10 +354,10 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", birthDate),
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
-#line 40
- testRunner.Given("I create new user and get his token", ((string)(null)), table23, "Given ");
+#line 38
+ testRunner.Given("I create new user and get his token", ((string)(null)), table6, "Given ");
 #line hidden
-#line 43
+#line 41
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
@@ -364,17 +366,11 @@ this.ScenarioInitialize(scenarioInfo);
                 table24.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description)});
-#line 44
- testRunner.When("I login as an Methodist and create new course", ((string)(null)), table24, "When ");
+#line 42
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table7, "When ");
 #line hidden
-#line 47
+#line 45
  testRunner.Then("Should course model coincide with the returned model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 48
- testRunner.And("Delete new course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 49
- testRunner.And("Delete new user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -382,11 +378,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User in role methodist can get course by ID.Negative")]
+        [NUnit.Framework.CategoryAttribute("Metodist")]
         [NUnit.Framework.CategoryAttribute("Negative")]
-        [NUnit.Framework.TestCaseAttribute("IIII", "III", "I", "dddttqqqqpqq2341wfwd@mail.ru", "iiii", "qwerty123", "Dnipro", "02.02.1993", "string", "89991234567", "frrrfwesdfsdfsduuu", "lourr gffjjq", "Methodist", "-1", null)]
+        [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "ProstoCourse", "l;sjdhsg", "Methodist", "-1", null)]
+        [NUnit.Framework.TestCaseAttribute("Petr", "Seredin", "Petrovich", "Seredin@mail.ru", "SeredinPP", "qwerty123", "Dnipro", "02.02.1993", "string", "899912347896", "ProstoCourse2", "l;sjdhsg", "Methodist", "0", null)]
         public virtual void UserInRoleMethodistCanGetCourseByID_Negative(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string id, string[] exampleTags)
         {
             string[] @__tags = new string[] {
+                    "Metodist",
                     "Negative"};
             if ((exampleTags != null))
             {
@@ -409,7 +408,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Role", role);
             argumentsOfScenario.Add("Id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist can get course by ID.Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 55
+#line 51
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -451,17 +450,109 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", birthDate),
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
-#line 56
- testRunner.Given("I create new user and get his token", ((string)(null)), table25, "Given ");
+#line 52
+ testRunner.Given("I create new user and get his token", ((string)(null)), table8, "Given ");
 #line hidden
-#line 59
+#line 55
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 60
+#line 56
  testRunner.When(string.Format("I login as an Methodist and get course by not existing Id {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 61
+#line 57
  testRunner.Then("Should return 404 code response status", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User in role methodist can delete course by ID")]
+        [NUnit.Framework.CategoryAttribute("Metodist")]
+        [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "Samiy luchshiy kurs v tvoei zchizni", "Samiy luchshiy kurs v tvoei zchizni", "Methodist", null)]
+        public virtual void UserInRoleMethodistCanDeleteCourseByID(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string name, string description, string role, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Metodist"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FirstName", firstName);
+            argumentsOfScenario.Add("LastName", lastName);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Username", username);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("City", city);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Description", description);
+            argumentsOfScenario.Add("Role", role);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist can delete course by ID", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 64
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table9.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+#line 65
+ testRunner.Given("I create new user and get his token", ((string)(null)), table9, "Given ");
+#line hidden
+#line 68
+ testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description"});
+                table10.AddRow(new string[] {
+                            string.Format("{0}", name),
+                            string.Format("{0}", description)});
+#line 69
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table10, "When ");
+#line hidden
+#line 72
+ testRunner.Then("Should course model coincide with the returned model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
