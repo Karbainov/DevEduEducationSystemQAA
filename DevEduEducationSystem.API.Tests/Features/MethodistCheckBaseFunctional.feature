@@ -77,3 +77,20 @@ Scenario: User in role methodist can delete course by ID
 	Examples: 
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Name                                | Description                         | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Samiy luchshiy kurs v tvoei zchizni | Samiy luchshiy kurs v tvoei zchizni | Methodist |
+	
+@Metodist
+Scenario: User in role methodist can see all courses
+	Given I create new user and get his token
+	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+	And I login as an admin and give new user role <Role>
+	When I login as an Methodist and create new courses
+	| Name     | Description                                       |
+	| Course 1 | Samiy luchshiy kurs                               |
+	| Course 2 | Samiy luchshiy kurs v tvoei zchizni               |
+	| Course 3 | Samiy luchshiy kurs v tvoei zchizni.Perezagruzka. |
+	And I get all courses
+	Then The list contains all created courses
+	Examples: 
+	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |

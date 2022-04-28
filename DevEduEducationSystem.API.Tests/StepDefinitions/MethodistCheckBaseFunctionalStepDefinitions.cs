@@ -17,9 +17,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["NewUser"] = table.CreateSet<RegistrationRequestModel>().ToList().First();
             RegistrationRequestModel newUser = (RegistrationRequestModel)ScenarioContext.Current["NewUser"];
             RegistrationResponseModel newUserModel = AuthClient.RegistrationReturnModel(newUser);
-            ScenarioContext.Current["idNewUser"] = newUserModel.Id;
-            string tokenMethodist = AuthClient.AuthUser(newUser.Email, newUser.Password);
-            ScenarioContext.Current["TokenMethodist"] = tokenMethodist;
+            ScenarioContext.Current["idNewUser"] = newUserModel.Id;            
         }        
         
         [Given(@"I login as an admin and give new user role (.*)")]
@@ -33,19 +31,53 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
             AddRoleUsers.AddRole(methodist, (int)ScenarioContext.Current["idNewUser"], tokenAdmin);
             ScenarioContext.Current["TokenAdmin"] = tokenAdmin;
+            RegistrationRequestModel userModelForTokinMethodist = (RegistrationRequestModel)ScenarioContext.Current["NewUser"];
+            string tokenMethodist = AuthClient.AuthUser(userModelForTokinMethodist.Email, userModelForTokinMethodist.Password);
+            ScenarioContext.Current["TokenMethodist"] = tokenMethodist;
         }          
         
         [When(@"I login as an Methodist and create new course")]
         public void WhenILoginAsAnMethodistAndCreateNewCourse(Table table)
         {
-            RegistrationRequestModel newUser = (RegistrationRequestModel)ScenarioContext.Current["NewUser"];
-            string tokenMethodist = AuthClient.AuthUser(newUser.Email, newUser.Password);
-            ScenarioContext.Current["TokenMethodist"] = tokenMethodist;
+           
             ScenarioContext.Current["NewCourse"] = table.CreateSet<CourseRequestModel>().ToList().First();
             CourseRequestModel courseModel = (CourseRequestModel)ScenarioContext.Current["NewCourse"]; 
             CourseResponseModel newCourse = AddEntitysClients.CreateCourse((string)ScenarioContext.Current["TokenMethodist"], courseModel);
-            //ScenarioContext.Current["NewNewCourse"] = newCourse;
             ScenarioContext.Current["idNewCourse"] = newCourse.Id;
+        }
+
+        [When(@"I login as an Methodist and create new courses")]
+        public void WhenILoginAsAnMethodistAndCreateNewCourses(Table table)
+        { 
+            ScenarioContext.Current["SetCourses"] = table.CreateSet<CourseRequestModel>().ToList();
+            List<CourseRequestModel> courses = (List<CourseRequestModel>)ScenarioContext.Current["SetCourses"];
+            List<CourseResponseModel> newCourses = new List<CourseResponseModel>();
+            foreach (CourseRequestModel course in courses)
+            {
+                newCourses.Add(AddEntitysClients.CreateCourse((string)ScenarioContext.Current["TokenMethodist"], course));
+            }
+            ScenarioContext.Current["NewCourses"] = newCourses;
+        }
+
+        [When(@"I get all courses")]
+        public void WhenIGetAllCourses()
+        {
+            List<CourseResponseModel> listCourses = GetClient.GetAllCourses((string)ScenarioContext.Current["TokenMethodist"]);
+            ScenarioContext.Current["ListCourses"] = listCourses;
+        }
+
+        [Then(@"The list contains all created courses")]
+        public void ThenTheListContainsAllCreatedCourses()
+        {
+            List<CourseResponseModel> actualAllCourses = GetClient.GetAllCourses((string)ScenarioContext.Current["TokenMethodist"]);
+            List<CourseResponseModel> expectedCourses = (List<CourseResponseModel>)ScenarioContext.Current["NewCourses"];
+            foreach (CourseResponseModel course in expectedCourses)
+            {
+                CourseResponseModel actualModel = actualAllCourses.FirstOrDefault(C => C.Id == course.Id);
+                Assert.IsNotNull(actualModel);
+                Assert.AreEqual(course.Name, actualModel.Name);
+                Assert.AreEqual(course.Description, actualModel.Description);
+            }
         }
 
         [When(@"I update new course")]
@@ -63,6 +95,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             HttpResponseMessage resoponseCode = GetClient.GetClientByIdError(id, (string)ScenarioContext.Current["TokenMethodist"]);            
             ScenarioContext.Current["StatusCode"] = resoponseCode.StatusCode;
         }
+
+        
 
         [Then(@"Should return (.*) code response status")]
         public void ThenShouldReturnCodeResponseStatus(int statusCode)
@@ -113,12 +147,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["NewCourseFullModel"] = fullCourseModel;
         }
 
-        [When(@"I get all courses")]
-        public void WhenIGetAllCourses()
-        {
-            List<CourseResponseModel> listCourses = GetClient.GetAllCourses((string)ScenarioContext.Current["TokenMethodist"]);
-            ScenarioContext.Current["ListCourses"] = listCourses;
-        }
+        
 
         [Then(@"Field IsDeleted full models course must be true")]
         public void ThenFieldIsDeletedFullModelsCourseMustBeTrue()
@@ -138,5 +167,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreNotEqual(course.Id, (int)ScenarioContext.Current["idNewCourse"]);
             }           
         }
+        
     }
 }
