@@ -52,13 +52,36 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForM
 
         public override bool Equals(object? obj)
         {
+
+            var model = (StudentModel)obj!;
+            if(Roles.Count != model.Roles.Count)
+            {
+                return false;
+            }
+            for (int i = 0; i < Roles.Count; i++)
+            {
+                if (!Roles[i].Equals(model.Roles[i]))
+                {
+                    return false;
+                }
+            }
+
+            if(Groups.Count != model.Groups.Count)
+            {
+                return false;
+            }
+            for(int i = 0; i < Groups.Count; i++)
+            {
+                if (!Groups[i].Equals(model.Groups[i])) ;
+            }
+
+
             return obj is StudentModel token &&
                    Id == token.Id &&
                    FirstName == token.FirstName &&
                    LastName == token.LastName &&
                    Email == token.Email &&
                    Photo == token.Photo &&
-                   EqualityComparer<List<string>>.Default.Equals(Roles, token.Roles) &&
                    Patronymic == token.Patronymic &&
                    Username == token.Username &&
                    RegistrationDate == token.RegistrationDate &&

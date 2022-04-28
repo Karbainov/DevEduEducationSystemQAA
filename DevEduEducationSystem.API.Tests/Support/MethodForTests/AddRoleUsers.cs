@@ -5,11 +5,13 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class AddRoleUsers
     {
+
         public static void AddRole(string role, int id, string token)
         {
             string url = $"https://piter-education.ru:7072/api/Users/{id}/role/{role}";

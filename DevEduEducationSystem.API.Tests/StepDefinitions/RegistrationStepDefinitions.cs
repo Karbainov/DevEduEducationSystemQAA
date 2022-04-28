@@ -76,7 +76,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 List<RegistrationRequestModel> actualUserModels = new List<RegistrationRequestModel>();
                 foreach (var m in registerRequestModels)
                 {
-                    actualUserModels.Add(mapper.MapRegistrationResponseModelToRegisterRequestModel(m));
+                    actualUserModels.Add(mapper.MapRegistrationResponsesModelToRegisterRequestModel(m));
                 }
 
                 CollectionAssert.AreEqual(expectedUserModels, actualUserModels);
@@ -105,23 +105,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
      
 
-        [When(@"I Deleted created User By ID")]
-        public void WhenIDeletedCreatedUserByID()
-        {
-            LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
-            {
-                Email = "user@example.com",
-                Password = "stringst"
-            };
-            ScenarioContext.Current["AdminToken"] = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-            DeleteClient.DeleteUserById((string)ScenarioContext.Current["AdminToken"], (int)ScenarioContext.Current["IdUser"]);
-        }
 
-        [Then(@"Delete user can not pass authorization by (.*) and (.*)")]
-        public void ThenDeleteUserCanNotPassAuthorizationByQQQYYYAAAMail_RuAndQwerty(string login, string password)
-        {
-            AuthClient.AuthUserErrorForNegativeTest(login, password);
-        }
 
         [Then(@"Delete user not found in list all Users")]
         public void ThenDeleteUserNotFoundInListAllUsers()

@@ -1,6 +1,7 @@
 ﻿using DevEduEducationSystem.API.Tests.Support.Models;
-using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
+using DevEduEducationSystem.API.Tests.Support.Models.AllGroupsModels;
 using DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel;
+using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,7 +14,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class GetClient
     {
-        public static List<RegistrationResponseModel> GetUserById(string token, int id)
+        public static RegistrationResponseModel GetUserById(string token, int id)
         {
             List<RegistrationResponseModel> user = new List<RegistrationResponseModel>();
             string url = $"https://piter-education.ru:7072/api/Users/{id}";
@@ -34,8 +35,8 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
 
             Assert.AreEqual(expected, actual);
-            user.Add(JsonSerializer.Deserialize<RegistrationResponseModel>(s));
-            return user;
+            ;
+            return JsonSerializer.Deserialize<RegistrationResponseModel>(s);
         }
 
         public static StudentModel GetUserByIdReturnModel (string token, int id)
@@ -74,13 +75,29 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             };
 
             HttpResponseMessage response = client.Send(request);
-
             string s = response.Content.ReadAsStringAsync().Result;
-
             HttpStatusCode expected = HttpStatusCode.NoContent;
             HttpStatusCode actual = response.StatusCode;
-
             Assert.AreEqual(expected, actual);
+        }
+
+        public static ReturnByIdGroupModel GetGroupById(int idGroup, string token) // должен возвращать модель большую группу
+        {
+            string url = $"https://piter-education.ru:7072/api/Groups/{idGroup}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<ReturnByIdGroupModel>(s);
         }
 
         public static CourseResponseFullModel GetCourseByIdCourseFullModel (string token, int id)
