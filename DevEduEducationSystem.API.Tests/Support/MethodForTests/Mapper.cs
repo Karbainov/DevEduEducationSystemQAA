@@ -9,9 +9,9 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class Mapper
     {
-        public RegisterRequestModel MapRegistrationResponsesModelToRegisterRequestModel(RegistrationResponsesModel model)
+        public RegistrationRequestModel MapRegistrationResponseModelToRegisterRequestModel(RegistrationResponseModel model)
         {
-            return new RegisterRequestModel()
+            return new RegistrationRequestModel()
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
@@ -22,6 +22,15 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 BirthDate = model.BirthDate,
                 GitHubAccount = model.GitHubAccount,
                 PhoneNumber = model.PhoneNumber
+            };
+        }
+
+        public static CourseRequestModel MapCourseResponseModelToCourseRequestModel(CourseResponseModel model)
+        {
+            return new CourseRequestModel()
+            {
+                Name = model.Name,
+                Description = model.Description
             };
         }
     }

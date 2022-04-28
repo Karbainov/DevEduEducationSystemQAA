@@ -11,12 +11,12 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class AuthClient
     {
-        public List<RegistrationResponsesModel> Registration(List<RegisterRequestModel> userModel)
+        public List<RegistrationResponseModel> Registration(List<RegistrationRequestModel> userModel)
         {
-            List<RegistrationResponsesModel> userResponses = new List<RegistrationResponsesModel>();
+            List<RegistrationResponseModel> userResponses = new List<RegistrationResponseModel>();
             foreach (var user in userModel)
             {
-                string url = "https://piter-education.ru:7070/register";
+                string url = "https://piter-education.ru:7072/register";
                 string json = JsonSerializer.Serialize(user);
                 HttpClient client = new HttpClient();
                 HttpRequestMessage request = new HttpRequestMessage()
@@ -30,30 +30,49 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 HttpStatusCode expected = HttpStatusCode.Created;
                 HttpStatusCode actual = response.StatusCode;
                 Assert.AreEqual(expected, actual);
-                userResponses.Add(JsonSerializer.Deserialize<RegistrationResponsesModel>(s));
+                userResponses.Add(JsonSerializer.Deserialize<RegistrationResponseModel>(s));
             }
             return userResponses;
         }
 
-        public HttpResponseMessage Registration(RegisterRequestModel userModel)
+        public static RegistrationResponseModel RegistrationReturnModel (RegistrationRequestModel userModel)
         {
-            List<RegistrationResponsesModel> userResponses = new List<RegistrationResponsesModel>();
-                string url = "https://piter-education.ru:7070/register";
-                string json = JsonSerializer.Serialize(userModel);
-                HttpClient client = new HttpClient();
-                HttpRequestMessage request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Post,
-                    RequestUri = new Uri(url),
-                    Content = new StringContent(json, Encoding.UTF8, "application/json")
-                };
-            
+            string url = "https://piter-education.ru:7072/register";
+            string json = JsonSerializer.Serialize(userModel);
+            HttpClient client = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<RegistrationResponseModel>(s);
+        }
+
+        public HttpResponseMessage Registration(RegistrationRequestModel userModel)
+        {
+            List<RegistrationResponseModel> userResponses = new List<RegistrationResponseModel>();
+            string url = "https://piter-education.ru:7072/register";
+            string json = JsonSerializer.Serialize(userModel);
+            HttpClient client = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+
             return client.Send(request);
         }
 
         public static string AuthUser(string email, string password)
         {
-            string url = "https://piter-education.ru:7070/sign-in";
+            string url = "https://piter-education.ru:7072/sign-in";
             LoginRequestModel login = new LoginRequestModel()
             {
                 Email = email,
@@ -74,6 +93,28 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             Assert.AreEqual(expected, actual);
             string token = s;//JsonSerializer.Deserialize<string>(s);
             return token;
+        }
+        public static void AuthUserErrorForNegativeTest(string email, string password)
+        {
+            string url = "https://piter-education.ru:7072/sign-in";
+            LoginRequestModel login = new LoginRequestModel()
+            {
+                Email = email,
+                Password = password,
+            };
+            string json = JsonSerializer.Serialize<LoginRequestModel>(login);
+            HttpClient client = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.NotFound;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);           
         }
     }
 }
