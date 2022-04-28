@@ -2,6 +2,7 @@
 
 Страница регистрации новых клиентов (студентов)
 
+@User 
 Scenario: Registration in system
 	When I register
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
@@ -10,9 +11,9 @@ Scenario: Registration in system
 	And Get User by my Id
 	Then Should User Models coincide with the returned models of these entities
 Examples: 
-	| FirstName | LastName | Patronymic | Email          | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber |
-	| Северус   | Снейп    | Аланович   | 1rlhhwy@mail.ru | север    | северусСнейп | SaintPetersburg | 01.01.1993 | string        | 89991234567 |
-	| Северус   | Снейп    | Аланович   | 1qlhhpy@mail.ru | север    | северусСнейп | SaintPetersburg | 01.01.1993 | string        | 89991234567 |
+	| FirstName | LastName | Patronymic | Email           | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber |
+	| Северус   | Снейп    | Аланович   | severus@mail.ru | север    | северусСнейп | SaintPetersburg | 01.01.1993 | string        | 89991234567 |
+	| Северус   | Снейп    | Аланович   | severus@mail.ru | север    | северусСнейп | SaintPetersburg | 01.01.1993 | string        | 89991234567 |
 
 
 @Negative
@@ -28,20 +29,20 @@ Examples:
 	| Телефон   | Телефонов | Телефонович | Телефон@mail.ru   | Телефончик    | Телефонама   | SaintPetersburg | 04.03.2003 | string        | Чукча кушать хочет |
 	|           |           |             |                   |               |              |                 |            |               |                    |
 
-
+@User
 Scenario: Update User
 	Given I register
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	When Autorized by <Email> and <Password>
 	And I Update myself
-	| FirstName      | LastName      | Patronymic      | Email      | Username      | Password      | City      | BirthDate      | GitHubAccount      | PhoneNumber      |
+	| FirstName      | LastName      | Patronymic      |    Email   | Username      | Password      | City      | BirthDate      | GitHubAccount      | PhoneNumber      |
 	| <NewFirstName> | <NewLastName> | <NewPatronymic> | <NewEmail> | <NewUsername> | <NewPassword> | <NewCity> | <NewBirthDate> | <NewGitHubAccount> | <NewPhoneNumber> |
 	And Get User by my Id
 	Then Should User Models coincide with the returned models of these entities
 Examples: 
-	| FirstName | LastName | Patronymic | Email           | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | NewFirstName | NewLastName | NewPatronymic | NewEmail      | NewUsername | NewPassword | NewCity         | NewBirthDate | NewGitHubAccount | NewPhoneNumber |
-	| Северус   | Снейп    | Аланович   | severus@mail.ru | север    | северусСнейп | SaintPetersburg | 01.01.1993 | string        | 89991234567 | Богданов     | Арутр       | Ашотович      | jdyns@mail.ru | Ashot       | Qwerty123   | SaintPetersburg | 01.01.1993   | string           | 89991234563    |
+	| FirstName | LastName | Patronymic | Email           | Username | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber | NewFirstName | NewLastName | NewPatronymic | NewUsername | NewEmail        | NewCity | NewBirthDate | NewGitHubAccount | NewPhoneNumber |
+	| Северус   | Снейп    | Аланович   | severus@mail.ru | север    | Qwerty123 | SaintPetersburg | 01.01.1993 | string        | 89991234567 | Богданов     | Арутр       | Ашотович      | Ashot       | severus@mail.ru | Dnipro  | 01.02.1993   | string           | 89991234563    |
 
 
 @Negative	
