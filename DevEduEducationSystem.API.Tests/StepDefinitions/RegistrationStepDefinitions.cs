@@ -63,14 +63,14 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"I Deleted created User By ID")]
         public void WhenIDeletedCreatedUserByID()
         {
-            throw new PendingStepException();
-        }
-
-        [Then(@"Delete user can not pass authorization by QYA@mail\.ru and qwerty(.*)")]
-        public void ThenDeleteUserCanNotPassAuthorizationByQYAMail_RuAndQwerty(int p0)
-        {
-            throw new PendingStepException();
-        }
+            LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
+            {
+                Email = "user@example.com",
+                Password = "stringst"
+            };
+            ScenarioContext.Current["AdminToken"] = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
+            DeleteClient.DeleteUserById((string)ScenarioContext.Current["AdminToken"], (int)ScenarioContext.Current["IdUser"]);
+        }        
 
 
         [Then(@"Should User Models coincide with the returned models of these entities")]
@@ -101,8 +101,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             }
         }
 
-
-
         [Then(@"Should return (.*) status code response")]
         public void ThenShouldReturnUnprocessableEntityResponse(int statusCode)
         {
@@ -111,11 +109,13 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             HttpStatusCode actual = (HttpStatusCode)ScenarioContext.Current["StatusCode"];
 
             Assert.AreEqual(expected, actual);
+        }       
+
+        [Then(@"Delete user can not pass authorization by (.*) and (.*)")]
+        public void ThenDeleteUserCanNotPassAuthorizationByQQQYYYAAAMail_RuAndQwerty(string login, string password)
+        {
+            AuthClient.AuthUserErrorForNegativeTest(login, password);
         }
-
-     
-
-
 
         [Then(@"Delete user not found in list all Users")]
         public void ThenDeleteUserNotFoundInListAllUsers()
