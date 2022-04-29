@@ -13,6 +13,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         private int _curseId;
         private string _tokenManager;
         private string _tokenAdmin;
+        private List<int> _idUser = new List<int>();
 
         [Given(@"Create user")]
         public void GivenCreateUser(Table table)
@@ -20,10 +21,15 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
             AuthClient registr = new AuthClient();
             List<RegistrationResponseModel> userResponses = registr.Registration(user);
+            FeatureContext.Current["UserRequestModel"] = user;
             ScenarioContext.Current["Manager"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {
                 ScenarioContext.Current["IdManager"] = userResponses[i].Id;
+            }
+            for (int i = 0; i < userResponses.Count; i++)
+            {
+                _idUser.Add(userResponses[i].Id);
             }
         }
 
@@ -60,7 +66,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             }
         }
 
-
+        [Given(@"Autorized by manager")]
         [When(@"Autorized by manager")]
         public void WhenAutorizedByManager()
         {
@@ -93,39 +99,37 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
         // new Scenario 
 
-
-
-        [Given(@"Create users")]
-        public void GivenCreateFutureManadgerAndMethodist(Table table)
-        {
-            List<int> idList = new List<int>();
-            List<RegistrationRequestModel> users = table.CreateSet<RegistrationRequestModel>().ToList();
-            AuthClient register = new AuthClient();
-            List<RegistrationResponseModel> a = register.Registration(users);
-            ScenarioContext.Current["UserRequestModel"] = users;
-            for(int i = 0; i < a.Count; i++)
-            {
-                idList.Add(a[i].Id); 
-            }
-            ScenarioContext.Current["UsersId"] = idList;
-        }
+        //[Given(@"Create users")]
+        //public void GivenCreateFutureManadgerAndMethodist(Table table)
+        //{
+        //    List<RegistrationRequestModel> users = table.CreateSet<RegistrationRequestModel>().ToList();
+        //    AuthClient register = new AuthClient();
+        //    List<RegistrationResponseModel> a = register.Registration(users);
+        //    ScenarioContext.Current["UserRequestModel"] = users;
+        //    for(int i = 0; i < a.Count; i++)
+        //    {
+        //        idList.Add(a[i].Id); 
+        //    }
+        //    ScenarioContext.Current["UsersId"] = _idUser;
+        //}
 
         [Given(@"Assing Manager and Methodist roles")]
         public void GivenAssingMinevraAndMethodistRoles(Table table)
         {
             List<RoleModel> roles = table.CreateSet<RoleModel>().ToList();
             string token = _tokenAdmin;
-            List<int> idUsers = (List<int>)ScenarioContext.Current["UsersId"];
+            List<int> idUsers = _idUser;
+
             for (int i = 0; i < roles.Count; i++)
             {
                 AddRoleUsers.AddRole(roles[i].NameRole, idUsers[i], token);
             }
         }
-
+        
         [When(@"Autorized by methodist")]
         public void WhenAutorizedByMethodist()
         {
-            var requestModel = (List<RegistrationRequestModel>)ScenarioContext.Current["UserRequestModel"];
+            var requestModel = (List<RegistrationRequestModel>)FeatureContext.Current["UserRequestModel"];
             string email = requestModel[1].Email;
             string password = requestModel[1].Password;
             ScenarioContext.Current["MethodistToken"] = AuthClient.AuthUser(email, password);
@@ -143,14 +147,14 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         }
 
         [Given(@"Autorized by manager")]
-        public void GivenAutorizedByManager()
-        {
-            var requestModel = (List<RegistrationRequestModel>)ScenarioContext.Current["UserRequestModel"];
-            string email = requestModel[0].Email;
-            string password = requestModel[0].Password;
-            ScenarioContext.Current["ManagerToken"] = AuthClient.AuthUser(email, password);
-            _tokenManager = (string)ScenarioContext.Current["ManagerToken"];
-        }
+        //public void GivenAutorizedByManager()
+        //{
+        //    var requestModel = (List<RegistrationRequestModel>)ScenarioContext.Current["UserRequestModel"];
+        //    string email = requestModel[0].Email;
+        //    string password = requestModel[0].Password;
+        //    ScenarioContext.Current["ManagerToken"] = AuthClient.AuthUser(email, password);
+        //    _tokenManager = (string)ScenarioContext.Current["ManagerToken"];
+        //}
 
         [When(@"Create Groupe")]
         public void WhenCreateGroupe(Table table)
@@ -158,7 +162,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             var group = table.CreateSet<GroupRequestModel>().ToList().First();
             ScenarioContext.Current["GroupRequestModel Expected"] = group;
             group.CourseId = (int)ScenarioContext.Current["CourseId"];
-            string token = (string)ScenarioContext.Current["ManagerToken"];
+            string token = _tokenManager;
             GroupResponseModel groupReturn = AddEntitysClients.CreateGroupe(token, group);
             ScenarioContext.Current["GroupReturnActual"] = groupReturn;
             HttpResponseMessage httpResponse = AddEntitysClients.CreateGroupe();
@@ -177,7 +181,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"Get group by id")]
         public void WhenGetGroupById()
         {
-            string token = (string)ScenarioContext.Current["ManagerToken"];
+            string token = _tokenManager;
             GroupResponseModel groupReturn = (GroupResponseModel)ScenarioContext.Current["GroupReturnActual"];
             ReturnByIdGroupModel returnGroupById = GetClient.GetGroupById(groupReturn.Id,token);
             ScenarioContext.Current["Return Group By Id Actual"] = returnGroupById;
@@ -209,8 +213,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
            GroupRequestModel group = table.CreateSet<GroupRequestModel>().ToList().First();
            ScenarioContext.Current["CourseId"] = _curseId;
            group.CourseId = _curseId;
-           ScenarioContext.Current["TokenManager"] = _tokenManager;
-           string token = (string)ScenarioContext.Current["TokenManager"];
+           string token = _tokenManager;
            ScenarioContext.Current["Group Response Model"] = AddEntitysClients.CreateGroupe(token, group);
            ScenarioContext.Current["Group Request Model"] = group;
         }
@@ -227,7 +230,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [Given(@"Assign two students roles ""([^""]*)"" and ""([^""]*)""")]
         public void GivenAssignTwoStudentsRolesAnd(string teacher, string tutor)
         {
-            string token = (string)ScenarioContext.Current["TokenManager"];
+            string token = _tokenManager;
             var responseUser = (List<RegistrationResponseModel>)ScenarioContext.Current["UsersResponse"];
             int idTeacher = responseUser[1].Id;
             int idTutor = responseUser[2].Id;
@@ -240,7 +243,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [Given(@"Get Users by id")]
         public void GivenGetUsersById()
         {
-            string token = (string)ScenarioContext.Current["ManagerToken"];
+            string token = _tokenManager;
             List<RegistrationResponseModel> getUsers = new List<RegistrationResponseModel>();
             List<int> idUsers = (List<int>)ScenarioContext.Current["IdUsers"];
             for (int i = 0; i < idUsers.Count; i++)
@@ -258,7 +261,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
             int idGroup = groupResponse.Id;
-            string token = (string)ScenarioContext.Current["ManagerToken"];
+            string token = _tokenManager;
             List<int> idUsers = (List<int>)ScenarioContext.Current["IdUsers"];
             List<string> idRoles = (List<string>)ScenarioContext.Current["IdStringRolesUsers"];
             for (int i = 0; i <idUsers.Count; i++)
@@ -270,7 +273,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"Get my group by id")]
         public void WhenGetMyGroupById()
         {
-            string token = (string)ScenarioContext.Current["ManagerToken"];
+            string token = _tokenManager;
             GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response Model"];
             int idGroup = groupResponse.Id;
             ScenarioContext.Current["Return By Id Model Actual"] = GetClient.GetGroupById(idGroup, token); // ReturnByIdGroupModel
@@ -407,5 +410,65 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.AreEqual(expected.PaymentPerMonth, actual.PaymentPerMonth);
         }
 
+        // new Scenario (Delete)
+
+        [Given(@"Assign manager role to user ""([^""]*)""")]
+        public void GivenAssignManagerRoleToUser(string manager)
+        {
+            AddRoleUsers.AddRole(manager, _idUser[0], _tokenAdmin);
+        }
+
+
+        [Given(@"Create course")]
+        public void GivenCreateCourse(Table table)
+        {
+            CourseRequestModel course = table.CreateSet<CourseRequestModel>().ToList().First();
+            CourseResponseModel courseResponse = AddEntitysClients.CreateCourse(_tokenAdmin,course);
+            ScenarioContext.Current["IdCourse"] = courseResponse.Id;
+        }
+
+        [Given(@"Create Groupe QAA")]
+        public void GivenCreateGroupeQAA(Table table)
+        {
+            GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
+            groupRequest.CourseId = (int)ScenarioContext.Current["IdCourse"];
+            ScenarioContext.Current["TokenManager"] = _tokenManager;
+            GroupResponseModel groupResponse = AddEntitysClients.CreateGroupe(_tokenManager, groupRequest);
+            ScenarioContext.Current["iDGroup"] = groupResponse.Id;
+            ScenarioContext.Current["Group expected"] = groupRequest;
+        }
+
+
+        [When(@"Delete group by id")]
+        public void WhenDeleteGroupById()
+        {
+            int id = (int)ScenarioContext.Current["iDGroup"];
+            string token = (string)ScenarioContext.Current["TokenManager"];
+            DeleteClient.DeleteGroupeById(token,id);
+        }
+
+        [When(@"Get all groups")]
+        public void WhenGetAllGroups()
+        {
+            string token = (string)ScenarioContext.Current["TokenManager"];
+            ScenarioContext.Current["Expected group model"] = GetClient.GetAllGroups(token);
+        }
+
+        [Then(@"Deleted group should disappear")]
+        public void ThenDeletedGroupShouldDisappear()
+        {
+            List<GroupResponseModel> actual = (List<GroupResponseModel>)ScenarioContext.Current["Expected group model"];
+            GroupRequestModel expected = (GroupRequestModel)ScenarioContext.Current["Group expected"];
+            for (int i = 0; i < actual.Count; i++)
+            {
+                Assert.AreNotEqual(expected.Name, actual[i].Name);
+                Assert.AreNotEqual(expected.EndDate, actual[i].EndDate);
+                Assert.AreNotEqual(expected.StartDate, actual[i].StartDate);
+                Assert.AreNotEqual(expected.PaymentPerMonth, actual[i].PaymentPerMonth);
+                Assert.AreNotEqual(expected.CourseId, actual[i].Course.Id);
+                Assert.AreNotEqual(expected.GroupStatusId, actual[i].GroupStatus);
+                // тест падает, потому что не парсит все группы 
+            }
+        }
     }
 }

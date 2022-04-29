@@ -184,6 +184,25 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return allUsers;
         }
 
+        public static List<GroupResponseModel> GetAllGroups(string token)
+        {
+            string url = "https://piter-education.ru:7072/api/Groups";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            List<GroupResponseModel> allGroups = JsonSerializer.Deserialize<List<GroupResponseModel>>(s);
+            return allGroups;
+        }
+
         public static List<CourseResponseModel> GetAllCourses (string token)
         {
             string url = $"https://piter-education.ru:7072/api/Courses";

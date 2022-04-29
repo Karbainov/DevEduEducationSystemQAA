@@ -37,6 +37,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             var token = (string)ScenarioContext.Current["TokenUser"];
             var idUser=(int)ScenarioContext.Current["IdUser"];
             ScenarioContext.Current["ActualUserModel"] = GetClient.GetUserById(token, idUser);
+
         }
        
 
