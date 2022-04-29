@@ -19,8 +19,10 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         [JsonPropertyName("course")]
         public Course Course { get; set; }
 
+        //TODO: как будет починина бага исправить тип данных 
+        //[JsonIgnore]
         [JsonPropertyName("groupStatus")]
-        public string GroupStatus { get; set; }
+        public object GroupStatus { get; set; }
 
         [JsonPropertyName("startDate")]
         public string StartDate { get; set; }
@@ -33,6 +35,8 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
 
         [JsonPropertyName("paymentPerMonth")]
         public decimal PaymentPerMonth { get; set; }
+
+
 
 
         public override bool Equals(object? obj)
@@ -48,4 +52,13 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
                    PaymentPerMonth == model.PaymentPerMonth;
         }
     }
+
+    //public enum GroupStatus
+    //{
+    //    qqq = 0,
+    //    Forming = 1,
+    //    ReadyToStudy,
+    //    InProgress,
+    //    Completed
+    //}
 }

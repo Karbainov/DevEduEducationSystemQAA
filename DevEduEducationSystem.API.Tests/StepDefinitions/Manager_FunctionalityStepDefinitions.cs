@@ -13,7 +13,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         private int _curseId;
         private string _tokenManager;
         private string _tokenAdmin;
-        private int _idUser;
+        private List<int> _idUser = new List<int>();
 
         [Given(@"Create user")]
         public void GivenCreateUser(Table table)
@@ -21,12 +21,16 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
             AuthClient registr = new AuthClient();
             List<RegistrationResponseModel> userResponses = registr.Registration(user);
+            FeatureContext.Current["UserRequestModel"] = user;
             ScenarioContext.Current["Manager"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {
                 ScenarioContext.Current["IdManager"] = userResponses[i].Id;
             }
-            _idUser = userResponses[0].Id;
+            for (int i = 0; i < userResponses.Count; i++)
+            {
+                _idUser.Add(userResponses[i].Id);
+            }
         }
 
 
@@ -95,37 +99,37 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
         // new Scenario 
 
-        [Given(@"Create users")]
-        public void GivenCreateFutureManadgerAndMethodist(Table table)
-        {
-            List<int> idList = new List<int>();
-            List<RegistrationRequestModel> users = table.CreateSet<RegistrationRequestModel>().ToList();
-            AuthClient register = new AuthClient();
-            List<RegistrationResponseModel> a = register.Registration(users);
-            ScenarioContext.Current["UserRequestModel"] = users;
-            for(int i = 0; i < a.Count; i++)
-            {
-                idList.Add(a[i].Id); 
-            }
-            ScenarioContext.Current["UsersId"] = idList;
-        }
+        //[Given(@"Create users")]
+        //public void GivenCreateFutureManadgerAndMethodist(Table table)
+        //{
+        //    List<RegistrationRequestModel> users = table.CreateSet<RegistrationRequestModel>().ToList();
+        //    AuthClient register = new AuthClient();
+        //    List<RegistrationResponseModel> a = register.Registration(users);
+        //    ScenarioContext.Current["UserRequestModel"] = users;
+        //    for(int i = 0; i < a.Count; i++)
+        //    {
+        //        idList.Add(a[i].Id); 
+        //    }
+        //    ScenarioContext.Current["UsersId"] = _idUser;
+        //}
 
         [Given(@"Assing Manager and Methodist roles")]
         public void GivenAssingMinevraAndMethodistRoles(Table table)
         {
             List<RoleModel> roles = table.CreateSet<RoleModel>().ToList();
             string token = _tokenAdmin;
-            List<int> idUsers = (List<int>)ScenarioContext.Current["UsersId"];
+            List<int> idUsers = _idUser;
+
             for (int i = 0; i < roles.Count; i++)
             {
                 AddRoleUsers.AddRole(roles[i].NameRole, idUsers[i], token);
             }
         }
-
+        
         [When(@"Autorized by methodist")]
         public void WhenAutorizedByMethodist()
         {
-            var requestModel = (List<RegistrationRequestModel>)ScenarioContext.Current["UserRequestModel"];
+            var requestModel = (List<RegistrationRequestModel>)FeatureContext.Current["UserRequestModel"];
             string email = requestModel[1].Email;
             string password = requestModel[1].Password;
             ScenarioContext.Current["MethodistToken"] = AuthClient.AuthUser(email, password);
@@ -411,7 +415,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [Given(@"Assign manager role to user ""([^""]*)""")]
         public void GivenAssignManagerRoleToUser(string manager)
         {
-            AddRoleUsers.AddRole(manager, _idUser, _tokenAdmin);
+            AddRoleUsers.AddRole(manager, _idUser[0], _tokenAdmin);
         }
 
 
@@ -443,20 +447,27 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             DeleteClient.DeleteGroupeById(token,id);
         }
 
-        [Then(@"Get all groups")]
-        public void ThenGetGroupByIdAndCompareFieldIsDeleted()
+        [When(@"Get all groups")]
+        public void WhenGetAllGroups()
         {
             string token = (string)ScenarioContext.Current["TokenManager"];
-            List<GroupResponseModel> actual = GetClient.GetAllGroups(token);
-           GroupRequestModel expected = (GroupRequestModel)ScenarioContext.Current["Group expected"];
-            for (int i = 0;i < actual.Count;i++)
+            ScenarioContext.Current["Expected group model"] = GetClient.GetAllGroups(token);
+        }
+
+        [Then(@"Deleted group should disappear")]
+        public void ThenDeletedGroupShouldDisappear()
+        {
+            List<GroupResponseModel> actual = (List<GroupResponseModel>)ScenarioContext.Current["Expected group model"];
+            GroupRequestModel expected = (GroupRequestModel)ScenarioContext.Current["Group expected"];
+            for (int i = 0; i < actual.Count; i++)
             {
-                Assert.AreEqual(expected.Name, actual[i].Name);
-                Assert.AreEqual(expected.EndDate, actual[i].EndDate);
-                Assert.AreEqual(expected.StartDate, actual[i].StartDate);
-                Assert.AreEqual(expected.PaymentPerMonth, actual[i].PaymentPerMonth);
-                Assert.AreEqual(expected.CourseId, actual[i].Course.Id);
-                Assert.AreEqual(expected.GroupStatusId, actual[i].GroupStatus);
+                Assert.AreNotEqual(expected.Name, actual[i].Name);
+                Assert.AreNotEqual(expected.EndDate, actual[i].EndDate);
+                Assert.AreNotEqual(expected.StartDate, actual[i].StartDate);
+                Assert.AreNotEqual(expected.PaymentPerMonth, actual[i].PaymentPerMonth);
+                Assert.AreNotEqual(expected.CourseId, actual[i].Course.Id);
+                Assert.AreNotEqual(expected.GroupStatusId, actual[i].GroupStatus);
+                // тест падает, потому что не парсит все группы 
             }
         }
     }

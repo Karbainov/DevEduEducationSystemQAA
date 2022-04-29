@@ -29,7 +29,7 @@ Scenario: As manadger I want to assign a role to users
 	| Миневра   | Макгонагалл | Смит       | Smit2@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Златопуст    | Локонс      | Брана         | Brana6@mail.ru  | Zlatopust   | zlatopust    | SaintPetersburg | 01.12.2001   | string           | 89210081122    | Tutor     |
 	
 Scenario: As a manager, I want to create groups
-    Given  Create users
+    Given  Create user
 	| FirstName           | LastName            | Patronymic           | Email           | Username           | Password           | City           | BirthDate           | GitHubAccount           | PhoneNumber           |
 	| <FirstName>         | <LastName >         | <Patronymic>         | <Email>         | <Username>         | <Password>         | <City>         | <BirthDate>         | <GitHubAccount>         | <PhoneNumber>         |
 	| <MehodistFirstName> | <MehodistLastName > | <MehodistPatronymic> | <MehodistEmail> | <MehodistUsername> | <MehodistPassword> | <MehodistCity> | <MehodistBirthDate> | <MehodistGitHubAccount> | <MehodistPhoneNumber> |
@@ -55,7 +55,7 @@ Scenario: As a manager, I want to create groups
 	
  
  Scenario: As a manager, I want add in group students, teachers and tutors
-	 Given Create users
+	 Given Create user
 	| FirstName           | LastName            | Patronymic           | Email           | Username           | Password           | City           | BirthDate           | GitHubAccount           | PhoneNumber           |
 	| <FirstName>         | <LastName >         | <Patronymic>         | <Email>         | <Username>         | <Password>         | <City>         | <BirthDate>         | <GitHubAccount>         | <PhoneNumber>         |
 	| <MehodistFirstName> | <MehodistLastName > | <MehodistPatronymic> | <MehodistEmail> | <MehodistUsername> | <MehodistPassword> | <MehodistCity> | <MehodistBirthDate> | <MehodistGitHubAccount> | <MehodistPhoneNumber> |
@@ -87,7 +87,7 @@ Scenario: As a manager, I want to create groups
 	 | Миневра   | Макгонагалл | Смит       | Smit4@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид            | Рубеус           | Колтрейн           | Rubeus1@mail.ru | Hagrid           | hagridRubeus     | SaintPetersburg | 01.03.2003        | string                | 89211111111         | Manager  | Methodist        |
 
 Scenario: As manager, I want change my created group
-    Given Create users
+    Given Create user
 	| FirstName           | LastName            | Patronymic           | Email           | Username           | Password           | City           | BirthDate           | GitHubAccount           | PhoneNumber           |
 	| <FirstName>         | <LastName >         | <Patronymic>         | <Email>         | <Username>         | <Password>         | <City>         | <BirthDate>         | <GitHubAccount>         | <PhoneNumber>         |
 	| <MehodistFirstName> | <MehodistLastName > | <MehodistPatronymic> | <MehodistEmail> | <MehodistUsername> | <MehodistPassword> | <MehodistCity> | <MehodistBirthDate> | <MehodistGitHubAccount> | <MehodistPhoneNumber> |
@@ -128,7 +128,8 @@ Scenario: As manager, I want change my created group
  | Name     | GroupStatusId   | StartDate   | EndDate   | Timetable   | PaymentPerMonth   |
  | <Name 1> | <GroupStatusId> | <StartDate> | <EndDate> | <Timetable> | <PaymentPerMonth> |
  When Delete group by id
- Then Get all groups 
+ And Get all groups 
+ Then Deleted group should disappear 
  Examples: 
  | FirstName | LastName  | Patronymic | Email         | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | Name     | Description              | Name 1 | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
  | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Солнышки | Как опоздать на 10 минут | QAA    | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7000            |

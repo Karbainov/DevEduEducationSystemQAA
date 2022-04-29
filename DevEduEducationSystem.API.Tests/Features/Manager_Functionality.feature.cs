@@ -338,7 +338,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", mehodistGitHubAccount),
                             string.Format("{0}", mehodistPhoneNumber)});
 #line 32
-    testRunner.Given("Create users", ((string)(null)), table4, "Given ");
+    testRunner.Given("Create user", ((string)(null)), table4, "Given ");
 #line hidden
 #line 36
  testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -504,7 +504,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", mehodistGitHubAccount),
                             string.Format("{0}", mehodistPhoneNumber)});
 #line 58
-  testRunner.Given("Create users", ((string)(null)), table8, "Given ");
+  testRunner.Given("Create user", ((string)(null)), table8, "Given ");
 #line hidden
 #line 62
  testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -723,7 +723,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", mehodistGitHubAccount),
                             string.Format("{0}", mehodistPhoneNumber)});
 #line 90
-    testRunner.Given("Create users", ((string)(null)), table13, "Given ");
+    testRunner.Given("Create user", ((string)(null)), table13, "Given ");
 #line hidden
 #line 94
  testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -925,7 +925,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Delete group by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 131
- testRunner.Then("Get all groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Get all groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 132
+ testRunner.Then("Deleted group should disappear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
