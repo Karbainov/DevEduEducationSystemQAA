@@ -1,4 +1,5 @@
 ﻿using DevEduEducationSystem.API.Tests.Support.Models;
+using DevEduEducationSystem.API.Tests.Support.Models.ResponseModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,25 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
             return JsonSerializer.Deserialize<CourseResponseModel>(s);
+        }
+
+        public static GroupResponseMiniModel UpdateGroupStatus(int idGroup, string statusId, string token)
+        {
+            string url = $"https://piter-education.ru:7072/api/Groups/{idGroup}/status/{statusId}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Patch,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<GroupResponseMiniModel>(s);
+
         }
     }
 }

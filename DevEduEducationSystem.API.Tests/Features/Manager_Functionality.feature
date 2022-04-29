@@ -6,6 +6,7 @@
 4.)Как менеджер. я хочу добавлять в группу студента, преподавателя и тьютора
 5.) Как менеджер, я хочу изменять группу 
 6.)Как менеджер, я хочу удалять группу
+7.)Как менеджер, я хочу менять статус группы
 
 @Manager
 Scenario: As manadger I want to assign a role to users
@@ -135,6 +136,30 @@ Scenario: As manager, I want change my created group
  | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Солнышки | Как опоздать на 10 минут | QAA    | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7000            |
 
 
+ Scenario: As manager, I want to change the status group
+ Given Create user
+ | FirstName   | LastName    | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+ | <FirstName> | <LastName > | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+ And Autorized as admin
+ And Assign manager role to user "Manager"
+ And Create course
+ | Name   | Description   |
+ | <Name> | <Description> |
+ And Autorized by manager
+ And Create Groupe Back
+ | Name     | GroupStatusId   | StartDate   | EndDate   | Timetable   | PaymentPerMonth   |
+ | <Name 1> | <GroupStatusId> | <StartDate> | <EndDate> | <Timetable> | <PaymentPerMonth> |
+ When Change group status by id
+ | GroupStatusName   |
+ | <GroupStatusName> |
+ Then Group Status should changed
+ Examples: 
+ | FirstName | LastName  | Patronymic | Email          | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | Name    | Description              | Name 1 | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | GroupStatusName |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru  | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyBack  | Как опоздать на 10 минут | Back   | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7500            | ReadyToStudy    |
+ | Альбус    | Персиваль | Дамблдор   | Albus1@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyBack1 | Как опоздать на 10 минут | Back1  | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7500            | InProgress      |
+ | Альбус    | Персиваль | Дамблдор   | Albus2@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyBack2 | Как опоздать на 10 минут | Back2  | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7500            | Completed       |
+ 
+ 
 
 	#Role      |
 	# Manager  |

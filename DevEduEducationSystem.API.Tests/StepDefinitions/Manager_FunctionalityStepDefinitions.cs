@@ -1,5 +1,4 @@
 
-using DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel;
 using System;
 using System.Net;
 using TechTalk.SpecFlow;
@@ -425,6 +424,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             CourseRequestModel course = table.CreateSet<CourseRequestModel>().ToList().First();
             CourseResponseModel courseResponse = AddEntitysClients.CreateCourse(_tokenAdmin,course);
             ScenarioContext.Current["IdCourse"] = courseResponse.Id;
+            _curseId = courseResponse.Id;
         }
 
         [Given(@"Create Groupe QAA")]
@@ -470,5 +470,33 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 // тест падает, потому что не парсит все группы 
             }
         }
+
+        // new Scenario (change Group Status)
+
+        [Given(@"Create Groupe Back")]
+        public void GivenCreateGroupeBack(Table table)
+        {
+            GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
+            groupRequest.CourseId = _curseId;
+           ScenarioContext.Current["Group Response"] = AddEntitysClients.CreateGroupe(_tokenManager,groupRequest);
+        }
+
+        [When(@"Change group status by id")]
+        public void WhenChangeGroupStatusById(Table table)
+        {
+            GroupStatusRequestModel groupStatus = table.CreateInstance<GroupStatusRequestModel>();
+            ScenarioContext.Current["GroupStatus"] = groupStatus;
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            ScenarioContext.Current["group actual"] = UpdateClient.UpdateGroupStatus(groupResponse.Id, groupStatus.GroupStatusName,_tokenManager);
+        }
+
+        [Then(@"Group Status should changed")]
+        public void ThenGroupStatusShouldChanged()
+        {
+            GroupResponseMiniModel actual = (GroupResponseMiniModel)ScenarioContext.Current["group actual"];
+            GroupStatusRequestModel expected = (GroupStatusRequestModel)ScenarioContext.Current["GroupStatus"];
+            Assert.AreEqual(expected.GroupStatusName, actual.GroupStatus);
+        }
+
     }
 }
