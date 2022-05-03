@@ -5,17 +5,21 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DevEduEducationSystem.API.Tests.Support.Models
+namespace DevEduEducationSystem.API.Tests.Support.Models.RequestModels
 {
-    public class TopicResponseModel
+    public class TopicRequestModel
     {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
-
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [JsonPropertyName("duration")]
         public int Duration { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is TopicRequestModel model &&
+                   Name == model.Name &&
+                   Duration == model.Duration;
+        }
     }
 }

@@ -94,3 +94,27 @@ Scenario: User in role methodist can see all courses
 	Examples: 
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
+@Metodist
+Scenario: User in role methodist I want add theme to course
+	Given I create new user and get his token
+	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+	And I login as an admin and give new user role <Role>
+	When I login as an Methodist and create new course
+	| Name     | Description           |
+	| Course 1 | Samiy luchshiy kurs   |
+	And I create topics 	
+	| Name    | Duration |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 4        |
+	And I add course topics on position
+	| Name    | Position | 
+	| Thema 1 | 1        | 
+	| Thema 2 | 2        |
+	| Thema 3 | 3        |
+	Then I get course by id and return model contain all topics
+	Examples: 
+	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |

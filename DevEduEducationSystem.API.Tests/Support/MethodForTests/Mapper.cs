@@ -1,4 +1,6 @@
 ﻿using DevEduEducationSystem.API.Tests.Support.Models;
+using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
+using DevEduEducationSystem.API.Tests.Support.Models.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +34,18 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 Name = model.Name,
                 Description = model.Description
             };
+        }
+
+        public static List<TopicRequestModel> MapCourseRequestAndTopicRequestModelToCourseResponseModel(CourseResponseFullModel modelCourseRequest)
+        {
+            List<TopicRequestModel> listTopics = new List<TopicRequestModel>();
+            
+            foreach (TopicResponseModel a in modelCourseRequest.Topics)
+            {
+
+                listTopics.Add(new TopicRequestModel() { Duration = a.Duration, Name = a.Name });
+            }
+            return listTopics;
         }
     }
 }
