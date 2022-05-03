@@ -560,7 +560,42 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.AreEqual(expected.Name, groupFull.Name);
         }
 
+        // new Scenario
 
+        [Given(@"Create Groupe all group")]
+        public void GivenCreateGroupeAllGroup(Table table)
+        {
+            List<GroupResponseModel> groupsResponse = new List<GroupResponseModel>();
+            List<GroupRequestModel> groupsRequest = table.CreateSet<GroupRequestModel>().ToList();
+            for (int i = 0; i < groupsRequest.Count; i++) 
+            {
+                groupsRequest[i].CourseId = _curseId;
+                groupsResponse.Add(AddEntitysClients.CreateGroupe(_tokenManager,groupsRequest[i]));
+            }
+            ScenarioContext.Current["Groups Request"] = groupsRequest;
+            ScenarioContext.Current["Groups Response"] = groupsResponse;
+        }
 
+        [When(@"Get all  groups")]
+        public void WhenGetGroupAllGroups()
+        {
+           ScenarioContext.Current["All Groups"] = GetClient.GetAllGroups(_tokenManager);
+        }
+
+        [Then(@"Check that all groups should have returned")]
+        public void ThenCheckThatAllGroupsShouldHaveReturned()
+        {
+            List<GroupResponseModel> actualGroups = (List<GroupResponseModel>)ScenarioContext.Current["All Groups"];
+            List<GroupRequestModel> actual = new List<GroupRequestModel>();
+            List<GroupRequestModel> expected = (List<GroupRequestModel>)ScenarioContext.Current["Groups Request"];
+            for (int i = 0; i < actualGroups.Count; i++)
+            {
+                actual.Add(Mapper.MapGroupResponseModelToGroupRequestModel(actualGroups[i]));
+            }
+            for(int i = 0;i<actual.Count;i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
     }
 }

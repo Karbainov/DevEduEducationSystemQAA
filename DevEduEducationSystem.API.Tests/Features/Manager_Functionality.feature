@@ -186,6 +186,28 @@ Then Check that student have left the group
 | Антон     | Пушкин   | Эдикович    | Anton@mail.ru | Antonio  | Antonio1990 | SaintPetersburg | 01.01.1990 | string        | 89012223344 |
 | Максим    | Опаздун  | Опаздунович | Max@mail.ru   | Opazdun  | Opasdun2003 | SaintPetersburg | 01.01.2003 | string        | 99117778899 |
 | Инокентий | Гай      | Пай         | Max1@mail.ru  | Guy      | Opasdun2003 | SaintPetersburg | 01.01.2001 | string        | 99117778891 |
+
+Scenario: As manager, I want get all groups
+Given Create user
+ | FirstName   | LastName    | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+ | <FirstName> | <LastName > | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+ And Autorized as admin
+ And Assign manager role to user "Manager"
+ And Create course
+ | Name   | Description   |
+ | <Name> | <Description> |
+ And Autorized by manager
+ And Create Groupe all group 
+ | Name      | GroupStatusId | StartDate  | EndDate    | Timetable                   | PaymentPerMonth |
+ | Сосиски   | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 1000            |
+ | Колбаски  | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 2000            |
+ | Сордельки | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 3000            |
+ When Get all  groups 
+ Then Check that all groups should have returned
+ Examples: 
+ | FirstName | LastName  | Patronymic | Email          | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | Name     | Description                  | 
+ | Альбус    | Персиваль | Дамблдор   | Albuss@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyCourse | Как пообещать и не выполнить |
+
 	#Role      |
 	# Manager  |
 	#Methodist |

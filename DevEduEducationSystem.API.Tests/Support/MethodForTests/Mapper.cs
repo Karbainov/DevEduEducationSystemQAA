@@ -47,5 +47,23 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             }
             return listTopics;
         }
+
+        public static GroupRequestModel MapGroupResponseModelToGroupRequestModel(GroupResponseModel model)
+        {
+            if(model.GroupStatus == "0")
+            {
+                model.GroupStatus = "1";
+            }
+            return new GroupRequestModel()
+            {
+                Name = model.Name,
+                CourseId = model.Course.Id,
+                GroupStatusId = model.GroupStatus.ToString(),
+                StartDate = model.StartDate,
+                EndDate = model.EndDate,
+                Timetable = model.Timetable,
+                PaymentPerMonth = model.PaymentPerMonth,
+            };
+        }
     }
 }
