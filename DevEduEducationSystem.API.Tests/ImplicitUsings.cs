@@ -6,3 +6,5 @@ global using TechTalk.SpecFlow.Assist;
 global using DevEduEducationSystem.API.Tests.Support.Models;
 global using DevEduEducationSystem.API.Tests.Support.MethodForTests;
 global using DevEduEducationSystem.API.Tests.Support.Models.AllGroupsModels;
+global using DevEduEducationSystem.API.Tests.Support.Models.ResponseModels;
+global using DevEduEducationSystem.API.Tests.Support.Models.StudentModelClassesForModel;
