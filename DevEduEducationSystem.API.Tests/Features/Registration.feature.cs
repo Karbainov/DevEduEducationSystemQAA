@@ -119,7 +119,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -130,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table41.AddRow(new string[] {
+                table42.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 7
- testRunner.When("I register", ((string)(null)), table41, "When ");
+ testRunner.When("I register", ((string)(null)), table42, "When ");
 #line hidden
 #line 10
  testRunner.And(string.Format("Autorized by {0} and {1}", email, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -205,7 +205,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -216,7 +216,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table42.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -228,7 +228,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 21
- testRunner.When("I try to register as", ((string)(null)), table42, "When ");
+ testRunner.When("I try to register as", ((string)(null)), table43, "When ");
 #line hidden
 #line 24
  testRunner.Then("Should return 422 status code response", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -311,34 +311,6 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
-                            "Patronymic",
-                            "Email",
-                            "Username",
-                            "Password",
-                            "City",
-                            "BirthDate",
-                            "GitHubAccount",
-                            "PhoneNumber"});
-                table43.AddRow(new string[] {
-                            string.Format("{0}", firstName),
-                            string.Format("{0}", lastName),
-                            string.Format("{0}", patronymic),
-                            string.Format("{0}", email),
-                            string.Format("{0}", username),
-                            string.Format("{0}", password),
-                            string.Format("{0}", city),
-                            string.Format("{0}", birthDate),
-                            string.Format("{0}", gitHubAccount),
-                            string.Format("{0}", phoneNumber)});
-#line 34
- testRunner.Given("I register", ((string)(null)), table43, "Given ");
-#line hidden
-#line 37
- testRunner.When(string.Format("Autorized by {0} and {1}", email, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
                 TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
@@ -351,6 +323,34 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber"});
                 table44.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+#line 34
+ testRunner.Given("I register", ((string)(null)), table44, "Given ");
+#line hidden
+#line 37
+ testRunner.When(string.Format("Autorized by {0} and {1}", email, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table45.AddRow(new string[] {
                             string.Format("{0}", newFirstName),
                             string.Format("{0}", newLastName),
                             string.Format("{0}", newPatronymic),
@@ -362,7 +362,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", newGitHubAccount),
                             string.Format("{0}", newPhoneNumber)});
 #line 38
- testRunner.And("I Update myself", ((string)(null)), table44, "And ");
+ testRunner.And("I Update myself", ((string)(null)), table45, "And ");
 #line hidden
 #line 41
  testRunner.And("Get User by my Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -419,7 +419,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -430,7 +430,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table45.AddRow(new string[] {
+                table46.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -442,7 +442,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 50
- testRunner.Given("I register", ((string)(null)), table45, "Given ");
+ testRunner.Given("I register", ((string)(null)), table46, "Given ");
 #line hidden
 #line 53
  testRunner.When(string.Format("Autorized by {0} and {1}", email, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

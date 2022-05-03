@@ -503,11 +503,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenAssignRole(Table table)
         {
             List<RoleModel> roles = table.CreateSet<RoleModel>().ToList();
-
-            for (int i = 0; i < roles.Count; i++)
-            {
-                AddRoleUsers.AddRole(roles[i].NameRole,_idUser[i],_tokenAdmin);
-            }
+            AddRoleUsers.AddRole(roles[0].NameRole,_idUser[0],_tokenAdmin);
         }
 
         [Given(@"Сreate a group to remove a user from it")]
@@ -523,24 +519,17 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenAddUsersInGroup()
         {
             GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
-            List<string> roles = new List<string> { "Teacher", "Student" };
             for (int i = 1; i < _idUser.Count; i++) 
             {
-                for (int j = 0; j < roles.Count; j++)
-                {
-                    AddEntitysClients.AddUserInGroup(groupResponse.Id, _idUser[i], roles[j], _tokenManager);
-                }
+                    AddEntitysClients.AddUserInGroup(groupResponse.Id, _idUser[i], "Student", _tokenManager);
             }
         }
 
-        [When(@"Delete user from a group")]
+        [When(@"Delete adding user from a group")]
         public void WhenDeleteUserFromAGroup()
         {
             GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
-            for (int i = 1; i < _idUser.Count; i++)
-            {
-                DeleteClient.DeleteUserFromGroup(_tokenManager, groupResponse.Id, _idUser[i]);
-            }
+            DeleteClient.DeleteUserFromGroup(_tokenManager, groupResponse.Id, _idUser[3]);
         }
 
         [When(@"Get group  by id")]
@@ -550,18 +539,27 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["Group Full"] = GetClient.GetGroupById(groupResponse.Id, _tokenManager);
         }
 
-        [Then(@"Check that users have left the group")]
-        public void ThenCheckThatUsersHaveLeftTheGroup()
+        [Then(@"Check that student have left the group")]
+        public void ThenCheckThatStudentHaveLeftTheGroup(Table table)
         {
-            List<StudentModel> student = new List<StudentModel>();
+            List<RegistrationRequestModel> srudentExpected = table.CreateSet<RegistrationRequestModel>().ToList();
             List<TeacherModel> teacher = new List<TeacherModel>();
             GroupRequestModel expected = (GroupRequestModel)ScenarioContext.Current["Group Request"];
             ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)ScenarioContext.Current["Group Full"];
-            Assert.AreEqual(student, groupFull.Students);
+            Assert.AreEqual(groupFull.Students.Count, 2);
+            for (int i = 0; i < groupFull.Students.Count; i++)
+            {
+                Assert.AreNotEqual(srudentExpected[2].Username, groupFull.Students[i].Username);
+                Assert.AreNotEqual(srudentExpected[2].LastName, groupFull.Students[i].LastName);
+                Assert.AreNotEqual(srudentExpected[2].FirstName, groupFull.Students[i].FirstName);
+                Assert.AreNotEqual(srudentExpected[2].Email, groupFull.Students[i].Email);
+                Assert.AreNotEqual(srudentExpected[2].Patronymic, groupFull.Students[i].Patronymic);
+            }
             Assert.AreEqual(teacher, groupFull.Teachers);
             Assert.AreEqual(expected.CourseId, groupFull.Course.Id);
             Assert.AreEqual(expected.Name, groupFull.Name);
         }
+
 
 
     }
