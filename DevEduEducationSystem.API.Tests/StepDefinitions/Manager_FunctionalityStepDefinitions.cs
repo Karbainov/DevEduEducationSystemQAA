@@ -466,8 +466,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreNotEqual(expected.StartDate, actual[i].StartDate);
                 Assert.AreNotEqual(expected.PaymentPerMonth, actual[i].PaymentPerMonth);
                 Assert.AreNotEqual(expected.CourseId, actual[i].Course.Id);
-                Assert.AreNotEqual(expected.GroupStatusId, actual[i].GroupStatus);
-                // тест падает, потому что не парсит все группы 
+                Assert.AreNotEqual(expected.GroupStatusId, actual[i].GroupStatus); 
             }
         }
 
@@ -497,6 +496,71 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             GroupStatusRequestModel expected = (GroupStatusRequestModel)ScenarioContext.Current["GroupStatus"];
             Assert.AreEqual(expected.GroupStatusName, actual.GroupStatus);
         }
+
+        // new Scenario
+
+        [Given(@"Assign role")]
+        public void GivenAssignRole(Table table)
+        {
+            List<RoleModel> roles = table.CreateSet<RoleModel>().ToList();
+            AddRoleUsers.AddRole(roles[0].NameRole,_idUser[0],_tokenAdmin);
+        }
+
+        [Given(@"Сreate a group to remove a user from it")]
+        public void GivenСreateAGroupToRemoveAUserFromIt(Table table)
+        {
+            GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
+            groupRequest.CourseId = _curseId;
+            ScenarioContext.Current["Group Response"] = AddEntitysClients.CreateGroupe(_tokenManager, groupRequest);
+            ScenarioContext.Current["Group Request"] = groupRequest;
+        }
+
+        [Given(@"Add Users in group")]
+        public void GivenAddUsersInGroup()
+        {
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            for (int i = 1; i < _idUser.Count; i++) 
+            {
+                    AddEntitysClients.AddUserInGroup(groupResponse.Id, _idUser[i], "Student", _tokenManager);
+            }
+        }
+
+        [When(@"Delete adding user from a group")]
+        public void WhenDeleteUserFromAGroup()
+        {
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            DeleteClient.DeleteUserFromGroup(_tokenManager, groupResponse.Id, _idUser[3]);
+        }
+
+        [When(@"Get group  by id")]
+        public void WhenGet_GroupById()
+        {
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            ScenarioContext.Current["Group Full"] = GetClient.GetGroupById(groupResponse.Id, _tokenManager);
+        }
+
+        [Then(@"Check that student have left the group")]
+        public void ThenCheckThatStudentHaveLeftTheGroup(Table table)
+        {
+            List<RegistrationRequestModel> srudentExpected = table.CreateSet<RegistrationRequestModel>().ToList();
+            List<TeacherModel> teacher = new List<TeacherModel>();
+            GroupRequestModel expected = (GroupRequestModel)ScenarioContext.Current["Group Request"];
+            ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)ScenarioContext.Current["Group Full"];
+            Assert.AreEqual(groupFull.Students.Count, 2);
+            for (int i = 0; i < groupFull.Students.Count; i++)
+            {
+                Assert.AreNotEqual(srudentExpected[2].Username, groupFull.Students[i].Username);
+                Assert.AreNotEqual(srudentExpected[2].LastName, groupFull.Students[i].LastName);
+                Assert.AreNotEqual(srudentExpected[2].FirstName, groupFull.Students[i].FirstName);
+                Assert.AreNotEqual(srudentExpected[2].Email, groupFull.Students[i].Email);
+                Assert.AreNotEqual(srudentExpected[2].Patronymic, groupFull.Students[i].Patronymic);
+            }
+            Assert.AreEqual(teacher, groupFull.Teachers);
+            Assert.AreEqual(expected.CourseId, groupFull.Course.Id);
+            Assert.AreEqual(expected.Name, groupFull.Name);
+        }
+
+
 
     }
 }

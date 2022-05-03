@@ -72,5 +72,22 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
         }
+
+        public static void DeleteUserFromGroup(string token, int idGroup, int idUser)
+        {
+            string url = $"https://piter-education.ru:7072/api/Groups/{idGroup}/user/{idUser}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.NoContent;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

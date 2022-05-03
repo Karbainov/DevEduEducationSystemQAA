@@ -121,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -132,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table25.AddRow(new string[] {
+                table30.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -144,19 +144,19 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 7
- testRunner.Given("I create new user and get his token", ((string)(null)), table25, "Given ");
+ testRunner.Given("I create new user and get his token", ((string)(null)), table30, "Given ");
 #line hidden
 #line 10
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table26.AddRow(new string[] {
+                table31.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description)});
 #line 11
- testRunner.When("I login as an Methodist and create new course", ((string)(null)), table26, "When ");
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table31, "When ");
 #line hidden
 #line 14
  testRunner.Then("Should Course Models coincide with the returned models of these entities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -231,7 +231,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -242,7 +242,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table27.AddRow(new string[] {
+                table32.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -254,28 +254,28 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 21
- testRunner.Given("I create new user and get his token", ((string)(null)), table27, "Given ");
+ testRunner.Given("I create new user and get his token", ((string)(null)), table32, "Given ");
 #line hidden
 #line 24
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table28.AddRow(new string[] {
+                table33.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description)});
 #line 25
- testRunner.When("I login as an Methodist and create new course", ((string)(null)), table28, "When ");
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table33, "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table29.AddRow(new string[] {
+                table34.AddRow(new string[] {
                             string.Format("{0}", newName),
                             string.Format("{0}", newDescription)});
 #line 28
- testRunner.And("I update new course", ((string)(null)), table29, "And ");
+ testRunner.And("I update new course", ((string)(null)), table34, "And ");
 #line hidden
 #line 31
  testRunner.Then("Should new course model coincide with the returned model of changes entities", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -332,7 +332,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -343,7 +343,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table30.AddRow(new string[] {
+                table35.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -355,19 +355,19 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 38
- testRunner.Given("I create new user and get his token", ((string)(null)), table30, "Given ");
+ testRunner.Given("I create new user and get his token", ((string)(null)), table35, "Given ");
 #line hidden
 #line 41
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table31.AddRow(new string[] {
+                table36.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description)});
 #line 42
- testRunner.When("I login as an Methodist and create new course", ((string)(null)), table31, "When ");
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table36, "When ");
 #line hidden
 #line 45
  testRunner.Then("Should course model coincide with the returned model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -428,7 +428,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -439,7 +439,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table32.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -451,7 +451,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 52
- testRunner.Given("I create new user and get his token", ((string)(null)), table32, "Given ");
+ testRunner.Given("I create new user and get his token", ((string)(null)), table37, "Given ");
 #line hidden
 #line 55
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -514,7 +514,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -525,7 +525,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table33.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -537,19 +537,19 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 65
- testRunner.Given("I create new user and get his token", ((string)(null)), table33, "Given ");
+ testRunner.Given("I create new user and get his token", ((string)(null)), table38, "Given ");
 #line hidden
 #line 68
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table34.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             string.Format("{0}", name),
                             string.Format("{0}", description)});
 #line 69
- testRunner.When("I login as an Methodist and create new course", ((string)(null)), table34, "When ");
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table39, "When ");
 #line hidden
 #line 72
  testRunner.And("I deleting new course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -616,7 +616,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -627,7 +627,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table35.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -639,31 +639,151 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 83
- testRunner.Given("I create new user and get his token", ((string)(null)), table35, "Given ");
+ testRunner.Given("I create new user and get his token", ((string)(null)), table40, "Given ");
 #line hidden
 #line 86
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table36.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "Course 1",
                             "Samiy luchshiy kurs"});
-                table36.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "Course 2",
                             "Samiy luchshiy kurs v tvoei zchizni"});
-                table36.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "Course 3",
                             "Samiy luchshiy kurs v tvoei zchizni.Perezagruzka."});
 #line 87
- testRunner.When("I login as an Methodist and create new courses", ((string)(null)), table36, "When ");
+ testRunner.When("I login as an Methodist and create new courses", ((string)(null)), table41, "When ");
 #line hidden
 #line 92
  testRunner.And("I get all courses", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 93
  testRunner.Then("The list contains all created courses", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User in role methodist I want add theme to course")]
+        [NUnit.Framework.CategoryAttribute("Metodist")]
+        [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "Methodist", null)]
+        public virtual void UserInRoleMethodistIWantAddThemeToCourse(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string role, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Metodist"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FirstName", firstName);
+            argumentsOfScenario.Add("LastName", lastName);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Username", username);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("City", city);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            argumentsOfScenario.Add("Role", role);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist I want add theme to course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 99
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table37.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+#line 100
+ testRunner.Given("I create new user and get his token", ((string)(null)), table37, "Given ");
+#line hidden
+#line 103
+ testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description"});
+                table38.AddRow(new string[] {
+                            "Course 1",
+                            "Samiy luchshiy kurs"});
+#line 104
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table38, "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Duration"});
+                table39.AddRow(new string[] {
+                            "Thema 1",
+                            "1"});
+                table39.AddRow(new string[] {
+                            "Thema 2",
+                            "2"});
+                table39.AddRow(new string[] {
+                            "Thema 3",
+                            "4"});
+#line 107
+ testRunner.And("I create topics", ((string)(null)), table39, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Position"});
+                table40.AddRow(new string[] {
+                            "Thema 1",
+                            "1"});
+                table40.AddRow(new string[] {
+                            "Thema 2",
+                            "2"});
+                table40.AddRow(new string[] {
+                            "Thema 3",
+                            "3"});
+#line 112
+ testRunner.And("I add course topics on position", ((string)(null)), table40, "And ");
+#line hidden
+#line 117
+ testRunner.Then("I get course by id and return model contain all topics", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
