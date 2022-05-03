@@ -715,7 +715,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -726,7 +726,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table30.AddRow(new string[] {
+                table37.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -738,49 +738,49 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 100
- testRunner.Given("I create new user and get his token", ((string)(null)), table30, "Given ");
+ testRunner.Given("I create new user and get his token", ((string)(null)), table37, "Given ");
 #line hidden
 #line 103
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table31.AddRow(new string[] {
+                table38.AddRow(new string[] {
                             "Course 1",
                             "Samiy luchshiy kurs"});
 #line 104
- testRunner.When("I login as an Methodist and create new course", ((string)(null)), table31, "When ");
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table38, "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Duration"});
-                table32.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "Thema 1",
                             "1"});
-                table32.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "Thema 2",
                             "2"});
-                table32.AddRow(new string[] {
+                table39.AddRow(new string[] {
                             "Thema 3",
                             "4"});
 #line 107
- testRunner.And("I create topics", ((string)(null)), table32, "And ");
+ testRunner.And("I create topics", ((string)(null)), table39, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Position"});
-                table33.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "Thema 1",
                             "1"});
-                table33.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "Thema 2",
                             "2"});
-                table33.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "Thema 3",
                             "3"});
 #line 112
- testRunner.And("I add course topics on position", ((string)(null)), table33, "And ");
+ testRunner.And("I add course topics on position", ((string)(null)), table40, "And ");
 #line hidden
 #line 117
  testRunner.Then("I get course by id and return model contain all topics", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
