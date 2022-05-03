@@ -503,7 +503,10 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenAssignRole(Table table)
         {
             List<RoleModel> roles = table.CreateSet<RoleModel>().ToList();
-            AddRoleUsers.AddRole(roles[0].NameRole,_idUser[0],_tokenAdmin);
+            for (int i = 0; i < roles.Count; i++)
+            {
+                AddRoleUsers.AddRole(roles[i].NameRole, _idUser[i], _tokenAdmin);
+            }
         }
 
         [Given(@"Сreate a group to remove a user from it")]
@@ -511,14 +514,14 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
             groupRequest.CourseId = _curseId;
-            ScenarioContext.Current["Group Response"] = AddEntitysClients.CreateGroupe(_tokenManager, groupRequest);
-            ScenarioContext.Current["Group Request"] = groupRequest;
+            FeatureContext.Current["Group Response"] = AddEntitysClients.CreateGroupe(_tokenManager, groupRequest);
+            FeatureContext.Current["Group Request"] = groupRequest;
         }
 
         [Given(@"Add Users in group")]
         public void GivenAddUsersInGroup()
         {
-            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            GroupResponseModel groupResponse = (GroupResponseModel)FeatureContext.Current["Group Response"];
             for (int i = 1; i < _idUser.Count; i++) 
             {
                     AddEntitysClients.AddUserInGroup(groupResponse.Id, _idUser[i], "Student", _tokenManager);
@@ -528,15 +531,15 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"Delete adding user from a group")]
         public void WhenDeleteUserFromAGroup()
         {
-            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            GroupResponseModel groupResponse = (GroupResponseModel)FeatureContext.Current["Group Response"];
             DeleteClient.DeleteUserFromGroup(_tokenManager, groupResponse.Id, _idUser[3]);
         }
 
         [When(@"Get group  by id")]
         public void WhenGet_GroupById()
         {
-            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
-            ScenarioContext.Current["Group Full"] = GetClient.GetGroupById(groupResponse.Id, _tokenManager);
+            GroupResponseModel groupResponse = (GroupResponseModel)FeatureContext.Current["Group Response"];
+            FeatureContext.Current["Group Full"] = GetClient.GetGroupById(groupResponse.Id, _tokenManager);
         }
 
         [Then(@"Check that student have left the group")]
@@ -544,8 +547,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             List<RegistrationRequestModel> srudentExpected = table.CreateSet<RegistrationRequestModel>().ToList();
             List<TeacherModel> teacher = new List<TeacherModel>();
-            GroupRequestModel expected = (GroupRequestModel)ScenarioContext.Current["Group Request"];
-            ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)ScenarioContext.Current["Group Full"];
+            GroupRequestModel expected = (GroupRequestModel)FeatureContext.Current["Group Request"];
+            ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)FeatureContext.Current["Group Full"];
             Assert.AreEqual(groupFull.Students.Count, 2);
             for (int i = 0; i < groupFull.Students.Count; i++)
             {
@@ -556,6 +559,44 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreNotEqual(srudentExpected[2].Patronymic, groupFull.Students[i].Patronymic);
             }
             Assert.AreEqual(teacher, groupFull.Teachers);
+            Assert.AreEqual(expected.CourseId, groupFull.Course.Id);
+            Assert.AreEqual(expected.Name, groupFull.Name);
+        }
+
+        // new Scenario
+
+        [Given(@"Add Users in group as teacher")]
+        public void GivenAddUsersInGroupAsTeacher()
+        {
+            GroupResponseModel groupResponse = (GroupResponseModel)FeatureContext.Current["Group Response"];
+            for (int i = 1; i < _idUser.Count; i++)
+            {
+                AddEntitysClients.AddUserInGroup(groupResponse.Id, _idUser[i], "Teacher", _tokenManager);
+            }
+        }
+
+        [When(@"Delete adding teacher from a group")]
+        public void WhenDeleteAddingTeacherFromAGroup()
+        {
+            GroupResponseModel groupResponse = (GroupResponseModel)FeatureContext.Current["Group Response"];
+            DeleteClient.DeleteUserFromGroup(_tokenManager, groupResponse.Id, _idUser[3]);
+        }
+
+        [Then(@"Check that teacher have left the group")]
+        public void ThenCheckThatTeacherHaveLeftTheGroup(Table table)
+        {
+            List<RegistrationRequestModel> teacherExpected = table.CreateSet<RegistrationRequestModel>().ToList();
+            List<StudentModel> student = new List<StudentModel>();
+            GroupRequestModel expected = (GroupRequestModel)FeatureContext.Current["Group Request"];
+            ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)FeatureContext.Current["Group Full"];
+            Assert.AreEqual(groupFull.Teachers.Count, 2);
+            for (int i = 0; i < groupFull.Teachers.Count; i++)
+            {
+                Assert.AreNotEqual(teacherExpected[2].Username, groupFull.Teachers[i].LastName);
+                Assert.AreNotEqual(teacherExpected[2].FirstName, groupFull.Teachers[i].FirstName);
+                Assert.AreNotEqual(teacherExpected[2].Email, groupFull.Teachers[i].Email);
+            }
+            Assert.AreEqual(student, groupFull.Students);
             Assert.AreEqual(expected.CourseId, groupFull.Course.Id);
             Assert.AreEqual(expected.Name, groupFull.Name);
         }
