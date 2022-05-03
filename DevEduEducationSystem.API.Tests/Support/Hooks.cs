@@ -47,13 +47,18 @@ namespace DevEduEducationSystem.API.Tests.Support
                 command.CommandText = "delete from dbo.[Course]";
                 command.ExecuteNonQuery();
 
+                command.CommandText = "delete from dbo.[Payment]";
+                command.ExecuteNonQuery();
+
                 command.CommandText = "delete from dbo.[User] where Id <> 6";
                 command.ExecuteNonQuery();
 
                 command.CommandText = "delete from dbo.[Comment]";
                 command.ExecuteNonQuery();
 
-               
+                
+
+
 
                 connection.Close();
             }
