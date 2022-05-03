@@ -29,5 +29,17 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
 
         [JsonPropertyName("paymentPerMonth")]
         public decimal PaymentPerMonth { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is GroupRequestModel model &&
+                   Name == model.Name &&
+                   CourseId == model.CourseId &&
+                   GroupStatusId == model.GroupStatusId &&
+                   StartDate == model.StartDate &&
+                   EndDate == model.EndDate &&
+                   Timetable == model.Timetable &&
+                   PaymentPerMonth == model.PaymentPerMonth;
+        }
     }
 }
