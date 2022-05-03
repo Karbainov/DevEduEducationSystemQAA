@@ -516,29 +516,53 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
             groupRequest.CourseId = _curseId;
             ScenarioContext.Current["Group Response"] = AddEntitysClients.CreateGroupe(_tokenManager, groupRequest);
+            ScenarioContext.Current["Group Request"] = groupRequest;
         }
 
         [Given(@"Add Users in group")]
         public void GivenAddUsersInGroup()
         {
             GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
-            for (int i = 0; i < _idUser.Count; i++) 
+            List<string> roles = new List<string> { "Teacher", "Student" };
+            for (int i = 1; i < _idUser.Count; i++) 
             {
-                AddEntitysClients.AddUserInGroup(groupResponse.Id,); 
+                for (int j = 0; j < roles.Count; j++)
+                {
+                    AddEntitysClients.AddUserInGroup(groupResponse.Id, _idUser[i], roles[j], _tokenManager);
+                }
             }
         }
 
         [When(@"Delete user from a group")]
         public void WhenDeleteUserFromAGroup()
         {
-            throw new PendingStepException();
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            for (int i = 1; i < _idUser.Count; i++)
+            {
+                DeleteClient.DeleteUserFromGroup(_tokenManager, groupResponse.Id, _idUser[i]);
+            }
         }
 
-        [Then(@"Get group by id")]
-        public void ThenGetGroupById()
+        [When(@"Get group  by id")]
+        public void WhenGet_GroupById()
         {
-            throw new PendingStepException();
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            ScenarioContext.Current["Group Full"] = GetClient.GetGroupById(groupResponse.Id, _tokenManager);
         }
+
+        [Then(@"Check that users have left the group")]
+        public void ThenCheckThatUsersHaveLeftTheGroup()
+        {
+            List<StudentModel> student = new List<StudentModel>();
+            List<TeacherModel> teacher = new List<TeacherModel>();
+            GroupRequestModel expected = (GroupRequestModel)ScenarioContext.Current["Group Request"];
+            ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)ScenarioContext.Current["Group Full"];
+            Assert.AreEqual(student, groupFull.Students);
+            Assert.AreEqual(teacher, groupFull.Teachers);
+            Assert.AreEqual(expected.CourseId, groupFull.Course.Id);
+            Assert.AreEqual(expected.Name, groupFull.Name);
+        }
+
 
     }
 }

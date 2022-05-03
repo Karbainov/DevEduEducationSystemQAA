@@ -171,16 +171,17 @@ And Create course
 | Name   | Description      |
 | Delete | Delete me please |
 And Assign role
-| NameRole  |
-| "Manager" |
-| "Teacher" |
+| NameRole |
+| Manager  |
+| Teacher  |
 And Autorized by manager
 And Сreate a group to remove a user from it
-| Name         | GroupStatusId | StartDate | EndDate    | Timetable  | PaymentPerMonth |
-| Хочу удалить | 1             |           | 01.01.2022 | 01.10.2022 | 1000            |
+| Name         | GroupStatusId | StartDate  | EndDate    | Timetable      | PaymentPerMonth |
+| Хочу удалить | 1             | 01.01.2022 | 01.10.2022 | пр пр пр 13244 | 1000            |
 And Add Users in group
 When Delete user from a group
-Then Get group by id 
+And Get group  by id
+Then Check that users have left the group
 	#Role      |
 	# Manager  |
 	#Methodist |

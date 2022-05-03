@@ -1168,9 +1168,9 @@ testRunner.And("Create course", ((string)(null)), table26, "And ");
                 TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "NameRole"});
                 table27.AddRow(new string[] {
-                            "\"Manager\""});
+                            "Manager"});
                 table27.AddRow(new string[] {
-                            "\"Teacher\""});
+                            "Teacher"});
 #line 173
 testRunner.And("Assign role", ((string)(null)), table27, "And ");
 #line hidden
@@ -1187,9 +1187,9 @@ testRunner.And("Autorized by manager", ((string)(null)), ((TechTalk.SpecFlow.Tab
                 table28.AddRow(new string[] {
                             "Хочу удалить",
                             "1",
-                            "",
                             "01.01.2022",
                             "01.10.2022",
+                            "пр пр пр 13244",
                             "1000"});
 #line 178
 testRunner.And("Сreate a group to remove a user from it", ((string)(null)), table28, "And ");
@@ -1201,7 +1201,10 @@ testRunner.And("Add Users in group", ((string)(null)), ((TechTalk.SpecFlow.Table
 testRunner.When("Delete user from a group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 183
-testRunner.Then("Get group by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("Get group  by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 184
+testRunner.Then("Check that users have left the group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
