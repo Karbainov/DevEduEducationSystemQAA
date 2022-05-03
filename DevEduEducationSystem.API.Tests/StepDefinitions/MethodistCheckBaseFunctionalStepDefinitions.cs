@@ -83,8 +83,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"I add course topics on position")]
         public void WhenIAddCourseTopicsOnPosition(Table table)
         {
-            ScenarioContext.Current["TopicsNameAndPositions"] = table.CreateSet<CourseAndTopicRequestModel>().ToList();
-            List<CourseAndTopicRequestModel> positionTopics = (List<CourseAndTopicRequestModel>)ScenarioContext.Current["TopicsNameAndPositions"];
+            ScenarioContext.Current["TopicsNamesAndPositions"] = table.CreateSet<CourseAndTopicRequestModel>().ToList();
+            List<CourseAndTopicRequestModel> positionTopics = (List<CourseAndTopicRequestModel>)ScenarioContext.Current["TopicsNamesAndPositions"];
             List<TopicResponseModel> newTopics = (List<TopicResponseModel>)ScenarioContext.Current["TopicsModels"];
             List<CourseAndTopicRequestModelADD> modelCourseWithPositionList = new List<CourseAndTopicRequestModelADD>();
             foreach (TopicResponseModel model in newTopics)
@@ -99,17 +99,44 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 (modelCourseWithPositionList, (int)ScenarioContext.Current["idNewCourse"], (string)ScenarioContext.Current["TokenMethodist"]);
         }
 
-        [Then(@"I get course by id and return model contain all topics")]
+        [When(@"I am changing the positions of the topics of the course")]
+        public void WhenIAmChangingThePositionsOfTheTopicsOfTheCourse(Table table)
+        {
+            ScenarioContext.Current["TopicsNamesAndPositions"] = table.CreateSet<CourseAndTopicRequestModel>().ToList();
+            List<CourseAndTopicRequestModel> positionTopics = (List<CourseAndTopicRequestModel>)ScenarioContext.Current["TopicsNamesAndPositions"];
+            List<TopicResponseModel> newTopics = (List<TopicResponseModel>)ScenarioContext.Current["TopicsModels"];
+            List<CourseAndTopicRequestModelADD> modelCourseWithPositionList = new List<CourseAndTopicRequestModelADD>();
+            foreach (CourseAndTopicRequestModel positionTopic in positionTopics)
+            {
+                TopicResponseModel courseModel = newTopics.FirstOrDefault(C => C.Name == positionTopic.Name);
+                CourseAndTopicRequestModelADD modelCourseWithPosition = new CourseAndTopicRequestModelADD();
+                modelCourseWithPosition.TopicID = courseModel.Id;
+                modelCourseWithPosition.Position = positionTopic.Position;
+                modelCourseWithPositionList.Add(modelCourseWithPosition);
+            }
+            List<CourseResponseModel> listCourses = UpdateClient.UpdateCourseAddTopic
+               (modelCourseWithPositionList, (int)ScenarioContext.Current["idNewCourse"], (string)ScenarioContext.Current["TokenMethodist"]);
+        }
+
+        [Then(@"I get a course by id and the returned model contains all the topics at a given position")]
         public void ThenIGetCourseByIdAndReturnModelContainAllTopics()
         {
-            CourseResponseFullModel actualModelCourseWithTopics = GetClient.GetCourseByIdCourseFullModel((string)ScenarioContext.Current["TokenMethodist"], (int)ScenarioContext.Current["idNewCourse"]);
-            var actual = Mapper.MapCourseRequestAndTopicRequestModelToCourseResponseModel(actualModelCourseWithTopics);
+            CourseResponseFullModel actualModelCourseWithTopics = GetClient.GetCourseByIdCourseFullModel((string)ScenarioContext.Current["TokenMethodist"],
+                (int)ScenarioContext.Current["idNewCourse"]);
+            List<TopicRequestModel> actual = Mapper.MapCourseRequestAndTopicRequestModelToCourseResponseModel(actualModelCourseWithTopics);
             List<TopicRequestModel> expected = (List<TopicRequestModel>)ScenarioContext.Current["NewTopics"];
             foreach (TopicRequestModel model in expected)
             {
                 CollectionAssert.Contains(actual, model);
             }
+            List<CourseAndTopicRequestModel> positionTopics = (List<CourseAndTopicRequestModel>)ScenarioContext.Current["TopicsNamesAndPositions"];
+            foreach (CourseAndTopicRequestModel positionTopic in positionTopics)
+            {
+                TopicRequestModel topic = actual[positionTopic.Position - 1];
+                Assert.AreEqual(topic.Name, positionTopic.Name);
+            }
         }
+
 
         [When(@"I deleting new course")]
         public void WhenIDeletingNewCourse()
@@ -212,5 +239,19 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             }
         }
 
+        [Then(@"I get all topics of courses by Id")]
+        public void ThenIGetAllTopicsOfCoursesById()
+        {
+            List<CourseResponseModelWithPosition> actualAllTopics = GetClient.GetAllTopicsOfCoursesById
+                ((string)ScenarioContext.Current["TokenMethodist"], (int)ScenarioContext.Current["idNewCourse"]);
+            List<CourseAndTopicRequestModel> positionTopics = (List<CourseAndTopicRequestModel>)ScenarioContext.Current["TopicsNamesAndPositions"];
+            foreach (CourseAndTopicRequestModel positionTopic in positionTopics)
+            {
+                CourseResponseModelWithPosition topic = actualAllTopics.FirstOrDefault(C=>C.Position == positionTopic.Position);
+                Assert.IsNotNull(topic);
+                Assert.IsNotNull(topic.Topic);
+                Assert.AreEqual(topic.Topic.Name, positionTopic.Name);
+            }
+        }        
     }
 }
