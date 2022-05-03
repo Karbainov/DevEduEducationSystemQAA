@@ -96,7 +96,33 @@ Scenario: User in role methodist can see all courses
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
 @Metodist
-Scenario: User in role methodist I want add theme to course
+Scenario: User in role methodist I want add new topics to the course in a certain sequence
+	Given I create new user and get his token
+	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+	And I login as an admin and give new user role <Role>
+	When I login as an Methodist and create new course
+	| Name     | Description           |
+	| Course 1 | Samiy luchshiy kurs   |
+	And I create topics 	
+	| Name    | Duration |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 2        |
+	| Thema 4 | 4        |
+	And I add course topics on position
+	| Name    | Position |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 3        |
+	| Thema 4 | 4        |
+	Then I get a course by id and the returned model contains all the topics at a given position
+	Examples: 
+	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
+@Metodist
+Scenario: User in role methodist I want change the sequence of topics
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
@@ -109,12 +135,51 @@ Scenario: User in role methodist I want add theme to course
 	| Thema 1 | 1        |
 	| Thema 2 | 2        |
 	| Thema 3 | 4        |
+	| Thema 4 | 1        |
 	And I add course topics on position
 	| Name    | Position | 
 	| Thema 1 | 1        | 
 	| Thema 2 | 2        |
 	| Thema 3 | 3        |
-	Then I get course by id and return model contain all topics
+	| Thema 4 | 4        |
+	And I am changing the positions of the topics of the course
+	| Name    | Position | 
+	| Thema 1 | 3        | 
+	| Thema 2 | 4        |
+	| Thema 3 | 1        |
+	| Thema 4 | 2        |
+	#Then I get a course by id and the returned model contains all the topics at a given position
+	Then I get all topics of courses by Id
 	Examples: 
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
+@Metodist
+Scenario: User in role methodist I want to see all courses and added topics in the courses
+	Given I create new user and get his token
+	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+	And I login as an admin and give new user role <Role>
+	When I login as an Methodist and create new course
+	| Name     | Description           |
+	| Course 1 | Samiy luchshiy kurs   |
+	And I login as an Methodist and create new course
+	| Name     | Description           |
+	| Course 2 | Samiy luchshiy kurs 2 |
+	And I create topics 	
+	| Name    | Duration |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 4        |
+	| Thema 4 | 1        |
+	And I add course topics on position
+	| Name    | Position | 
+	| Thema 1 | 1        | 
+	| Thema 2 | 2        |
+	| Thema 3 | 3        |
+	| Thema 4 | 4        |
+	Then I get all topics of courses by Id 
+	Examples: 
+	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
