@@ -668,6 +668,126 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User in role methodist I want add theme to course")]
+        [NUnit.Framework.CategoryAttribute("Metodist")]
+        [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "Methodist", null)]
+        public virtual void UserInRoleMethodistIWantAddThemeToCourse(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string role, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Metodist"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FirstName", firstName);
+            argumentsOfScenario.Add("LastName", lastName);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Username", username);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("City", city);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            argumentsOfScenario.Add("Role", role);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist I want add theme to course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 99
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table30.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+#line 100
+ testRunner.Given("I create new user and get his token", ((string)(null)), table30, "Given ");
+#line hidden
+#line 103
+ testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description"});
+                table31.AddRow(new string[] {
+                            "Course 1",
+                            "Samiy luchshiy kurs"});
+#line 104
+ testRunner.When("I login as an Methodist and create new course", ((string)(null)), table31, "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Duration"});
+                table32.AddRow(new string[] {
+                            "Thema 1",
+                            "1"});
+                table32.AddRow(new string[] {
+                            "Thema 2",
+                            "2"});
+                table32.AddRow(new string[] {
+                            "Thema 3",
+                            "4"});
+#line 107
+ testRunner.And("I create topics", ((string)(null)), table32, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Position"});
+                table33.AddRow(new string[] {
+                            "Thema 1",
+                            "1"});
+                table33.AddRow(new string[] {
+                            "Thema 2",
+                            "2"});
+                table33.AddRow(new string[] {
+                            "Thema 3",
+                            "3"});
+#line 112
+ testRunner.And("I add course topics on position", ((string)(null)), table33, "And ");
+#line hidden
+#line 117
+ testRunner.Then("I get course by id and return model contain all topics", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

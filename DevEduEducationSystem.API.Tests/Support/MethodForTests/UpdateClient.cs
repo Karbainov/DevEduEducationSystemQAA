@@ -1,4 +1,5 @@
 ﻿using DevEduEducationSystem.API.Tests.Support.Models;
+using DevEduEducationSystem.API.Tests.Support.Models.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,26 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
             return JsonSerializer.Deserialize<CourseResponseModel>(s);
+        }
+
+        public static List<CourseResponseModel> UpdateCourseAddTopic (List<CourseAndTopicRequestModelADD> modelTopicForCourse, int idCourse, string token)
+        {
+            string url = $"https://piter-education.ru:7072/api/Courses/{idCourse}/program";
+            string json = JsonSerializer.Serialize(modelTopicForCourse);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Put,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<List<CourseResponseModel>>(s);
         }
     }
 }

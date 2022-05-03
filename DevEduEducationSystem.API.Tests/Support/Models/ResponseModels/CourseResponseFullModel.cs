@@ -22,7 +22,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForA
         public string Description { get; set; }
 
         [JsonPropertyName("topics")]
-        public List<TopicModel> Topics { get; set; }
+        public List<TopicResponseModel> Topics { get; set; }
 
         [JsonPropertyName("materials")]
         public List<MaterialResponseModel> Materials { get; set; }
