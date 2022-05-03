@@ -35,6 +35,9 @@ namespace DevEduEducationSystem.API.Tests.Support
                 command.CommandText = "delete from dbo.[Course_Topic]";
                 command.ExecuteNonQuery();
 
+                command.CommandText = "delete from dbo.[Topic]";
+                command.ExecuteNonQuery();
+
                 command.CommandText = "delete from dbo.[Course_Task]";
                 command.ExecuteNonQuery();
 
@@ -49,6 +52,8 @@ namespace DevEduEducationSystem.API.Tests.Support
 
                 command.CommandText = "delete from dbo.[Comment]";
                 command.ExecuteNonQuery();
+
+               
 
                 connection.Close();
             }
