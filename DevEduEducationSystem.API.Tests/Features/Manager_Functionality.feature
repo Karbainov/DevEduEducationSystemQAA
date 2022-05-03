@@ -7,6 +7,7 @@
 5.) Как менеджер, я хочу изменять группу 
 6.)Как менеджер, я хочу удалять группу
 7.)Как менеджер, я хочу менять статус группы
+8.) Как менеджер, я хочу удалять юзера из группы
 
 @Manager
 Scenario: As manadger I want to assign a role to users
@@ -159,8 +160,27 @@ Scenario: As manager, I want change my created group
  | Альбус    | Персиваль | Дамблдор   | Albus1@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyBack1 | Как опоздать на 10 минут | Back1  | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7500            | InProgress      |
  | Альбус    | Персиваль | Дамблдор   | Albus2@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyBack2 | Как опоздать на 10 минут | Back2  | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7500            | Completed       |
  
- 
-
+Scenario: As manager, I want to remove a user from a group
+Given Create user
+| FirstName | LastName | Patronymic  | Email             | Username | Password        | City            | BirthDate  | GitHubAccount | PhoneNumber |
+| Марина    | Пушкина  | Иванова     | Pushkin90@mail.ru | Маришка  | PushkinMarishka | SaintPetersburg | 01.01.1990 | string        | 89001112345 |
+| Антон     | Пушкин   | Эдикович    | Anton@mail.ru     | Antonio  | Antonio1990     | SaintPetersburg | 01.01.1990 | string        | 89012223344 |
+| Максим    | Опаздун  | Опаздунович | Max@mail.ru       | Opazdun  | Opasdun2003     | SaintPetersburg | 01.01.2003 | string        | 99117778899 |
+And Autorized as admin
+And Create course
+| Name   | Description      |
+| Delete | Delete me please |
+And Assign role
+| NameRole  |
+| "Manager" |
+| "Teacher" |
+And Autorized by manager
+And Сreate a group to remove a user from it
+| Name         | GroupStatusId | StartDate | EndDate    | Timetable  | PaymentPerMonth |
+| Хочу удалить | 1             |           | 01.01.2022 | 01.10.2022 | 1000            |
+And Add Users in group
+When Delete user from a group
+Then Get group by id 
 	#Role      |
 	# Manager  |
 	#Methodist |

@@ -466,8 +466,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreNotEqual(expected.StartDate, actual[i].StartDate);
                 Assert.AreNotEqual(expected.PaymentPerMonth, actual[i].PaymentPerMonth);
                 Assert.AreNotEqual(expected.CourseId, actual[i].Course.Id);
-                Assert.AreNotEqual(expected.GroupStatusId, actual[i].GroupStatus);
-                // тест падает, потому что не парсит все группы 
+                Assert.AreNotEqual(expected.GroupStatusId, actual[i].GroupStatus); 
             }
         }
 
@@ -496,6 +495,49 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             GroupResponseMiniModel actual = (GroupResponseMiniModel)ScenarioContext.Current["group actual"];
             GroupStatusRequestModel expected = (GroupStatusRequestModel)ScenarioContext.Current["GroupStatus"];
             Assert.AreEqual(expected.GroupStatusName, actual.GroupStatus);
+        }
+
+        // new Scenario
+
+        [Given(@"Assign role")]
+        public void GivenAssignRole(Table table)
+        {
+            List<RoleModel> roles = table.CreateSet<RoleModel>().ToList();
+
+            for (int i = 0; i < roles.Count; i++)
+            {
+                AddRoleUsers.AddRole(roles[i].NameRole,_idUser[i],_tokenAdmin);
+            }
+        }
+
+        [Given(@"Сreate a group to remove a user from it")]
+        public void GivenСreateAGroupToRemoveAUserFromIt(Table table)
+        {
+            GroupRequestModel groupRequest = table.CreateSet<GroupRequestModel>().ToList().First();
+            groupRequest.CourseId = _curseId;
+            ScenarioContext.Current["Group Response"] = AddEntitysClients.CreateGroupe(_tokenManager, groupRequest);
+        }
+
+        [Given(@"Add Users in group")]
+        public void GivenAddUsersInGroup()
+        {
+            GroupResponseModel groupResponse = (GroupResponseModel)ScenarioContext.Current["Group Response"];
+            for (int i = 0; i < _idUser.Count; i++) 
+            {
+                AddEntitysClients.AddUserInGroup(groupResponse.Id,); 
+            }
+        }
+
+        [When(@"Delete user from a group")]
+        public void WhenDeleteUserFromAGroup()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"Get group by id")]
+        public void ThenGetGroupById()
+        {
+            throw new PendingStepException();
         }
 
     }
