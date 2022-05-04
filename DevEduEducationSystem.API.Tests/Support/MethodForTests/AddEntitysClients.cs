@@ -101,6 +101,28 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return JsonSerializer.Deserialize<TopicResponseModel>(s);
         }
 
+        public static PaymentResponseModel CreateOnePayment(string token, PaymentRequestModel payment)
+        {
+            string url = "https://piter-education.ru:7072/api/Payments";
+            string json = JsonSerializer.Serialize<PaymentRequestModel>(payment);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+
+            return JsonSerializer.Deserialize<PaymentResponseModel>(s);
+        }
+
 
     }
 }

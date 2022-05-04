@@ -8,6 +8,7 @@
 6.)Как менеджер, я хочу удалять группу
 7.)Как менеджер, я хочу менять статус группы
 8.) Как менеджер, я хочу удалять юзера из группы
+9.)Как менеджер, я хочу создавать оплату
 
 @Manager
 Scenario: As manadger I want to assign a role to users
@@ -29,7 +30,7 @@ Scenario: As manadger I want to assign a role to users
 	| Миневра   | Макгонагалл | Смит       | Smit@mail.ru  | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид       | Рубеус      | Колтрейн      | Rubeus6@mail.ru | Hagrid      | hagridRubeus | SaintPetersburg | 01.03.2003   | string           | 89211111111    | Methodist |
 	| Миневра   | Макгонагалл | Смит       | Smit1@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Римус        | Джон        | Люпин         | Djon6@mail.ru   | Rimus       | rimusDjon    | SaintPetersburg | 01.03.1990   | string           | 89110001234    | Teacher   |
 	| Миневра   | Макгонагалл | Смит       | Smit2@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Златопуст    | Локонс      | Брана         | Brana6@mail.ru  | Zlatopust   | zlatopust    | SaintPetersburg | 01.12.2001   | string           | 89210081122    | Tutor     |
-	
+@Manager	
 Scenario: As a manager, I want to create groups
     Given  Create user
 	| FirstName           | LastName            | Patronymic           | Email           | Username           | Password           | City           | BirthDate           | GitHubAccount           | PhoneNumber           |
@@ -55,7 +56,7 @@ Scenario: As a manager, I want to create groups
 	| FirstName | LastName    | Patronymic | Email         | Username | Password    | City            | BirthDate  | GitHubAccount | PhoneNumber | MehodistFirstName | MehodistLastName | MehodistPatronymic | MehodistEmail  | MehodistUsername | MehodistPassword | MehodistCity    | MehodistBirthDate | MehodistGitHubAccount | MehodistPhoneNumber | NameRole | MehodistNameRole |
 	| Миневра   | Макгонагалл | Смит       | Smit3@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид            | Рубеус           | Колтрейн           | Rubeus@mail.ru | Hagrid           | hagridRubeus     | SaintPetersburg | 01.03.2003        | string                | 89211111111         | Manager  | Methodist        |
 	
- 
+ @Manager
  Scenario: As a manager, I want add in group students, teachers and tutors
 	 Given Create user
 	| FirstName           | LastName            | Patronymic           | Email           | Username           | Password           | City           | BirthDate           | GitHubAccount           | PhoneNumber           |
@@ -87,7 +88,7 @@ Scenario: As a manager, I want to create groups
 	Examples: 
 	 | FirstName | LastName    | Patronymic | Email         | Username | Password    | City            | BirthDate  | GitHubAccount | PhoneNumber | MehodistFirstName | MehodistLastName | MehodistPatronymic | MehodistEmail  | MehodistUsername | MehodistPassword | MehodistCity    | MehodistBirthDate | MehodistGitHubAccount | MehodistPhoneNumber | NameRole | MehodistNameRole |
 	 | Миневра   | Макгонагалл | Смит       | Smit4@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид            | Рубеус           | Колтрейн           | Rubeus1@mail.ru | Hagrid           | hagridRubeus     | SaintPetersburg | 01.03.2003        | string                | 89211111111         | Manager  | Methodist        |
-
+@Manager
 Scenario: As manager, I want change my created group
     Given Create user
 	| FirstName           | LastName            | Patronymic           | Email           | Username           | Password           | City           | BirthDate           | GitHubAccount           | PhoneNumber           |
@@ -115,7 +116,7 @@ Scenario: As manager, I want change my created group
 	 | FirstName | LastName    | Patronymic | Email         | Username | Password    | City            | BirthDate  | GitHubAccount | PhoneNumber | MehodistFirstName | MehodistLastName | MehodistPatronymic | MehodistEmail   | MehodistUsername | MehodistPassword | MehodistCity    | MehodistBirthDate | MehodistGitHubAccount | MehodistPhoneNumber | NameRole | MehodistNameRole |
 	 | Миневра   | Макгонагалл | Смит       | Smitt@mail.ru | Minevra  | minevraSmit | SaintPetersburg | 01.01.1985 | string        | 89991111111 | Хагрид            | Рубеус           | Колтрейн           | Rubeuss@mail.ru | Hagrid           | hagridRubeus     | SaintPetersburg | 01.03.2003        | string                | 89211111111         | Manager  | Methodist        |
 	 
-
+@Manager
  Scenario: As a manager, I want to delete a group
  Given Create user
  | FirstName   | LastName    | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
@@ -136,7 +137,7 @@ Scenario: As manager, I want change my created group
  | FirstName | LastName  | Patronymic | Email         | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | Name     | Description              | Name 1 | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
  | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Солнышки | Как опоздать на 10 минут | QAA    | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7000            |
 
-
+ @Manager
  Scenario: As manager, I want to change the status group
  Given Create user
  | FirstName   | LastName    | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
@@ -160,6 +161,7 @@ Scenario: As manager, I want change my created group
  | Альбус    | Персиваль | Дамблдор   | Albus1@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyBack1 | Как опоздать на 10 минут | Back1  | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7500            | InProgress      |
  | Альбус    | Персиваль | Дамблдор   | Albus2@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyBack2 | Как опоздать на 10 минут | Back2  | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 17:00 | 7500            | Completed       |
  
+ @Manager
 Scenario: As manager, I want to remove a student from a group
 Given Create user
 | FirstName | LastName | Patronymic  | Email             | Username | Password        | City            | BirthDate  | GitHubAccount | PhoneNumber |
@@ -187,6 +189,7 @@ Then Check that student have left the group
 | Максим    | Опаздун  | Опаздунович | Max@mail.ru   | Opazdun  | Opasdun2003 | SaintPetersburg | 01.01.2003 | string        | 99117778899 |
 | Инокентий | Гай      | Пай         | Max1@mail.ru  | Guy      | Opasdun2003 | SaintPetersburg | 01.01.2001 | string        | 99117778891 |
 
+@Manager
 Scenario: As manager, I want to remove a teacher from a group
 Given Create user
 | FirstName | LastName | Patronymic  | Email             | Username | Password        | City            | BirthDate  | GitHubAccount | PhoneNumber |
@@ -215,7 +218,7 @@ Then Check that teacher have left the group
 | Максим    | Опаздун  | Опаздунович | Max@mail.ru   | Opazdun  | Opasdun2003 | SaintPetersburg | 01.01.2003 | string        | 99117778899 |
 | Инокентий | Гай      | Пай         | Max1@mail.ru  | Guy      | Opasdun2003 | SaintPetersburg | 01.01.2001 | string        | 99117778891 |
 
-
+@Manager
 Scenario: As manager, I want get all groups
 Given Create user
  | FirstName   | LastName    | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
@@ -237,6 +240,24 @@ Given Create user
  | FirstName | LastName  | Patronymic | Email          | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | Name     | Description                  | 
  | Альбус    | Персиваль | Дамблдор   | Albuss@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyCourse | Как пообещать и не выполнить |
 
+ @Payment
+ Scenario: As a manager, I want to create a payment
+ Given Create user
+ | FirstName       | LastName       | Patronymic       | Email       | Username       | Password       | City      | BirthDate       | GitHubAccount       | PhoneNumber       |
+ | <FirstName>     | <LastName >    | <Patronymic>     | <Email>     | <Username>     | <Password>     | <City>    | <BirthDate>     | <GitHubAccount>     | <PhoneNumber>     |
+ | <StudFirstName> | <StudLastName> | <StudPatronymic> | <StudEmail> | <StudUsername> | <StudPassword> | <StudCity> | <StudBirthDate> | <StudGitHubAccount> | <StudPhoneNumber> |
+ And Autorized as admin
+ And Assign manager role to user "Manager"
+ And Autorized by manager
+ When Create one payment
+ | Date   | Sum   | IsPaid   |
+ | <Date> | <Sum> | <IsPaid> |
+ And Get payment by id
+ Then Created payment should be returned
+ Examples: 
+ | FirstName | LastName  | Patronymic | Email         | Username | Password      | City            | BirthDate  | GitHubAccount | PhoneNumber | StudFirstName | StudLastName | StudPatronymic | StudEmail      | StudUsername | StudPassword | StudCity        | StudBirthDate | StudGitHubAccount | StudPhoneNumber | Date       | Sum  | IsPaid |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor  | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru  | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 20.01.2022 | 7500 | true   |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | Albus1Dambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 28.03.2022 | 5000 | false  |
 	#Role      |
 	# Manager  |
 	#Methodist |

@@ -1,4 +1,5 @@
 
+using DevEduEducationSystem.API.Tests.Support.Models.RequestModels;
 using System;
 using System.Net;
 using TechTalk.SpecFlow;
@@ -638,5 +639,45 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreEqual(expected[i], actual[i]);
             }
         }
+
+        // new Scenario
+
+        [When(@"Create one payment")]
+        public void WhenCreateOnePayment(Table table)
+        {
+            PaymentRequestModel paymentRequest = table.CreateSet<PaymentRequestModel>().ToList().First();
+            paymentRequest.UserId = _idUser[1];
+            ScenarioContext.Current["Payment Response"] = AddEntitysClients.CreateOnePayment(_tokenManager, paymentRequest);
+            ScenarioContext.Current["Payment Request"] = paymentRequest;
+            
+        }
+
+        [When(@"Get payment by id")]
+        public void WhenGetPaymentById()
+        {
+            PaymentResponseModel paymentResponse = (PaymentResponseModel)ScenarioContext.Current["Payment Response"];
+           ScenarioContext.Current["Payment Get By Id"] = GetClient.GetPaymentById(paymentResponse.Id,_tokenManager);
+        }
+
+        [Then(@"Created payment should be returned")]
+        public void ThenCreatedPaymentShouldBeReturned()
+        {
+            PaymentResponseModel paymentResponse = (PaymentResponseModel)ScenarioContext.Current["Payment Response"];
+            PaymentResponseModel actual = (PaymentResponseModel)ScenarioContext.Current["Payment Get By Id"];
+            PaymentRequestModel paymentRequest = (PaymentRequestModel)ScenarioContext.Current["Payment Request"];
+            PaymentResponseModel expected = Mapper.MapPaymentRequestModelToPaymentResponseModel(paymentRequest);
+            User student = new User()
+            {
+                Id = _idUser[1],
+                FirstName = "Максим",
+                LastName = "Опаздун",
+                Email = "Opazd@mail.ru",
+                Photo = null
+            };
+            expected.User = student;
+            expected.Id = paymentResponse.Id;
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

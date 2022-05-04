@@ -50,6 +50,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
         public static GroupRequestModel MapGroupResponseModelToGroupRequestModel(GroupResponseModel model)
         {
+            //TODO
             if(model.GroupStatus == "0")
             {
                 model.GroupStatus = "1";
@@ -63,6 +64,17 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 EndDate = model.EndDate,
                 Timetable = model.Timetable,
                 PaymentPerMonth = model.PaymentPerMonth,
+            };
+        }
+
+        public static PaymentResponseModel MapPaymentRequestModelToPaymentResponseModel(PaymentRequestModel model)
+        {
+            return new PaymentResponseModel()
+            {
+                Date = model.Date,
+                Sum = model.Sum,
+                IsPaid = model.IsPaid,
+                User = new User()
             };
         }
     }
