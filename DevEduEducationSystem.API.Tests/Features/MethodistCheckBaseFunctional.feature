@@ -149,7 +149,7 @@ Scenario: User in role methodist I want change the sequence of topics
 	| Thema 3 | 1        |
 	| Thema 4 | 2        |
 	#Then I get a course by id and the returned model contains all the topics at a given position
-	Then I get all topics of courses by Id
+	Then I get all topics of courses by Id and the returned model contains all the topics at a given new positions
 	Examples: 
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
@@ -160,11 +160,9 @@ Scenario: User in role methodist I want to see all courses and added topics in t
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
-	When I login as an Methodist and create new course
+	When I login as an Methodist and create new courses
 	| Name     | Description           |
 	| Course 1 | Samiy luchshiy kurs   |
-	And I login as an Methodist and create new course
-	| Name     | Description           |
 	| Course 2 | Samiy luchshiy kurs 2 |
 	And I create topics 	
 	| Name    | Duration |
@@ -172,13 +170,38 @@ Scenario: User in role methodist I want to see all courses and added topics in t
 	| Thema 2 | 2        |
 	| Thema 3 | 4        |
 	| Thema 4 | 1        |
-	And I add course topics on position
+	And I add "Course 1" topics on position
 	| Name    | Position | 
 	| Thema 1 | 1        | 
 	| Thema 2 | 2        |
 	| Thema 3 | 3        |
 	| Thema 4 | 4        |
-	Then I get all topics of courses by Id 
+	Then I get course "Course 1" and check that he containes topics
+	Then I get course "Course 2" and check that he doesn't containes topics
+	Examples: 
+	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
+@Metodist
+Scenario: User in role methodist I want to delete the topic of the course 
+	Given I create new user and get his token
+	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+	And I login as an admin and give new user role <Role>
+	When I login as an Methodist and create new course
+	| Name     | Description           |
+	| Course 1 | Samiy luchshiy kurs   |
+	And I create topics 	
+	| Name    | Duration |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 4        |
+	| Thema 4 | 1        |
+	And I delete "Thema 1" 
+	And I delete "Thema 3" 
+	Then I get course by id and check that he doesn't containes deleted topics
+	| Name            |
+	| Thema 1,Thema 3 |
 	Examples: 
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |

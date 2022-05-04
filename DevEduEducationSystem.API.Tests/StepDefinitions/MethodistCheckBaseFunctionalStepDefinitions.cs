@@ -118,6 +118,53 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                (modelCourseWithPositionList, (int)ScenarioContext.Current["idNewCourse"], (string)ScenarioContext.Current["TokenMethodist"]);
         }
 
+        [When(@"I add ""([^""]*)"" topics on position")]
+        public void WhenIAddTopicsOnPosition(string courseName, Table table)
+        {
+            List<CourseResponseModel> courses = (List<CourseResponseModel>)ScenarioContext.Current["NewCourses"];
+            CourseResponseModel course = courses.FirstOrDefault(C => C.Name == courseName);
+            ScenarioContext.Current["TopicsNamesAndPositions"] = table.CreateSet<CourseAndTopicRequestModel>().ToList();
+            List<CourseAndTopicRequestModel> positionTopics = (List<CourseAndTopicRequestModel>)ScenarioContext.Current["TopicsNamesAndPositions"];
+            List<TopicResponseModel> newTopics = (List<TopicResponseModel>)ScenarioContext.Current["TopicsModels"];
+            List<CourseAndTopicRequestModelADD> modelCourseWithPositionList = new List<CourseAndTopicRequestModelADD>();
+            foreach (TopicResponseModel model in newTopics)
+            {
+                CourseAndTopicRequestModelADD modelCourseWithPosition = new CourseAndTopicRequestModelADD();
+                CourseAndTopicRequestModel courseModel = positionTopics.FirstOrDefault(C => C.Name == model.Name);
+                modelCourseWithPosition.Position = courseModel.Position;
+                modelCourseWithPosition.TopicID = model.Id;
+                modelCourseWithPositionList.Add(modelCourseWithPosition);
+            }
+            List<CourseResponseModel> listCourses = UpdateClient.UpdateCourseAddTopic
+                (modelCourseWithPositionList, course.Id, (string)ScenarioContext.Current["TokenMethodist"]);
+        }
+
+        [Then(@"I get course ""([^""]*)"" and check that he containes topics")]
+        public void ThenIGetCourseAndCheckThatHeContainesTopics(string courseName)
+        {
+            List<CourseResponseModel> courses = (List<CourseResponseModel>)ScenarioContext.Current["NewCourses"];
+            CourseResponseModel course = courses.FirstOrDefault(C => C.Name == courseName);
+            CourseResponseFullModel actualModelCourseWithTopics = GetClient.GetCourseByIdCourseFullModel((string)ScenarioContext.Current["TokenMethodist"],
+                course.Id);
+            List<TopicRequestModel> actual = Mapper.MapCourseRequestAndTopicRequestModelToCourseResponseModel(actualModelCourseWithTopics);
+            List<TopicRequestModel> expected = (List<TopicRequestModel>)ScenarioContext.Current["NewTopics"];
+            foreach (TopicRequestModel model in expected)
+            {
+                CollectionAssert.Contains(actual, model);
+            }
+        }
+
+        [Then(@"I get course ""([^""]*)"" and check that he doesn't containes topics")]
+        public void ThenIGetCourseAndCheckThatHeDoesntContainesTopics(string courseName)
+        {
+            List<CourseResponseModel> courses = (List<CourseResponseModel>)ScenarioContext.Current["NewCourses"];
+            CourseResponseModel course = courses.FirstOrDefault(C => C.Name == courseName);
+            CourseResponseFullModel actualModelCourseWithTopics = GetClient.GetCourseByIdCourseFullModel((string)ScenarioContext.Current["TokenMethodist"],
+                course.Id);
+            Assert.IsNull(actualModelCourseWithTopics.Topics);
+        }
+
+
         [Then(@"I get a course by id and the returned model contains all the topics at a given position")]
         public void ThenIGetCourseByIdAndReturnModelContainAllTopics()
         {
@@ -136,7 +183,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreEqual(topic.Name, positionTopic.Name);
             }
         }
-
 
         [When(@"I deleting new course")]
         public void WhenIDeletingNewCourse()
@@ -205,7 +251,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         }
 
 
-
         [Then(@"Field IsDeleted full models course must be true")]
         public void ThenFieldIsDeletedFullModelsCourseMustBeTrue()
         {
@@ -239,7 +284,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             }
         }
 
-        [Then(@"I get all topics of courses by Id")]
+        [Then(@"I get all topics of courses by Id and the returned model contains all the topics at a given new positions")]
         public void ThenIGetAllTopicsOfCoursesById()
         {
             List<CourseResponseModelWithPosition> actualAllTopics = GetClient.GetAllTopicsOfCoursesById
@@ -252,6 +297,27 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.IsNotNull(topic.Topic);
                 Assert.AreEqual(topic.Topic.Name, positionTopic.Name);
             }
-        }        
+        }
+
+        [When(@"I delete ""([^""]*)""")]
+        public void WhenIDelete(string topicName)
+        {
+            int courseId = (int)ScenarioContext.Current["idNewCourse"];
+            List<TopicResponseModel> listTopics = (List<TopicResponseModel>)ScenarioContext.Current["TopicsModels"];
+            TopicResponseModel topic = listTopics.FirstOrDefault(C => C.Name == topicName);
+            DeleteClient.DeleteTopicOfCourseById((string)ScenarioContext.Current["TokenMethodist"], courseId, topic.Id);
+        }    
+
+        [Then(@"I get course by id and check that he doesn't containes deleted topics")]
+        public void ThenIGetCourseCourseByIdAndCheckThatHeDoesntContainesDeletedTopics(Table table)
+        {
+            List<string> topicNames = table.Rows[0]["Name"].Split(',').Select(str => str).ToList();
+            int courseId = (int)ScenarioContext.Current["idNewCourse"];
+            List<CourseResponseModelWithPosition> allCoursesWithTopics = GetClient.GetAllTopicsOfCoursesById((string)ScenarioContext.Current["TokenMethodist"], courseId);
+            foreach (string topicName in topicNames)
+            {
+                Assert.False(allCoursesWithTopics.Any(C => C.Topic.Name == topicName));
+            } 
+        }
     }
 }
