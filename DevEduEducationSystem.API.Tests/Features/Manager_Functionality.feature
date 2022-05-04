@@ -240,7 +240,11 @@ Given Create user
  | FirstName | LastName  | Patronymic | Email          | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | Name     | Description                  | 
  | Альбус    | Персиваль | Дамблдор   | Albuss@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | MyCourse | Как пообещать и не выполнить |
 
- @Payment
+
+ #Scenario with payment
+
+
+ @Payment 
  Scenario: As a manager, I want to create a payment
  Given Create user
  | FirstName       | LastName       | Patronymic       | Email       | Username       | Password       | City      | BirthDate       | GitHubAccount       | PhoneNumber       |
@@ -255,9 +259,73 @@ Given Create user
  And Get payment by id
  Then Created payment should be returned
  Examples: 
- | FirstName | LastName  | Patronymic | Email         | Username | Password      | City            | BirthDate  | GitHubAccount | PhoneNumber | StudFirstName | StudLastName | StudPatronymic | StudEmail      | StudUsername | StudPassword | StudCity        | StudBirthDate | StudGitHubAccount | StudPhoneNumber | Date       | Sum  | IsPaid |
- | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor  | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru  | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 20.01.2022 | 7500 | true   |
+ | FirstName | LastName  | Patronymic | Email         | Username | Password      | City            | BirthDate  | GitHubAccount | PhoneNumber | StudFirstName | StudLastName | StudPatronymic | StudEmail     | StudUsername | StudPassword | StudCity        | StudBirthDate | StudGitHubAccount | StudPhoneNumber | Date       | Sum  | IsPaid |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor  | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 20.01.2022 | 7500 | true   |
  | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | Albus1Dambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 28.03.2022 | 5000 | false  |
+
+ @negative 
+ Scenario: As manager, I want to create a payment. Negative
+ Given Create user
+ | FirstName       | LastName       | Patronymic       | Email       | Username       | Password       | City      | BirthDate       | GitHubAccount       | PhoneNumber       |
+ | <FirstName>     | <LastName >    | <Patronymic>     | <Email>     | <Username>     | <Password>     | <City>    | <BirthDate>     | <GitHubAccount>     | <PhoneNumber>     |
+ | <StudFirstName> | <StudLastName> | <StudPatronymic> | <StudEmail> | <StudUsername> | <StudPassword> | <StudCity> | <StudBirthDate> | <StudGitHubAccount> | <StudPhoneNumber> |
+ And Autorized as admin
+ And Assign manager role to user "Manager"
+ And Autorized by manager
+ When Create one payment
+ | Date   | Sum   | IsPaid   |
+ | <Date> | <Sum> | <IsPaid> |
+ Then Should return Status code 422 
+ Examples: 
+ | FirstName | LastName  | Patronymic | Email         | Username | Password      | City            | BirthDate  | GitHubAccount | PhoneNumber | StudFirstName | StudLastName | StudPatronymic | StudEmail     | StudUsername | StudPassword | StudCity        | StudBirthDate | StudGitHubAccount | StudPhoneNumber | Date       | Sum   | IsPaid |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor  | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 20.01.1754 | 7500  | true   |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | Albus1Dambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 28.03.2022 | -5000 | false  |
+
+ @payment
+ Scenario: As a manager, I want to change payment
+ Given Create user
+ | FirstName       | LastName       | Patronymic       | Email       | Username       | Password       | City      | BirthDate       | GitHubAccount       | PhoneNumber       |
+ | <FirstName>     | <LastName >    | <Patronymic>     | <Email>     | <Username>     | <Password>     | <City>    | <BirthDate>     | <GitHubAccount>     | <PhoneNumber>     |
+ | <StudFirstName> | <StudLastName> | <StudPatronymic> | <StudEmail> | <StudUsername> | <StudPassword> | <StudCity> | <StudBirthDate> | <StudGitHubAccount> | <StudPhoneNumber> |
+ And Autorized as admin
+ And Assign manager role to user "Manager"
+ And Autorized by manager
+ And Create one payment
+ | Date   | Sum   | IsPaid   |
+ | <Date> | <Sum> | <IsPaid> |
+ When Change payment
+ | Date         | Sum         | IsPaid         |
+ | <DateChange> | <SumChange> | <IsPaidChange> |
+ And Get a modified payment by
+ Then Changed payment should be returned by id
+ Examples: 
+ | FirstName | LastName  | Patronymic | Email         | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | StudFirstName | StudLastName | StudPatronymic | StudEmail     | StudUsername | StudPassword | StudCity        | StudBirthDate | StudGitHubAccount | StudPhoneNumber | Date       | Sum  | IsPaid | DateChange | SumChange | IsPaidChange |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 20.01.2022 | 7500 | true   | 28.02.2022 | 9500      | false        |
+
+ @Payment
+ Scenario: As a manager, I want to delete and get all payments 
+ Given Create user
+ | FirstName       | LastName       | Patronymic       | Email       | Username       | Password       | City      | BirthDate       | GitHubAccount       | PhoneNumber       |
+ | <FirstName>     | <LastName >    | <Patronymic>     | <Email>     | <Username>     | <Password>     | <City>    | <BirthDate>     | <GitHubAccount>     | <PhoneNumber>     |
+ | <StudFirstName> | <StudLastName> | <StudPatronymic> | <StudEmail> | <StudUsername> | <StudPassword> | <StudCity> | <StudBirthDate> | <StudGitHubAccount> | <StudPhoneNumber> |
+ And Autorized as admin
+ And Assign manager role to user "Manager"
+ And Autorized by manager
+ And Create payments
+ | Date    | Sum    | IsPaid    |
+ | <Date>  | <Sum>  | <IsPaid>  |
+ | <Date1> | <Sum1> | <IsPaid1> |
+ | <Date2> | <Sum2> | <IsPaid2> |
+ When Delete payment
+ And Get all payments by
+ Then Remote payment should not return
+ Examples: 
+ | FirstName | LastName  | Patronymic | Email         | Username | Password     | City            | BirthDate  | GitHubAccount | PhoneNumber | StudFirstName | StudLastName | StudPatronymic | StudEmail     | StudUsername | StudPassword | StudCity        | StudBirthDate | StudGitHubAccount | StudPhoneNumber | Date       | Sum  | IsPaid | Date1      | Sum1 | IsPaid1 | Date2      | Sum2 | IsPaid2 |
+ | Альбус    | Персиваль | Дамблдор   | Albus@mail.ru | Dambldor | AlbusDambdor | SaintPetersburg | 01.01.1985 | string        | 89991234566 | Максим        | Опаздун      | Опаздунович    | Opazd@mail.ru | ILoveOpasd   | ILoveOpasd   | SaintPetersburg | 01.01.2000    | string            | 89211230987     | 20.01.2022 | 7500 | true   | 28.02.2022 | 9500 | true    | 30.03.2022 | 6000 | true    |
+
+
+
+
 	#Role      |
 	# Manager  |
 	#Methodist |

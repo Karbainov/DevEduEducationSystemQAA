@@ -77,5 +77,16 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 User = new User()
             };
         }
+
+        public static PaymentRequestModel MapPaymentResponseModelToPaymentRequestModel(PaymentResponseModel model)
+        {
+            return new PaymentRequestModel()
+            {
+                Date = model.Date,
+                Sum = model.Sum,
+                IsPaid = model.IsPaid,
+                UserId = model.User.Id
+            };
+        }
     }
 }

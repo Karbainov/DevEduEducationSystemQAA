@@ -1683,7 +1683,7 @@ testRunner.Given("Create user", ((string)(null)), table35, "Given ");
             argumentsOfScenario.Add("Sum", sum);
             argumentsOfScenario.Add("IsPaid", isPaid);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a manager, I want to create a payment", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 244
+#line 248
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1736,16 +1736,16 @@ testRunner.Given("Create user", ((string)(null)), table35, "Given ");
                             string.Format("{0}", studBirthDate),
                             string.Format("{0}", studGitHubAccount),
                             string.Format("{0}", studPhoneNumber)});
-#line 245
+#line 249
  testRunner.Given("Create user", ((string)(null)), table38, "Given ");
 #line hidden
-#line 249
+#line 253
  testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 250
+#line 254
  testRunner.And("Assign manager role to user \"Manager\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 251
+#line 255
  testRunner.And("Autorized by manager", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1756,14 +1756,496 @@ testRunner.Given("Create user", ((string)(null)), table35, "Given ");
                             string.Format("{0}", date),
                             string.Format("{0}", sum),
                             string.Format("{0}", isPaid)});
-#line 252
+#line 256
  testRunner.When("Create one payment", ((string)(null)), table39, "When ");
 #line hidden
-#line 255
+#line 259
  testRunner.And("Get payment by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 256
+#line 260
  testRunner.Then("Created payment should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As manager, I want to create a payment. Negative")]
+        [NUnit.Framework.CategoryAttribute("negative")]
+        [NUnit.Framework.TestCaseAttribute("Альбус", "Персиваль", "Дамблдор", "Albus@mail.ru", "Dambldor", "AlbusDambdor", "SaintPetersburg", "01.01.1985", "string", "89991234566", "Максим", "Опаздун", "Опаздунович", "Opazd@mail.ru", "ILoveOpasd", "ILoveOpasd", "SaintPetersburg", "01.01.2000", "string", "89211230987", "20.01.1754", "7500", "true", null)]
+        [NUnit.Framework.TestCaseAttribute("Альбус", "Персиваль", "Дамблдор", "Albus@mail.ru", "Dambldor", "Albus1Dambdor", "SaintPetersburg", "01.01.1985", "string", "89991234566", "Максим", "Опаздун", "Опаздунович", "Opazd@mail.ru", "ILoveOpasd", "ILoveOpasd", "SaintPetersburg", "01.01.2000", "string", "89211230987", "28.03.2022", "-5000", "false", null)]
+        public virtual void AsManagerIWantToCreateAPayment_Negative(
+                    string firstName, 
+                    string lastName, 
+                    string patronymic, 
+                    string email, 
+                    string username, 
+                    string password, 
+                    string city, 
+                    string birthDate, 
+                    string gitHubAccount, 
+                    string phoneNumber, 
+                    string studFirstName, 
+                    string studLastName, 
+                    string studPatronymic, 
+                    string studEmail, 
+                    string studUsername, 
+                    string studPassword, 
+                    string studCity, 
+                    string studBirthDate, 
+                    string studGitHubAccount, 
+                    string studPhoneNumber, 
+                    string date, 
+                    string sum, 
+                    string isPaid, 
+                    string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "negative"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FirstName", firstName);
+            argumentsOfScenario.Add("LastName", lastName);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Username", username);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("City", city);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            argumentsOfScenario.Add("StudFirstName", studFirstName);
+            argumentsOfScenario.Add("StudLastName", studLastName);
+            argumentsOfScenario.Add("StudPatronymic", studPatronymic);
+            argumentsOfScenario.Add("StudEmail", studEmail);
+            argumentsOfScenario.Add("StudUsername", studUsername);
+            argumentsOfScenario.Add("StudPassword", studPassword);
+            argumentsOfScenario.Add("StudCity", studCity);
+            argumentsOfScenario.Add("StudBirthDate", studBirthDate);
+            argumentsOfScenario.Add("StudGitHubAccount", studGitHubAccount);
+            argumentsOfScenario.Add("StudPhoneNumber", studPhoneNumber);
+            argumentsOfScenario.Add("Date", date);
+            argumentsOfScenario.Add("Sum", sum);
+            argumentsOfScenario.Add("IsPaid", isPaid);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As manager, I want to create a payment. Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 267
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table40.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+                table40.AddRow(new string[] {
+                            string.Format("{0}", studFirstName),
+                            string.Format("{0}", studLastName),
+                            string.Format("{0}", studPatronymic),
+                            string.Format("{0}", studEmail),
+                            string.Format("{0}", studUsername),
+                            string.Format("{0}", studPassword),
+                            string.Format("{0}", studCity),
+                            string.Format("{0}", studBirthDate),
+                            string.Format("{0}", studGitHubAccount),
+                            string.Format("{0}", studPhoneNumber)});
+#line 268
+ testRunner.Given("Create user", ((string)(null)), table40, "Given ");
+#line hidden
+#line 272
+ testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 273
+ testRunner.And("Assign manager role to user \"Manager\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 274
+ testRunner.And("Autorized by manager", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Date",
+                            "Sum",
+                            "IsPaid"});
+                table41.AddRow(new string[] {
+                            string.Format("{0}", date),
+                            string.Format("{0}", sum),
+                            string.Format("{0}", isPaid)});
+#line 275
+ testRunner.When("Create one payment", ((string)(null)), table41, "When ");
+#line hidden
+#line 278
+ testRunner.Then("Should return Status code 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As a manager, I want to change payment")]
+        [NUnit.Framework.CategoryAttribute("payment")]
+        [NUnit.Framework.TestCaseAttribute("Альбус", "Персиваль", "Дамблдор", "Albus@mail.ru", "Dambldor", "AlbusDambdor", "SaintPetersburg", "01.01.1985", "string", "89991234566", "Максим", "Опаздун", "Опаздунович", "Opazd@mail.ru", "ILoveOpasd", "ILoveOpasd", "SaintPetersburg", "01.01.2000", "string", "89211230987", "20.01.2022", "7500", "true", "28.02.2022", "9500", "false", null)]
+        public virtual void AsAManagerIWantToChangePayment(
+                    string firstName, 
+                    string lastName, 
+                    string patronymic, 
+                    string email, 
+                    string username, 
+                    string password, 
+                    string city, 
+                    string birthDate, 
+                    string gitHubAccount, 
+                    string phoneNumber, 
+                    string studFirstName, 
+                    string studLastName, 
+                    string studPatronymic, 
+                    string studEmail, 
+                    string studUsername, 
+                    string studPassword, 
+                    string studCity, 
+                    string studBirthDate, 
+                    string studGitHubAccount, 
+                    string studPhoneNumber, 
+                    string date, 
+                    string sum, 
+                    string isPaid, 
+                    string dateChange, 
+                    string sumChange, 
+                    string isPaidChange, 
+                    string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "payment"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FirstName", firstName);
+            argumentsOfScenario.Add("LastName", lastName);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Username", username);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("City", city);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            argumentsOfScenario.Add("StudFirstName", studFirstName);
+            argumentsOfScenario.Add("StudLastName", studLastName);
+            argumentsOfScenario.Add("StudPatronymic", studPatronymic);
+            argumentsOfScenario.Add("StudEmail", studEmail);
+            argumentsOfScenario.Add("StudUsername", studUsername);
+            argumentsOfScenario.Add("StudPassword", studPassword);
+            argumentsOfScenario.Add("StudCity", studCity);
+            argumentsOfScenario.Add("StudBirthDate", studBirthDate);
+            argumentsOfScenario.Add("StudGitHubAccount", studGitHubAccount);
+            argumentsOfScenario.Add("StudPhoneNumber", studPhoneNumber);
+            argumentsOfScenario.Add("Date", date);
+            argumentsOfScenario.Add("Sum", sum);
+            argumentsOfScenario.Add("IsPaid", isPaid);
+            argumentsOfScenario.Add("DateChange", dateChange);
+            argumentsOfScenario.Add("SumChange", sumChange);
+            argumentsOfScenario.Add("IsPaidChange", isPaidChange);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a manager, I want to change payment", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 285
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table42.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+                table42.AddRow(new string[] {
+                            string.Format("{0}", studFirstName),
+                            string.Format("{0}", studLastName),
+                            string.Format("{0}", studPatronymic),
+                            string.Format("{0}", studEmail),
+                            string.Format("{0}", studUsername),
+                            string.Format("{0}", studPassword),
+                            string.Format("{0}", studCity),
+                            string.Format("{0}", studBirthDate),
+                            string.Format("{0}", studGitHubAccount),
+                            string.Format("{0}", studPhoneNumber)});
+#line 286
+ testRunner.Given("Create user", ((string)(null)), table42, "Given ");
+#line hidden
+#line 290
+ testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 291
+ testRunner.And("Assign manager role to user \"Manager\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 292
+ testRunner.And("Autorized by manager", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Date",
+                            "Sum",
+                            "IsPaid"});
+                table43.AddRow(new string[] {
+                            string.Format("{0}", date),
+                            string.Format("{0}", sum),
+                            string.Format("{0}", isPaid)});
+#line 293
+ testRunner.And("Create one payment", ((string)(null)), table43, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Date",
+                            "Sum",
+                            "IsPaid"});
+                table44.AddRow(new string[] {
+                            string.Format("{0}", dateChange),
+                            string.Format("{0}", sumChange),
+                            string.Format("{0}", isPaidChange)});
+#line 296
+ testRunner.When("Change payment", ((string)(null)), table44, "When ");
+#line hidden
+#line 299
+ testRunner.And("Get a modified payment by", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 300
+ testRunner.Then("Changed payment should be returned by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As a manager, I want to delete and get all payments")]
+        [NUnit.Framework.CategoryAttribute("Payment")]
+        [NUnit.Framework.TestCaseAttribute("Альбус", "Персиваль", "Дамблдор", "Albus@mail.ru", "Dambldor", "AlbusDambdor", "SaintPetersburg", "01.01.1985", "string", "89991234566", "Максим", "Опаздун", "Опаздунович", "Opazd@mail.ru", "ILoveOpasd", "ILoveOpasd", "SaintPetersburg", "01.01.2000", "string", "89211230987", "20.01.2022", "7500", "true", "28.02.2022", "9500", "true", "30.03.2022", "6000", "true", null)]
+        public virtual void AsAManagerIWantToDeleteAndGetAllPayments(
+                    string firstName, 
+                    string lastName, 
+                    string patronymic, 
+                    string email, 
+                    string username, 
+                    string password, 
+                    string city, 
+                    string birthDate, 
+                    string gitHubAccount, 
+                    string phoneNumber, 
+                    string studFirstName, 
+                    string studLastName, 
+                    string studPatronymic, 
+                    string studEmail, 
+                    string studUsername, 
+                    string studPassword, 
+                    string studCity, 
+                    string studBirthDate, 
+                    string studGitHubAccount, 
+                    string studPhoneNumber, 
+                    string date, 
+                    string sum, 
+                    string isPaid, 
+                    string date1, 
+                    string sum1, 
+                    string isPaid1, 
+                    string date2, 
+                    string sum2, 
+                    string isPaid2, 
+                    string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Payment"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FirstName", firstName);
+            argumentsOfScenario.Add("LastName", lastName);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Username", username);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("City", city);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            argumentsOfScenario.Add("StudFirstName", studFirstName);
+            argumentsOfScenario.Add("StudLastName", studLastName);
+            argumentsOfScenario.Add("StudPatronymic", studPatronymic);
+            argumentsOfScenario.Add("StudEmail", studEmail);
+            argumentsOfScenario.Add("StudUsername", studUsername);
+            argumentsOfScenario.Add("StudPassword", studPassword);
+            argumentsOfScenario.Add("StudCity", studCity);
+            argumentsOfScenario.Add("StudBirthDate", studBirthDate);
+            argumentsOfScenario.Add("StudGitHubAccount", studGitHubAccount);
+            argumentsOfScenario.Add("StudPhoneNumber", studPhoneNumber);
+            argumentsOfScenario.Add("Date", date);
+            argumentsOfScenario.Add("Sum", sum);
+            argumentsOfScenario.Add("IsPaid", isPaid);
+            argumentsOfScenario.Add("Date1", date1);
+            argumentsOfScenario.Add("Sum1", sum1);
+            argumentsOfScenario.Add("IsPaid1", isPaid1);
+            argumentsOfScenario.Add("Date2", date2);
+            argumentsOfScenario.Add("Sum2", sum2);
+            argumentsOfScenario.Add("IsPaid2", isPaid2);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a manager, I want to delete and get all payments", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 306
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table45.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+                table45.AddRow(new string[] {
+                            string.Format("{0}", studFirstName),
+                            string.Format("{0}", studLastName),
+                            string.Format("{0}", studPatronymic),
+                            string.Format("{0}", studEmail),
+                            string.Format("{0}", studUsername),
+                            string.Format("{0}", studPassword),
+                            string.Format("{0}", studCity),
+                            string.Format("{0}", studBirthDate),
+                            string.Format("{0}", studGitHubAccount),
+                            string.Format("{0}", studPhoneNumber)});
+#line 307
+ testRunner.Given("Create user", ((string)(null)), table45, "Given ");
+#line hidden
+#line 311
+ testRunner.And("Autorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 312
+ testRunner.And("Assign manager role to user \"Manager\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 313
+ testRunner.And("Autorized by manager", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Date",
+                            "Sum",
+                            "IsPaid"});
+                table46.AddRow(new string[] {
+                            string.Format("{0}", date),
+                            string.Format("{0}", sum),
+                            string.Format("{0}", isPaid)});
+                table46.AddRow(new string[] {
+                            string.Format("{0}", date1),
+                            string.Format("{0}", sum1),
+                            string.Format("{0}", isPaid1)});
+                table46.AddRow(new string[] {
+                            string.Format("{0}", date2),
+                            string.Format("{0}", sum2),
+                            string.Format("{0}", isPaid2)});
+#line 314
+ testRunner.And("Create payments", ((string)(null)), table46, "And ");
+#line hidden
+#line 319
+ testRunner.When("Delete payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 320
+ testRunner.And("Get all payments by", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 321
+ testRunner.Then("Remote payment should not return", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

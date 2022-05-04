@@ -20,5 +20,14 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.RequestModels
 
         [JsonPropertyName("isPaid")]
         public bool IsPaid { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is PaymentRequestModel model &&
+                   Date == model.Date &&
+                   Sum == model.Sum &&
+                   UserId == model.UserId &&
+                   IsPaid == model.IsPaid;
+        }
     }
 }
