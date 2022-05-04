@@ -16,6 +16,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
       private static HttpResponseMessage _statusCodeCreateGroup;
       private static HttpResponseMessage _statusCodeCreatePayment;
+      private static HttpResponseMessage _statusCodeCreateHomework;
 
         public static CourseResponseModel CreateCourse(string token, CourseRequestModel course)
         {
@@ -152,7 +153,54 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return JsonSerializer.Deserialize<List<PaymentResponseModel>>(s);
         }
 
+        public static TaskMethodistResponseModel CreateTaskByMethodist(string token, TaskMethodistRequestModel taskMethodist)
+        {
+            string url = "https://piter-education.ru:7072/api/Tasks/methodist";
+            string json = JsonSerializer.Serialize<TaskMethodistRequestModel>(taskMethodist);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
 
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            _statusCodeCreatePayment = response;
+            return JsonSerializer.Deserialize<TaskMethodistResponseModel>(s);
+        }
+
+        public static HomeworkResponseModel CreateHomework(string token, int taskId, int groupeId,HomeworkRequestModel homework)
+        {
+            string url = $"https://piter-education.ru:7072/api/Homeworks/group/{groupeId}/task/{taskId}";
+            string json = JsonSerializer.Serialize<HomeworkRequestModel>(homework);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            _statusCodeCreateHomework = response;
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            _statusCodeCreatePayment = response;
+            return JsonSerializer.Deserialize<HomeworkResponseModel>(s);
+        }
+
+        public static HttpResponseMessage CreateHomework()
+        {
+            return _statusCodeCreateHomework;
+        }
 
     }
 }
