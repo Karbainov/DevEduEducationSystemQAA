@@ -81,13 +81,15 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             _tokenTeacher = AuthClient.AuthUser(user[0].Email, user[0].Password);
         }
 
-
+        [Given(@"Create Homework")]
         [When(@"Create Homework")]
         public void WhenCreateHomework(Table table)
         {
             var homeworkRequest = table.CreateSet<HomeworkRequestModel>().ToList().First();
-            FeatureContext.Current["Homework Response"] = AddEntitysClients.CreateHomework(_tokenTeacher, _taskMethodistId, _groupeId, homeworkRequest);
-            ScenarioContext.Current["Homework Request"] = homeworkRequest; 
+            var homeworkResponse = AddEntitysClients.CreateHomework(_tokenTeacher, _taskMethodistId, _groupeId, homeworkRequest);
+            ScenarioContext.Current["Homework Request"] = homeworkRequest;
+            FeatureContext.Current["Homework Response"] = homeworkResponse;
+            _homeworkId = homeworkResponse.Id;
         }
 
 
@@ -143,6 +145,27 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             HttpStatusCode actual = httpResponse.StatusCode;
             Assert.AreEqual(expected, actual);
         }
+
+        // new Scenario Edit homework by teacher
+
+        [When(@"Edit a previously created homework")]
+        public void WhenEditAPreviouslyCreatedHomework(Table table)
+        {
+            HomeworkRequestModel homeworkUpdate = table.CreateSet<HomeworkRequestModel>().ToList().First();
+            UpdateClient.UpdateHomework(_tokenTeacher, homeworkUpdate, _homeworkId);
+            ScenarioContext.Current["Update Homework"] = homeworkUpdate;
+        }
+
+        [Then(@"—heck the modified homework should have come")]
+        public void Then—heckTheModifiedHomeworkShouldHaveCome()
+        {
+            GetHomeworkByIdResponseModel actual = (GetHomeworkByIdResponseModel)FeatureContext.Current["Get Homework by Id"];
+            HomeworkRequestModel expected = (HomeworkRequestModel)ScenarioContext.Current["Update Homework"];
+            Assert.AreEqual(expected.StartDate, actual.StartDate);
+            Assert.AreEqual(expected.EndDate, actual.EndDate);
+        }
+
+
 
     }
 }
