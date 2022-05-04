@@ -670,10 +670,10 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User in role methodist I want add new topics to the course in a certain sequence")]
+        [NUnit.Framework.DescriptionAttribute("User in role methodist add new topics to the course in a certain sequence")]
         [NUnit.Framework.CategoryAttribute("Metodist")]
         [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "Methodist", null)]
-        public virtual void UserInRoleMethodistIWantAddNewTopicsToTheCourseInACertainSequence(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string role, string[] exampleTags)
+        public virtual void UserInRoleMethodistAddNewTopicsToTheCourseInACertainSequence(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string role, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Metodist"};
@@ -694,7 +694,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
             argumentsOfScenario.Add("PhoneNumber", phoneNumber);
             argumentsOfScenario.Add("Role", role);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist I want add new topics to the course in a certain sequence", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist add new topics to the course in a certain sequence", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 99
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -797,10 +797,10 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User in role methodist I want change the sequence of topics")]
+        [NUnit.Framework.DescriptionAttribute("User in role methodist change the sequence of topics")]
         [NUnit.Framework.CategoryAttribute("Metodist")]
         [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "Methodist", null)]
-        public virtual void UserInRoleMethodistIWantChangeTheSequenceOfTopics(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string role, string[] exampleTags)
+        public virtual void UserInRoleMethodistChangeTheSequenceOfTopics(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string role, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Metodist"};
@@ -821,7 +821,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
             argumentsOfScenario.Add("PhoneNumber", phoneNumber);
             argumentsOfScenario.Add("Role", role);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist I want change the sequence of topics", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist change the sequence of topics", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 125
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -1074,10 +1074,10 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User in role methodist I want to delete the topic of the course")]
+        [NUnit.Framework.DescriptionAttribute("User in role methodist to delete the topic of the course")]
         [NUnit.Framework.CategoryAttribute("Metodist")]
         [NUnit.Framework.TestCaseAttribute("Ivan", "Troyanov", "Petrovich", "TroyanovIP@mail.ru", "IvanPT", "qwerty123", "Dnipro", "02.02.1993", "string", "899912349954", "Methodist", null)]
-        public virtual void UserInRoleMethodistIWantToDeleteTheTopicOfTheCourse(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string role, string[] exampleTags)
+        public virtual void UserInRoleMethodistToDeleteTheTopicOfTheCourse(string firstName, string lastName, string patronymic, string email, string username, string password, string city, string birthDate, string gitHubAccount, string phoneNumber, string role, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "Metodist"};
@@ -1098,7 +1098,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
             argumentsOfScenario.Add("PhoneNumber", phoneNumber);
             argumentsOfScenario.Add("Role", role);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist I want to delete the topic of the course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User in role methodist to delete the topic of the course", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 186
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

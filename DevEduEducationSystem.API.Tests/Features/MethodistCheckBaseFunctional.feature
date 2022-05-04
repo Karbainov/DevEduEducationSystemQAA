@@ -96,7 +96,7 @@ Scenario: User in role methodist can see all courses
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
 @Metodist
-Scenario: User in role methodist I want add new topics to the course in a certain sequence
+Scenario: User in role methodist add new topics to the course in a certain sequence
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
@@ -122,7 +122,7 @@ Scenario: User in role methodist I want add new topics to the course in a certai
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
 @Metodist
-Scenario: User in role methodist I want change the sequence of topics
+Scenario: User in role methodist change the sequence of topics
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
@@ -183,7 +183,7 @@ Scenario: User in role methodist I want to see all courses and added topics in t
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
 @Metodist
-Scenario: User in role methodist I want to delete the topic of the course 
+Scenario: User in role methodist to delete the topic of the course 
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
