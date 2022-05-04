@@ -96,7 +96,33 @@ Scenario: User in role methodist can see all courses
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
 @Metodist
-Scenario: User in role methodist I want add theme to course
+Scenario: User in role methodist add new topics to the course in a certain sequence
+	Given I create new user and get his token
+	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+	And I login as an admin and give new user role <Role>
+	When I login as an Methodist and create new course
+	| Name     | Description           |
+	| Course 1 | Samiy luchshiy kurs   |
+	And I create topics 	
+	| Name    | Duration |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 2        |
+	| Thema 4 | 4        |
+	And I add course topics on position
+	| Name    | Position |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 3        |
+	| Thema 4 | 4        |
+	Then I get a course by id and the returned model contains all the topics at a given position
+	Examples: 
+	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
+@Metodist
+Scenario: User in role methodist change the sequence of topics
 	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
@@ -109,12 +135,74 @@ Scenario: User in role methodist I want add theme to course
 	| Thema 1 | 1        |
 	| Thema 2 | 2        |
 	| Thema 3 | 4        |
+	| Thema 4 | 1        |
 	And I add course topics on position
 	| Name    | Position | 
 	| Thema 1 | 1        | 
 	| Thema 2 | 2        |
 	| Thema 3 | 3        |
-	Then I get course by id and return model contain all topics
+	| Thema 4 | 4        |
+	And I am changing the positions of the topics of the course
+	| Name    | Position | 
+	| Thema 1 | 3        | 
+	| Thema 2 | 4        |
+	| Thema 3 | 1        |
+	| Thema 4 | 2        |
+	#Then I get a course by id and the returned model contains all the topics at a given position
+	Then I get all topics of courses by Id and the returned model contains all the topics at a given new positions
 	Examples: 
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
+@Metodist
+Scenario: User in role methodist I want to see all courses and added topics in the courses
+	Given I create new user and get his token
+	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+	And I login as an admin and give new user role <Role>
+	When I login as an Methodist and create new courses
+	| Name     | Description           |
+	| Course 1 | Samiy luchshiy kurs   |
+	| Course 2 | Samiy luchshiy kurs 2 |
+	And I create topics 	
+	| Name    | Duration |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 4        |
+	| Thema 4 | 1        |
+	And I add "Course 1" topics on position
+	| Name    | Position | 
+	| Thema 1 | 1        | 
+	| Thema 2 | 2        |
+	| Thema 3 | 3        |
+	| Thema 4 | 4        |
+	Then I get course "Course 1" and check that he containes topics
+	Then I get course "Course 2" and check that he doesn't containes topics
+	Examples: 
+	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
+@Metodist
+Scenario: User in role methodist to delete the topic of the course 
+	Given I create new user and get his token
+	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+	And I login as an admin and give new user role <Role>
+	When I login as an Methodist and create new course
+	| Name     | Description           |
+	| Course 1 | Samiy luchshiy kurs   |
+	And I create topics 	
+	| Name    | Duration |
+	| Thema 1 | 1        |
+	| Thema 2 | 2        |
+	| Thema 3 | 4        |
+	| Thema 4 | 1        |
+	And I delete "Thema 1" 
+	And I delete "Thema 3" 
+	Then I get course by id and check that he doesn't containes deleted topics
+	| Name            |
+	| Thema 1,Thema 3 |
+	Examples: 
+	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+

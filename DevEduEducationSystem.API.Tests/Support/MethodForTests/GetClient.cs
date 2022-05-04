@@ -227,6 +227,30 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return allCourses;
         }
 
+        public static List<CourseResponseModelWithPosition> GetAllTopicsOfCoursesById(string token, int id)
+        {
+            string url = $"https://piter-education.ru:7072/api/Courses/{id}/topics";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+
+            HttpResponseMessage response = client.Send(request);
+
+            string s = response.Content.ReadAsStringAsync().Result;
+
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+
+            Assert.AreEqual(expected, actual);
+            List<CourseResponseModelWithPosition> allCourses = JsonSerializer.Deserialize<List<CourseResponseModelWithPosition>>(s);
+            return allCourses;
+        }
+
         public static PaymentResponseModel GetPaymentById(int id, string token)
         {
             string url = $"https://piter-education.ru:7072/api/Payments/{id}";
