@@ -110,5 +110,26 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return JsonSerializer.Deserialize<GroupResponseMiniModel>(s);
 
         }
+
+        public static PaymentResponseModel UpdatePayment(PaymentRequestModel changePayment, int idPayment, string token)
+        {
+            string url = $"https://piter-education.ru:7072/api/Payments/{idPayment}";
+            string json = JsonSerializer.Serialize(changePayment);
+            HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Put,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<PaymentResponseModel>(s);
+        }
     }
 }

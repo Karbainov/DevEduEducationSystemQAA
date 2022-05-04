@@ -1,4 +1,5 @@
 
+using DevEduEducationSystem.API.Tests.Support.Models.RequestModels;
 using System;
 using System.Net;
 using TechTalk.SpecFlow;
@@ -98,20 +99,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
         // new Scenario 
 
-        //[Given(@"Create users")]
-        //public void GivenCreateFutureManadgerAndMethodist(Table table)
-        //{
-        //    List<RegistrationRequestModel> users = table.CreateSet<RegistrationRequestModel>().ToList();
-        //    AuthClient register = new AuthClient();
-        //    List<RegistrationResponseModel> a = register.Registration(users);
-        //    ScenarioContext.Current["UserRequestModel"] = users;
-        //    for(int i = 0; i < a.Count; i++)
-        //    {
-        //        idList.Add(a[i].Id); 
-        //    }
-        //    ScenarioContext.Current["UsersId"] = _idUser;
-        //}
-
         [Given(@"Assing Manager and Methodist roles")]
         public void GivenAssingMinevraAndMethodistRoles(Table table)
         {
@@ -146,14 +133,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         }
 
         [Given(@"Autorized by manager")]
-        //public void GivenAutorizedByManager()
-        //{
-        //    var requestModel = (List<RegistrationRequestModel>)ScenarioContext.Current["UserRequestModel"];
-        //    string email = requestModel[0].Email;
-        //    string password = requestModel[0].Password;
-        //    ScenarioContext.Current["ManagerToken"] = AuthClient.AuthUser(email, password);
-        //    _tokenManager = (string)ScenarioContext.Current["ManagerToken"];
-        //}
+        
 
         [When(@"Create Groupe")]
         public void WhenCreateGroupe(Table table)
@@ -638,5 +618,136 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreEqual(expected[i], actual[i]);
             }
         }
+
+        // new Scenario PAYMENT
+        [Given(@"Create one payment")]
+        [When(@"Create one payment")]
+        public void WhenCreateOnePayment(Table table)
+        {
+            PaymentRequestModel paymentRequest = table.CreateSet<PaymentRequestModel>().ToList().First();
+            paymentRequest.UserId = _idUser[1];
+            PaymentResponseModel paymentResponse = AddEntitysClients.CreateOnePayment(_tokenManager, paymentRequest);
+            ScenarioContext.Current["Payment Response"] = paymentResponse;
+            ScenarioContext.Current["Payment Request"] = paymentRequest;
+            FeatureContext.Current["IdPayment"] = paymentResponse.Id;
+        }
+
+        [When(@"Get payment by id")]
+        public void WhenGetPaymentById()
+        {
+            PaymentResponseModel paymentResponse = (PaymentResponseModel)ScenarioContext.Current["Payment Response"];
+           ScenarioContext.Current["Payment Get By Id"] = GetClient.GetPaymentById(paymentResponse.Id,_tokenManager);
+        }
+
+        [Then(@"Created payment should be returned")]
+        public void ThenCreatedPaymentShouldBeReturned()
+        {
+            PaymentResponseModel paymentResponse = (PaymentResponseModel)ScenarioContext.Current["Payment Response"];
+            PaymentResponseModel actual = (PaymentResponseModel)ScenarioContext.Current["Payment Get By Id"];
+            PaymentRequestModel paymentRequest = (PaymentRequestModel)ScenarioContext.Current["Payment Request"];
+            PaymentResponseModel expected = Mapper.MapPaymentRequestModelToPaymentResponseModel(paymentRequest);
+            User student = new User()
+            {
+                Id = _idUser[1],
+                FirstName = "Максим",
+                LastName = "Опаздун",
+                Email = "Opazd@mail.ru",
+                Photo = null
+            };
+            expected.User = student;
+            expected.Id = paymentResponse.Id;
+            Assert.AreEqual(expected, actual);
+        }
+
+        // Payment negative
+
+        [Then(@"Should return Status code (.*)")]
+        public void ThenShouldReturnStatusCode(int statusCode)
+        {
+            HttpResponseMessage httpResponse = AddEntitysClients.CreateOnePayment();
+            HttpStatusCode expected = (HttpStatusCode)statusCode;
+            HttpStatusCode actual = httpResponse.StatusCode;
+            Assert.AreEqual(expected, actual);
+        }
+
+        // Scenario PAYMENT CHANGE
+
+        [When(@"Change payment")]
+        public void WhenChangePayment(Table table)
+        {
+            int idPayment = (int)FeatureContext.Current["IdPayment"];
+            PaymentRequestModel changePayment = table.CreateSet<PaymentRequestModel>().ToList().First();
+            UpdateClient.UpdatePayment(changePayment,idPayment,_tokenManager);
+            ScenarioContext.Current["Change payment Request"] = changePayment;
+        }
+
+        [When(@"Get a modified payment by")]
+        public void WhenGetAModifiedPaymentBy()
+        {
+            int idPayment = (int)FeatureContext.Current["IdPayment"];
+           ScenarioContext.Current["Change payment return by id"] = GetClient.GetPaymentById(idPayment, _tokenManager);
+        }
+
+        [Then(@"Changed payment should be returned by id")]
+        public void ThenChangedPaymentShouldBeReturnedById()
+        {
+            PaymentRequestModel expected = (PaymentRequestModel)ScenarioContext.Current["Change payment Request"];
+            expected.UserId = _idUser[1];
+            PaymentResponseModel a = (PaymentResponseModel)ScenarioContext.Current["Change payment return by id"];
+            PaymentRequestModel actual = Mapper.MapPaymentResponseModelToPaymentRequestModel(a);
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        // Scenario PAYMENT DELETE and GET ALL PAYMENT
+
+
+        [Given(@"Create payments")]
+        public void GivenCreatePayments(Table table)
+        {
+            List<PaymentRequestModel> payments = table.CreateSet<PaymentRequestModel>().ToList();
+            for(int i = 0;i<payments.Count;i++)
+            {
+                payments[i].UserId = _idUser[1];
+            }
+            ScenarioContext.Current["List Payment Response"] = AddEntitysClients.CreatePayments(payments, _tokenManager);
+            ScenarioContext.Current["List Payment Request"] = payments;
+        }
+
+
+        [When(@"Delete payment")]
+        public void WhenDeletePayment()
+        {
+            List<PaymentResponseModel> payments = (List<PaymentResponseModel>)ScenarioContext.Current["List Payment Response"];
+            int idPayment = payments[0].Id;
+            DeleteClient.DeletePayment(_tokenManager, idPayment);
+        }
+
+        [When(@"Get all payments by")]
+        public void WhenGetAllPaymentsBy()
+        {
+            ScenarioContext.Current["List All Payments"] = GetClient.GetAllPaymentsByUserId(_idUser[1],_tokenManager);
+        }
+
+        [Then(@"Remote payment should not return")]
+        public void ThenRemotePaymentShouldNotReturn()
+        {
+            List<PaymentRequestModel> expected = (List<PaymentRequestModel>)ScenarioContext.Current["List Payment Request"];
+            List<PaymentResponseModel> tmp = (List<PaymentResponseModel>)ScenarioContext.Current["List All Payments"];
+            List<PaymentRequestModel> actual = new List<PaymentRequestModel>();
+            for(int i = 0; i < tmp.Count; i++)
+            {
+               actual.Add(Mapper.MapPaymentResponseModelToPaymentRequestModel(tmp[i]));
+            }
+            Assert.AreEqual(2,actual.Count);
+            for(int i = 0; i < actual.Count; i++)
+            {
+                Assert.AreNotEqual(expected[0], actual[i]);
+            }
+
+        }
+
+
+
     }
 }

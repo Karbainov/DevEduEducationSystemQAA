@@ -14,7 +14,9 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
     public class AddEntitysClients
     {
 
-       static HttpResponseMessage _statusCodeCreateGroup;
+      private static HttpResponseMessage _statusCodeCreateGroup;
+      private static HttpResponseMessage _statusCodeCreatePayment;
+
         public static CourseResponseModel CreateCourse(string token, CourseRequestModel course)
         {
             string url = "https://piter-education.ru:7072/api/Courses";
@@ -100,6 +102,56 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
             return JsonSerializer.Deserialize<TopicResponseModel>(s);
         }
+
+        public static PaymentResponseModel CreateOnePayment(string token, PaymentRequestModel payment)
+        {
+            string url = "https://piter-education.ru:7072/api/Payments";
+            string json = JsonSerializer.Serialize<PaymentRequestModel>(payment);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            _statusCodeCreatePayment = response;
+            return JsonSerializer.Deserialize<PaymentResponseModel>(s);
+        }
+
+        public static HttpResponseMessage CreateOnePayment()
+        {
+            return _statusCodeCreatePayment;
+        }
+
+        public static List<PaymentResponseModel> CreatePayments(List<PaymentRequestModel> payments, string token)
+        {
+            string url = "https://piter-education.ru:7072/api/Payments/bulk";
+            string json = JsonSerializer.Serialize<List<PaymentRequestModel>>(payments);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            _statusCodeCreatePayment = response;
+            return JsonSerializer.Deserialize<List<PaymentResponseModel>>(s);
+        }
+
 
 
     }
