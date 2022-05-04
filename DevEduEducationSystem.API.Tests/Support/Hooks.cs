@@ -26,6 +26,9 @@ namespace DevEduEducationSystem.API.Tests.Support
                 command.CommandText = "delete from dbo.[Homework]";
                 command.ExecuteNonQuery();
 
+                command.CommandText = "delete from dbo.[Task]";
+                command.ExecuteNonQuery();
+
                 command.CommandText = "delete from dbo.[User_Group]";
                 command.ExecuteNonQuery();
 

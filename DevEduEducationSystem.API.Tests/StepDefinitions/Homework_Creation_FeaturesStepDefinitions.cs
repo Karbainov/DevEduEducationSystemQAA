@@ -9,12 +9,13 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
     public class Homework_Creation_FeaturesStepDefinitions
     {
         private List<int> _userId = new List<int>();
+        List<int> _taskListId = new List<int>();
         private string _tokenAdmin;
         private int _courseId;
         private int _groupeId;
         private int _taskMethodistId;
         private string _tokenTeacher;
-        private int _homeworkId;
+        private List<int> _homeworkId = new List<int>();
 
         [Given(@"Create  user")]
         public void GivenCreateUser(Table table)
@@ -85,20 +86,23 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [When(@"Create Homework")]
         public void WhenCreateHomework(Table table)
         {
-            var homeworkRequest = table.CreateSet<HomeworkRequestModel>().ToList().First();
-            var homeworkResponse = AddEntitysClients.CreateHomework(_tokenTeacher, _taskMethodistId, _groupeId, homeworkRequest);
-            ScenarioContext.Current["Homework Request"] = homeworkRequest;
+            List<HomeworkResponseModel> homeworkResponse = new List<HomeworkResponseModel>();
+            var homeworkRequest = table.CreateSet<HomeworkRequestModel>().ToList();
+            for (int i = 0; i < homeworkRequest.Count; i++)
+            {
+                 homeworkResponse.Add(AddEntitysClients.CreateHomework(_tokenTeacher, _taskMethodistId, _groupeId, homeworkRequest[i]));
+                _homeworkId.Add(homeworkResponse[i].Id);
+            }
+            FeatureContext.Current["Homework Request"] = homeworkRequest;
             FeatureContext.Current["Homework Response"] = homeworkResponse;
-            _homeworkId = homeworkResponse.Id;
         }
 
 
         [When(@"Get Homework By Id")]
         public void WhenGetHomeWorkById()
         {
-           var homeworkResponse = (HomeworkResponseModel)FeatureContext.Current["Homework Response"];
-           FeatureContext.Current["Get Homework by Id"] = GetClient.GetHomeworkById(_tokenTeacher, homeworkResponse.Id);
-           _homeworkId = homeworkResponse.Id;
+           var homeworkResponse = (List<HomeworkResponseModel>)FeatureContext.Current["Homework Response"];
+           FeatureContext.Current["Get Homework by Id"] = GetClient.GetHomeworkById(_tokenTeacher, homeworkResponse[0].Id);
         }
 
         [Then(@"Created homework should return")]
@@ -107,12 +111,12 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             TaskMethodistRequestModel taskRequest = (TaskMethodistRequestModel)ScenarioContext.Current["Task Request"];
             GroupRequestModel groupRequest = (GroupRequestModel)ScenarioContext.Current["Groupe Request"];
             GetHomeworkByIdResponseModel actual = (GetHomeworkByIdResponseModel)FeatureContext.Current["Get Homework by Id"];
-            var homeworkRequest = (HomeworkRequestModel)ScenarioContext.Current["Homework Request"];
+            var homeworkRequest = (List<HomeworkRequestModel>)FeatureContext.Current["Homework Request"];
             GetHomeworkByIdResponseModel expected = new GetHomeworkByIdResponseModel()
             {
-                Id = _homeworkId,
-                StartDate = homeworkRequest.StartDate,
-                EndDate = homeworkRequest.EndDate,
+                Id = _homeworkId[0],
+                StartDate = homeworkRequest[0].StartDate,
+                EndDate = homeworkRequest[0].EndDate,
                 Group = new GroupHomework()
                 {
                     StartDate = groupRequest.StartDate,
@@ -152,7 +156,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void WhenEditAPreviouslyCreatedHomework(Table table)
         {
             HomeworkRequestModel homeworkUpdate = table.CreateSet<HomeworkRequestModel>().ToList().First();
-            UpdateClient.UpdateHomework(_tokenTeacher, homeworkUpdate, _homeworkId);
+            UpdateClient.UpdateHomework(_tokenTeacher, homeworkUpdate, _homeworkId[0]);
             ScenarioContext.Current["Update Homework"] = homeworkUpdate;
         }
 
@@ -163,6 +167,61 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             HomeworkRequestModel expected = (HomeworkRequestModel)ScenarioContext.Current["Update Homework"];
             Assert.AreEqual(expected.StartDate, actual.StartDate);
             Assert.AreEqual(expected.EndDate, actual.EndDate);
+        }
+
+        // new Scenario Delete Homework and Get all homeworks by group
+
+        [Given(@"Create tasks")]
+        public void GivenCreateTasks(Table table)
+        {
+            List<TaskMethodistResponseModel> taskResponse = new List<TaskMethodistResponseModel>();
+            List<TaskMethodistRequestModel> tasksRequest = table.CreateSet<TaskMethodistRequestModel>().ToList();
+            for (int i = 0; i < tasksRequest.Count; i++)
+            {
+                taskResponse.Add(AddEntitysClients.CreateTaskByMethodist(_tokenAdmin, tasksRequest[i]));
+                _taskListId.Add(taskResponse[i].Id);
+            }
+        }
+
+        [Given(@"Create Homeworks")]
+        public void GivenCreateHomeworks(Table table)
+        {
+            List<HomeworkResponseModel> homeworkResponse = new List<HomeworkResponseModel>();
+            var homeworkRequest = table.CreateSet<HomeworkRequestModel>().ToList();
+            for (int i = 0; i < homeworkRequest.Count; i++)
+            {
+                homeworkResponse.Add(AddEntitysClients.CreateHomework(_tokenTeacher, _taskListId[i], _groupeId, homeworkRequest[i]));
+                _homeworkId.Add(homeworkResponse[i].Id);
+            }
+            FeatureContext.Current["Homeworks Request"] = homeworkRequest;
+            FeatureContext.Current["Homeworks Response"] = homeworkResponse;
+        }
+
+
+
+        [When(@"Delete previously created homework")]
+        public void WhenDeletePreviouslyCreatedHomework()
+        {
+            DeleteClient.DeleteHomework(_tokenTeacher, _homeworkId[0]);
+        }
+
+        [When(@"Get all homeworks by group")]
+        public void WhenGetAllHomeworksByGroup()
+        {
+           ScenarioContext.Current["All Hw by group"] = GetClient.GetAllHomeworkByGroup(_groupeId,_tokenTeacher);
+        }
+
+        [Then(@"Check homework should be deleted")]
+        public void ThenCheckHomeworkShouldBeDeleted()
+        {
+            var actual = (List<GetAllHomeworkByGroupResponseModel>)ScenarioContext.Current["All Hw by group"];
+            var expected = (List<HomeworkRequestModel>)FeatureContext.Current["Homeworks Request"];
+            Assert.AreEqual(3, actual.Count);
+            for(int i = 0;i < actual.Count;i++)
+            {
+                Assert.AreNotEqual(expected[0].StartDate, actual[i].StartDate);
+                Assert.AreNotEqual(expected[0].EndDate, actual[i].EndDate);
+            }
         }
 
 
