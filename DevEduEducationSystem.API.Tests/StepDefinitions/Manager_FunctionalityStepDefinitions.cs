@@ -19,8 +19,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenCreateUser(Table table)
         {
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
-            AuthClient registr = new AuthClient();
-            List<RegistrationResponseModel> userResponses = registr.Registration(user);
+            List<RegistrationResponseModel> userResponses = AuthClient.Registration(user);
             FeatureContext.Current["UserRequestModel"] = user;
             ScenarioContext.Current["Manager"] = user;
             for (int i = 0; i < userResponses.Count; i++)
@@ -57,8 +56,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenCreateNewUsersForOurRoles(Table table)
         {
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
-            AuthClient registr = new AuthClient();
-            List<RegistrationResponseModel> userResponses = registr.Registration(user);
+            List<RegistrationResponseModel> userResponses = AuthClient.Registration(user);
             ScenarioContext.Current["Users"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {
@@ -202,8 +200,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             List<RegistrationRequestModel> users = table.CreateSet<RegistrationRequestModel>().ToList();
             ScenarioContext.Current["UsersRequest"] = users;
-            AuthClient register = new AuthClient();
-            ScenarioContext.Current["UsersResponse"] = register.Registration(users);
+            ScenarioContext.Current["UsersResponse"] = AuthClient.Registration(users);
         }
 
         [Given(@"Assign two students roles ""([^""]*)"" and ""([^""]*)""")]
