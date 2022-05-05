@@ -272,7 +272,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Email = users[2].Email,
                 Photo = null
             };
-            TeacherModel teacher = new TeacherModel()
+            TeacherResponseModel teacher = new TeacherResponseModel()
             {
                 Id = idUsers[1],
                 FirstName = users[1].FirstName,
@@ -297,7 +297,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ReturnByIdGroupModel expected = new ReturnByIdGroupModel()
            {
                Students = new List<StudentModel>() { student },
-               Teachers = new List<TeacherModel>() { teacher },
+               Teachers = new List<TeacherResponseModel>() { teacher },
                Tutors = new List<TutorModel>() { tutor },
                Id = idGroup,
                Name = a.Name,
@@ -523,7 +523,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void ThenCheckThatStudentHaveLeftTheGroup(Table table)
         {
             List<RegistrationRequestModel> srudentExpected = table.CreateSet<RegistrationRequestModel>().ToList();
-            List<TeacherModel> teacher = new List<TeacherModel>();
+            List<TeacherResponseModel> teacher = new List<TeacherResponseModel>();
             GroupRequestModel expected = (GroupRequestModel)FeatureContext.Current["Group Request"];
             ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)FeatureContext.Current["Group Full"];
             Assert.AreEqual(groupFull.Students.Count, 2);

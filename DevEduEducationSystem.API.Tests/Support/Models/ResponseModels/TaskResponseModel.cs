@@ -26,5 +26,16 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForA
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is TaskResponseModel model &&
+                   Id == model.Id &&
+                   Name == model.Name &&
+                   Description == model.Description &&
+                   Links == model.Links &&
+                   IsRequired == model.IsRequired &&
+                   IsDeleted == model.IsDeleted;
+        }
     }
 }
