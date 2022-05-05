@@ -308,5 +308,58 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             };
             Assert.AreEqual(actual, expected);
         }
+
+        // new Scenario (role student get myself homework by id)
+
+        [When(@"Get Student homework by id")]
+        public void WhenGetStudentsHomeworkById()
+        {
+          ScenarioContext.Current["Get stud hw by id"] = GetClient.GetStudentHomeworkById(_tokenStudent,_idStudentHomework);
+        }
+
+        [Then(@"Check if the student's homework submitted should be returned")]
+        public void ThenCheckIfTheStudentsHomeworkSubmittedShouldBeReturned()
+        {
+            var users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
+            var taskRequest = (TaskMethodistRequestModel)FeatureContext.Current["Task Request"];
+            var studHomework = (StudentHomeworkRequestModel)FeatureContext.Current["Student Homework"];
+            var homework = (HomeworkRequestModel)FeatureContext.Current["Homework Request"];
+            StudentHomeworkResponseModel actual = (StudentHomeworkResponseModel)ScenarioContext.Current["Get stud hw by id"];
+            StudentHomeworkResponseModel expected = new StudentHomeworkResponseModel()
+            {
+                Id = _idStudentHomework,
+                Answer = studHomework.Answer,
+                Status = "ToCheck",
+                CompletedDate = null,
+                IsDeleted = false,
+                Homework = new Homework()
+                {
+                    Id = _idHomework,
+                    EndDate = homework.EndDate,
+                    StartDate = homework.StartDate,
+                    Task = new TaskResponseModel()
+                    {
+                        Id = _idTask,
+                        Description = taskRequest.Description,
+                        IsDeleted = false,
+                        IsRequired = true,
+                        Links = taskRequest.Links,
+                        Name = taskRequest.Name,
+                    }
+                },
+                User = new User()
+                {
+                    Email = users[1].Email,
+                    FirstName = users[1].FirstName,
+                    LastName = users[1].LastName,
+                    Photo = null,
+                    Id = _idUser[1]
+                }
+            };
+            Assert.AreEqual(actual, expected);
+        }
+
+        // new Scenario (role student - add comment)
+
     }
 }
