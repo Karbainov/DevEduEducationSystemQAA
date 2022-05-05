@@ -23,6 +23,9 @@ namespace DevEduEducationSystem.API.Tests.Support
                 command.Connection = connection;
                 var i = command.ExecuteNonQuery();
 
+                command.CommandText = "delete from dbo.[Student_Homework]";
+                command.ExecuteNonQuery();
+
                 command.CommandText = "delete from dbo.[Homework]";
                 command.ExecuteNonQuery();
 
@@ -33,9 +36,6 @@ namespace DevEduEducationSystem.API.Tests.Support
                 command.ExecuteNonQuery();
 
                 command.CommandText = "delete from dbo.[Group]";
-                command.ExecuteNonQuery();
-
-                command.CommandText = "delete from dbo.[Student_Homework]";
                 command.ExecuteNonQuery();
 
                 command.CommandText = "delete from dbo.[Course_Topic]";

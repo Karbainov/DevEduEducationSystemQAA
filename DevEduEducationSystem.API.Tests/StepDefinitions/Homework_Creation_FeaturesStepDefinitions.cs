@@ -223,8 +223,5 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreNotEqual(expected[0].EndDate, actual[i].EndDate);
             }
         }
-
-
-
     }
 }
