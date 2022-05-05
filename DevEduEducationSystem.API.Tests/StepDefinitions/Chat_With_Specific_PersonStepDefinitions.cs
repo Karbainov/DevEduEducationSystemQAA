@@ -17,6 +17,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         private int _idTask;
         private int _idHomework;
         private int _idStudentHomework;
+        private string _tokenTutor;
 
         [Given(@"Create Users")]
         public void GivenCreateUsers(Table table)
@@ -65,6 +66,10 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             AddEntitysClients.AddUserInGroup(_idGroup, _idUser[0], "Teacher", _tokenAdmin);
             AddEntitysClients.AddUserInGroup(_idGroup, _idUser[1], "Student", _tokenAdmin);
+            if(_idUser.Count == 3)
+            {
+                AddEntitysClients.AddUserInGroup(_idGroup, _idUser[2], "Tutor", _tokenAdmin);
+            }
         }
 
         [Given(@"Create Task")]
@@ -157,6 +162,72 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             };
             Assert.AreEqual(expected, actual);
         }
+
+        // new Scebario (Add comment as tutor)
+
+        [Given(@"Assing user ""([^""]*)"" and ""([^""]*)"" removing the role assigned by default")]
+        public void GivenAssingUserAndRemovingTheRoleAssignedByDefault(string teacher, string tutor)
+        {
+            AddRoleUsers.AddRole(teacher, _idUser[0], _tokenAdmin);
+            AddRoleUsers.AddRole(tutor, _idUser[2], _tokenAdmin);
+            DeleteClient.DeleteRoleFromUser(_tokenAdmin, "Student", _idUser[0]);
+            DeleteClient.DeleteRoleFromUser(_tokenAdmin, "Student", _idUser[2]);
+        }
+
+        [Given(@"Authorized by Tutor")]
+        public void GivenAuthorizedByTutor()
+        {
+           List<RegistrationRequestModel> users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
+           _tokenTutor = AuthClient.AuthUser(users[2].Email,users[2].Password);
+        }
+
+        [When(@"Add as tutor new comment to student answer")]
+        public void WhenAddAsTutorNewCommentToStudentAnswer(Table table)
+        {
+            CommentRequestModel comment = table.CreateSet<CommentRequestModel>().ToList().First();
+            ScenarioContext.Current["Comment Response"] = AddEntitysClients.CreateComment(_tokenTutor, _idStudentHomework, comment);
+        }
+
+        [When(@"Get comment by ID")]
+        public void WhenGetCommentByID()
+        {
+           CommentResponeseModel commentRes = (CommentResponeseModel)ScenarioContext.Current["Comment Response"];
+           ScenarioContext.Current["Comment Response by id actusl"] = GetClient.GetCommentById(commentRes.Id, _tokenTutor);
+        }
+
+        [Then(@"Check the left comment tutor should have returned")]
+        public void ThenCheckTheLeftCommentTutorShouldHaveReturned()
+        {
+            var users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
+            var homework = (HomeworkRequestModel)FeatureContext.Current["Homework Request"];
+            var studHomework = (StudentHomeworkRequestModel)FeatureContext.Current["Student Homework"];
+            CommentRequestModel comment = (CommentRequestModel)ScenarioContext.Current["Comment Request"];
+            CommentResponeseModel actual = (CommentResponeseModel)ScenarioContext.Current["Comment Response by id actusl"];
+            CommentResponeseModel expected = new CommentResponeseModel()
+            {
+                Id = (int)ScenarioContext.Current["IdComment"],
+                Text = comment.Text,
+                Date = actual.Date,
+                IsDeleted = false,
+                User = new UserStudentHomework()
+                {
+                    Id = _idUser[1],
+                    FirstName = users[1].FirstName,
+                    LastName = users[1].LastName,
+                    Email = users[1].Email,
+                    Photo = null,
+                    Roles = new List<string>() { "Student" }
+                },
+                StudentHomework = new StudentHomework()
+                {
+                    Id = _idStudentHomework,
+                    Answer = studHomework.Answer,
+                    CompletedDate = homework.EndDate
+                }
+            };
+            Assert.AreEqual(expected, actual);
+        }
+
 
         // new Scenario (Get student homework by id)
 
@@ -360,6 +431,57 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         }
 
         // new Scenario (role student - add comment)
+
+        [When(@"Add a comment as a student to your homework")]
+        public void WhenAddACommentAsAStudentToYourHomework(Table table)
+        {
+           CommentRequestModel comment = table.CreateSet<CommentRequestModel>().ToList().First();
+           ScenarioContext.Current["Comment Response"] = AddEntitysClients.CreateComment(_tokenStudent, _idStudentHomework, comment);
+           
+        }
+
+
+        [When(@"Get student comment by id")]
+        public void WhenGetStudentCommentById()
+        {
+            CommentResponeseModel commentResponse = (CommentResponeseModel)ScenarioContext.Current["Comment Response"];
+           ScenarioContext.Current["actual CommRespoModel"] = GetClient.GetCommentById(commentResponse.Id, _tokenStudent);
+        }
+
+        [Then(@"Check the student ˚Â„‚ÛÚÂ comment should have returned")]
+        public void ThenCheckTheStudent€Â„‚ÛÚÂCommentShouldHaveReturned()
+        {
+            CommentResponeseModel commentResponse = (CommentResponeseModel)ScenarioContext.Current["Comment Response"];
+            var users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
+            var homework = (HomeworkRequestModel)FeatureContext.Current["Homework Request"];
+            var studHomework = (StudentHomeworkRequestModel)FeatureContext.Current["Student Homework"];
+            CommentRequestModel comment = (CommentRequestModel)ScenarioContext.Current["Comment Request"];
+            CommentResponeseModel actual = (CommentResponeseModel)ScenarioContext.Current["actual CommRespoModel"];
+            CommentResponeseModel expected = new CommentResponeseModel()
+            {
+                Id = commentResponse.Id,
+                Text = comment.Text,
+                Date = actual.Date,
+                IsDeleted = false,
+                User = new UserStudentHomework()
+                {
+                    Id = _idUser[1],
+                    FirstName = users[1].FirstName,
+                    LastName = users[1].LastName,
+                    Email = users[1].Email,
+                    Photo = null,
+                    Roles = new List<string>() { "Student" }
+                },
+                StudentHomework = new StudentHomework()
+                {
+                    Id = _idStudentHomework,
+                    Answer = studHomework.Answer,
+                    CompletedDate = homework.EndDate
+                }
+            };
+            Assert.AreEqual(expected, actual);
+        }
+
 
     }
 }
