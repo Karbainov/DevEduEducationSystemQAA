@@ -19,8 +19,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenCreateUser(Table table)
         {
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
-            AuthClient registr = new AuthClient();
-            List<RegistrationResponseModel> userResponses = registr.Registration(user);
+            List<RegistrationResponseModel> userResponses = AuthClient.Registration(user);
             FeatureContext.Current["UserRequestModel"] = user;
             ScenarioContext.Current["Manager"] = user;
             for (int i = 0; i < userResponses.Count; i++)
@@ -57,8 +56,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenCreateNewUsersForOurRoles(Table table)
         {
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
-            AuthClient registr = new AuthClient();
-            List<RegistrationResponseModel> userResponses = registr.Registration(user);
+            List<RegistrationResponseModel> userResponses = AuthClient.Registration(user);
             ScenarioContext.Current["Users"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {
@@ -202,8 +200,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             List<RegistrationRequestModel> users = table.CreateSet<RegistrationRequestModel>().ToList();
             ScenarioContext.Current["UsersRequest"] = users;
-            AuthClient register = new AuthClient();
-            ScenarioContext.Current["UsersResponse"] = register.Registration(users);
+            ScenarioContext.Current["UsersResponse"] = AuthClient.Registration(users);
         }
 
         [Given(@"Assign two students roles ""([^""]*)"" and ""([^""]*)""")]
@@ -275,7 +272,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Email = users[2].Email,
                 Photo = null
             };
-            TeacherModel teacher = new TeacherModel()
+            TeacherResponseModel teacher = new TeacherResponseModel()
             {
                 Id = idUsers[1],
                 FirstName = users[1].FirstName,
@@ -300,7 +297,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ReturnByIdGroupModel expected = new ReturnByIdGroupModel()
            {
                Students = new List<StudentModel>() { student },
-               Teachers = new List<TeacherModel>() { teacher },
+               Teachers = new List<TeacherResponseModel>() { teacher },
                Tutors = new List<TutorModel>() { tutor },
                Id = idGroup,
                Name = a.Name,
@@ -526,7 +523,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void ThenCheckThatStudentHaveLeftTheGroup(Table table)
         {
             List<RegistrationRequestModel> srudentExpected = table.CreateSet<RegistrationRequestModel>().ToList();
-            List<TeacherModel> teacher = new List<TeacherModel>();
+            List<TeacherResponseModel> teacher = new List<TeacherResponseModel>();
             GroupRequestModel expected = (GroupRequestModel)FeatureContext.Current["Group Request"];
             ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)FeatureContext.Current["Group Full"];
             Assert.AreEqual(groupFull.Students.Count, 2);

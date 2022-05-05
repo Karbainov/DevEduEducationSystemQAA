@@ -11,7 +11,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 {
     public class AuthClient
     {
-        public List<RegistrationResponseModel> Registration(List<RegistrationRequestModel> userModel)
+        public static List<RegistrationResponseModel> Registration(List<RegistrationRequestModel> userModel)
         {
             List<RegistrationResponseModel> userResponses = new List<RegistrationResponseModel>();
             foreach (var user in userModel)

@@ -202,5 +202,84 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return _statusCodeCreateHomework;
         }
 
+        public static StudentHomeworkResponseModel CreateStudentHomework(StudentHomeworkRequestModel studentHomework,string token,int idHomework)
+        {
+            string url = $"https://piter-education.ru:7072/api/student-homeworks/{idHomework}";
+            string json = JsonSerializer.Serialize<StudentHomeworkRequestModel>(studentHomework);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            _statusCodeCreateHomework = response;
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            _statusCodeCreatePayment = response;
+            return JsonSerializer.Deserialize<StudentHomeworkResponseModel>(s);
+        }
+
+        public static CommentResponeseModel CreateComment(string token,int idStudentHomework, CommentRequestModel comment)
+        {
+            string url = $"https://piter-education.ru:7072/api/Comments/to-student-answer/{idStudentHomework}";
+            string json = JsonSerializer.Serialize<CommentRequestModel>(comment);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            _statusCodeCreateHomework = response;
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            _statusCodeCreatePayment = response;
+            return JsonSerializer.Deserialize<CommentResponeseModel>(s);
+        }
+
+        public static StudentHomeworkResponseModel AddApproveStudentHomework(string token, int idStudentHomework)
+        {
+            string url = $"https://piter-education.ru:7072/api/student-homeworks/{idStudentHomework}/approve";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Patch,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<StudentHomeworkResponseModel>(s);
+        }
+
+        public static StudentHomeworkResponseModel AddDeclineStudentHomework(string token, int idStudentHomework)
+        {
+            string url = $"https://piter-education.ru:7072/api/student-homeworks/{idStudentHomework}/decline";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Patch,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<StudentHomeworkResponseModel>(s);
+        }
     }
 }

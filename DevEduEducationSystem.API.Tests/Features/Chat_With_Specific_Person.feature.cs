@@ -20,23 +20,23 @@ namespace DevEduEducationSystem.API.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Homework_Creation_Features")]
-    public partial class Homework_Creation_FeaturesFeature
+    [NUnit.Framework.DescriptionAttribute("Chat_With_Specific_Person")]
+    public partial class Chat_With_Specific_PersonFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "Homework_Creation_Features.feature"
+#line 1 "Chat_With_Specific_Person.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Homework_Creation_Features", "1.)Как преподаватель, я могу выдавать д.з.\r\n2.)Как преподаватель, я могу изменять" +
-                    " д.з.\r\n3.)Как преподаватель, я могу удалять д.з.", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Chat_With_Specific_Person", "1.) Как преподавтель/тьютор я могу оставлять комментарий про домашнюю работу\r\n2.)" +
+                    " Как преподователь, я могу принимать домашнюю работу от студента", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,10 +75,10 @@ namespace DevEduEducationSystem.API.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a teacher, I can give homework")]
-        [NUnit.Framework.CategoryAttribute("Homework")]
-        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2022", "10.10.2022", null)]
-        public virtual void AsATeacherICanGiveHomework(
+        [NUnit.Framework.DescriptionAttribute("As a teacher and tutor, I can leave comments about homework")]
+        [NUnit.Framework.CategoryAttribute("Chat")]
+        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2022", "10.10.2022", "@https://json2csharp.com/", "Это понятно, но наверное не понятно, потому что кукуруза", null)]
+        public virtual void AsATeacherAndTutorICanLeaveCommentsAboutHomework(
                     string firstName, 
                     string lastName, 
                     string patronymic, 
@@ -101,10 +101,12 @@ namespace DevEduEducationSystem.API.Tests.Features
                     string newPhoneNumber, 
                     string startDate1, 
                     string endDate1, 
+                    string answer, 
+                    string text, 
                     string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Homework"};
+                    "Chat"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -133,8 +135,10 @@ namespace DevEduEducationSystem.API.Tests.Features
             argumentsOfScenario.Add("NewPhoneNumber", newPhoneNumber);
             argumentsOfScenario.Add("StartDate1", startDate1);
             argumentsOfScenario.Add("EndDate1", endDate1);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, I can give homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 8
+            argumentsOfScenario.Add("Answer", answer);
+            argumentsOfScenario.Add("Text", text);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher and tutor, I can leave comments about homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -154,7 +158,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -165,7 +169,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table26.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -176,7 +180,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", birthDate),
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
-                table26.AddRow(new string[] {
+                table1.AddRow(new string[] {
                             string.Format("{0}", newFirstName),
                             string.Format("{0}", newLastName),
                             string.Format("{0}", newPatronymic),
@@ -187,85 +191,105 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", newBirthDate),
                             string.Format("{0}", newGitHubAccount),
                             string.Format("{0}", newPhoneNumber)});
-#line 9
- testRunner.Given("Create  user", ((string)(null)), table26, "Given ");
+#line 8
+ testRunner.Given("Create Users", ((string)(null)), table1, "Given ");
+#line hidden
+#line 12
+ testRunner.And("Autorized as Admin \"user@example.com\" , \"stringst\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.And("Autorized as admin \"user@example.com\" , \"stringst\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Assing user \"Teacher\" and removing the role assigned by default", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 14
- testRunner.And("Assing  User \"Teacher\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table27.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "QQQQ",
                             "Где Q и как его выводить на экран три раза"});
-#line 15
- testRunner.And("Create  course", ((string)(null)), table27, "And ");
+#line 14
+ testRunner.And("Create Course", ((string)(null)), table2, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "GroupStatusId",
                             "StartDate",
                             "EndDate",
                             "Timetable",
                             "PaymentPerMonth"});
-                table28.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
                             "7500"});
-#line 18
- testRunner.And("Create  Groupe", ((string)(null)), table28, "And ");
+#line 17
+ testRunner.And("Create groupe", ((string)(null)), table3, "And ");
 #line hidden
-#line 21
- testRunner.And("Add users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+ testRunner.And("Add Users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description",
                             "Links",
                             "IsRequired"});
-                table29.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Ищем Q на клаве",
                             "Первые 2 часа история, вторые 2 часа поиски",
-                            "",
+                            "@https://piter-education.ru:7070/swagger/index.html#/Comments/Comments_GetComment" +
+                                "",
                             "true"});
-#line 22
- testRunner.And("Create task", ((string)(null)), table29, "And ");
+#line 21
+ testRunner.And("Create Task", ((string)(null)), table4, "And ");
 #line hidden
-#line 25
- testRunner.And("Authorized by teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+ testRunner.And("Authorized by Teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "StartDate",
                             "EndDate"});
-                table30.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             string.Format("{0}", startDate1),
                             string.Format("{0}", endDate1)});
-#line 26
- testRunner.When("Create Homework", ((string)(null)), table30, "When ");
+#line 25
+ testRunner.And("Create homework", ((string)(null)), table5, "And ");
 #line hidden
+#line 28
+ testRunner.And("Authorized by student", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Answer"});
+                table6.AddRow(new string[] {
+                            string.Format("{0}", answer)});
 #line 29
- testRunner.And("Get Homework By Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I am a student adding my homework", ((string)(null)), table6, "And ");
 #line hidden
-#line 30
- testRunner.Then("Created homework should return", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 32
+ testRunner.And("Authorized by Teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Text"});
+                table7.AddRow(new string[] {
+                            string.Format("{0}", text)});
+#line 33
+ testRunner.When("Add new comment to student answer", ((string)(null)), table7, "When ");
+#line hidden
+#line 36
+ testRunner.And("Get comment by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 37
+ testRunner.Then("Check the left comment should have returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a teacher, I can give homework. Negative")]
-        [NUnit.Framework.CategoryAttribute("Negative")]
-        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.1760", "10.10.1761", null)]
-        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2023", "10.10.2022", null)]
-        public virtual void AsATeacherICanGiveHomework_Negative(
+        [NUnit.Framework.DescriptionAttribute("As a teacher, can I get homework")]
+        [NUnit.Framework.CategoryAttribute("StudentHomework")]
+        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2022", "10.10.2022", "@https://json2csharp.com/", "Это понятно, но наверное не понятно, потому что кукуруза", null)]
+        public virtual void AsATeacherCanIGetHomework(
                     string firstName, 
                     string lastName, 
                     string patronymic, 
@@ -288,10 +312,12 @@ this.ScenarioInitialize(scenarioInfo);
                     string newPhoneNumber, 
                     string startDate1, 
                     string endDate1, 
+                    string answer, 
+                    string text, 
                     string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Negative"};
+                    "StudentHomework"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -320,8 +346,10 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("NewPhoneNumber", newPhoneNumber);
             argumentsOfScenario.Add("StartDate1", startDate1);
             argumentsOfScenario.Add("EndDate1", endDate1);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, I can give homework. Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 36
+            argumentsOfScenario.Add("Answer", answer);
+            argumentsOfScenario.Add("Text", text);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, can I get homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 43
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -341,7 +369,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -352,7 +380,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table31.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -363,7 +391,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", birthDate),
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
-                table31.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             string.Format("{0}", newFirstName),
                             string.Format("{0}", newLastName),
                             string.Format("{0}", newPatronymic),
@@ -374,280 +402,98 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", newBirthDate),
                             string.Format("{0}", newGitHubAccount),
                             string.Format("{0}", newPhoneNumber)});
-#line 37
- testRunner.Given("Create  user", ((string)(null)), table31, "Given ");
+#line 44
+ testRunner.Given("Create Users", ((string)(null)), table8, "Given ");
 #line hidden
-#line 41
- testRunner.And("Autorized as admin \"user@example.com\" , \"stringst\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 42
- testRunner.And("Assing  User \"Teacher\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "Description"});
-                table32.AddRow(new string[] {
-                            "QQQQ",
-                            "Где Q и как его выводить на экран три раза"});
-#line 43
- testRunner.And("Create  course", ((string)(null)), table32, "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "GroupStatusId",
-                            "StartDate",
-                            "EndDate",
-                            "Timetable",
-                            "PaymentPerMonth"});
-                table33.AddRow(new string[] {
-                            "Группа 1",
-                            "1",
-                            "28.01.2022",
-                            "28.10.2022",
-                            "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
-#line 46
- testRunner.And("Create  Groupe", ((string)(null)), table33, "And ");
+#line 48
+ testRunner.And("Autorized as Admin \"user@example.com\" , \"stringst\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 49
- testRunner.And("Add users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Assing user \"Teacher\" and removing the role assigned by default", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description"});
+                table9.AddRow(new string[] {
+                            "QQQQ",
+                            "Где Q и как его выводить на экран три раза"});
+#line 50
+ testRunner.And("Create Course", ((string)(null)), table9, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "GroupStatusId",
+                            "StartDate",
+                            "EndDate",
+                            "Timetable",
+                            "PaymentPerMonth"});
+                table10.AddRow(new string[] {
+                            "Группа 1",
+                            "1",
+                            "28.01.2022",
+                            "28.10.2022",
+                            "пн, ср, пт 18:00 - 20:00",
+                            "7500"});
+#line 53
+ testRunner.And("Create groupe", ((string)(null)), table10, "And ");
+#line hidden
+#line 56
+ testRunner.And("Add Users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description",
                             "Links",
                             "IsRequired"});
-                table34.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Ищем Q на клаве",
                             "Первые 2 часа история, вторые 2 часа поиски",
-                            "",
+                            "@https://piter-education.ru:7070/swagger/index.html#/Comments/Comments_GetComment" +
+                                "",
                             "true"});
-#line 50
- testRunner.And("Create task", ((string)(null)), table34, "And ");
+#line 57
+ testRunner.And("Create Task", ((string)(null)), table11, "And ");
 #line hidden
-#line 53
- testRunner.And("Authorized by teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 60
+ testRunner.And("Authorized by Teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "StartDate",
                             "EndDate"});
-                table35.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             string.Format("{0}", startDate1),
                             string.Format("{0}", endDate1)});
-#line 54
- testRunner.When("Create Homework", ((string)(null)), table35, "When ");
+#line 61
+ testRunner.And("Create homework", ((string)(null)), table12, "And ");
 #line hidden
-#line 57
- testRunner.Then("The created homework status code should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a teacher, I can change my homework")]
-        [NUnit.Framework.CategoryAttribute("Homework")]
-        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2022", "10.10.2022", "10.01.2022", "10.11.2022", null)]
-        public virtual void AsATeacherICanChangeMyHomework(
-                    string firstName, 
-                    string lastName, 
-                    string patronymic, 
-                    string email, 
-                    string username, 
-                    string password, 
-                    string city, 
-                    string birthDate, 
-                    string gitHubAccount, 
-                    string phoneNumber, 
-                    string newFirstName, 
-                    string newLastName, 
-                    string newPatronymic, 
-                    string newEmail, 
-                    string newUsername, 
-                    string newPassword, 
-                    string newCity, 
-                    string newBirthDate, 
-                    string newGitHubAccount, 
-                    string newPhoneNumber, 
-                    string startDate1, 
-                    string endDate1, 
-                    string startDate2, 
-                    string endDate2, 
-                    string[] exampleTags)
-        {
-            string[] @__tags = new string[] {
-                    "Homework"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("FirstName", firstName);
-            argumentsOfScenario.Add("LastName", lastName);
-            argumentsOfScenario.Add("Patronymic", patronymic);
-            argumentsOfScenario.Add("Email", email);
-            argumentsOfScenario.Add("Username", username);
-            argumentsOfScenario.Add("Password", password);
-            argumentsOfScenario.Add("City", city);
-            argumentsOfScenario.Add("BirthDate", birthDate);
-            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
-            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
-            argumentsOfScenario.Add("NewFirstName", newFirstName);
-            argumentsOfScenario.Add("NewLastName", newLastName);
-            argumentsOfScenario.Add("NewPatronymic", newPatronymic);
-            argumentsOfScenario.Add("NewEmail", newEmail);
-            argumentsOfScenario.Add("NewUsername", newUsername);
-            argumentsOfScenario.Add("NewPassword", newPassword);
-            argumentsOfScenario.Add("NewCity", newCity);
-            argumentsOfScenario.Add("NewBirthDate", newBirthDate);
-            argumentsOfScenario.Add("NewGitHubAccount", newGitHubAccount);
-            argumentsOfScenario.Add("NewPhoneNumber", newPhoneNumber);
-            argumentsOfScenario.Add("StartDate1", startDate1);
-            argumentsOfScenario.Add("EndDate1", endDate1);
-            argumentsOfScenario.Add("StartDate2", startDate2);
-            argumentsOfScenario.Add("EndDate2", endDate2);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, I can change my homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 64
- this.ScenarioInitialize(scenarioInfo);
+ testRunner.And("Authorized by student", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
-                            "Patronymic",
-                            "Email",
-                            "Username",
-                            "Password",
-                            "City",
-                            "BirthDate",
-                            "GitHubAccount",
-                            "PhoneNumber"});
-                table36.AddRow(new string[] {
-                            string.Format("{0}", firstName),
-                            string.Format("{0}", lastName),
-                            string.Format("{0}", patronymic),
-                            string.Format("{0}", email),
-                            string.Format("{0}", username),
-                            string.Format("{0}", password),
-                            string.Format("{0}", city),
-                            string.Format("{0}", birthDate),
-                            string.Format("{0}", gitHubAccount),
-                            string.Format("{0}", phoneNumber)});
-                table36.AddRow(new string[] {
-                            string.Format("{0}", newFirstName),
-                            string.Format("{0}", newLastName),
-                            string.Format("{0}", newPatronymic),
-                            string.Format("{0}", newEmail),
-                            string.Format("{0}", newUsername),
-                            string.Format("{0}", newPassword),
-                            string.Format("{0}", newCity),
-                            string.Format("{0}", newBirthDate),
-                            string.Format("{0}", newGitHubAccount),
-                            string.Format("{0}", newPhoneNumber)});
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Answer"});
+                table13.AddRow(new string[] {
+                            string.Format("{0}", answer)});
 #line 65
- testRunner.Given("Create  user", ((string)(null)), table36, "Given ");
+ testRunner.And("I am a student adding my homework", ((string)(null)), table13, "And ");
+#line hidden
+#line 68
+ testRunner.And("Authorized by Teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 69
- testRunner.And("Autorized as admin \"user@example.com\" , \"stringst\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Get student homework by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 70
- testRunner.And("Assing  User \"Teacher\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "Description"});
-                table37.AddRow(new string[] {
-                            "QQQQ",
-                            "Где Q и как его выводить на экран три раза"});
-#line 71
- testRunner.And("Create  course", ((string)(null)), table37, "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "GroupStatusId",
-                            "StartDate",
-                            "EndDate",
-                            "Timetable",
-                            "PaymentPerMonth"});
-                table38.AddRow(new string[] {
-                            "Группа 1",
-                            "1",
-                            "28.01.2022",
-                            "28.10.2022",
-                            "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
-#line 74
- testRunner.And("Create  Groupe", ((string)(null)), table38, "And ");
-#line hidden
-#line 77
- testRunner.And("Add users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "Description",
-                            "Links",
-                            "IsRequired"});
-                table39.AddRow(new string[] {
-                            "Ищем Q на клаве",
-                            "Первые 2 часа история, вторые 2 часа поиски",
-                            "",
-                            "true"});
-#line 78
- testRunner.And("Create task", ((string)(null)), table39, "And ");
-#line hidden
-#line 81
- testRunner.And("Authorized by teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
-                            "StartDate",
-                            "EndDate"});
-                table40.AddRow(new string[] {
-                            string.Format("{0}", startDate1),
-                            string.Format("{0}", endDate1)});
-#line 82
- testRunner.And("Create Homework", ((string)(null)), table40, "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
-                            "StartDate",
-                            "EndDate"});
-                table41.AddRow(new string[] {
-                            string.Format("{0}", startDate2),
-                            string.Format("{0}", endDate2)});
-#line 85
- testRunner.When("Edit a previously created homework", ((string)(null)), table41, "When ");
-#line hidden
-#line 88
- testRunner.And("Get Homework By Id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 89
- testRunner.Then("Сheck the modified homework should have come", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Compare , submitted homework should return", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a teacher, I can delete my homework")]
-        [NUnit.Framework.CategoryAttribute("Homework")]
-        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2022", "10.01.2022", "11.01.2022", "20.01.2022", "21.01.2022", "25.01.2022", "26.01.2022", "01.02.2022", null)]
-        public virtual void AsATeacherICanDeleteMyHomework(
+        [NUnit.Framework.DescriptionAttribute("As a teacher, I can accept homework from a student")]
+        [NUnit.Framework.CategoryAttribute("StudentHomework")]
+        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2022", "10.10.2022", "@https://json2csharp.com/", "Это понятно, но наверное не понятно, потому что кукуруза", null)]
+        public virtual void AsATeacherICanAcceptHomeworkFromAStudent(
                     string firstName, 
                     string lastName, 
                     string patronymic, 
@@ -670,16 +516,12 @@ this.ScenarioInitialize(scenarioInfo);
                     string newPhoneNumber, 
                     string startDate1, 
                     string endDate1, 
-                    string startDate2, 
-                    string endDate2, 
-                    string startDate3, 
-                    string endDate3, 
-                    string startDate4, 
-                    string endDate4, 
+                    string answer, 
+                    string text, 
                     string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "Homework"};
+                    "StudentHomework"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -708,14 +550,10 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("NewPhoneNumber", newPhoneNumber);
             argumentsOfScenario.Add("StartDate1", startDate1);
             argumentsOfScenario.Add("EndDate1", endDate1);
-            argumentsOfScenario.Add("StartDate2", startDate2);
-            argumentsOfScenario.Add("EndDate2", endDate2);
-            argumentsOfScenario.Add("StartDate3", startDate3);
-            argumentsOfScenario.Add("EndDate3", endDate3);
-            argumentsOfScenario.Add("StartDate4", startDate4);
-            argumentsOfScenario.Add("EndDate4", endDate4);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, I can delete my homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 95
+            argumentsOfScenario.Add("Answer", answer);
+            argumentsOfScenario.Add("Text", text);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, I can accept homework from a student", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 76
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -735,7 +573,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -746,7 +584,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table42.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             string.Format("{0}", firstName),
                             string.Format("{0}", lastName),
                             string.Format("{0}", patronymic),
@@ -757,7 +595,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", birthDate),
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
-                table42.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             string.Format("{0}", newFirstName),
                             string.Format("{0}", newLastName),
                             string.Format("{0}", newPatronymic),
@@ -768,101 +606,292 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", newBirthDate),
                             string.Format("{0}", newGitHubAccount),
                             string.Format("{0}", newPhoneNumber)});
-#line 96
- testRunner.Given("Create  user", ((string)(null)), table42, "Given ");
+#line 77
+ testRunner.Given("Create Users", ((string)(null)), table14, "Given ");
 #line hidden
-#line 100
- testRunner.And("Autorized as admin \"user@example.com\" , \"stringst\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+ testRunner.And("Autorized as Admin \"user@example.com\" , \"stringst\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 101
- testRunner.And("Assing  User \"Teacher\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 82
+ testRunner.And("Assing user \"Teacher\" and removing the role assigned by default", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description"});
-                table43.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "QQQQ",
                             "Где Q и как его выводить на экран три раза"});
-#line 102
- testRunner.And("Create  course", ((string)(null)), table43, "And ");
+#line 83
+ testRunner.And("Create Course", ((string)(null)), table15, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "GroupStatusId",
                             "StartDate",
                             "EndDate",
                             "Timetable",
                             "PaymentPerMonth"});
-                table44.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
                             "7500"});
-#line 105
- testRunner.And("Create  Groupe", ((string)(null)), table44, "And ");
+#line 86
+ testRunner.And("Create groupe", ((string)(null)), table16, "And ");
 #line hidden
-#line 108
- testRunner.And("Add users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 89
+ testRunner.And("Add Users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description",
                             "Links",
                             "IsRequired"});
-                table45.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "Ищем Q на клаве",
                             "Первые 2 часа история, вторые 2 часа поиски",
-                            "",
+                            "@https://piter-education.ru:7070/swagger/index.html#/Comments/Comments_GetComment" +
+                                "",
                             "true"});
-                table45.AddRow(new string[] {
-                            "Ищем время",
-                            "Как искать время",
-                            "",
-                            "true"});
-                table45.AddRow(new string[] {
-                            "Ищем телегу",
-                            "Как искать телегу",
-                            "",
-                            "true"});
-                table45.AddRow(new string[] {
-                            "Как отвечать,но не ответить",
-                            "Сложная филосовская наука",
-                            "",
-                            "true"});
-#line 109
- testRunner.And("Create tasks", ((string)(null)), table45, "And ");
+#line 90
+ testRunner.And("Create Task", ((string)(null)), table17, "And ");
 #line hidden
-#line 115
- testRunner.And("Authorized by teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.And("Authorized by Teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "StartDate",
                             "EndDate"});
-                table46.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             string.Format("{0}", startDate1),
                             string.Format("{0}", endDate1)});
-                table46.AddRow(new string[] {
-                            string.Format("{0}", startDate2),
-                            string.Format("{0}", endDate2)});
-                table46.AddRow(new string[] {
-                            string.Format("{0}", startDate3),
-                            string.Format("{0}", endDate3)});
-                table46.AddRow(new string[] {
-                            string.Format("{0}", startDate4),
-                            string.Format("{0}", endDate4)});
+#line 94
+ testRunner.And("Create homework", ((string)(null)), table18, "And ");
+#line hidden
+#line 97
+ testRunner.And("Authorized by student", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Answer"});
+                table19.AddRow(new string[] {
+                            string.Format("{0}", answer)});
+#line 98
+ testRunner.And("I am a student adding my homework", ((string)(null)), table19, "And ");
+#line hidden
+#line 101
+ testRunner.And("Authorized by Teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 102
+ testRunner.When("I teacher and can approve student homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 103
+ testRunner.Then("Сheck selected homework should have been approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As a teacher, I can decline student homework")]
+        [NUnit.Framework.CategoryAttribute("StudentHomework")]
+        [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2022", "10.10.2022", "@https://json2csharp.com/", "Это понятно, но наверное не понятно, потому что кукуруза", null)]
+        public virtual void AsATeacherICanDeclineStudentHomework(
+                    string firstName, 
+                    string lastName, 
+                    string patronymic, 
+                    string email, 
+                    string username, 
+                    string password, 
+                    string city, 
+                    string birthDate, 
+                    string gitHubAccount, 
+                    string phoneNumber, 
+                    string newFirstName, 
+                    string newLastName, 
+                    string newPatronymic, 
+                    string newEmail, 
+                    string newUsername, 
+                    string newPassword, 
+                    string newCity, 
+                    string newBirthDate, 
+                    string newGitHubAccount, 
+                    string newPhoneNumber, 
+                    string startDate1, 
+                    string endDate1, 
+                    string answer, 
+                    string text, 
+                    string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "StudentHomework"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("FirstName", firstName);
+            argumentsOfScenario.Add("LastName", lastName);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Username", username);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("City", city);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("GitHubAccount", gitHubAccount);
+            argumentsOfScenario.Add("PhoneNumber", phoneNumber);
+            argumentsOfScenario.Add("NewFirstName", newFirstName);
+            argumentsOfScenario.Add("NewLastName", newLastName);
+            argumentsOfScenario.Add("NewPatronymic", newPatronymic);
+            argumentsOfScenario.Add("NewEmail", newEmail);
+            argumentsOfScenario.Add("NewUsername", newUsername);
+            argumentsOfScenario.Add("NewPassword", newPassword);
+            argumentsOfScenario.Add("NewCity", newCity);
+            argumentsOfScenario.Add("NewBirthDate", newBirthDate);
+            argumentsOfScenario.Add("NewGitHubAccount", newGitHubAccount);
+            argumentsOfScenario.Add("NewPhoneNumber", newPhoneNumber);
+            argumentsOfScenario.Add("StartDate1", startDate1);
+            argumentsOfScenario.Add("EndDate1", endDate1);
+            argumentsOfScenario.Add("Answer", answer);
+            argumentsOfScenario.Add("Text", text);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, I can decline student homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 109
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber"});
+                table20.AddRow(new string[] {
+                            string.Format("{0}", firstName),
+                            string.Format("{0}", lastName),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", email),
+                            string.Format("{0}", username),
+                            string.Format("{0}", password),
+                            string.Format("{0}", city),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", gitHubAccount),
+                            string.Format("{0}", phoneNumber)});
+                table20.AddRow(new string[] {
+                            string.Format("{0}", newFirstName),
+                            string.Format("{0}", newLastName),
+                            string.Format("{0}", newPatronymic),
+                            string.Format("{0}", newEmail),
+                            string.Format("{0}", newUsername),
+                            string.Format("{0}", newPassword),
+                            string.Format("{0}", newCity),
+                            string.Format("{0}", newBirthDate),
+                            string.Format("{0}", newGitHubAccount),
+                            string.Format("{0}", newPhoneNumber)});
+#line 110
+ testRunner.Given("Create Users", ((string)(null)), table20, "Given ");
+#line hidden
+#line 114
+ testRunner.And("Autorized as Admin \"user@example.com\" , \"stringst\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 115
+ testRunner.And("Assing user \"Teacher\" and removing the role assigned by default", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description"});
+                table21.AddRow(new string[] {
+                            "QQQQ",
+                            "Где Q и как его выводить на экран три раза"});
 #line 116
- testRunner.And("Create Homeworks", ((string)(null)), table46, "And ");
+ testRunner.And("Create Course", ((string)(null)), table21, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "GroupStatusId",
+                            "StartDate",
+                            "EndDate",
+                            "Timetable",
+                            "PaymentPerMonth"});
+                table22.AddRow(new string[] {
+                            "Группа 1",
+                            "1",
+                            "28.01.2022",
+                            "28.10.2022",
+                            "пн, ср, пт 18:00 - 20:00",
+                            "7500"});
+#line 119
+ testRunner.And("Create groupe", ((string)(null)), table22, "And ");
 #line hidden
 #line 122
- testRunner.When("Delete previously created homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Add Users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description",
+                            "Links",
+                            "IsRequired"});
+                table23.AddRow(new string[] {
+                            "Ищем Q на клаве",
+                            "Первые 2 часа история, вторые 2 часа поиски",
+                            "@https://piter-education.ru:7070/swagger/index.html#/Comments/Comments_GetComment" +
+                                "",
+                            "true"});
 #line 123
- testRunner.And("Get all homeworks by group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Create Task", ((string)(null)), table23, "And ");
 #line hidden
-#line 124
- testRunner.Then("Check homework should be deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 126
+ testRunner.And("Authorized by Teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                            "StartDate",
+                            "EndDate"});
+                table24.AddRow(new string[] {
+                            string.Format("{0}", startDate1),
+                            string.Format("{0}", endDate1)});
+#line 127
+ testRunner.And("Create homework", ((string)(null)), table24, "And ");
+#line hidden
+#line 130
+ testRunner.And("Authorized by student", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Answer"});
+                table25.AddRow(new string[] {
+                            string.Format("{0}", answer)});
+#line 131
+ testRunner.And("I am a student adding my homework", ((string)(null)), table25, "And ");
+#line hidden
+#line 134
+ testRunner.And("Authorized by Teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 135
+ testRunner.When("I teacher and can decline student homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 136
+ testRunner.Then("Сheck selected homework should have been declined", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
