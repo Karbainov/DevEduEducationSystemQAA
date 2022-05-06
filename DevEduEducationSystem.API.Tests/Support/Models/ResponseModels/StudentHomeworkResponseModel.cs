@@ -23,7 +23,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.ResponseModels
         public string CompletedDate { get; set; }
 
         [JsonPropertyName("user")]
-        public User User { get; set; }
+        public UserResponseModel User { get; set; }
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }

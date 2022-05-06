@@ -1,4 +1,5 @@
 ﻿using DevEduEducationSystem.API.Tests.Support.Models;
+using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
 using DevEduEducationSystem.API.Tests.Support.Models.RequestModels;
 using System;
 using System.Collections.Generic;
@@ -153,7 +154,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return JsonSerializer.Deserialize<List<PaymentResponseModel>>(s);
         }
 
-        public static TaskMethodistResponseModel CreateTaskByMethodist(string token, TaskMethodistRequestModel taskMethodist)
+        public static TaskResponseModel CreateTaskByMethodist(string token, TaskMethodistRequestModel taskMethodist)
         {
             string url = "https://piter-education.ru:7072/api/Tasks/methodist";
             string json = JsonSerializer.Serialize<TaskMethodistRequestModel>(taskMethodist);
@@ -172,7 +173,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
             _statusCodeCreatePayment = response;
-            return JsonSerializer.Deserialize<TaskMethodistResponseModel>(s);
+            return JsonSerializer.Deserialize<TaskResponseModel>(s);
         }
 
         public static HomeworkResponseModel CreateHomework(string token, int taskId, int groupeId,HomeworkRequestModel homework)

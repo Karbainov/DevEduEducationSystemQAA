@@ -272,7 +272,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Email = users[2].Email,
                 Photo = null
             };
-            TeacherResponseModel teacher = new TeacherResponseModel()
+            UserResponseModel teacher = new UserResponseModel()
             {
                 Id = idUsers[1],
                 FirstName = users[1].FirstName,
@@ -297,7 +297,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ReturnByIdGroupModel expected = new ReturnByIdGroupModel()
            {
                Students = new List<StudentModel>() { student },
-               Teachers = new List<TeacherResponseModel>() { teacher },
+               Teachers = new List<UserResponseModel>() { teacher },
                Tutors = new List<TutorModel>() { tutor },
                Id = idGroup,
                Name = a.Name,
@@ -523,7 +523,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void ThenCheckThatStudentHaveLeftTheGroup(Table table)
         {
             List<RegistrationRequestModel> srudentExpected = table.CreateSet<RegistrationRequestModel>().ToList();
-            List<TeacherResponseModel> teacher = new List<TeacherResponseModel>();
+            List<UserResponseModel> teacher = new List<UserResponseModel>();
             GroupRequestModel expected = (GroupRequestModel)FeatureContext.Current["Group Request"];
             ReturnByIdGroupModel groupFull = (ReturnByIdGroupModel)FeatureContext.Current["Group Full"];
             Assert.AreEqual(groupFull.Students.Count, 2);
@@ -643,7 +643,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             PaymentResponseModel actual = (PaymentResponseModel)ScenarioContext.Current["Payment Get By Id"];
             PaymentRequestModel paymentRequest = (PaymentRequestModel)ScenarioContext.Current["Payment Request"];
             PaymentResponseModel expected = Mapper.MapPaymentRequestModelToPaymentResponseModel(paymentRequest);
-            User student = new User()
+            UserResponseModel student = new UserResponseModel()
             {
                 Id = _idUser[1],
                 FirstName = "Максим",

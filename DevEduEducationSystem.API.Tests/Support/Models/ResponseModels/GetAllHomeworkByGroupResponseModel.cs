@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.ResponseModels
         public string EndDate { get; set; }
 
         [JsonPropertyName("task")]
-        public TaskMethodistResponseModel Task { get; set; }
+        public TaskResponseModel Task { get; set; }
 
         public override bool Equals(object? obj)
         {

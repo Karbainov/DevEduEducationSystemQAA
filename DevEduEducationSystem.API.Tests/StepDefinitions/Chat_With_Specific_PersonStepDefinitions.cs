@@ -76,7 +76,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void GivenCreateTask(Table table)
         {
             TaskMethodistRequestModel taskRequest = table.CreateSet<TaskMethodistRequestModel>().ToList().First();
-           TaskMethodistResponseModel taskResponse = AddEntitysClients.CreateTaskByMethodist(_tokenAdmin, taskRequest);
+            TaskResponseModel taskResponse = AddEntitysClients.CreateTaskByMethodist(_tokenAdmin, taskRequest);
             _idTask = taskResponse.Id;
             FeatureContext.Current["Task Request"] = taskRequest;
         }
@@ -267,7 +267,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                         Name = taskRequest.Name,
                     }
                 },
-                User = new User()
+                User = new UserResponseModel()
                 {
                     Email = users[1].Email,
                     FirstName = users[1].FirstName,
@@ -317,7 +317,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                         Name = taskRequest.Name,
                     }
                 },
-                User = new User()
+                User = new UserResponseModel()
                 {
                     Email = users[1].Email,
                     FirstName = users[1].FirstName,
@@ -368,7 +368,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                         Name = taskRequest.Name,
                     }
                 },
-                User = new User()
+                User = new UserResponseModel()
                 {
                     Email = users[1].Email,
                     FirstName = users[1].FirstName,
@@ -418,7 +418,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                         Name = taskRequest.Name,
                     }
                 },
-                User = new User()
+                User = new UserResponseModel()
                 {
                     Email = users[1].Email,
                     FirstName = users[1].FirstName,

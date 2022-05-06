@@ -14,7 +14,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.AllGroupsModels
         public List<StudentModel> Students { get; set; }
 
         [JsonPropertyName("teachers")]
-        public List<TeacherResponseModel> Teachers { get; set; }
+        public List<UserResponseModel> Teachers { get; set; }
 
         [JsonPropertyName("tutors")]
         public List<TutorModel> Tutors { get; set; }
