@@ -283,7 +283,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Get comment by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 39
- testRunner.Then("Check the left comment should have returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Check that the comment sent by the teacher under the student\'s homework should ha" +
+                        "ve been returned by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -525,7 +526,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Get comment by ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 77
- testRunner.Then("Check the left comment tutor should have returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Check that the comment sent by the tutor under the student\'s homework should be r" +
+                        "eturned by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -729,7 +731,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Get student homework by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 113
- testRunner.Then("Compare , submitted homework should return", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I am a teacher checking that the homework submitted by the student should be retu" +
+                        "rned by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1338,17 +1341,17 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Get Student homework by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 211
- testRunner.Then("Check if the student\'s homework submitted should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I am a student, check that my submitted homework is returned to me by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a student, I can leave comments on work")]
+        [NUnit.Framework.DescriptionAttribute("As a student, I can leave comments on homework")]
         [NUnit.Framework.CategoryAttribute("Chat")]
         [NUnit.Framework.TestCaseAttribute("Маркус", "Ус", "Николаевич", "Markus@mail.ru", "MarkusUs", "MarkusUs", "SaintPetersburg", "01.01.2001", "string", "89991112233", "Студент", "Иванов", "Студентович", "Stud@mail.ru", "Stud", "studentic", "SaintPetersburg", "01.01.2003", "string", "99114567890", "01.01.2022", "10.10.2022", "@https://json2csharp.com/", "Это понятно, но наверное не понятно, потому что кукуруза", null)]
-        public virtual void AsAStudentICanLeaveCommentsOnWork(
+        public virtual void AsAStudentICanLeaveCommentsOnHomework(
                     string firstName, 
                     string lastName, 
                     string patronymic, 
@@ -1407,7 +1410,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("EndDate1", endDate1);
             argumentsOfScenario.Add("Answer", answer);
             argumentsOfScenario.Add("Text", text);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a student, I can leave comments on work", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a student, I can leave comments on homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 217
  this.ScenarioInitialize(scenarioInfo);
 #line hidden

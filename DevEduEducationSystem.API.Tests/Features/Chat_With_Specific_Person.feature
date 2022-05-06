@@ -36,7 +36,7 @@ Scenario: As a teacher, I can leave comments about homework
 	| Text   |
 	| <Text> |
 	And  Get comment by id
-	Then Check the left comment should have returned
+	Then Check that the comment sent by the teacher under the student's homework should have been returned by id
 	Examples: 
 	| FirstName | LastName | Patronymic | Email          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | NewFirstName | NewLastName | NewPatronymic | NewEmail     | NewUsername | NewPassword | NewCity         | NewBirthDate | NewGitHubAccount | NewPhoneNumber | StartDate1 | EndDate1   | Answer                    | Text                                                     |
 	| Маркус    | Ус       | Николаевич | Markus@mail.ru | MarkusUs | MarkusUs | SaintPetersburg | 01.01.2001 | string        | 89991112233 | Студент      | Иванов      | Студентович   | Stud@mail.ru | Stud        | studentic   | SaintPetersburg | 01.01.2003   | string           | 99114567890    | 01.01.2022 | 10.10.2022 | @https://json2csharp.com/ | Это понятно, но наверное не понятно, потому что кукуруза |
@@ -74,7 +74,7 @@ Scenario: As a tutor, I can leave comments about homework
 	| Text   |
 	| <Text> |
 	And  Get comment by ID
-	Then Check the left comment tutor should have returned
+	Then Check that the comment sent by the tutor under the student's homework should be returned by id
 	Examples: 
 	| FirstName | LastName | Patronymic | Email          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | NewFirstName | NewLastName | NewPatronymic | NewEmail     | NewUsername | NewPassword | NewCity         | NewBirthDate | NewGitHubAccount | NewPhoneNumber | NewFirstName2 | NewLastName2 | NewPatronymic2 | NewEmail2      | NewUsername2 | NewPassword2 | NewCity2        | NewBirthDate2 | NewGitHubAccount2 | NewPhoneNumber2 |StartDate1 | EndDate1   | Answer                    | Text                                                     |
 	| Маркус    | Ус       | Николаевич | Markus@mail.ru | MarkusUs | MarkusUs | SaintPetersburg | 01.01.2001 | string        | 89991112233 | Студент      | Иванов      | Студентович   | Stud@mail.ru | Stud        | studentic   | SaintPetersburg | 01.01.2003   | string           | 99114567890    | Иван          | Макаров      | Кучерявый      | Ivan91@mail.ru | Vanka        | VankaVstanka | SaintPetersburg | 01.01.2003    | string            | 89112112345     |01.01.2022 | 10.10.2022 | @https://json2csharp.com/ | Это понятно, но наверное не понятно, потому что кукуруза |
@@ -110,7 +110,7 @@ Scenario: As a tutor, I can leave comments about homework
 	| <Answer> |
 	And Authorized by Teacher 
 	When Get student homework by id
-	Then Compare , submitted homework should return
+	Then I am a teacher checking that the homework submitted by the student should be returned by id
 	Examples: 
 	| FirstName | LastName | Patronymic | Email          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | NewFirstName | NewLastName | NewPatronymic | NewEmail     | NewUsername | NewPassword | NewCity         | NewBirthDate | NewGitHubAccount | NewPhoneNumber | StartDate1 | EndDate1   | Answer                    | Text                                                     |
 	| Маркус    | Ус       | Николаевич | Markus@mail.ru | MarkusUs | MarkusUs | SaintPetersburg | 01.01.2001 | string        | 89991112233 | Студент      | Иванов      | Студентович   | Stud@mail.ru | Stud        | studentic   | SaintPetersburg | 01.01.2003   | string           | 99114567890    | 01.01.2022 | 10.10.2022 | @https://json2csharp.com/ | Это понятно, но наверное не понятно, потому что кукуруза |
@@ -208,13 +208,13 @@ Scenario: As a tutor, I can leave comments about homework
 	| Answer   |
 	| <Answer> |
 	When Get Student homework by id
-	Then Check if the student's homework submitted should be returned
+	Then I am a student, check that my submitted homework is returned to me by id
 	Examples: 
 	| FirstName | LastName | Patronymic | Email          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | NewFirstName | NewLastName | NewPatronymic | NewEmail     | NewUsername | NewPassword | NewCity         | NewBirthDate | NewGitHubAccount | NewPhoneNumber | StartDate1 | EndDate1   | Answer                    | Text                                                     |
 	| Маркус    | Ус       | Николаевич | Markus@mail.ru | MarkusUs | MarkusUs | SaintPetersburg | 01.01.2001 | string        | 89991112233 | Студент      | Иванов      | Студентович   | Stud@mail.ru | Stud        | studentic   | SaintPetersburg | 01.01.2003   | string           | 99114567890    | 01.01.2022 | 10.10.2022 | @https://json2csharp.com/ | Это понятно, но наверное не понятно, потому что кукуруза |
 
 	@Chat
-	Scenario: As a student, I can leave comments on work
+	Scenario: As a student, I can leave comments on homework
 	Given Create Users
 	| FirstName      | LastName      | Patronymic      | Email      | Username      | Password      | City      | BirthDate      | GitHubAccount      | PhoneNumber      |
 	| <FirstName>    | <LastName >   | <Patronymic>    | <Email>    | <Username>    | <Password>    | <City>    | <BirthDate>    | <GitHubAccount>    | <PhoneNumber>    |
@@ -243,7 +243,7 @@ Scenario: As a tutor, I can leave comments about homework
 	| Text   |
 	| <Text> |
 	And  Get student comment by id
-	Then Check the student ыегвуте comment should have returned
+	Then I am a student, check that the created comment is returned by id correct
 	Examples: 
 	| FirstName | LastName | Patronymic | Email          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | NewFirstName | NewLastName | NewPatronymic | NewEmail     | NewUsername | NewPassword | NewCity         | NewBirthDate | NewGitHubAccount | NewPhoneNumber | StartDate1 | EndDate1   | Answer                    | Text                                                     |
 	| Маркус    | Ус       | Николаевич | Markus@mail.ru | MarkusUs | MarkusUs | SaintPetersburg | 01.01.2001 | string        | 89991112233 | Студент      | Иванов      | Студентович   | Stud@mail.ru | Stud        | studentic   | SaintPetersburg | 01.01.2003   | string           | 99114567890    | 01.01.2022 | 10.10.2022 | @https://json2csharp.com/ | Это понятно, но наверное не понятно, потому что кукуруза |
