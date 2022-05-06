@@ -12,7 +12,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
     [Binding]
     public class MethodistCheckBaseFunctionalStepDefinitions
     {
-        [Given(@"I create new user and get his token")]
+        [Given(@"I create new user")]
         public void GivenICreateNewUserAndGetHisToken(Table table)
         {
             ScenarioContext.Current["NewUser"] = table.CreateSet<RegistrationRequestModel>().ToList().First();
@@ -22,7 +22,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         }
 
         [Given(@"I login as an admin and give new user role (.*)")]
-        public void GivenILoginAsAnAdminAndGiveNewUserRoleMethodist(string methodist)
+        public void GivenILoginAsAnAdminAndGiveNewUserRoleMethodist(string role)
         {
             LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
             {
@@ -30,7 +30,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Password = "stringst"
             };
             string tokenAdmin = AuthClient.AuthUser(adminEnterRequestModel.Email, adminEnterRequestModel.Password);
-            AddRoleUsers.AddRole(methodist, (int)ScenarioContext.Current["idNewUser"], tokenAdmin);
+            AddRoleUsers.AddRole(role, (int)ScenarioContext.Current["idNewUser"], tokenAdmin);
             ScenarioContext.Current["TokenAdmin"] = tokenAdmin;
             RegistrationRequestModel userModelForTokinMethodist = (RegistrationRequestModel)ScenarioContext.Current["NewUser"];
             string tokenMethodist = AuthClient.AuthUser(userModelForTokinMethodist.Email, userModelForTokinMethodist.Password);
@@ -67,7 +67,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["ListCourses"] = listCourses;
         }
 
-        [When(@"I create topics")]
+        [When(@"I create topics under login Methodist")]
         public void WhenIAddTopics(Table table)
         {
             ScenarioContext.Current["NewTopics"] = table.CreateSet<TopicRequestModel>().ToList();

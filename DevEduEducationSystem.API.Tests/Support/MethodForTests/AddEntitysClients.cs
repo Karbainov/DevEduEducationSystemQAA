@@ -152,7 +152,50 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return JsonSerializer.Deserialize<List<PaymentResponseModel>>(s);
         }
 
+        public static LessonResponseModel CreateLesson (string token, LessonRequestModel lesson)
+        {
+            string url = "https://piter-education.ru:7072/api/Lessons";
 
+            string json = JsonSerializer.Serialize<LessonRequestModel>(lesson);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+
+            Assert.AreEqual(expected, actual);
+
+            return JsonSerializer.Deserialize<LessonResponseModel>(s);
+        }
+
+        public static void AddGroupLesson (string token, int groupId, int lessonId)
+        {
+            string url = $"https://piter-education.ru:7072/api/Groups/{groupId}/lesson/{lessonId}";
+
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+            };
+
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.NoContent;
+            HttpStatusCode actual = response.StatusCode;
+
+            Assert.AreEqual(expected, actual);
+        }      
     }
 }
