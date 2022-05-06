@@ -1,4 +1,4 @@
-﻿Feature: Chat_With_Specific_Person
+﻿Feature: Organization_of_the_delivery_and_verification_of_the_student_is_homework_with_the_ability_to_leave_comments
 
 1.) Как преподавтель/тьютор я могу оставлять комментарий про домашнюю работу
 2.) Как преподователь, я могу принимать домашнюю работу от студента

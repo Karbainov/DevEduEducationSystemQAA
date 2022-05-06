@@ -20,8 +20,9 @@ namespace DevEduEducationSystem.API.Tests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Chat_With_Specific_Person")]
-    public partial class Chat_With_Specific_PersonFeature
+    [NUnit.Framework.DescriptionAttribute("Organization_of_the_delivery_and_verification_of_the_student_is_homework_with_the" +
+        "_ability_to_leave_comments")]
+    public partial class Organization_Of_The_Delivery_And_Verification_Of_The_Student_Is_Homework_With_The_Ability_To_Leave_CommentsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -35,7 +36,8 @@ namespace DevEduEducationSystem.API.Tests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Chat_With_Specific_Person", @"1.) Как преподавтель/тьютор я могу оставлять комментарий про домашнюю работу
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Organization_of_the_delivery_and_verification_of_the_student_is_homework_with_the" +
+                    "_ability_to_leave_comments", @"1.) Как преподавтель/тьютор я могу оставлять комментарий про домашнюю работу
 2.) Как преподователь, я могу принимать домашнюю работу от студента
 3.)Как студент, я могу сдавать своб домашнюю работу
 4.)Как студент, я могу оставлять комментарии под домашней работай", ProgrammingLanguage.CSharp, ((string[])(null)));
