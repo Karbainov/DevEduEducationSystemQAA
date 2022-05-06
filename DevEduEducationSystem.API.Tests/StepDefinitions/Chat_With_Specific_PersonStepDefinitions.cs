@@ -130,7 +130,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["Return Comment by Id"] = GetClient.GetCommentById(idComment, _tokenTeacher);
         }
 
-        [Then(@"Check the left comment should have returned")]
+
+        [Then(@"Check that the comment sent by the teacher under the student's homework should have been returned by id")]
         public void ThenCheckTheLeftCommentShouldHaveReturned()
         {
             var users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
@@ -195,7 +196,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
            ScenarioContext.Current["Comment Response by id actusl"] = GetClient.GetCommentById(commentRes.Id, _tokenTutor);
         }
 
-        [Then(@"Check the left comment tutor should have returned")]
+
+        [Then(@"Check that the comment sent by the tutor under the student's homework should be returned by id")]
         public void ThenCheckTheLeftCommentTutorShouldHaveReturned()
         {
             var users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
@@ -237,7 +239,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
            ScenarioContext.Current["Get Stud Homew actual"] = GetClient.GetStudentHomeworkById(_tokenTeacher, _idStudentHomework);
         }
 
-        [Then(@"Compare , submitted homework should return")]
+
+        [Then(@"I am a teacher checking that the homework submitted by the student should be returned by id")]
         public void ThenCompareSubmittedHomeworkShouldReturn()
         {
             var users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
@@ -388,7 +391,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
           ScenarioContext.Current["Get stud hw by id"] = GetClient.GetStudentHomeworkById(_tokenStudent,_idStudentHomework);
         }
 
-        [Then(@"Check if the student's homework submitted should be returned")]
+        [Then(@"I am a student, check that my submitted homework is returned to me by id")]
         public void ThenCheckIfTheStudentsHomeworkSubmittedShouldBeReturned()
         {
             var users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
@@ -448,7 +451,8 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
            ScenarioContext.Current["actual CommRespoModel"] = GetClient.GetCommentById(commentResponse.Id, _tokenStudent);
         }
 
-        [Then(@"Check the student ˚Â„‚ÛÚÂ comment should have returned")]
+
+        [Then(@"I am a student, check that the created comment is returned by id correct")]
         public void ThenCheckTheStudent€Â„‚ÛÚÂCommentShouldHaveReturned()
         {
             CommentResponeseModel commentResponse = (CommentResponeseModel)ScenarioContext.Current["Comment Response"];
