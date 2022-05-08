@@ -1,3 +1,4 @@
+using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
 using DevEduEducationSystem.API.Tests.Support.Models.RequestModels;
 using System;
 using System.Net;
@@ -125,7 +126,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                     Name = groupRequest.Name,
                     IsDeleted = false
                 },
-                Task = new TaskMethodistResponseModel()
+                Task = new TaskResponseModel()
                 {
                     Id = _taskMethodistId,
                     Description = taskRequest.Description,
@@ -174,7 +175,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [Given(@"Create tasks")]
         public void GivenCreateTasks(Table table)
         {
-            List<TaskMethodistResponseModel> taskResponse = new List<TaskMethodistResponseModel>();
+            List<TaskResponseModel> taskResponse = new List<TaskResponseModel>();
             List<TaskMethodistRequestModel> tasksRequest = table.CreateSet<TaskMethodistRequestModel>().ToList();
             for (int i = 0; i < tasksRequest.Count; i++)
             {
@@ -223,8 +224,5 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 Assert.AreNotEqual(expected[0].EndDate, actual[i].EndDate);
             }
         }
-
-
-
     }
 }

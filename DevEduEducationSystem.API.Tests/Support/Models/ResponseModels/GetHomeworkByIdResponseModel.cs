@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.ResponseModels
     {
         
         [JsonPropertyName("task")]
-        public TaskMethodistResponseModel Task { get; set; }
+        public TaskResponseModel Task { get; set; }
 
         [JsonPropertyName("group")]
         public GroupHomework Group { get; set; }
