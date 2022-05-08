@@ -435,6 +435,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
         // new Scenario (role student - add comment)
 
+
         [When(@"Add a comment as a student to your homework")]
         public void WhenAddACommentAsAStudentToYourHomework(Table table)
         {
@@ -484,6 +485,85 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 }
             };
             Assert.AreEqual(expected, actual);
+        }
+
+        // new Scenario (Get all students homework on task by task)
+
+        [Given(@"Add all Users to group")]
+        public void GivenAddAllUsersToGroup()
+        {
+            AddEntitysClients.AddUserInGroup(_idGroup, _idUser[0], "Teacher", _tokenAdmin);
+            for (int i = 1; i < _idUser.Count; i++)
+            {
+                AddEntitysClients.AddUserInGroup(_idGroup, _idUser[i], "Student", _tokenAdmin);
+            }
+        }
+
+        [Given(@"We are students and we add our homework")]
+        public void GivenWeAreStudentsAndWeAddOurHomework(Table table)
+        {
+            List<StudentHomeworkResponseModel> studentHomeworksResponse = new List<StudentHomeworkResponseModel>();
+            List<StudentHomeworkRequestModel> studHomeworks = table.CreateSet<StudentHomeworkRequestModel>().ToList();
+            List<string> tokens = new List<string>();
+            List<RegistrationRequestModel> users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
+            for (int i = 1; i < users.Count; i++) 
+            {
+                     tokens.Add(AuthClient.AuthUser(users[i].Email, users[i].Password));
+            }
+            for (int i = 0; i < tokens.Count; i++)
+            {
+                studentHomeworksResponse.Add(AddEntitysClients.CreateStudentHomework(studHomeworks[i], tokens[i], _idHomework));
+            }
+
+            ScenarioContext.Current["StudentHomeworkResponse"] = studentHomeworksResponse;
+            ScenarioContext.Current["StudentHomeworkRequest"] = studHomeworks;
+        }
+
+        [When(@"Get all students homework on task by task")]
+        public void WhenGetAllStudentsHomeworkOnTaskByTask()
+        {
+          ScenarioContext.Current["List Shw by Taskid"] = GetClient.GetAllStudentHomeworkOnTaskByTask(_idTask, _tokenTeacher);
+        }
+
+        [Then(@"I am a teacher and I check that all students submitted homeworks for a specific task has been returned to me")]
+        public void ThenIAmATeacherAndICheckThatAllStudentsSubmittedHomeworksForASpecificTaskHasBeenReturnedToMe()
+        {
+            List<UserResponseModel> u = new List<UserResponseModel>();
+            var shwRequest = (List<StudentHomeworkRequestModel>)ScenarioContext.Current["StudentHomeworkRequest"];
+            var users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
+            var actual = (List<StudentHomeworkByTaskResponseModel>)ScenarioContext.Current["List Shw by Taskid"];
+            List<StudentHomeworkResponseModel> shw = (List<StudentHomeworkResponseModel>)ScenarioContext.Current["StudentHomeworkResponse"];
+            List< StudentHomeworkByTaskResponseModel> expected = new List<StudentHomeworkByTaskResponseModel>();
+            for (int i = 1;i<users.Count;i++)
+            {
+                UserResponseModel user = new UserResponseModel()
+                {
+                    Email = users[i].Email,
+                    FirstName = users[i].FirstName,
+                    LastName = users[i].LastName,
+                    Photo = null,
+                    Id = _idUser[i]
+                };
+                u.Add(user);
+            }
+            
+            for (int i = 0; i < shw.Count; i++) 
+            {
+                var a = new StudentHomeworkByTaskResponseModel()
+                {
+                    Id = shw[i].Id,
+                    Status = "ToCheck",
+                    CompletedDate = null,
+                    IsDeleted = false,
+                    Answer = shwRequest[i].Answer,
+                    User = u[i]
+                };
+                expected.Add(a);
+            }
+            for(int i = 0; i < actual.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
 
 
