@@ -73,7 +73,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             ScenarioContext.Current["UsersRequest"] = table.CreateSet<RegistrationRequestModel>().ToList();
             AuthClient register = new AuthClient();
-            ScenarioContext.Current["UsersResponse"] = register.Registration((List<RegistrationRequestModel>) ScenarioContext.Current["UsersRequest"]);
+            ScenarioContext.Current["UsersResponse"] = AuthClient.Registration((List<RegistrationRequestModel>) ScenarioContext.Current["UsersRequest"]);
         }
 
         [Given(@"I login as an admin and add students in group")]

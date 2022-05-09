@@ -29,7 +29,7 @@ Scenario: User in role Teacher can create Lesson on the topic
 	| Student 2 | Student 2 | Student 2  | student_2@mail.ru | Student 2 | Qwerty123 | SaintPetersburg | 01.01.1992 | string        | 89213456789 |
 	| Student 3 | Student 3 | Student 3  | student_3@mail.ru | Student 3 | Qwerty123 | SaintPetersburg | 01.12.2001 | string        | 89210081122 |	
 	And I login as an admin and add students in group
-	When I login as an Lecturer and create Lesson
+	When I login as an Lecturer and create Lesson with topics
     | Date       | AdditionalMaterials | linkToRecord               | 
     | 28.06.2022 | string              |  https://json2csharp.com/  | 
     And I login as an admin and add to group lesson
