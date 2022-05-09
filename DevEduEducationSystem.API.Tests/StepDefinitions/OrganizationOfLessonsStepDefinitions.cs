@@ -161,7 +161,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             }
         }
 
-
         [Then(@"Under login Lecturer I get lesson by id <Teacher> and check that lessons is in return model and have correct field")]
         public void ThenIGetLessonByIdLecturerAndCheckThatLessonsIsInReturnModelAndHaveCorrectField()
         {
@@ -194,6 +193,49 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             List<TopicResponseModel> actualTopicsList = lessonGroupResponseModel.Topics;
             Assert.Contains(expectedTopicsList, actualTopicsList);
             Assert.AreEqual(lessonGroupResponseModel.Teacher, (int)ScenarioContext.Current["idNewUser"]);
+        }
+
+        [When(@"I create new list topics for update lesson")]
+        public void WhenICreateNewListTopicsForUpdateLesson(Table table)
+        {
+            ScenarioContext.Current["DataForNewListTopic"] = table.CreateSet<TopicRequestModel>().ToList().First();
+            List<TopicRequestModel> newTopics = (List<TopicRequestModel>)ScenarioContext.Current["DataForNewListTopic"];
+            List<TopicResponseModel> newTopicsRsponse = (List<TopicResponseModel>)ScenarioContext.Current["TopicsModels"];
+            List<int> listId = new List<int>();
+
+            foreach (TopicRequestModel topicModel in newTopics)
+            {
+                TopicResponseModel model = newTopicsRsponse.FirstOrDefault(C => C.Name == topicModel.Name);
+                listId.Add(model.Id);
+            }
+            ScenarioContext.Current["ListID"] = listId;
+        }
+
+
+        [When(@"Under login Lecturer I update Lesson by id")]
+        public void WhenUnderLoginLecturerIUpdateLessonById(Table table)
+        {
+            RegistrationRequestModel newUser = (RegistrationRequestModel)ScenarioContext.Current["NewUser"];
+            ScenarioContext.Current["TokenTeacher"] = AuthClient.AuthUser(newUser.Email, newUser.Password);
+            ScenarioContext.Current["NewDataForLesson"] = table.CreateSet<AttendenceInLesson>().ToList().First();
+            LessonRequestModel lessonRequestModel = (LessonRequestModel)ScenarioContext.Current["NewDataForLesson"];
+            lessonRequestModel.TopicIds = (List<int>)ScenarioContext.Current["ListID"];
+            UpdateClient.UpdateLesson(lessonRequestModel, (int)ScenarioContext.Current["LessonResponseId"], (string)ScenarioContext.Current["TokenTeacher"]);            
+        }
+
+        [Then(@"I get full-info about Lesson and check that returned model of Lesson contained updating field")]
+        public void ThenIGetFull_InfoAboutLessonAndCheckThatNewReturnedModelOfLessonContainedUpdatingField()
+        {
+            List<LessonTeacherResponseModel> lessonResponseList = GetClient.GetAllLessonsTeachers((int)ScenarioContext.Current["idNewUser"], (string)ScenarioContext.Current["TokenTeacher"]);
+            LessonTeacherResponseModel lessonResponseModel = lessonResponseList.First();
+            Assert.AreEqual(lessonResponseList.Count, 1);
+            LessonRequestModel actualLessonRequestModel = Mapper.MapLessonTeacherResponseModelToLessonRequestModel(lessonResponseModel);
+            LessonRequestModel expectedLessonRequestModel = (LessonRequestModel)ScenarioContext.Current["NewDataForLesson"];
+            Assert.AreEqual(expectedLessonRequestModel, actualLessonRequestModel);
+            List<TopicResponseModel> expectedTopicsList = (List<TopicResponseModel>)ScenarioContext.Current["TopicsModels"];
+            List<TopicResponseModel> actualTopicsList = lessonResponseModel.Topics;
+            Assert.Contains(expectedTopicsList, actualTopicsList);
+            Assert.AreEqual(lessonResponseModel.Teacher, (int)ScenarioContext.Current["idNewUser"]);
         }
     }
 }

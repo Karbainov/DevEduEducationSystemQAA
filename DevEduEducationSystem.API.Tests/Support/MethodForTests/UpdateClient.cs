@@ -169,6 +169,26 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode expected = HttpStatusCode.OK;
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-        }        
+        }
+
+        public static LessonResponseModel UpdateLesson(LessonRequestModel lesson, int id, string token)
+        {
+            string url = $"https://piter-education.ru:7072/api/Lessons/{id}";
+            string json = JsonSerializer.Serialize(lesson);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Put,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.Created;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<LessonResponseModel>(s);
+        }
     }
 }
