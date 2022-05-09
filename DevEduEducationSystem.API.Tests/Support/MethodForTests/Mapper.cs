@@ -85,7 +85,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 Date = model.Date,
                 Sum = model.Sum,
                 IsPaid = model.IsPaid,
-                User = new User()
+                User = new UserResponseModel()
             };
         }
 

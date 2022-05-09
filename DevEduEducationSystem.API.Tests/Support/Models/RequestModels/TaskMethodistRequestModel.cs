@@ -5,13 +5,10 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForAdd
+namespace DevEduEducationSystem.API.Tests.Support.Models.RequestModels
 {
-    public class TaskResponseModel
+    public class TaskMethodistRequestModel
     {
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
-
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
@@ -24,18 +21,17 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.CourseResponseModelForA
         [JsonPropertyName("isRequired")]
         public bool IsRequired { get; set; }
 
-        [JsonPropertyName("isDeleted")]
-        public bool IsDeleted { get; set; }
+        [JsonPropertyName("courseIds")]
+        public List<int> CourseIds { get; set; }
 
         public override bool Equals(object? obj)
         {
-            return obj is TaskResponseModel model &&
-                   Id == model.Id &&
+            return obj is TaskMethodistRequestModel model &&
                    Name == model.Name &&
                    Description == model.Description &&
                    Links == model.Links &&
                    IsRequired == model.IsRequired &&
-                   IsDeleted == model.IsDeleted;
+                   EqualityComparer<List<int>>.Default.Equals(CourseIds, model.CourseIds);
         }
     }
 }

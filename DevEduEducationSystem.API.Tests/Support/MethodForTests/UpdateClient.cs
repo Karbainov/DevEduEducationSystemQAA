@@ -132,6 +132,26 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             return JsonSerializer.Deserialize<PaymentResponseModel>(s);
         }
 
+        public static HomeworkResponseModel UpdateHomework(string token, HomeworkRequestModel homeworkUpdate, int homeworkId)
+        {
+            string url = $"https://piter-education.ru:7072/api/Homeworks/{homeworkId}";
+            string json = JsonSerializer.Serialize(homeworkUpdate);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Put,
+                RequestUri = new Uri(url),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<HomeworkResponseModel>(s);
+        }
+
         public static void MarkAttendance (string AttendanceType,int idStudent, int idLesson, string token)
         {
             string url = $"https://piter-education.ru:7072/api/Lessons/{idLesson}/student/{idStudent}/attendance/{AttendanceType}";

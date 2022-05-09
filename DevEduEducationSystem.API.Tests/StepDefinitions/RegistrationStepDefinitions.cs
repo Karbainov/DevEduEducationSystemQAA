@@ -16,8 +16,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void IRegister(Table table)
         {
             List<RegistrationRequestModel> user = table.CreateSet<RegistrationRequestModel>().ToList();
-            AuthClient registr = new AuthClient();
-            List<RegistrationResponseModel> userResponses = registr.Registration(user);
+            List<RegistrationResponseModel> userResponses = AuthClient.Registration(user);
             ScenarioContext.Current["RegisterRequestModels"] = user;
             for (int i = 0; i < userResponses.Count; i++)
             {

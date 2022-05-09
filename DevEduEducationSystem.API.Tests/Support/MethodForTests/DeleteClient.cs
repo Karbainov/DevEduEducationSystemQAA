@@ -113,11 +113,43 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             Assert.AreEqual(expected, actual);
         }
 
-
-
         public static void DeletePayment(string token, int idPayment)
         {
             string url = $"https://piter-education.ru:7072/api/Payments/{idPayment}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.NoContent;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+        }
+
+        public static void DeleteHomework(string token, int idHomework)
+        {
+            string url = $"https://piter-education.ru:7072/api/Homeworks/{idHomework}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.NoContent;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+        }
+
+        public static void DeleteRoleFromUser(string token, string role, int idUser)
+        {
+            string url = $"https://piter-education.ru:7072/api/Users/{idUser}/role/{role}";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             HttpRequestMessage request = new HttpRequestMessage()
