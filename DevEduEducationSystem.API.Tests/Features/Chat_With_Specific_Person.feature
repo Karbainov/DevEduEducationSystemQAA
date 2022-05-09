@@ -249,6 +249,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| FirstName | LastName | Patronymic | Email          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | NewFirstName | NewLastName | NewPatronymic | NewEmail     | NewUsername | NewPassword | NewCity         | NewBirthDate | NewGitHubAccount | NewPhoneNumber | StartDate1 | EndDate1   | Answer                    | Text                                                     |
 	| Маркус    | Ус       | Николаевич | Markus@mail.ru | MarkusUs | MarkusUs | SaintPetersburg | 01.01.2001 | string        | 89991112233 | Студент      | Иванов      | Студентович   | Stud@mail.ru | Stud        | studentic   | SaintPetersburg | 01.01.2003   | string           | 99114567890    | 01.01.2022 | 10.10.2022 | @https://json2csharp.com/ | Это понятно, но наверное не понятно, потому что кукуруза |
 
+	#DV-38,40,43
+
 	@StudentHomework
 	Scenario: As a teacher or as a tutor, I can view students' homework for a specific task
 	Given Create Users
