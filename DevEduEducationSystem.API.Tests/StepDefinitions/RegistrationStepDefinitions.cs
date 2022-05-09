@@ -121,10 +121,10 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void ThenDeleteUserNotFoundInListAllUsers()
         {
             int idUser = (int) ScenarioContext.Current["IdUser"];
-            List<GetAllUsersResponseModel> allUsers = GetClient.GetAllUsers((string)ScenarioContext.Current["AdminToken"]);
-            foreach (GetAllUsersResponseModel model in allUsers)
+            List<AllUsersResponseModel> allUsers = GetClient.GetAllUsers((string)ScenarioContext.Current["AdminToken"]);
+            foreach (AllUsersResponseModel model in allUsers)
             {
-                GetAllUsersResponseModel actualModel = allUsers.FirstOrDefault(C => C.Id == model.Id);
+                AllUsersResponseModel actualModel = allUsers.FirstOrDefault(C => C.Id == model.Id);
                 Assert.IsNull(actualModel);
             }
         }

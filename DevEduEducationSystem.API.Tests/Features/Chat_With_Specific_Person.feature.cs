@@ -1549,7 +1549,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Get student comment by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 246
- testRunner.Then("Check the student ыегвуте comment should have returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I am a student, check that the created comment is returned by id correct", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -36,6 +36,15 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             };
         }
 
+        public static CourseResponseModel MapCourseRequestModelToCourseResponseModel(CourseRequestModel model)
+        {
+            return new CourseResponseModel()
+            {
+                Name = model.Name,
+                Description = model.Description
+            };
+        }
+
         public static List<TopicRequestModel> MapCourseRequestAndTopicRequestModelToCourseResponseModel(CourseResponseFullModel modelCourseRequest)
         {
             List<TopicRequestModel> listTopics = new List<TopicRequestModel>();
@@ -46,7 +55,9 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 listTopics.Add(new TopicRequestModel() { Duration = a.Duration, Name = a.Name });
             }
             return listTopics;
-        }
+        }      
+
+
 
         public static GroupRequestModel MapGroupResponseModelToGroupRequestModel(GroupResponseModel model)
         {
@@ -86,6 +97,26 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 Sum = model.Sum,
                 IsPaid = model.IsPaid,
                 UserId = model.User.Id
+            };
+        }
+
+        public static LessonRequestModel MapLessonTeacherResponseModelToLessonRequestModel(LessonTeacherResponseModel lessonTeacherResponseModel)
+        {
+            return new LessonRequestModel()
+            {
+                Date = lessonTeacherResponseModel.Date,
+                AdditionalMaterials = lessonTeacherResponseModel.AdditionalMaterials,
+                LinkToRecord = lessonTeacherResponseModel.LinkToRecord
+            };
+        }
+
+        public static LessonRequestModel MapLessonGroupeResponseModelToLessonRequestModel(LessonGroupeResponseModel lessonGroupResponseModel)
+        {
+            return new LessonRequestModel()
+            {
+                Date = lessonGroupResponseModel.Date,
+                AdditionalMaterials = lessonGroupResponseModel.AdditionalMaterials,
+                LinkToRecord = lessonGroupResponseModel.LinkToRecord
             };
         }
     }

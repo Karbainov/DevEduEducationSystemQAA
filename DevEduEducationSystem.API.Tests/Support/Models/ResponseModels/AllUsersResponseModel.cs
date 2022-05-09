@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DevEduEducationSystem.API.Tests.Support.Models
 {
-    public class GetAllUsersResponseModel
+    public class AllUsersResponseModel
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

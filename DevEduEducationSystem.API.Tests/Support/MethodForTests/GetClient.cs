@@ -160,7 +160,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             };  
             return client.Send(request);
         }
-        public static List<GetAllUsersResponseModel> GetAllUsers (string token)
+        public static List<AllUsersResponseModel> GetAllUsers (string token)
         {           
             string url = $"https://piter-education.ru:7072/api/Users";
             HttpClient client = new HttpClient();
@@ -180,7 +180,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             HttpStatusCode actual = response.StatusCode;
 
             Assert.AreEqual(expected, actual);
-            List< GetAllUsersResponseModel> allUsers = JsonSerializer.Deserialize<List<GetAllUsersResponseModel>>(s);
+            List< AllUsersResponseModel> allUsers = JsonSerializer.Deserialize<List<AllUsersResponseModel>>(s);
             return allUsers;
         }
 
@@ -364,5 +364,69 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             Assert.AreEqual(expected, actual);
             return JsonSerializer.Deserialize<StudentHomeworkResponseModel>(s);
         }
+
+        public static List<LessonTeacherResponseModel> GetAllLessonsTeachers (int teacherId, string token)
+        {
+            string url = $"https://piter-education.ru:7072/by-teacherId/{teacherId}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<List<LessonTeacherResponseModel>>(s);
+        }
+
+        public static List<LessonGroupeResponseModel> GetAllLessonsGroup(int groupId, string token)
+        {
+            string url = $"https://piter-education.ru:7072/by-groupId/{groupId}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<List<LessonGroupeResponseModel>>(s);
+        }
+
+        public static LessonResponseFullModelWithStudents GetLessonFullModel (string token, int idLesson)
+        {
+            string url = $"https://piter-education.ru:7072/api/Lessons/{idLesson}/full-info";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+
+            HttpResponseMessage response = client.Send(request);
+
+            string s = response.Content.ReadAsStringAsync().Result;
+
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+
+            Assert.AreEqual(expected, actual);
+
+            return JsonSerializer.Deserialize<LessonResponseFullModelWithStudents>(s);
+        }
+
     }
 }
