@@ -16,7 +16,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.ResponseModels
         public string Answer { get; set; }
 
         [JsonPropertyName("completedDate")]
-        public object CompletedDate { get; set; }
+        public string CompletedDate { get; set; }
 
         [JsonPropertyName("status")]
         public string Status { get; set; }
@@ -26,5 +26,16 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.ResponseModels
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is StudentHomeworkGetAllAnswersOfStudentResponseModel model &&
+                   Id == model.Id &&
+                   Answer == model.Answer &&
+                   CompletedDate == model.CompletedDate &&
+                   Status == model.Status &&
+                   Homework.Equals(model.Homework) &&
+                   IsDeleted == model.IsDeleted;
+        }
     }
 }
