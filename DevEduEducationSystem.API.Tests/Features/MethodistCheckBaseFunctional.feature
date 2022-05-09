@@ -206,3 +206,28 @@ Scenario: User in role methodist to delete the topic of the course
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
+#@Methodist
+#Scenario: User in role student can see himself courses
+#	Given I create new user
+#	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
+#	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
+#	And I login as an admin and give new user role <Role>
+#	When I login as an Methodist and create new course
+#	| Name     | Description           |
+#	| Course 1 | Samiy luchshiy kurs   |
+#	And I create topics under login Methodist 	
+#	| Name    | Duration |
+#	| Thema 1 | 1        |
+#	| Thema 2 | 2        |
+#	| Thema 3 | 4        |
+#	| Thema 4 | 1        |
+#	And I delete "Thema 1" 
+#	And I delete "Thema 3" 
+#	Then I get course by id and check that he doesn't containes deleted topics
+#	| Name            |
+#	| Thema 1,Thema 3 |
+#	Examples: 
+#	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
+#	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
+
+
