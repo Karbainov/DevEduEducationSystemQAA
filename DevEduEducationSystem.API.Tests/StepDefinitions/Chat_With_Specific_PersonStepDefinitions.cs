@@ -695,7 +695,15 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["Tutor actual"] = GetClient.GetAllAnswersOfStudent(tokenTutor, _idUser[1]);
         }
 
-        [Then(@"I am a teacher, make sure all student homework is returned")]
+        [When(@"I am a student, I get all my homeworks")]
+        public void WhenIAmAStudentIGetAllMyHomeworks()
+        {
+            List<RegistrationRequestModel> users = (List<RegistrationRequestModel>)FeatureContext.Current["Users"];
+            string tokenStudent = AuthClient.AuthUser(users[1].Email, users[1].Password);
+            ScenarioContext.Current["Student actual"] = GetClient.GetAllAnswersOfStudent(tokenStudent, _idUser[1]);
+        }
+
+        [Then(@"I am a teacher, check that all student homework is returned")]
         public void ThenIAmATeacherMakeSureAllStudentHomeworkIsReturned()
         {
             var actual = (List<StudentHomeworkGetAllAnswersOfStudentResponseModel>)ScenarioContext.Current["Teacher actual"];
@@ -741,7 +749,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             }
         }
 
-        [Then(@"I am a tutor, make sure all student homework is returned")]
+        [Then(@"I am a tutor, check that all student homework is returned")]
         public void ThenIAmATutorMakeSureAllStudentHomeworkIsReturned()
         {
             var actual = (List<StudentHomeworkGetAllAnswersOfStudentResponseModel>)ScenarioContext.Current["Tutor actual"];
@@ -788,5 +796,50 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         }
 
 
+        [Then(@"I am a student, check that all student homework is returned")]
+        public void ThenIAmAStudentCheckThatAllStudentHomeworkIsReturned()
+        {
+            var actual = (List<StudentHomeworkGetAllAnswersOfStudentResponseModel>)ScenarioContext.Current["Student actual"];
+            var expected = new List<StudentHomeworkGetAllAnswersOfStudentResponseModel>();
+            var shw = (List<StudentHomeworkRequestModel>)ScenarioContext.Current["SHW Request"];
+            var shwResponse = (List<StudentHomeworkResponseModel>)ScenarioContext.Current["SHW Response"];
+            var homeworkResponse = (List<HomeworkResponseModel>)ScenarioContext.Current["hw Response"];
+            var homeworkrequest = (List<HomeworkRequestModel>)ScenarioContext.Current["hw Request"];
+            var tasksResponse = (List<TaskResponseModel>)ScenarioContext.Current["TasksResponse"];
+            var tasksRequest = (List<TaskMethodistRequestModel>)ScenarioContext.Current["TasksRequest"];
+
+            for (int i = 0; i < shw.Count; i++)
+            {
+                var a = new StudentHomeworkGetAllAnswersOfStudentResponseModel()
+                {
+                    Id = shwResponse[i].Id,
+                    Answer = shw[i].Answer,
+                    CompletedDate = null,
+                    Status = "ToCheck",
+                    IsDeleted = false,
+                    Homework = new Homework()
+                    {
+                        Id = homeworkResponse[i].Id,
+                        EndDate = homeworkrequest[i].EndDate,
+                        StartDate = homeworkrequest[i].StartDate,
+                        Task = new TaskResponseModel()
+                        {
+                            Id = tasksResponse[i].Id,
+                            Description = tasksRequest[i].Description,
+                            IsDeleted = false,
+                            IsRequired = tasksRequest[i].IsRequired,
+                            Links = tasksRequest[i].Links,
+                            Name = tasksRequest[i].Name,
+                        },
+                    },
+                };
+                expected.Add(a);
+            }
+
+            for (int i = 0; i < actual.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
     }
 }

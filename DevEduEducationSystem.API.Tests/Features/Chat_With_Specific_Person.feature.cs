@@ -1759,16 +1759,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a teacher or as a tutor, I can see who passed a specific student homework with" +
-            " statuses")]
+        [NUnit.Framework.DescriptionAttribute("As a teacher or as a tutor or as student, I can see who passed a specific student" +
+            " homework with statuses")]
         [NUnit.Framework.CategoryAttribute("StudentHomework")]
-        public virtual void AsATeacherOrAsATutorICanSeeWhoPassedASpecificStudentHomeworkWithStatuses()
+        public virtual void AsATeacherOrAsATutorOrAsStudentICanSeeWhoPassedASpecificStudentHomeworkWithStatuses()
         {
             string[] tagsOfScenario = new string[] {
                     "StudentHomework"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher or as a tutor, I can see who passed a specific student homework with" +
-                    " statuses", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher or as a tutor or as student, I can see who passed a specific student" +
+                    " homework with statuses", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 292
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -1933,8 +1933,17 @@ this.ScenarioInitialize(scenarioInfo);
 #line 325
  testRunner.When("I am a tutor, I get all student answers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 326
+ testRunner.When("I am a student, I get all my homeworks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 327
- testRunner.Then("I am a tutor, make sure all student homework is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I am a teacher, check that all student homework is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 328
+ testRunner.Then("I am a tutor, check that all student homework is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 329
+ testRunner.Then("I am a student, check that all student homework is returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

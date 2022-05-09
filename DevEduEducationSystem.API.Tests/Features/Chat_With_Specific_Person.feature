@@ -289,7 +289,7 @@ Scenario: As a tutor, I can leave comments about homework
 	| 01.01.2022 | 10.10.2022 | @https://json2csharp1.com/ | @https://json2csharp2.com/ | @https://json2csharp3.com/ |
 
 	@StudentHomework
-	Scenario: As a teacher or as a tutor, I can see who passed a specific student homework with statuses
+	Scenario: As a teacher or as a tutor or as student, I can see who passed a specific student homework with statuses
 	Given Create Users
 	| FirstName    | LastName | Patronymic  | Email          | Username | Password   | City            | BirthDate  | GitHubAccount | PhoneNumber |
 	| Преподавтель | Ус       | Николаевич  | Markus@mail.ru | MarkusUs | MarkusUs   | SaintPetersburg | 01.01.2001 | string        | 89991112233 |
@@ -323,5 +323,7 @@ Scenario: As a tutor, I can leave comments about homework
 	| @https://json2csharp3.com/ |
 	When I am a teacher, I get all student answers
 	When I am a tutor, I get all student answers 
-	Then I am a teacher, make sure all student homework is returned
-	Then I am a tutor, make sure all student homework is returned
+	When I am a student, I get all my homeworks
+	Then I am a teacher, check that all student homework is returned
+	Then I am a tutor, check that all student homework is returned
+	Then I am a student, check that all student homework is returned
