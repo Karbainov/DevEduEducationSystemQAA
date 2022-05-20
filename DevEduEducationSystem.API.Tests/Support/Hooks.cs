@@ -68,10 +68,6 @@ namespace DevEduEducationSystem.API.Tests.Support
                 command.CommandText = "delete from dbo.[Comment]";
                 command.ExecuteNonQuery();
 
-                
-
-
-
                 connection.Close();
             }
         }
