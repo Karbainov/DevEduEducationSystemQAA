@@ -144,7 +144,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 7
- testRunner.Given("I create new user", ((string)(null)), table113, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table125, "Given ");
 #line hidden
 #line 10
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -254,7 +254,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 21
- testRunner.Given("I create new user", ((string)(null)), table115, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table127, "Given ");
 #line hidden
 #line 24
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -355,7 +355,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 38
- testRunner.Given("I create new user", ((string)(null)), table118, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table130, "Given ");
 #line hidden
 #line 41
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -451,7 +451,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 52
- testRunner.Given("I create new user", ((string)(null)), table120, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table132, "Given ");
 #line hidden
 #line 55
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -537,7 +537,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 65
- testRunner.Given("I create new user", ((string)(null)), table121, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table133, "Given ");
 #line hidden
 #line 68
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -639,7 +639,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 83
- testRunner.Given("I create new user", ((string)(null)), table123, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table135, "Given ");
 #line hidden
 #line 86
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -738,7 +738,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 100
- testRunner.Given("I create new user", ((string)(null)), table125, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table137, "Given ");
 #line hidden
 #line 103
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -768,7 +768,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Thema 4",
                             "4"});
 #line 107
- testRunner.And("I create topics under login Methodist", ((string)(null)), table127, "And ");
+ testRunner.And("I create topics under login Methodist", ((string)(null)), table139, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table140 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -865,7 +865,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 126
- testRunner.Given("I create new user", ((string)(null)), table129, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table141, "Given ");
 #line hidden
 #line 129
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -895,7 +895,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Thema 4",
                             "1"});
 #line 133
- testRunner.And("I create topics under login Methodist", ((string)(null)), table131, "And ");
+ testRunner.And("I create topics under login Methodist", ((string)(null)), table143, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table144 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -1010,7 +1010,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 159
- testRunner.Given("I create new user", ((string)(null)), table134, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table146, "Given ");
 #line hidden
 #line 162
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1043,7 +1043,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Thema 4",
                             "1"});
 #line 167
- testRunner.And("I create topics under login Methodist", ((string)(null)), table136, "And ");
+ testRunner.And("I create topics under login Methodist", ((string)(null)), table148, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table149 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -1142,7 +1142,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", gitHubAccount),
                             string.Format("{0}", phoneNumber)});
 #line 187
- testRunner.Given("I create new user", ((string)(null)), table138, "Given ");
+ testRunner.Given("I create new user", ((string)(null)), table150, "Given ");
 #line hidden
 #line 190
  testRunner.And(string.Format("I login as an admin and give new user role {0}", role), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1172,7 +1172,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Thema 4",
                             "1"});
 #line 194
- testRunner.And("I create topics under login Methodist", ((string)(null)), table140, "And ");
+ testRunner.And("I create topics under login Methodist", ((string)(null)), table152, "And ");
 #line hidden
 #line 200
  testRunner.And("I delete \"Thema 1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
