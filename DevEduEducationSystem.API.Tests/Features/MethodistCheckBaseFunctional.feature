@@ -2,9 +2,9 @@
 
 Check base functional for Methodist
 
-@Methodist
+@Metodist
 Scenario: User in role methodist create new course
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
@@ -16,9 +16,9 @@ Scenario: User in role methodist create new course
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber | Name                | Description         | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 89991234567 | Samiy luchshiy kurs | Samiy luchshiy kurs | Methodist |
 
-@Methodist
+@Metodist
 Scenario: User in role methodist update course
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
@@ -33,9 +33,9 @@ Scenario: User in role methodist update course
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Name                | Description         | NewName                     | NewDescription              | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Samiy luchshiy kurs | Samiy luchshiy kurs | Samiy luchshiy kurs v tvoei | Samiy luchshiy kurs v tvoei | Methodist |
 
-@Methodist
+@Metodist
 Scenario: User in role methodist can get course by ID
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
@@ -47,9 +47,9 @@ Scenario: User in role methodist can get course by ID
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Name                                | Description                         | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Samiy luchshiy kurs v tvoei zchizni | Samiy luchshiy kurs v tvoei zchizni | Methodist |
 
-@Methodist @Negative
+@Metodist @Negative
 Scenario: User in role methodist can get course by ID.Negative
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role> 
@@ -60,9 +60,9 @@ Scenario: User in role methodist can get course by ID.Negative
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT    | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | ProstoCourse  | l;sjdhsg    | Methodist | -1 |
 	| Petr      | Seredin  | Petrovich  | Seredin@mail.ru    | SeredinPP | qwerty123 | Dnipro | 02.02.1993 | string        | 899912347896 | ProstoCourse2 | l;sjdhsg    | Methodist | 0  |
 
-@Methodist
+@Metodist
 Scenario: User in role methodist can delete course by ID
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
@@ -78,9 +78,9 @@ Scenario: User in role methodist can delete course by ID
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Name                                | Description                         | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Samiy luchshiy kurs v tvoei zchizni | Samiy luchshiy kurs v tvoei zchizni | Methodist |
 	
-@Methodist
+@Metodist
 Scenario: User in role methodist can see all courses
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
@@ -95,16 +95,16 @@ Scenario: User in role methodist can see all courses
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
-@Methodist
+@Metodist
 Scenario: User in role methodist add new topics to the course in a certain sequence
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
 	When I login as an Methodist and create new course
 	| Name     | Description           |
 	| Course 1 | Samiy luchshiy kurs   |
-	And I create topics under login Methodist	
+	And I create topics 	
 	| Name    | Duration |
 	| Thema 1 | 1        |
 	| Thema 2 | 2        |
@@ -121,16 +121,16 @@ Scenario: User in role methodist add new topics to the course in a certain seque
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
-@Methodist
+@Metodist
 Scenario: User in role methodist change the sequence of topics
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
 	When I login as an Methodist and create new course
 	| Name     | Description           |
 	| Course 1 | Samiy luchshiy kurs   |
-	And I create topics under login Methodist	
+	And I create topics 	
 	| Name    | Duration |
 	| Thema 1 | 1        |
 	| Thema 2 | 2        |
@@ -154,9 +154,9 @@ Scenario: User in role methodist change the sequence of topics
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
-@Methodist
+@Metodist
 Scenario: User in role methodist I want to see all courses and added topics in the courses
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
@@ -164,7 +164,7 @@ Scenario: User in role methodist I want to see all courses and added topics in t
 	| Name     | Description           |
 	| Course 1 | Samiy luchshiy kurs   |
 	| Course 2 | Samiy luchshiy kurs 2 |
-	And I create topics under login Methodist	
+	And I create topics 	
 	| Name    | Duration |
 	| Thema 1 | 1        |
 	| Thema 2 | 2        |
@@ -182,16 +182,16 @@ Scenario: User in role methodist I want to see all courses and added topics in t
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
 
-@Methodist
+@Metodist
 Scenario: User in role methodist to delete the topic of the course 
-	Given I create new user
+	Given I create new user and get his token
 	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
 	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
 	And I login as an admin and give new user role <Role>
 	When I login as an Methodist and create new course
 	| Name     | Description           |
 	| Course 1 | Samiy luchshiy kurs   |
-	And I create topics under login Methodist 	
+	And I create topics 	
 	| Name    | Duration |
 	| Thema 1 | 1        |
 	| Thema 2 | 2        |
@@ -205,29 +205,4 @@ Scenario: User in role methodist to delete the topic of the course
 	Examples: 
 	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
 	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
-
-#@Methodist
-#Scenario: User in role student can see himself courses
-#	Given I create new user
-#	| FirstName   | LastName   | Patronymic   | Email   | Username   | Password   | City   | BirthDate   | GitHubAccount   | PhoneNumber   |
-#	| <FirstName> | <LastName> | <Patronymic> | <Email> | <Username> | <Password> | <City> | <BirthDate> | <GitHubAccount> | <PhoneNumber> |
-#	And I login as an admin and give new user role <Role>
-#	When I login as an Methodist and create new course
-#	| Name     | Description           |
-#	| Course 1 | Samiy luchshiy kurs   |
-#	And I create topics under login Methodist 	
-#	| Name    | Duration |
-#	| Thema 1 | 1        |
-#	| Thema 2 | 2        |
-#	| Thema 3 | 4        |
-#	| Thema 4 | 1        |
-#	And I delete "Thema 1" 
-#	And I delete "Thema 3" 
-#	Then I get course by id and check that he doesn't containes deleted topics
-#	| Name            |
-#	| Thema 1,Thema 3 |
-#	Examples: 
-#	| FirstName | LastName | Patronymic | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Role      |
-#	| Ivan      | Troyanov | Petrovich  | TroyanovIP@mail.ru | IvanPT   | qwerty123 | Dnipro | 02.02.1993 | string        | 899912349954 | Methodist |
-
 
