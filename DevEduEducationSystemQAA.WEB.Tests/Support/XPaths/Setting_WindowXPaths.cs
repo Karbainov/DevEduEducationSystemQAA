@@ -8,6 +8,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
 {
     public class Setting_WindowXPaths
     {
+        public static By ButtonMainMinuSetting = By.XPath(@"//*[@class='main-nav-panel']/child::a[@href='/settings']");
+        public static By ButtonNameUserItIsSetting = By.XPath(@"//span[@class='avatar-name transition-styles']");
         public static By Surname = By.XPath(@"//input[@name='lastName']");
         public static By Name = By.XPath(@"//input[@name='firstName']");
         public static By Patronymic = By.XPath(@"//input[@name='patronymic']");
@@ -17,6 +19,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By textUploadNewPhoto = By.XPath(@"//a[text()='Загрузить новое фото']");
         public static By ButtonSave = By.XPath(@"//*[text()='Сохранить']");
         public static By ButtonCancel = By.XPath(@"//*[text()='Отмена']");
-        public static By caev = By.XPath(@"");
+        public static By ButtonPencil = By.XPath(@"//div[@class='form-element password']//child::a[@href='/settings'] ");
     }
 }

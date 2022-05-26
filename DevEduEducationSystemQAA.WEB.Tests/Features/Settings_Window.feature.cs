@@ -75,12 +75,20 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As a user, I want to change my details")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
-        public virtual void AsAUserIWantToChangeMyDetails()
+        [NUnit.Framework.CategoryAttribute("SettingWindow")]
+        [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
+        public virtual void AsAUserIWantToChangeMyDetails(string length, string width, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "tag1"};
+            string[] @__tags = new string[] {
+                    "SettingWindow"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("length", length);
+            argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user, I want to change my details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -102,10 +110,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table7.AddRow(new string[] {
+                            "userTestStudent@example.com",
+                            "userTestStudent"});
 #line 7
- testRunner.Given("I user, I enter the account settings window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table7, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+#line 10
+ testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
+ testRunner.And("I user, I enter the account settings window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -115,7 +135,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Phone",
                             "LinkByGitHub"});
-                table2.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "James",
                             "Harry",
                             "Potter",
@@ -125,8 +145,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "89211234567",
                             "https://github.com/"});
-#line 8
- testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table2, "And ");
+#line 12
+ testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table8, "And ");
+#line hidden
+#line 15
+ testRunner.When("Button click save in window setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 16
+ testRunner.Then("Refresh the page changes should be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

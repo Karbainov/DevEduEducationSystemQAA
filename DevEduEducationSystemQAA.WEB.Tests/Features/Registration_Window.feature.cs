@@ -76,11 +76,19 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As a user, I want to register")]
         [NUnit.Framework.CategoryAttribute("RegistrationWindow")]
-        public virtual void AsAUserIWantToRegister()
+        [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
+        public virtual void AsAUserIWantToRegister(string length, string width, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "RegistrationWindow"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("length", length);
+            argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user, I want to register", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -103,9 +111,9 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-    testRunner.Given("I enter the registration window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given(string.Format("I enter the registration window with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -114,7 +122,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone"});
-                table1.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Джеймс",
                             "Гарри",
                             "Поттер",
@@ -124,7 +132,160 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "+79211234567"});
 #line 8
- testRunner.And("I am a user fill in all required fields", ((string)(null)), table1, "And ");
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table4, "And ");
+#line hidden
+#line 11
+ testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 16
+ testRunner.Then("A notification should appear with the text You have successfully registered!", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As a user when registering, I want to click on the \"Cancel\" button")]
+        [NUnit.Framework.CategoryAttribute("RegistrationWindow")]
+        public virtual void AsAUserWhenRegisteringIWantToClickOnTheCancelButton()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "RegistrationWindow"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user when registering, I want to click on the \"Cancel\" button", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 22
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 23
+ testRunner.Given("I enter the registration window with the window size <length> and <width>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Surname",
+                            "Name",
+                            "Patronymic",
+                            "BirthDate",
+                            "Password",
+                            "RepeatPassword",
+                            "Email",
+                            "Phone"});
+                table5.AddRow(new string[] {
+                            "Джеймс",
+                            "Гарри",
+                            "Поттер",
+                            "31.07.1998",
+                            "HarryPotter",
+                            "HarryPotter",
+                            "Harry@mail.ru",
+                            "+79211234567"});
+#line 24
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table5, "And ");
+#line hidden
+#line 27
+ testRunner.And("Click checkbox on the privacy policy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 28
+ testRunner.When("Click on \"Cancel\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 29
+ testRunner.Then("The registration window should return to the Login window.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As a user, I want to register.Negative")]
+        [NUnit.Framework.CategoryAttribute("Negative")]
+        [NUnit.Framework.TestCaseAttribute("Джеймс", "Гарри", "Поттер", "30.01.1800", "HarryPotter", "HarryPotter", "Harry@mail.ru", "+79211234567", "1920", "1080", null)]
+        [NUnit.Framework.TestCaseAttribute("Джеймс", "Гарри", "Поттер", "31.07.1998", "HarryPotter", "HarryPotter", "Harry@mail.ru", "Чукча кушать хочет", "1920", "1080", null)]
+        [NUnit.Framework.TestCaseAttribute("Джеймс", "Гарри", "Поттер", "31.07.1998", "HarryPotter", "HarryPotter", "Я email", "+79211234567", "1920", "1080", null)]
+        public virtual void AsAUserIWantToRegister_Negative(string surname, string name, string patronymic, string birthDate, string password, string repeatPassword, string email, string phone, string length, string width, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "Negative"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Surname", surname);
+            argumentsOfScenario.Add("Name", name);
+            argumentsOfScenario.Add("Patronymic", patronymic);
+            argumentsOfScenario.Add("BirthDate", birthDate);
+            argumentsOfScenario.Add("Password", password);
+            argumentsOfScenario.Add("RepeatPassword", repeatPassword);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Phone", phone);
+            argumentsOfScenario.Add("length", length);
+            argumentsOfScenario.Add("width", width);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user, I want to register.Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 33
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 34
+ testRunner.Given(string.Format("I enter the registration window with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Surname",
+                            "Name",
+                            "Patronymic",
+                            "BirthDate",
+                            "Password",
+                            "RepeatPassword",
+                            "Email",
+                            "Phone"});
+                table6.AddRow(new string[] {
+                            string.Format("{0}", surname),
+                            string.Format("{0}", name),
+                            string.Format("{0}", patronymic),
+                            string.Format("{0}", birthDate),
+                            string.Format("{0}", password),
+                            string.Format("{0}", repeatPassword),
+                            string.Format("{0}", email),
+                            string.Format("{0}", phone)});
+#line 35
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table6, "And ");
+#line hidden
+#line 38
+ testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 39
+ testRunner.Then("#получаю сообщение типа , что вы ввели дату не корректно", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
