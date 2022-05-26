@@ -10,8 +10,8 @@ Scenario: As a user, I want to change my details
 	And I click the button Setting
 	And I user, I enter the account settings window
 	And I enter data in the fields that I want to change
-	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email         | Phone       | LinkByGitHub        |
-	| James   | Harry | Potter     | 31.08.1998 | HarryPotter | HarryPotter    | Harry@mail.ru | 89211234567 | https://github.com/ |
+	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email         | Phone       | LinkByGitHub        | PaymentsCount |
+	| James   | Harry | Potter     | 31.08.1998 | HarryPotter | HarryPotter    | Harry@mail.ru | 89211234567 | https://github.com/ | 3             |
 	When Button click save in window setting
 	Then Refresh the page changes should be saved
 	Examples: 

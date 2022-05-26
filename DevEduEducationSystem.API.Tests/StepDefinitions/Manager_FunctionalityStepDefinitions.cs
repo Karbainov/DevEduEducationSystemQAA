@@ -180,6 +180,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.AreEqual(expected.EndDate, actual.EndDate);
             Assert.AreEqual(expected.Timetable, actual.Timetable);
             Assert.AreEqual(expected.PaymentPerMonth, actual.PaymentPerMonth);
+            Assert.AreEqual(expected.PaymentsCount, actual.PaymentsCount);
         }
 
         // new Scenario 
@@ -653,7 +654,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             };
             expected.User = student;
             expected.Id = paymentResponse.Id;
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual); // не возвращает Email y User
         }
 
         // Payment negative

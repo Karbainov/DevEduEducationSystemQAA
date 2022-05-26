@@ -114,8 +114,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table7.AddRow(new string[] {
-                            "userTestStudent@example.com",
-                            "userTestStudent"});
+                            "stepa@example.com",
+                            "stepastepa"});
 #line 7
  testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table7, "Given ");
 #line hidden
@@ -134,7 +134,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone",
-                            "LinkByGitHub"});
+                            "LinkByGitHub",
+                            "PaymentsCount"});
                 table8.AddRow(new string[] {
                             "James",
                             "Harry",
@@ -144,7 +145,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "HarryPotter",
                             "Harry@mail.ru",
                             "89211234567",
-                            "https://github.com/"});
+                            "https://github.com/",
+                            "3"});
 #line 12
  testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table8, "And ");
 #line hidden

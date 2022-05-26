@@ -1,4 +1,6 @@
 
+using OpenQA.Selenium.Support.UI;
+
 using System;
 using TechTalk.SpecFlow;
 
@@ -24,8 +26,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             inputPassword.SendKeys(emailAndPassword.Password);
             var buttonEnter = _driver.FindElement(Enter_WindowXPaths.ButtonEnter);
             buttonEnter.Click();
-            Thread.Sleep(2000);
-            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
+            Thread.Sleep(1500);
+            //_driver.Navigate().GoToUrl(UrlStorage.BasePage);
         }
 
         [Given(@"I click the button Setting")]
@@ -38,8 +40,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Given(@"I user, I enter the account settings window")]
         public void GivenIUserIEnterTheAccountSettingsWindow()
         {
-            _driver.Navigate().GoToUrl(UrlStorage.SettingWindow);
-            Thread.Sleep(1000);
+            //_driver.Navigate().GoToUrl(UrlStorage.SettingWindow);
+            //Thread.Sleep(1000);
         }
 
 
@@ -76,7 +78,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var buttonSave = _driver.FindElement(Setting_WindowXPaths.ButtonSave);
             buttonSave.Click();
             _driver.Navigate().Refresh();
-            Thread.Sleep(1500);
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
 
         [Then(@"Refresh the page changes should be saved")]

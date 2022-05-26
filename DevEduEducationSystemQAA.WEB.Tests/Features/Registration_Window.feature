@@ -13,7 +13,8 @@ Scenario: As a user, I want to register
 	#Given Click checkbox on the privacy policy 
 	#When Click on the privacy policy link - оставлено до четверга - возможно вынесу в другой сценарий
 	#When Click on register button
-	Then A notification should appear with the text You have successfully registered! 
+	Then A notification should appear with the text You have successfully registered!
+	#And auth
 	Examples: 
 	| length | width |
 	| 1920   | 1080  |

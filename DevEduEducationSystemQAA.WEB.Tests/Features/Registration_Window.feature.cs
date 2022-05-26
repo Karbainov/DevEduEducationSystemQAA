@@ -153,7 +153,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "RegistrationWindow"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user when registering, I want to click on the \"Cancel\" button", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 22
+#line 23
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -173,7 +173,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 23
+#line 24
  testRunner.Given("I enter the registration window with the window size <length> and <width>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -194,16 +194,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "HarryPotter",
                             "Harry@mail.ru",
                             "+79211234567"});
-#line 24
+#line 25
  testRunner.And("I am a user fill in all required fields", ((string)(null)), table5, "And ");
 #line hidden
-#line 27
+#line 28
  testRunner.And("Click checkbox on the privacy policy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 28
+#line 29
  testRunner.When("Click on \"Cancel\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 29
+#line 30
  testRunner.Then("The registration window should return to the Login window.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -237,7 +237,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user, I want to register.Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 33
+#line 34
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -257,7 +257,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 34
+#line 35
  testRunner.Given(string.Format("I enter the registration window with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -278,13 +278,13 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", repeatPassword),
                             string.Format("{0}", email),
                             string.Format("{0}", phone)});
-#line 35
+#line 36
  testRunner.And("I am a user fill in all required fields", ((string)(null)), table6, "And ");
 #line hidden
-#line 38
+#line 39
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 39
+#line 40
  testRunner.Then("#получаю сообщение типа , что вы ввели дату не корректно", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
