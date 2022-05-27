@@ -36,7 +36,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             var token = (string)ScenarioContext.Current["TokenUser"];
             var idUser=(int)ScenarioContext.Current["IdUser"];
             ScenarioContext.Current["ActualUserModel"] = GetClient.GetUserById(token, idUser);
-
         }
        
 
@@ -124,8 +123,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             List<AllUsersResponseModel> allUsers = GetClient.GetAllUsers((string)ScenarioContext.Current["AdminToken"]);
             foreach (AllUsersResponseModel model in allUsers)
             {
-                AllUsersResponseModel actualModel = allUsers.FirstOrDefault(C => C.Id == model.Id);
-                Assert.IsNull(actualModel);
+                Assert.AreNotEqual(idUser, model.Id);                
             }
         }
     }

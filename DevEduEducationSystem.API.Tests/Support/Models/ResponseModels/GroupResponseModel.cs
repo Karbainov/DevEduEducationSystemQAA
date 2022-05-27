@@ -36,7 +36,8 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         [JsonPropertyName("paymentPerMonth")]
         public decimal PaymentPerMonth { get; set; }
 
-
+        [JsonPropertyName("paymentsCount")]
+        public int PaymentsCount { get; set; }
 
 
         public override bool Equals(object? obj)
@@ -49,16 +50,9 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
                    StartDate == model.StartDate &&
                    EndDate == model.EndDate &&
                    Timetable == model.Timetable &&
+                   PaymentsCount == model.PaymentsCount &&
                    PaymentPerMonth == model.PaymentPerMonth;
         }
     }
-
-    //public enum GroupStatus
-    //{
-    //    qqq = 0,
-    //    Forming = 1,
-    //    ReadyToStudy,
-    //    InProgress,
-    //    Completed
-    //}
+    
 }

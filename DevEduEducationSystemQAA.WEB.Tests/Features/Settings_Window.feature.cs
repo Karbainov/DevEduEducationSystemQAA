@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("I user, I enter the account settings window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -115,7 +115,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Phone",
                             "LinkByGitHub"});
-                table2.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "James",
                             "Harry",
                             "Potter",
@@ -126,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89211234567",
                             "https://github.com/"});
 #line 8
- testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table2, "And ");
+ testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table4, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

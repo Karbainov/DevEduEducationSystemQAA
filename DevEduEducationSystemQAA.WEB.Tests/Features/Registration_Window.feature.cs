@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
     testRunner.Given("I enter the registration window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone"});
-                table1.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "Джеймс",
                             "Гарри",
                             "Поттер",
@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "+79211234567"});
 #line 8
- testRunner.And("I am a user fill in all required fields", ((string)(null)), table1, "And ");
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table3, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

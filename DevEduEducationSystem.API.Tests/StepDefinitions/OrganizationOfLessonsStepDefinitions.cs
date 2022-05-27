@@ -1,6 +1,4 @@
 using DevEduEducationSystem.API.Tests.Support.Models.RequestModels;
-using System;
-using TechTalk.SpecFlow;
 
 namespace DevEduEducationSystem.API.Tests.StepDefinitions
 {
@@ -10,7 +8,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         //[Given(@"I create new user")]
 
         //[Given(@"I login as an admin and give new user role (.*)")]
-       
+
         [Given(@"I create course under login admin")]
         public void GivenICreateCourse(Table table)
         {
@@ -65,7 +63,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         [Given(@"I to appoint new group ""([^""]*)"" under login admin")]
         public void GivenIToAppointNewGroupUnderLoginAdmin(string Teacher)
         {
-            AddRoleUsers.AddRole(Teacher, (int)ScenarioContext.Current["idNewUser"], (string)ScenarioContext.Current["TokenAdmin"]);
+            AddEntitysClients.AddUserInGroup((int)ScenarioContext.Current["idGroup"],(int)ScenarioContext.Current["idNewUser"], Teacher, (string)ScenarioContext.Current["TokenAdmin"]);
         }
 
         [Given(@"I Create students for group")]
@@ -73,13 +71,13 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         {
             ScenarioContext.Current["UsersRequest"] = table.CreateSet<RegistrationRequestModel>().ToList();
             AuthClient register = new AuthClient();
-            ScenarioContext.Current["UsersResponse"] = AuthClient.Registration((List<RegistrationRequestModel>) ScenarioContext.Current["UsersRequest"]);
+            ScenarioContext.Current["UsersResponse"] = AuthClient.Registration((List<RegistrationRequestModel>)ScenarioContext.Current["UsersRequest"]);
         }
 
         [Given(@"I login as an admin and add students in group")]
         public void GivenILoginAsAnAdminAndAddStudentsInGroup()
         {
-            List<RegistrationResponseModel> listCreateUsers = (List <RegistrationResponseModel>) ScenarioContext.Current["UsersResponse"];
+            List<RegistrationResponseModel> listCreateUsers = (List<RegistrationResponseModel>)ScenarioContext.Current["UsersResponse"];
             List<string> roles = new List<string>();
 
             foreach (RegistrationResponseModel student in listCreateUsers)
@@ -98,24 +96,19 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             RegistrationRequestModel newUser = (RegistrationRequestModel)ScenarioContext.Current["NewUser"];
             ScenarioContext.Current["TokenTeacher"] = AuthClient.AuthUser(newUser.Email, newUser.Password);
             ScenarioContext.Current["NewLesson"] = table.CreateSet<LessonRequestModel>().ToList().First();
-            LessonRequestModel lessonRequestModel = (LessonRequestModel)ScenarioContext.Current["NewLesson"];           
-            lessonRequestModel.TeacherId = (int)ScenarioContext.Current["idNewUser"];            
+            LessonRequestModel lessonRequestModel = (LessonRequestModel)ScenarioContext.Current["NewLesson"];
+            lessonRequestModel.GroupId = (int)ScenarioContext.Current["idGroup"];
+            lessonRequestModel.IsPublished = true;
             List<TopicResponseModel> newTopics = (List<TopicResponseModel>)ScenarioContext.Current["TopicsModels"];
-            List<int> topicId = new List<int>();      
+            List<int> topicId = new List<int>();
             foreach (TopicResponseModel topicModel in newTopics)
             {
-                topicId.Add(topicModel.Id);                              
+                topicId.Add(topicModel.Id);
             }
             lessonRequestModel.TopicIds = topicId;
             LessonResponseModel lessonResponse = AddEntitysClients.CreateLesson((string)ScenarioContext.Current["TokenTeacher"], lessonRequestModel);
             ScenarioContext.Current["LessonResponseId"] = lessonResponse.Id;
-        }
-
-        [When(@"I login as an admin and add to group lesson")]
-        public void WhenILoginAsAnAdminAndAddToGroupLesson()
-        {
-            AddEntitysClients.AddGroupLesson((string)ScenarioContext.Current["TokenAdmin"], (int)ScenarioContext.Current["idGroup"], (int)ScenarioContext.Current["LessonResponseId"]);
-        }
+        }        
 
         [When(@"Under login Lecturer I can mark attendance of students in Lesson")]
         public void WhenUnderLoginLecturerICanMarkAttendanceOfStudentsInLesson(Table table)
@@ -127,10 +120,9 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
             foreach (AttendenceInLesson model in listAttendance)
             {
-               
                 foreach (RegistrationResponseModel student in studentsResponseModelList)
                 {
-                    RegistrationResponseModel studentModel = studentsResponseModelList.FirstOrDefault(C=>C.Email == model.Email);
+                    RegistrationResponseModel studentModel = studentsResponseModelList.FirstOrDefault(C => C.Email == model.Email);
 
                     UpdateClient.MarkAttendance(model.AttendenceType, studentModel.Id, (int)ScenarioContext.Current["LessonResponseId"], (string)ScenarioContext.Current["TokenTeacher"]);
                     StudentRequestModelForCheckAttendance newModel = new StudentRequestModelForCheckAttendance();
@@ -138,7 +130,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                     newModel.Email = studentModel.Email;
                     newModel.AttendanceType = model.AttendenceType;
                     newModelForCheck.Add(newModel);
-                }                
+                }
             }
             ScenarioContext.Current["DataForAttendance"] = newModelForCheck;
         }
@@ -147,9 +139,9 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
         public void ThenIGetFull_InfoAboutLessonAndCheckThatAttendanceTypeOfStudentMarkForTheRelevantStudent()
         {
             LessonResponseFullModelWithStudents lessonResponseFullModelWithStudents = GetClient.GetLessonFullModel((string)ScenarioContext.Current["TokenTeacher"], (int)ScenarioContext.Current["LessonResponseId"]);
-            List <LessonResponseFullModelWithStudents > studentsList = new List<LessonResponseFullModelWithStudents>();
+            List<LessonResponseFullModelWithStudents> studentsList = new List<LessonResponseFullModelWithStudents>();
             List<StudentResponseModelForLesson> actualStudentResponseList = lessonResponseFullModelWithStudents.Students;
-            List <StudentRequestModelForCheckAttendance> newModelForCheckList = (List <StudentRequestModelForCheckAttendance>)ScenarioContext.Current["DataForAttendance"];
+            List<StudentRequestModelForCheckAttendance> newModelForCheckList = (List<StudentRequestModelForCheckAttendance>)ScenarioContext.Current["DataForAttendance"];
             foreach (StudentResponseModelForLesson actualModel in actualStudentResponseList)
             {
                 foreach (StudentRequestModelForCheckAttendance expectedModel in newModelForCheckList)
@@ -171,7 +163,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             LessonRequestModel expectedLessonRequestModel = (LessonRequestModel)ScenarioContext.Current["NewLesson"];
             Assert.AreEqual(expectedLessonRequestModel, actualLessonRequestModel);
             CourseRequestModel courseModel = (CourseRequestModel)ScenarioContext.Current["NewCourse"];
-            CourseResponseModel expectedCourseModel  = Mapper.MapCourseRequestModelToCourseResponseModel(courseModel);
+            CourseResponseModel expectedCourseModel = Mapper.MapCourseRequestModelToCourseResponseModel(courseModel);
             Assert.AreEqual(lessonTeacherResponseModel.Course, expectedCourseModel);
             List<TopicResponseModel> expectedTopicsList = (List<TopicResponseModel>)ScenarioContext.Current["TopicsModels"];
             List<TopicResponseModel> actualTopicsList = lessonTeacherResponseModel.Topics;
@@ -181,7 +173,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
         [Then(@"Under login Lecturer I get lesson by id <Group> and check that lessons is in return model and have correct field")]
         public void ThenIGetLessonByIdGroupAndCheckThatLessonsIsInReturnModelAndHaveCorrectField()
-        { 
+        {
             List<LessonGroupeResponseModel> lessonGroupResponseList = GetClient.GetAllLessonsGroup((int)ScenarioContext.Current["idGroup"], (string)ScenarioContext.Current["TokenTeacher"]);
             LessonGroupeResponseModel lessonGroupResponseModel = lessonGroupResponseList.First();
             Assert.AreEqual(lessonGroupResponseList.Count, 1);
@@ -220,10 +212,10 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             ScenarioContext.Current["NewDataForLesson"] = table.CreateSet<AttendenceInLesson>().ToList().First();
             LessonRequestModel lessonRequestModel = (LessonRequestModel)ScenarioContext.Current["NewDataForLesson"];
             lessonRequestModel.TopicIds = (List<int>)ScenarioContext.Current["ListID"];
-            UpdateClient.UpdateLesson(lessonRequestModel, (int)ScenarioContext.Current["LessonResponseId"], (string)ScenarioContext.Current["TokenTeacher"]);            
+            UpdateClient.UpdateLesson(lessonRequestModel, (int)ScenarioContext.Current["LessonResponseId"], (string)ScenarioContext.Current["TokenTeacher"]);
         }
-
-        [Then(@"I get full-info about Lesson and check that returned model of Lesson contained updating field")]
+       
+        [Then(@"I get full-info about Lesson and check that new returned model of Lesson contained updating field")]
         public void ThenIGetFull_InfoAboutLessonAndCheckThatNewReturnedModelOfLessonContainedUpdatingField()
         {
             List<LessonTeacherResponseModel> lessonResponseList = GetClient.GetAllLessonsTeachers((int)ScenarioContext.Current["idNewUser"], (string)ScenarioContext.Current["TokenTeacher"]);
@@ -237,5 +229,6 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             Assert.Contains(expectedTopicsList, actualTopicsList);
             Assert.AreEqual(lessonResponseModel.Teacher, (int)ScenarioContext.Current["idNewUser"]);
         }
+
     }
 }

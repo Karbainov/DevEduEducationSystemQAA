@@ -17,6 +17,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By InputRepeatPassword = By.XPath(@"//label[@for='repeat-password']/following-sibling::input");
         public static By InputEmail = By.XPath(@"//input[@name='email']");
         public static By InputPhone = By.XPath(@"//input[@name='phoneNumber']");
-        public static By ChecBoxPrivacyPolicy = By.XPath(@"//label[@class='custom-checkbox']");
+        public static By ChecBoxPrivacyPolicy = By.XPath(@"//label[@class='custom-checkbox']");       
     }
 }

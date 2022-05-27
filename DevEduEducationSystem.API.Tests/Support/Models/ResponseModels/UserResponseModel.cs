@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace DevEduEducationSystem.API.Tests.Support.Models
 {
     public class UserResponseModel
-    {
+    { 
+
         [JsonPropertyName("id")]
         public int Id { get; set; }
 

@@ -34,7 +34,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
         public string City { get; set; }
 
         [JsonPropertyName("groups")]
-        public object Groups { get; set; } = null;
+        public List<string> Groups { get; set; } = new List<string>();
 
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -56,7 +56,36 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
 
         public override bool Equals(object? obj)
         {
-            return obj is RegistrationResponseModel model &&
+            var model = (RegistrationResponseModel)obj!;
+
+            if (Groups.Count != model.Groups.Count)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < Groups.Count; i++)
+            {
+                if (!Groups[i].Equals(model.Groups[i]))
+                {
+                    return false;
+                }
+            }
+
+
+            if (Roles.Count != model.Roles.Count)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < Roles.Count; i++)
+            {
+                if (!Roles[i].Equals(model.Roles[i]))
+                {
+                    return false;
+                }
+            }
+
+            return
                    Patronymic == model.Patronymic &&
                    Username == model.Username &&
                    RegistrationDate == model.RegistrationDate &&
@@ -65,13 +94,11 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
                    PhoneNumber == model.PhoneNumber &&
                    ExileDate == model.ExileDate &&
                    City == model.City &&
-                   EqualityComparer<object>.Default.Equals(Groups, model.Groups) &&
                    Id == model.Id &&
                    FirstName == model.FirstName &&
                    LastName == model.LastName &&
                    Email == model.Email &&
-                   EqualityComparer<object>.Default.Equals(Photo, model.Photo) &&
-                   EqualityComparer<List<string>>.Default.Equals(Roles, model.Roles);
+                   EqualityComparer<object>.Default.Equals(Photo, model.Photo);
         }
     }
 }
