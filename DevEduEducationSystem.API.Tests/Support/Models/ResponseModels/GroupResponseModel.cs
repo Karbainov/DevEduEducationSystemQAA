@@ -54,13 +54,4 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
                    PaymentPerMonth == model.PaymentPerMonth;
         }
     }
-
-    //public enum GroupStatus
-    //{
-    //    qqq = 0,
-    //    Forming = 1,
-    //    ReadyToStudy,
-    //    InProgress,
-    //    Completed
-    //}
 }

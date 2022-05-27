@@ -745,7 +745,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
 
             for (int i = 0; i < actual.Count; i++)
             {
-                Assert.AreEqual(expected[i], actual[i]);
+                Assert.AreEqual(expected[i], actual[i]); // у таска обязательность всегла false
             }
         }
 

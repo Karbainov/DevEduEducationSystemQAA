@@ -151,7 +151,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a registered user, I want to login to the app", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 17
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -171,22 +171,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 18
+#line 19
     testRunner.Given(string.Format("I enter the  window enter with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
                 table2.AddRow(new string[] {
-                            "stepa@Example.com",
-                            "stepastepa"});
-#line 19
+                            "userTestStudent@example.com",
+                            "userTestStudent"});
+#line 20
     testRunner.And("I am a user filling in email and password", ((string)(null)), table2, "And ");
 #line hidden
-#line 22
+#line 23
     testRunner.When("I click the enter button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 23
+#line 24
     testRunner.Then("A new window should open - Notifications section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -213,7 +213,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a registered user, I want to login to the app.Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 29
+#line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -233,23 +233,24 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 30
+#line 31
    testRunner.Given(string.Format("I enter the  window enter with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
                 table3.AddRow(new string[] {
-                            "ShapkaSPodvipodvertom@mail.ru",
-                            "HarryPotter"});
-#line 31
+                            string.Format("{0}", email),
+                            string.Format("{0}", password)});
+#line 32
    testRunner.And("I am a user filling in email and password", ((string)(null)), table3, "And ");
 #line hidden
-#line 34
+#line 35
  testRunner.When("I click the enter button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 35
-    testRunner.Then("There should be a message with the text - Incorrect login or password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
+    testRunner.Then("There should be a message with the text - Incorrect login or password and the url" +
+                        " won\'t change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

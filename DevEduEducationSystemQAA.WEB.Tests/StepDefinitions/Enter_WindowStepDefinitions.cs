@@ -41,8 +41,13 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Then(@"The entered data should be erased")]
         public void ThenTheEnteredDataShouldBeErased()
         {
-            // хз как проверки делать
-            Assert.Pass();
+            string attributeType = "value";
+            string inputEmailActual = _driver.FindElement(Enter_WindowXPaths.InputLogin).GetAttribute(attributeType);
+            string loginEcpected = "";
+            string inputPassword = _driver.FindElement(Enter_WindowXPaths.InputPassword).GetAttribute(attributeType);
+            string passwordExpected = "password";
+            Assert.AreEqual(loginEcpected, inputEmailActual);
+            Assert.AreEqual(passwordExpected, inputPassword);      
         }
 
         // New Scenario - click on button enter
@@ -53,22 +58,30 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             var buttonEnter = _driver.FindElement(Enter_WindowXPaths.ButtonEnter);
             buttonEnter.Click();
-            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
+            Thread.Sleep(1000);
         }
 
         [Then(@"A new window should open - Notifications section")]
         public void ThenANewWindowShouldOpen_NotificationsSection()
         {
-            // хз как проверки делать
-            Assert.Pass();
+            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
+            string expected = UrlStorage.BasePage;
+            string actual = _driver.Url;
+            Assert.AreEqual(expected, actual);
         }
 
         // new Scenario negative test - not valid Login and password
-        [Then(@"There should be a message with the text - Incorrect login or password")]
-        public void ThenThereShouldBeAMessageWithTheText_UserWithThisLoginWasNotFoundOrTextYouEnteredTheWrongPassword()
+        [Then(@"There should be a message with the text - Incorrect login or password and the url won't change")]
+        public void ThenThereShouldBeAMessageWithTheText_IncorrectLoginOrPasswordAndTheUrlWontChange()
         {
-            // проверка на текст текста еще нет, нет XPath 
+            // как будет текст 
+
+            // проверка на урлу
+            string expected = UrlStorage.EnterWindow;
+            string actual = _driver.Url;
+            Assert.AreEqual(expected, actual);
         }
+
 
 
 

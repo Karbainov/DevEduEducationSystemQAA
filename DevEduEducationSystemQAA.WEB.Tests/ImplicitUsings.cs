@@ -11,3 +11,4 @@ global using NUnit.Framework;
 global using System.Drawing;
 global using DevEduEducationSystemQAA.WEB.Tests.Support.Models.Request;
 global using OpenQA.Selenium.Interactions;
+global using OpenQA.Selenium.Support.UI;

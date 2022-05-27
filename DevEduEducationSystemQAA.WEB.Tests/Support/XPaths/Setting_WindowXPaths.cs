@@ -16,9 +16,12 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By BirthDate = By.XPath(@"//input[@class='form-control']");
         public static By Phone = By.XPath(@"//input[@name='phoneNumber']");
         public static By LinkByGitHub = By.XPath(@"//input[@name='gitHubAccount']");
-        public static By textUploadNewPhoto = By.XPath(@"//a[text()='Загрузить новое фото']");
+        public static By TextUploadNewPhoto = By.XPath(@"//a[text()='Загрузить новое фото']");
         public static By ButtonSave = By.XPath(@"//*[text()='Сохранить']");
         public static By ButtonCancel = By.XPath(@"//*[text()='Отмена']");
         public static By ButtonPencil = By.XPath(@"//div[@class='form-element password']//child::a[@href='/settings'] ");
+        public static By PhotoButtonCancel = By.XPath(@"//div[@class='buttons-container']/child::button");
+        public static By PhotoButtonSelectFile = By.XPath(@"//div[@class='buttons-container']/child::label");
+        public static By TextAboutPhoto = By.XPath(@"//*[text()='Загрузите свою настоящую фотографию. Вы можете загрузить изображение в формате JPG или PNG']");
     }
 }

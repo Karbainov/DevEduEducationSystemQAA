@@ -49,7 +49,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void GivenIEnterDataInTheFieldsThatIWantToChange(Table table)
         {
             RegistrationRequestModel user = table.CreateSet<RegistrationRequestModel>().ToList().First();
-            ScenarioContext.Current["UpdateUserExpected"] = user;
+            FeatureContext.Current["UpdateUserExpected"] = user;
             var surname = _driver.FindElement(Setting_WindowXPaths.Surname);
             surname.Clear();
             surname.SendKeys(user.Surname);
@@ -85,7 +85,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void ThenRefreshThePageChangesShouldBeSaved()
         {
             string attributeType = "value";
-            RegistrationRequestModel expected = (RegistrationRequestModel)ScenarioContext.Current["UpdateUserExpected"];
+            RegistrationRequestModel expected = (RegistrationRequestModel)FeatureContext.Current["UpdateUserExpected"];
             string surname = _driver.FindElement(Setting_WindowXPaths.Surname).GetAttribute(attributeType);
             string name = _driver.FindElement(Setting_WindowXPaths.Name).GetAttribute(attributeType);
             string patronymic = _driver.FindElement(Setting_WindowXPaths.Patronymic).GetAttribute(attributeType); 
@@ -98,6 +98,90 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Assert.AreEqual(expected.BirthDate, inputBirthdate);
             Assert.AreEqual(expected.Phone, inputPhone);
             Assert.AreEqual(expected.LinkByGitHub, inputLinkGitHub);
+        }
+
+        // new Scenario - cancel save update user
+
+        [When(@"Button click cancel in window setting")]
+        public void WhenButtonClickCancelInWindowSetting()
+        {
+            var buttonCancel = _driver.FindElement(Setting_WindowXPaths.ButtonCancel);
+            buttonCancel.Click();
+            Thread.Sleep(500);
+        }
+
+        [Then(@"Should return to the notification window")]
+        public void ThenShouldReturnToTheNotificationWindow()
+        {
+            string expected = UrlStorage.BasePage;
+            string actual = _driver.Url;
+            Thread.Sleep(1000);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Then(@"Check that the changes are not saved")]
+        public void ThenCheckThatTheChangesAreNotSaved(Table table)
+        {
+            string attributeType = "value";
+            _driver.Navigate().GoToUrl(UrlStorage.SettingWindow);
+            RegistrationRequestModel expected = table.CreateSet<RegistrationRequestModel>().ToList().First();
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            var ph = webDriverWait.Until((dr) =>dr.FindElement(Setting_WindowXPaths.Surname));
+            string surname = _driver.FindElement(Setting_WindowXPaths.Surname).GetAttribute(attributeType);
+            string name = _driver.FindElement(Setting_WindowXPaths.Name).GetAttribute(attributeType);
+            string patronymic = _driver.FindElement(Setting_WindowXPaths.Patronymic).GetAttribute(attributeType);
+            string inputBirthdate = _driver.FindElement(Setting_WindowXPaths.BirthDate).GetAttribute(attributeType);
+            string inputPhone = _driver.FindElement(Setting_WindowXPaths.Phone).GetAttribute(attributeType);
+            string inputLinkGitHub = _driver.FindElement(Setting_WindowXPaths.LinkByGitHub).GetAttribute(attributeType);
+            Assert.AreEqual(expected.Name, name);
+            Assert.AreEqual(expected.Patronymic, patronymic);
+            Assert.AreEqual(expected.Surname, surname);
+            Assert.AreEqual(expected.BirthDate, inputBirthdate); // не забыть подключить дату - она у них не работает
+            Assert.AreEqual(expected.Phone, inputPhone);
+            Assert.AreEqual(expected.LinkByGitHub, inputLinkGitHub);
+        }
+
+
+        // new Scenario - save new or update photo
+
+        [Given(@"I user, I click text Upload new photo")]
+        [When(@"I user, I click text Upload new photo")]
+        public void WhenIUserIClickTextSaveNewPhoto()
+        {
+            var uploadPhoto = _driver.FindElement(By.XPath(@"//div[@class='svg-text']"));
+            //var uploadPhoto = _driver.FindElement(Setting_WindowXPaths.TextUploadNewPhoto);
+            uploadPhoto.Click();
+            Thread.Sleep(250);
+        }
+
+        [Then(@"A window should appear with cancel buttons and select a file")]
+        public void ThenAWindowShouldAppearWithCancelButtonsAndSelectAFile()
+        {
+            var buttonSelectFile = _driver.FindElement(Setting_WindowXPaths.PhotoButtonSelectFile);
+            var buttonCancelPhoto = _driver.FindElement(Setting_WindowXPaths.PhotoButtonCancel);
+        }
+
+        [Given(@"Click button Select a file")]
+        public void GivenClickButtonSelectAFile()
+        {
+            // а что дальше я не знать
+        }
+
+        // new Scenario - cancel save photo
+
+        [When(@"Click on the cancel button to deselect the photo")]
+        public void WhenClickOnTheCancelButtonToDeselectThePhoto()
+        {
+            var buttonCancel = _driver.FindElement(Setting_WindowXPaths.PhotoButtonCancel);
+            buttonCancel.Click();
+        }
+
+        [Then(@"The message box for choosing a photo should close")]
+        public void ThenTheMessageBoxForChoosingAPhotoShouldClose()
+        {
+            bool actual = _driver.FindElement(Setting_WindowXPaths.TextAboutPhoto).Enabled;
+            //Assert.Throws<>;
+            _driver.Close();
         }
 
 
