@@ -16,8 +16,8 @@ Scenario: As a teacher, I can give homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create  Groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 3             |
 	And Add users to group
 	And Create task
 	| Name            | Description                                 | Links | IsRequired |
@@ -44,8 +44,8 @@ Scenario: As a teacher, I can give homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create  Groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 3             |
 	And Add users to group
 	And Create task
 	| Name            | Description                                 | Links | IsRequired |
@@ -72,8 +72,8 @@ Scenario: As a teacher, I can give homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create  Groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 3             |
 	And Add users to group
 	And Create task
 	| Name            | Description                                 | Links | IsRequired |
@@ -103,8 +103,8 @@ Scenario: As a teacher, I can give homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create  Groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 3             |
 	And Add users to group
 	And Create tasks
 	| Name                        | Description                                 | Links | IsRequired |

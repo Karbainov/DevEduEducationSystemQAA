@@ -383,14 +383,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table85.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "3"});
 #line 49
  testRunner.When("Create Groupe", ((string)(null)), table85, "When ");
 #line hidden
@@ -556,14 +558,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table89.AddRow(new string[] {
                             "Группа 2",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 10:00 - 14:00",
-                            "7500"});
+                            "7500",
+                            "4"});
 #line 75
  testRunner.And("Create Groupe", ((string)(null)), table89, "And ");
 #line hidden
@@ -782,14 +786,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table94.AddRow(new string[] {
                             "Група 3",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 17:00 - 20:00",
-                            "5000"});
+                            "5000",
+                            "4"});
 #line 107
  testRunner.And("Create Groupe number three", ((string)(null)), table94, "And ");
 #line hidden
@@ -799,14 +805,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table95.AddRow(new string[] {
                             "Группа 3",
                             "1",
                             "13.05.2022",
                             "13.12.2022",
                             "вт, пт, вс 09:00 - 12:00",
-                            "2500"});
+                            "2500",
+                            "3"});
 #line 110
    testRunner.When("chanche group", ((string)(null)), table95, "When ");
 #line hidden
@@ -941,14 +949,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table98.AddRow(new string[] {
                             string.Format("{0}", name1),
                             string.Format("{0}", groupStatusId),
                             string.Format("{0}", startDate),
                             string.Format("{0}", endDate),
                             string.Format("{0}", timetable),
-                            string.Format("{0}", paymentPerMonth)});
+                            string.Format("{0}", paymentPerMonth),
+                            "3"});
 #line 130
  testRunner.And("Create Groupe QAA", ((string)(null)), table98, "And ");
 #line hidden
@@ -1090,14 +1100,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table101.AddRow(new string[] {
                             string.Format("{0}", name1),
                             string.Format("{0}", groupStatusId),
                             string.Format("{0}", startDate),
                             string.Format("{0}", endDate),
                             string.Format("{0}", timetable),
-                            string.Format("{0}", paymentPerMonth)});
+                            string.Format("{0}", paymentPerMonth),
+                            "3"});
 #line 151
  testRunner.And("Create Groupe Back", ((string)(null)), table101, "And ");
 #line hidden
@@ -1230,14 +1242,16 @@ testRunner.And("Autorized by manager", ((string)(null)), ((TechTalk.SpecFlow.Tab
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table106.AddRow(new string[] {
                             "Хочу удалить",
                             "1",
                             "01.01.2022",
                             "01.10.2022",
                             "пр пр пр 13244",
-                            "1000"});
+                            "1000",
+                            "3"});
 #line 180
 testRunner.And("Сreate a group to remove a user from it", ((string)(null)), table106, "And ");
 #line hidden
@@ -1418,14 +1432,16 @@ testRunner.And("Autorized by manager", ((string)(null)), ((TechTalk.SpecFlow.Tab
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table111.AddRow(new string[] {
                             "Хочу удалить",
                             "1",
                             "01.01.2022",
                             "01.10.2022",
                             "пр пр пр 13244",
-                            "1000"});
+                            "1000",
+                            "3"});
 #line 209
 testRunner.And("Сreate a group to remove a user from it", ((string)(null)), table111, "And ");
 #line hidden
@@ -1585,28 +1601,32 @@ testRunner.Given("Create user", ((string)(null)), table113, "Given ");
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table115.AddRow(new string[] {
                             "Сосиски",
                             "1",
                             "12.02.2022",
                             "12.12.2022",
                             "Я обещаю завтра будет лучше",
-                            "1000"});
+                            "1000",
+                            "3"});
                 table115.AddRow(new string[] {
                             "Колбаски",
                             "1",
                             "12.02.2022",
                             "12.12.2022",
                             "Я обещаю завтра будет лучше",
-                            "2000"});
+                            "2000",
+                            "4"});
                 table115.AddRow(new string[] {
                             "Сордельки",
                             "1",
                             "12.02.2022",
                             "12.12.2022",
                             "Я обещаю завтра будет лучше",
-                            "3000"});
+                            "3000",
+                            "5"});
 #line 232
  testRunner.And("Create Groupe all group", ((string)(null)), table115, "And ");
 #line hidden

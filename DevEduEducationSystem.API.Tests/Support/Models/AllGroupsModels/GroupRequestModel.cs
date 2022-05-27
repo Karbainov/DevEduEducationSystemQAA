@@ -44,6 +44,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
                    Timetable == model.Timetable &&
                    PaymentsCount == model.PaymentsCount &&
                    PaymentPerMonth == model.PaymentPerMonth;
+
         }
     }
 }

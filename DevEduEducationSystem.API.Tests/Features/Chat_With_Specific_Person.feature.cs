@@ -220,14 +220,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table3.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "3"});
 #line 20
  testRunner.And("Create groupe", ((string)(null)), table3, "And ");
 #line hidden
@@ -463,14 +465,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table10.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "10"});
 #line 58
  testRunner.And("Create groupe", ((string)(null)), table10, "And ");
 #line hidden
@@ -675,14 +679,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table17.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "6"});
 #line 97
  testRunner.And("Create groupe", ((string)(null)), table17, "And ");
 #line hidden
@@ -880,14 +886,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table23.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "5"});
 #line 130
  testRunner.And("Create groupe", ((string)(null)), table23, "And ");
 #line hidden
@@ -1084,14 +1092,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table29.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "5"});
 #line 163
  testRunner.And("Create groupe", ((string)(null)), table29, "And ");
 #line hidden
@@ -1288,14 +1298,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table35.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "8"});
 #line 196
  testRunner.And("Create groupe", ((string)(null)), table35, "And ");
 #line hidden
@@ -1489,14 +1501,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table41.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "4"});
 #line 228
  testRunner.And("Create groupe", ((string)(null)), table41, "And ");
 #line hidden
@@ -1686,14 +1700,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table48.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "4"});
 #line 268
  testRunner.And("Create groupe", ((string)(null)), table48, "And ");
 #line hidden
@@ -1857,14 +1873,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "StartDate",
                             "EndDate",
                             "Timetable",
-                            "PaymentPerMonth"});
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
                 table54.AddRow(new string[] {
                             "Группа 1",
                             "1",
                             "28.01.2022",
                             "28.10.2022",
                             "пн, ср, пт 18:00 - 20:00",
-                            "7500"});
+                            "7500",
+                            "4"});
 #line 305
  testRunner.And("Create groupe", ((string)(null)), table54, "And ");
 #line hidden

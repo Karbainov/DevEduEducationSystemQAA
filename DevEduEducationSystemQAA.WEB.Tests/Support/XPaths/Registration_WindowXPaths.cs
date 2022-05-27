@@ -9,6 +9,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
 {
     public class Registration_WindowXPaths
     {
+        public static By buttonRegisterByWindowLogin = By.XPath(@"//*[text()='Регистрация']");
         public static By InputSurname = By.XPath(@"//input[@id='lastName']");
         public static By InputName = By.XPath(@"//input[@id='firstName']");
         public static By InputPatronymic = By.XPath(@"//input[@name='patronymic']");
@@ -17,6 +18,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By InputRepeatPassword = By.XPath(@"//label[@for='repeat-password']/following-sibling::input");
         public static By InputEmail = By.XPath(@"//input[@name='email']");
         public static By InputPhone = By.XPath(@"//input[@name='phoneNumber']");
-        public static By ChecBoxPrivacyPolicy = By.XPath(@"//label[@class='custom-checkbox']");       
+        public static By ChecBoxPrivacyPolicy = By.XPath(@"//label[@class='custom-checkbox']");
+        public static By ButtonRegister = By.XPath(@"//*[text()='Зарегистрироваться']");
+        public static By ButtonCancel = By.XPath(@"//*[text()='Отмена']");
     }
 }
