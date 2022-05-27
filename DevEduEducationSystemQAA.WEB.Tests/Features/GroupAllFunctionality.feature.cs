@@ -148,12 +148,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 21
  testRunner.And("I choose role for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name"});
-                table1.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "Group 1"});
 #line 22
- testRunner.When("I fill in the fields pages of create group and click on the button Cancel", ((string)(null)), table1, "When ");
+ testRunner.When("I fill in the fields pages of create group and click on the button Cancel", ((string)(null)), table4, "When ");
 #line hidden
 #line 25
  testRunner.Then("I go to the notifications tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -195,12 +195,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 29
   testRunner.And("I choose role for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name"});
-                table2.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "Group 1"});
 #line 30
- testRunner.When("I fill all fields pages of create group <Name> and click on the button Save", ((string)(null)), table2, "When ");
+ testRunner.When("I fill all fields pages of create group <Name> and click on the button Save", ((string)(null)), table5, "When ");
 #line hidden
 #line 33
  testRunner.Then("I can see new group in the list all groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

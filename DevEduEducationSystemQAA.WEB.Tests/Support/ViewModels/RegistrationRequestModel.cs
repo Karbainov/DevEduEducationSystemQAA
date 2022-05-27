@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevEduEducationSystemQAA.WEB.Tests.Support.Models
+namespace DevEduEducationSystemQAA.WEB.Tests.Support.ViewModels
 {
     public class RegistrationRequestModel
     {

@@ -1,4 +1,4 @@
-using DevEduEducationSystemQAA.WEB.Tests.Support.Models.RequestModels;
+using DevEduEducationSystemQAA.WEB.Tests.Support.ViewModels;
 using System.Drawing;
 using OpenQA.Selenium.Interactions;
 using NUnit.Framework;
