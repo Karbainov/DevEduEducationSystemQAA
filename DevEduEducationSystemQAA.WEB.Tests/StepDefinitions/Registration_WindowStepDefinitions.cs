@@ -1,5 +1,5 @@
 using DevEduEducationSystemQAA.WEB.Tests.Support;
-using DevEduEducationSystemQAA.WEB.Tests.Support.Models;
+using DevEduEducationSystemQAA.WEB.Tests.Support.ViewModels;
 using DevEduEducationSystemQAA.WEB.Tests.Support.XPaths;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;

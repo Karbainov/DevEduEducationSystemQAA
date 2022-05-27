@@ -54,4 +54,5 @@ namespace DevEduEducationSystem.API.Tests.Support.Models
                    PaymentPerMonth == model.PaymentPerMonth;
         }
     }
+    
 }

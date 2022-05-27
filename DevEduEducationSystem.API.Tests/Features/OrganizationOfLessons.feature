@@ -20,8 +20,8 @@ Scenario: User in role Teacher can create Lesson on the topic
 	| Thema 1 | 1        |
 	| Thema 2 | 2        |
 	And I create groupe under login admin
-	| Name  | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Group | 1             | 28.06.2022 | 28.10.2022 | пн, ср, пт 10:00 - 14:00 | 7500            |
+	| Name  | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount  |
+	| Group | 1             | 28.06.2022 | 28.10.2022 | пн, ср, пт 10:00 - 14:00 | 7500            |       4        |
 	And I to appoint new group "Teacher" under login admin
     And I Create students for group 
 	| FirstName | LastName  | Patronymic | Email             | Username  | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber |
@@ -30,9 +30,8 @@ Scenario: User in role Teacher can create Lesson on the topic
 	| Student 3 | Student 3 | Student 3  | student_3@mail.ru | Student 3 | Qwerty123 | SaintPetersburg | 01.12.2001 | string        | 89210081122 |	
 	And I login as an admin and add students in group
 	When I login as an Lecturer and create Lesson with topics
-    | Date       | AdditionalMaterials | linkToRecord               | 
-    | 28.06.2022 | string              |  https://json2csharp.com/  | 
-    And I login as an admin and add to group lesson
+    | Name    | Date       | AdditionalMaterials | linkToRecord             |
+    | Lesson1 | 28.06.2022 | string              | https://json2csharp.com/ |
 	Then Under login Lecturer I get lesson by id <Teacher> and check that lessons is in return model and have correct field
 	Then Under login Lecturer I get lesson by id <Group> and check that lessons is in return model and have correct field
 	Examples: 
@@ -53,8 +52,8 @@ Scenario: User in role Teacher can mark attendance of students in Lesson
 	| Thema 1 | 1        |
 	| Thema 2 | 2        |
 	And I create groupe under login admin
-	| Name  | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Group | 1             | 28.06.2022 | 28.10.2022 | пн, ср, пт 10:00 - 14:00 | 7500            |
+	| Name  | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount  |
+	| Group | 1             | 28.06.2022 | 28.10.2022 | пн, ср, пт 10:00 - 14:00 | 7500            |       4        |
 	And I to appoint new group "Teacher" under login admin
     And I Create students for group 
 	| FirstName | LastName  | Patronymic | Email             | Username  | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber |
@@ -63,9 +62,8 @@ Scenario: User in role Teacher can mark attendance of students in Lesson
 	| Student 3 | Student 3 | Student 3  | student_3@mail.ru | Student 3 | Qwerty123 | SaintPetersburg | 01.12.2001 | string        | 89210081122 |	
 	And I login as an admin and add students in group
 	When I login as an Lecturer and create Lesson with topics
-    | Date       | AdditionalMaterials | linkToRecord               | 
-    | 28.06.2022 | string              |  https://json2csharp.com/  | 
-    And I login as an admin and add to group lesson
+    | Name    | Date       | AdditionalMaterials | linkToRecord             |
+    | Lesson1 | 28.06.2022 | string              | https://json2csharp.com/ |
 	And Under login Lecturer I can mark attendance of students in Lesson
     | Email             | AttendanceType    |
     | student_1@mail.ru | Absent            |
@@ -92,8 +90,8 @@ Scenario: User in role Teacher can update lesson
 	| Thema 3 | 1        |
 	| Thema 4 | 2        |
 	And I create groupe under login admin
-	| Name  | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Group | 1             | 28.06.2022 | 28.10.2022 | пн, ср, пт 10:00 - 14:00 | 7500            |
+	| Name  | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount  |
+	| Group | 1             | 28.06.2022 | 28.10.2022 | пн, ср, пт 10:00 - 14:00 | 7500            |       4        |
 	And I to appoint new group "Teacher" under login admin
     And I Create students for group 
 	| FirstName | LastName  | Patronymic | Email             | Username  | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber |
@@ -102,15 +100,14 @@ Scenario: User in role Teacher can update lesson
 	| Student 3 | Student 3 | Student 3  | student_3@mail.ru | Student 3 | Qwerty123 | SaintPetersburg | 01.12.2001 | string        | 89210081122 |	
 	And I login as an admin and add students in group
 	When I login as an Lecturer and create Lesson with topics
-    | Date       | AdditionalMaterials | linkToRecord               | 
-    | 28.06.2022 | string              |  https://json2csharp.com/  | 
-    And I login as an admin and add to group lesson
+    | Name    | Date       | AdditionalMaterials | linkToRecord             |
+    | Lesson1 | 28.06.2022 | string              | https://json2csharp.com/ |
 	And I create new list topics for update lesson
 	| Name    | Duration |
 	| Thema 1 | 2        |
 	And Under login Lecturer I update Lesson by id
-	| Date       | AdditionalMaterials | linkToRecord                            |
-	| 01.07.2022 | string              | https://translate.yandex.ru/?lang=en-ru |
+	| Name    | Date       | AdditionalMaterials | linkToRecord                            |
+	| Lesson2 | 01.07.2022 | string              | https://translate.yandex.ru/?lang=en-ru |
 	Then I get full-info about Lesson and check that new returned model of Lesson contained updating field
 	Examples: 
 	| FirstName | LastName | Patronymic   | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Name         | Description                       | Role    |
