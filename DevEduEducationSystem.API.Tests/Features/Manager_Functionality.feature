@@ -47,8 +47,8 @@ Scenario: As a manager, I want to create groups
 	| QQQ  | Где Q и как его выводить на экран три раза |
 	And Autorized by manager
 	When Create Groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 3             |
 	Then Compare group status code 201
 	When Get group by id 
 	Then Compare the resulting group by id with group request
@@ -73,8 +73,8 @@ Scenario: As a manager, I want to create groups
 	| Дрязяшки | Курс юных любителей анлийского языка |
 	And Autorized by manager
 	And Create Groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 2 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 10:00 - 14:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 2 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 10:00 - 14:00 | 7500            | 4             |
 	Given Create three users 
 	| FirstName | LastName | Patronymic | Email           | Username  | Password    | City            | BirthDate  | GitHubAccount | PhoneNumber |
 	| Рональд   | Билиус   | Уизли      | Ron@mail.ru     | Ronald    | RonUizli    | SaintPetersburg | 01.01.2000 | string        | 89991122334 |
@@ -105,11 +105,11 @@ Scenario: As manager, I want change my created group
 	| Юный натуралист | Чем double отличается от decimal |
 	And Autorized by manager
 	And Create Groupe number three
-	| Name    | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Група 3 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 17:00 - 20:00 | 5000            |
+	| Name    | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Група 3 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 17:00 - 20:00 | 5000            | 4             |
    When chanche group
-   | Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-   | Группа 3 | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 12:00 | 2500            |
+   | Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+   | Группа 3 | 1             | 13.05.2022 | 13.12.2022 | вт, пт, вс 09:00 - 12:00 | 2500            | 3             |
    And Get group number three by id
    Then Сompare changed group and returned group
    Examples: 
@@ -128,8 +128,8 @@ Scenario: As manager, I want change my created group
  | <Name> | <Description> |
  And Autorized by manager
  And Create Groupe QAA 
- | Name     | GroupStatusId   | StartDate   | EndDate   | Timetable   | PaymentPerMonth   |
- | <Name 1> | <GroupStatusId> | <StartDate> | <EndDate> | <Timetable> | <PaymentPerMonth> |
+ | Name     | GroupStatusId   | StartDate   | EndDate   | Timetable   | PaymentPerMonth   | PaymentsCount |
+ | <Name 1> | <GroupStatusId> | <StartDate> | <EndDate> | <Timetable> | <PaymentPerMonth> | 3             |
  When Delete group by id
  And Get all groups 
  Then Deleted group should disappear 
@@ -149,8 +149,8 @@ Scenario: As manager, I want change my created group
  | <Name> | <Description> |
  And Autorized by manager
  And Create Groupe Back
- | Name     | GroupStatusId   | StartDate   | EndDate   | Timetable   | PaymentPerMonth   |
- | <Name 1> | <GroupStatusId> | <StartDate> | <EndDate> | <Timetable> | <PaymentPerMonth> |
+ | Name     | GroupStatusId   | StartDate   | EndDate   | Timetable   | PaymentPerMonth   | PaymentsCount |
+ | <Name 1> | <GroupStatusId> | <StartDate> | <EndDate> | <Timetable> | <PaymentPerMonth> | 3             |
  When Change group status by id
  | GroupStatusName   |
  | <GroupStatusName> |
@@ -168,7 +168,7 @@ Given Create user
 | Марина    | Пушкина  | Иванова     | Pushkin90@mail.ru | Маришка  | PushkinMarishka | SaintPetersburg | 01.01.1990 | string        | 89001112345 |
 | Антон     | Пушкин   | Эдикович    | Anton@mail.ru     | Antonio  | Antonio1990     | SaintPetersburg | 01.01.1990 | string        | 89012223344 |
 | Максим    | Опаздун  | Опаздунович | Max@mail.ru       | Opazdun  | Opasdun2003     | SaintPetersburg | 01.01.2003 | string        | 99117778899 |
-| Инокентий | Гай      | Пай         | Max1@mail.ru  | Guy      | Opasdun2003 | SaintPetersburg | 01.01.2001 | string        | 99117778891 |
+| Инокентий | Гай      | Пай         | Max1@mail.ru      | Guy      | Opasdun2003     | SaintPetersburg | 01.01.2001 | string        | 99117778891 |
 And Autorized as admin
 And Create course
 | Name   | Description      |
@@ -178,8 +178,8 @@ And Assign role
 | Manager  |
 And Autorized by manager
 And Сreate a group to remove a user from it
-| Name         | GroupStatusId | StartDate  | EndDate    | Timetable      | PaymentPerMonth |
-| Хочу удалить | 1             | 01.01.2022 | 01.10.2022 | пр пр пр 13244 | 1000            |
+| Name         | GroupStatusId | StartDate  | EndDate    | Timetable      | PaymentPerMonth | PaymentsCount |
+| Хочу удалить | 1             | 01.01.2022 | 01.10.2022 | пр пр пр 13244 | 1000            | 3             |
 And Add Users in group
 When Delete adding user from a group
 And Get group  by id
@@ -207,8 +207,8 @@ And Assign role
 | Teacher  |
 And Autorized by manager
 And Сreate a group to remove a user from it
-| Name         | GroupStatusId | StartDate  | EndDate    | Timetable      | PaymentPerMonth |
-| Хочу удалить | 1             | 01.01.2022 | 01.10.2022 | пр пр пр 13244 | 1000            |
+| Name         | GroupStatusId | StartDate  | EndDate    | Timetable      | PaymentPerMonth | PaymentsCount |
+| Хочу удалить | 1             | 01.01.2022 | 01.10.2022 | пр пр пр 13244 | 1000            | 3             |
 And Add Users in group as teacher
 When Delete adding teacher from a group
 And Get group  by id
@@ -230,10 +230,10 @@ Given Create user
  | <Name> | <Description> |
  And Autorized by manager
  And Create Groupe all group 
- | Name      | GroupStatusId | StartDate  | EndDate    | Timetable                   | PaymentPerMonth |
- | Сосиски   | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 1000            |
- | Колбаски  | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 2000            |
- | Сордельки | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 3000            |
+ | Name      | GroupStatusId | StartDate  | EndDate    | Timetable                   | PaymentPerMonth | PaymentsCount |
+ | Сосиски   | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 1000            | 3             |
+ | Колбаски  | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 2000            | 4             |
+ | Сордельки | 1             | 12.02.2022 | 12.12.2022 | Я обещаю завтра будет лучше | 3000            | 5             |
  When Get all  groups 
  Then Check that all groups should have returned
  Examples: 

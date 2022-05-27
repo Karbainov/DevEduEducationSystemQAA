@@ -18,8 +18,8 @@ Scenario: As a teacher, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 3             |
 	And Add Users to group
 	And Create Task
 	| Name            | Description                                 | Links                                                                             | IsRequired |
@@ -56,8 +56,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 10            |
 	And Add Users to group
 	And Create Task
 	| Name            | Description                                 | Links                                                                             | IsRequired |
@@ -95,8 +95,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 6             |
 	And Add Users to group
 	And Create Task
 	| Name            | Description                                 | Links                                                                             | IsRequired |
@@ -128,8 +128,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 5             |
 	And Add Users to group
 	And Create Task
 	| Name            | Description                                 | Links                                                                             | IsRequired |
@@ -161,8 +161,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 5             |
 	And Add Users to group
 	And Create Task
 	| Name            | Description                                 | Links                                                                             | IsRequired |
@@ -194,8 +194,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 8             |
 	And Add Users to group
 	And Create Task
 	| Name            | Description                                 | Links                                                                             | IsRequired |
@@ -226,8 +226,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 4             |
 	And Add Users to group
 	And Create Task
 	| Name            | Description                                 | Links                                                                             | IsRequired |
@@ -266,8 +266,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 4             |
 	And Add all Users to group
 	And Create Task
 	| Name            | Description                                 | Links                                                                             | IsRequired |
@@ -303,8 +303,8 @@ Scenario: As a tutor, I can leave comments about homework
 	| Name | Description                                |
 	| QQQQ | Где Q и как его выводить на экран три раза |
 	And Create groupe
-	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth |
-	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            |
+	| Name     | GroupStatusId | StartDate  | EndDate    | Timetable                | PaymentPerMonth | PaymentsCount |
+	| Группа 1 | 1             | 28.01.2022 | 28.10.2022 | пн, ср, пт 18:00 - 20:00 | 7500            | 4             |
 	And Add Users to group
 	And Create Tasks
 	| Name            | Description                                 | Links                                                                             | IsRequired |

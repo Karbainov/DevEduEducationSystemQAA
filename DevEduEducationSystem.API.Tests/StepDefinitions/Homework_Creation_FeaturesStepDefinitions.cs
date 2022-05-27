@@ -137,7 +137,7 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
                 }
             };
 
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual); // тут поменяны дата группы
         }
 
         // new Scenario Create Homework.Negative
