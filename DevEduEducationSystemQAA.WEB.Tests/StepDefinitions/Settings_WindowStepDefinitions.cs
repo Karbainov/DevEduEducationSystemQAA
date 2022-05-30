@@ -10,6 +10,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
     public class Settings_WindowStepDefinitions
     {
         private IWebDriver _driver;
+        private string _userPhotosSrc;
+
 
         [Given(@"I log in to the system  with the window size (.*) and (.*)")]
         public void GivenILogInToTheSystemWithTheWindowSizeAnd(int oneSize, int twoSize, Table table)
@@ -148,9 +150,21 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [When(@"I user, I click text Upload new photo")]
         public void WhenIUserIClickTextSaveNewPhoto()
         {
-            //var uploadPhoto = _driver.FindElement(By.XPath(@"//div[@class='svg-text']"));
-            var uploadPhoto = _driver.FindElement(By.XPath(@"//img[@class='avatar-photo']"));
+            IWebElement uploadPhoto;
+            string src="";
+            try
+            {
+                uploadPhoto = _driver.FindElement(By.XPath(@"//img[@class='avatar-photo']"));
+                src = uploadPhoto.GetAttribute("src");
+            }
+            catch(NoSuchElementException)
+            {
+                uploadPhoto = _driver.FindElement(By.XPath(@"//div[@class='svg-text']"));
+            }
             //var uploadPhoto = _driver.FindElement(Setting_WindowXPaths.TextUploadNewPhoto);
+
+            _userPhotosSrc = src;
+
             uploadPhoto.Click();
             Thread.Sleep(250);
         }
@@ -167,7 +181,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
             js.ExecuteScript("document.querySelector('.modal-window input[type=\"file\"]').setAttribute('style','display:inline;')");
-            _driver.FindElement(By.CssSelector(".modal-window input[type=\"file\"]")).SendKeys(@"C:\Harry.jpg");
+            _driver.FindElement(By.CssSelector(".modal-window input[type=\"file\"]")).SendKeys(@"C:\photo_2021-12-08_02-45-49.jpg");
             Thread.Sleep(1000);
             _driver.FindElement(By.CssSelector(".modal-window input[type=\"submit\"]")).Click();
             Thread.Sleep(1000);
@@ -190,6 +204,18 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             _driver.Close();
         }
 
+
+        [Then(@"Photo should be changed")]
+        public void ThenPhotoShouldBeChanged()
+        {
+            _driver.Navigate().Refresh();
+            Thread.Sleep(1000);
+            var uploadPhoto = _driver.FindElement(By.XPath(@"//img[@class='avatar-photo']"));
+            string actual = uploadPhoto.GetAttribute("src");
+            string unexpected = _userPhotosSrc;
+
+            Assert.AreNotEqual(unexpected, actual);
+        }
 
     }
 }

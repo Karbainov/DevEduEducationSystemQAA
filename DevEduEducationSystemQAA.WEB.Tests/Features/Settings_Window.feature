@@ -49,11 +49,10 @@ Scenario: As a user, I want to change my details and save them
 	When I user, I click text Upload new photo
 	Then A window should appear with cancel buttons and select a file
 	Given Click button Select a file
-	# anus
+	Then Photo should be changed
 	Examples: 
 	| length | width |
     | 1920   | 1080  |
-
 
 
 	Scenario: As user, I want add or change photo to my profile and cancel
