@@ -148,7 +148,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [When(@"I user, I click text Upload new photo")]
         public void WhenIUserIClickTextSaveNewPhoto()
         {
-            var uploadPhoto = _driver.FindElement(By.XPath(@"//div[@class='svg-text']"));
+            //var uploadPhoto = _driver.FindElement(By.XPath(@"//div[@class='svg-text']"));
+            var uploadPhoto = _driver.FindElement(By.XPath(@"//img[@class='avatar-photo']"));
             //var uploadPhoto = _driver.FindElement(Setting_WindowXPaths.TextUploadNewPhoto);
             uploadPhoto.Click();
             Thread.Sleep(250);
@@ -164,10 +165,15 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Given(@"Click button Select a file")]
         public void GivenClickButtonSelectAFile()
         {
-            // а что дальше я не знать
+            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+            js.ExecuteScript("document.querySelector('.modal-window input[type=\"file\"]').setAttribute('style','display:inline;')");
+            _driver.FindElement(By.CssSelector(".modal-window input[type=\"file\"]")).SendKeys(@"C:\Harry.jpg");
+            Thread.Sleep(1000);
+            _driver.FindElement(By.CssSelector(".modal-window input[type=\"submit\"]")).Click();
+            Thread.Sleep(1000);
         }
 
-        // new Scenario - cancel save photo
+        // new Scenario - cancel save phot
 
         [When(@"Click on the cancel button to deselect the photo")]
         public void WhenClickOnTheCancelButtonToDeselectThePhoto()
