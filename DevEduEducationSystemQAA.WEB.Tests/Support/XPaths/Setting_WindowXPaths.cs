@@ -28,5 +28,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By InputNewPasswordReaped = By.XPath(@"//input[@name='newPasswordRepeat']");
         public static By ButtonSaveNewPassword = By.XPath(@"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
         public static By ButtonCancelNewPassword = By.XPath(@"//button[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']");
+        public static By ButtonBack = By.XPath(@"//div[@class='link-arrow']");
+        public static By InputEmail = By.XPath(@"//input[@name='email']");
     }
 }

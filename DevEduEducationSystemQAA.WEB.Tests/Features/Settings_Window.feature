@@ -17,6 +17,7 @@ Scenario: As a user, I want to change my details and save them
 	| length | width |
     | 1920   | 1080  |
 
+	@SettingWindow
 	Scenario: As a user, I want to change my details and cancel them
 	Given I log in to the system  with the window size <length> and <width>
     | Email                       | Password        |
@@ -34,6 +35,7 @@ Scenario: As a user, I want to change my details and save them
 	| length | width |
     | 1920   | 1080  |
 
+	@SettingWindow
 	Scenario: As user, I want change my password and save
 	Given  I log in to the system  with the window size <length> and <width>
     | Email                       | Password        |
@@ -49,6 +51,23 @@ Scenario: As a user, I want to change my details and save them
 	| length | width |
 	| 1920   | 1080  |  
 
+	@SettingWindow
+	Scenario: As user, I want change my password and button click back
+	Given  I log in to the system  with the window size <length> and <width>
+    | Email                       | Password        |
+    | userTestStudent@example.com | userTestStudent |
+	And I click the button Setting
+	When Click on the pencil
+	Given Fill in the fields with data to change the password
+	| Password   |
+	| ignatignat |
+	When Button click back in window update password
+	Then Back to settings window
+	Examples: 
+	| length | width |
+	| 1920   | 1080  |  
+
+	@SettingWindow
 	Scenario: As user, I want change my password and cancel
 	Given  I log in to the system  with the window size <length> and <width>
     | Email                       | Password        |
@@ -64,6 +83,7 @@ Scenario: As a user, I want to change my details and save them
 	| length | width |
 	| 1920   | 1080  |  
 
+	@SettingWindow
 	Scenario: As user, I wand add or change photo to my profile and save
 	Given I log in to the system  with the window size <length> and <width>
     | Email                       | Password        |
@@ -77,7 +97,7 @@ Scenario: As a user, I want to change my details and save them
 	| length | width |
     | 1920   | 1080  |
 
-
+	@SettingWindow
 	Scenario: As user, I want add or change photo to my profile and cancel
 	Given I log in to the system  with the window size <length> and <width>
     | Email                       | Password        |
@@ -90,6 +110,18 @@ Scenario: As a user, I want to change my details and save them
 	| length | width |
     | 1920   | 1080  |
 
-
+	@Negative
+	Scenario: As a user, I want to change my details and save them.Negative
+	Given I log in to the system  with the window size <length> and <width>
+    | Email                       | Password        |
+    | userTestStudent@example.com | userTestStudent |
+	And I click the button Setting
+	When I clean and new enter email that I want to change
+	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email          | Phone       | LinkByGitHub        |
+	| Ignatov | Ignat | Ignatovich | 31.08.1998 | HarryPotter | HarryPotter    | sasasa@mail.ru | 89990089090 | https://github.com/ |
+	Then Check that the email field is not cleared
+	Examples: 
+	| length | width |
+    | 1920   | 1080  |
 
 	

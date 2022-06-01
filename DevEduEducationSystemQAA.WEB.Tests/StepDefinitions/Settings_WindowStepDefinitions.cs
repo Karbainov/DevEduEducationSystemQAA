@@ -17,7 +17,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void GivenILogInToTheSystemWithTheWindowSizeAnd(int oneSize, int twoSize, Table table)
         {
             LoginRequestModel emailAndPassword = table.CreateSet<LoginRequestModel>().ToList().First();
-            ScenarioContext.Current["emailAndPassword"] = emailAndPassword;
+            FeatureContext.Current["emailAndPassword"] = emailAndPassword;
             _driver = new ChromeDriver();
             _driver.Navigate().GoToUrl(UrlStorage.EnterWindow);
             _driver.Manage().Window.Position = new Point(0, 0);
@@ -153,7 +153,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Given(@"Fill in the fields with data to change the password")]
         public void GivenFillInTheFieldsWithDataToChangeThePassword(Table table)
         {
-            LoginRequestModel emailAndPassword = (LoginRequestModel)ScenarioContext.Current["emailAndPassword"];
+            LoginRequestModel emailAndPassword = (LoginRequestModel)FeatureContext.Current["emailAndPassword"];
             var inputOldPassword = _driver.FindElement(Setting_WindowXPaths.InputOldPassword);
             inputOldPassword.SendKeys(emailAndPassword.Password);
             LoginRequestModel newPassword = table.CreateSet<LoginRequestModel>().ToList().First();
@@ -177,7 +177,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var exit = _driver.FindElement(GroupAllFunctionalityXPath.ButtonExit);
             exit.Click();
             Thread.Sleep(300);
-            LoginRequestModel emailAndPassword = (LoginRequestModel)ScenarioContext.Current["emailAndPassword"];
+            LoginRequestModel emailAndPassword = (LoginRequestModel)FeatureContext.Current["emailAndPassword"];
             LoginRequestModel newPassword = (LoginRequestModel)ScenarioContext.Current["newPassword"];
             IOHelper.CheckAuth(_driver, emailAndPassword.Email, newPassword.Password);
         }
@@ -199,6 +199,22 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
            Assert.AreEqual(urlExpected, urlActual);
         }
 
+        // new Scenario - change password and button click back
+
+        [When(@"Button click back in window update password")]
+        public void WhenButtonClickBackInWindowUpdatePassword()
+        {
+            var buttonBack = _driver.FindElement(Setting_WindowXPaths.ButtonBack);
+            buttonBack.Click();
+        }
+
+        [Then(@"Back to settings window")]
+        public void ThenBackToSettingsWindow()
+        {
+            string urlActual = _driver.Url;
+            string urlExpected = UrlStorage.SettingWindow;
+            Assert.AreEqual(urlExpected, urlActual);
+        }
 
 
         // new Scenario - save new or update photo
@@ -272,8 +288,31 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             _driver.Close();
         }
 
+        // new Scenario - negative test - email it should be readonly
 
-        
+        [When(@"I clean and new enter email that I want to change")]
+        public void WhenICleanAndNewEnterEmailThatIWantToChange(Table table)
+        {
+            RegistrationRequestModel user = table.CreateSet<RegistrationRequestModel>().ToList().First();
+            var inputEmail = _driver.FindElement(Setting_WindowXPaths.InputEmail);
+            inputEmail.Clear();
+            inputEmail.SendKeys(user.Email);
+        }
+
+        [Then(@"Check that the email field is not cleared")]
+        public void ThenCheckThatTheEmailFieldIsNotCleared()
+        {
+            string getAttribute = "value";
+            LoginRequestModel emailAndPassword = (LoginRequestModel)FeatureContext.Current["emailAndPassword"];
+            string actual = _driver.FindElement(Setting_WindowXPaths.InputEmail).GetAttribute(getAttribute);
+            string expexted = emailAndPassword.Email;
+            Assert.AreEqual(actual, expexted);
+            _driver.Close();
+        }
+
+
+
+
 
     }
 }
