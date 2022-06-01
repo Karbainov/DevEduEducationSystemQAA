@@ -122,9 +122,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 11
- testRunner.And("I user, I enter the account settings window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
@@ -145,13 +142,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "89990089090",
                             "https://github.com/"});
-#line 12
+#line 11
  testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table10, "And ");
 #line hidden
-#line 15
+#line 14
  testRunner.When("Button click save in window setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 16
+#line 15
  testRunner.Then("Refresh the page changes should be saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -168,7 +165,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user, I want to change my details and cancel them", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 21
+#line 20
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -194,14 +191,11 @@ this.ScenarioInitialize(scenarioInfo);
                 table11.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
-#line 22
+#line 21
  testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table11, "Given ");
 #line hidden
-#line 25
+#line 24
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 26
- testRunner.And("I user, I enter the account settings window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
@@ -223,13 +217,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "89211234567",
                             "https://github.com/"});
-#line 27
+#line 25
  testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table12, "And ");
 #line hidden
-#line 30
+#line 28
  testRunner.When("Button click cancel in window setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 29
  testRunner.Then("Should return to the notification window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
@@ -252,7 +246,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "89990089090",
                             "https://github.com/"});
-#line 32
+#line 30
  testRunner.Then("Check that the changes are not saved", ((string)(null)), table13, "Then ");
 #line hidden
             }
@@ -261,77 +255,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As user, I want change my password and save")]
-        public virtual void AsUserIWantChangeMyPasswordAndSave()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As user, I want change my password and save", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 39
- this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As user, I want change my password and cancel")]
-        public virtual void AsUserIWantChangeMyPasswordAndCancel()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As user, I want change my password and cancel", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 41
- this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As user, I wand add or change photo to my profile and save")]
         [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
-        public virtual void AsUserIWandAddOrChangePhotoToMyProfileAndSave(string length, string width, string[] exampleTags)
+        public virtual void AsUserIWantChangeMyPasswordAndSave(string length, string width, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As user, I wand add or change photo to my profile and save", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 43
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As user, I want change my password and save", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 37
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -357,42 +289,43 @@ this.ScenarioInitialize(scenarioInfo);
                 table14.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
-#line 44
+#line 38
  testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table14, "Given ");
 #line hidden
-#line 47
+#line 41
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 48
- testRunner.And("I user, I enter the account settings window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
+ testRunner.When("Click on the pencil", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 49
- testRunner.When("I user, I click text Upload new photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Password"});
+                table15.AddRow(new string[] {
+                            "ignatignat"});
+#line 43
+ testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table15, "Given ");
 #line hidden
-#line 50
- testRunner.Then("A window should appear with cancel buttons and select a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 46
+ testRunner.When("Button click save in window update password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 51
- testRunner.Given("Click button Select a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 52
- testRunner.Then("Photo should be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 47
+ testRunner.Then("Check that the password has changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As user, I want add or change photo to my profile and cancel")]
+        [NUnit.Framework.DescriptionAttribute("As user, I want change my password and cancel")]
         [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
-        public virtual void AsUserIWantAddOrChangePhotoToMyProfileAndCancel(string length, string width, string[] exampleTags)
+        public virtual void AsUserIWantChangeMyPasswordAndCancel(string length, string width, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As user, I want add or change photo to my profile and cancel", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 58
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As user, I want change my password and cancel", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 52
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -412,28 +345,145 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table15.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
-#line 59
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table15, "Given ");
+#line 53
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table16, "Given ");
 #line hidden
-#line 62
+#line 56
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 63
- testRunner.And("I user, I enter the account settings window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 57
+ testRunner.When("Click on the pencil", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 64
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Password"});
+                table17.AddRow(new string[] {
+                            "ignatignat"});
+#line 58
+ testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table17, "Given ");
+#line hidden
+#line 61
+ testRunner.When("Button click cancel in window update password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 62
+ testRunner.Then("Check that the password don\'t has changed and moved to the last window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As user, I wand add or change photo to my profile and save")]
+        [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
+        public virtual void AsUserIWandAddOrChangePhotoToMyProfileAndSave(string length, string width, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("length", length);
+            argumentsOfScenario.Add("width", width);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As user, I wand add or change photo to my profile and save", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 67
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table18.AddRow(new string[] {
+                            "userTestStudent@example.com",
+                            "userTestStudent"});
+#line 68
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table18, "Given ");
+#line hidden
+#line 71
+ testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 72
+ testRunner.When("I user, I click text Upload new photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 73
+ testRunner.Then("A window should appear with cancel buttons and select a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 74
+ testRunner.Given("Click button Select a file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 75
+ testRunner.Then("Photo should be changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As user, I want add or change photo to my profile and cancel")]
+        [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
+        public virtual void AsUserIWantAddOrChangePhotoToMyProfileAndCancel(string length, string width, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("length", length);
+            argumentsOfScenario.Add("width", width);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As user, I want add or change photo to my profile and cancel", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 81
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table19.AddRow(new string[] {
+                            "userTestStudent@example.com",
+                            "userTestStudent"});
+#line 82
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table19, "Given ");
+#line hidden
+#line 85
+ testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 86
  testRunner.And("I user, I click text Upload new photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 65
+#line 87
  testRunner.When("Click on the cancel button to deselect the photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 66
+#line 88
  testRunner.Then("The message box for choosing a photo should close", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

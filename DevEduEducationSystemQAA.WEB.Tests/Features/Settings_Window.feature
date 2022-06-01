@@ -8,7 +8,6 @@ Scenario: As a user, I want to change my details and save them
     | Email                       | Password        |
     | userTestStudent@example.com | userTestStudent |
 	And I click the button Setting
-	And I user, I enter the account settings window
 	And I enter data in the fields that I want to change
 	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email         | Phone       | LinkByGitHub        |
 	| Ignatov | Ignat | Ignatovich | 31.08.1998 | HarryPotter | HarryPotter    | Harry@mail.ru | 89990089090 | https://github.com/ |
@@ -23,7 +22,6 @@ Scenario: As a user, I want to change my details and save them
     | Email                       | Password        |
     | userTestStudent@example.com | userTestStudent |
 	And I click the button Setting
-	And I user, I enter the account settings window
 	And I enter data in the fields that I want to change
 	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email         | Phone       | LinkByGitHub        | 
 	| James   | Harry | Potter     | 31.08.1998 | HarryPotter | HarryPotter    | Harry@mail.ru | 89211234567 | https://github.com/ |
@@ -37,15 +35,40 @@ Scenario: As a user, I want to change my details and save them
     | 1920   | 1080  |
 
 	Scenario: As user, I want change my password and save
+	Given  I log in to the system  with the window size <length> and <width>
+    | Email                       | Password        |
+    | userTestStudent@example.com | userTestStudent |
+	And I click the button Setting
+	When Click on the pencil
+	Given Fill in the fields with data to change the password
+	| Password   |
+	| ignatignat |
+	When Button click save in window update password
+	Then Check that the password has changed
+	Examples: 
+	| length | width |
+	| 1920   | 1080  |  
 
 	Scenario: As user, I want change my password and cancel
+	Given  I log in to the system  with the window size <length> and <width>
+    | Email                       | Password        |
+    | userTestStudent@example.com | userTestStudent |
+	And I click the button Setting
+	When Click on the pencil
+	Given Fill in the fields with data to change the password
+	| Password   |
+	| ignatignat |
+	When Button click cancel in window update password
+	Then Check that the password don't has changed and moved to the last window
+	Examples: 
+	| length | width |
+	| 1920   | 1080  |  
 
 	Scenario: As user, I wand add or change photo to my profile and save
 	Given I log in to the system  with the window size <length> and <width>
     | Email                       | Password        |
     | userTestStudent@example.com | userTestStudent |
 	And I click the button Setting
-	And I user, I enter the account settings window
 	When I user, I click text Upload new photo
 	Then A window should appear with cancel buttons and select a file
 	Given Click button Select a file
@@ -60,7 +83,6 @@ Scenario: As a user, I want to change my details and save them
     | Email                       | Password        |
     | userTestStudent@example.com | userTestStudent |
 	And I click the button Setting
-	And I user, I enter the account settings window
 	And I user, I click text Upload new photo
 	When Click on the cancel button to deselect the photo
 	Then The message box for choosing a photo should close

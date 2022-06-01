@@ -19,9 +19,14 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By TextUploadNewPhoto = By.XPath(@"//a[text()='Загрузить новое фото']");
         public static By ButtonSave = By.XPath(@"//*[text()='Сохранить']");
         public static By ButtonCancel = By.XPath(@"//*[text()='Отмена']");
-        public static By ButtonPencil = By.XPath(@"//div[@class='form-element password']//child::a[@href='/settings'] ");
+        public static By ButtonPencil = By.XPath(@"//a[@href='/change-password']");
         public static By PhotoButtonCancel = By.XPath(@"//div[@class='buttons-container']/child::button");
         public static By PhotoButtonSelectFile = By.XPath(@"//div[@class='buttons-container']/child::label");
         public static By TextAboutPhoto = By.XPath(@"//*[text()='Загрузите свою настоящую фотографию. Вы можете загрузить изображение в формате JPG или PNG']");
+        public static By InputOldPassword = By.XPath(@"//input[@name='oldPassword']");
+        public static By InputNewPassword = By.XPath(@"//input[@name='newPassword']");
+        public static By InputNewPasswordReaped = By.XPath(@"//input[@name='newPasswordRepeat']");
+        public static By ButtonSaveNewPassword = By.XPath(@"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
+        public static By ButtonCancelNewPassword = By.XPath(@"//button[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']");
     }
 }

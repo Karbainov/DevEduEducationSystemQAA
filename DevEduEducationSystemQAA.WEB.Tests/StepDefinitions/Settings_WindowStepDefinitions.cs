@@ -17,6 +17,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void GivenILogInToTheSystemWithTheWindowSizeAnd(int oneSize, int twoSize, Table table)
         {
             LoginRequestModel emailAndPassword = table.CreateSet<LoginRequestModel>().ToList().First();
+            ScenarioContext.Current["emailAndPassword"] = emailAndPassword;
             _driver = new ChromeDriver();
             _driver.Navigate().GoToUrl(UrlStorage.EnterWindow);
             _driver.Manage().Window.Position = new Point(0, 0);
@@ -38,14 +39,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var buttonSetting = _driver.FindElement(Setting_WindowXPaths.ButtonNameUserItIsSetting);
             buttonSetting.Click();
         }
-
-        [Given(@"I user, I enter the account settings window")]
-        public void GivenIUserIEnterTheAccountSettingsWindow()
-        {
-            //_driver.Navigate().GoToUrl(UrlStorage.SettingWindow);
-            //Thread.Sleep(1000);
-        }
-
 
         [Given(@"I enter data in the fields that I want to change")]
         public void GivenIEnterDataInTheFieldsThatIWantToChange(Table table)
@@ -100,6 +93,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Assert.AreEqual(expected.BirthDate, inputBirthdate);
             Assert.AreEqual(expected.Phone, inputPhone);
             Assert.AreEqual(expected.LinkByGitHub, inputLinkGitHub);
+            _driver.Close();
         }
 
         // new Scenario - cancel save update user
@@ -141,7 +135,70 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Assert.AreEqual(expected.BirthDate, inputBirthdate); // не забыть подключить дату - она у них не работает
             Assert.AreEqual(expected.Phone, inputPhone);
             Assert.AreEqual(expected.LinkByGitHub, inputLinkGitHub);
+            _driver.Close();
         }
+
+        // new Scenario - update password
+
+        [When(@"Click on the pencil")]
+        public void WhenClickOnThePencil()
+        {
+            var buttonPencil = _driver.FindElement(Setting_WindowXPaths.ButtonPencil);
+            buttonPencil.Click();
+            string urlActual = _driver.Url;
+            string expected = UrlStorage.UpdatePassword;
+            Assert.AreEqual(expected, urlActual);
+        }
+
+        [Given(@"Fill in the fields with data to change the password")]
+        public void GivenFillInTheFieldsWithDataToChangeThePassword(Table table)
+        {
+            LoginRequestModel emailAndPassword = (LoginRequestModel)ScenarioContext.Current["emailAndPassword"];
+            var inputOldPassword = _driver.FindElement(Setting_WindowXPaths.InputOldPassword);
+            inputOldPassword.SendKeys(emailAndPassword.Password);
+            LoginRequestModel newPassword = table.CreateSet<LoginRequestModel>().ToList().First();
+            ScenarioContext.Current["newPassword"] = newPassword;
+            var inputNewPassword = _driver.FindElement(Setting_WindowXPaths.InputNewPassword);
+            inputNewPassword.SendKeys(newPassword.Password);
+            var inputNewPasswordRepead = _driver.FindElement(Setting_WindowXPaths.InputNewPasswordReaped);
+            inputNewPasswordRepead.SendKeys(newPassword.Password);
+        }
+
+        [When(@"Button click save in window update password")]
+        public void GivenButtonClickSaveInWindowUpdatePassword()
+        {
+            var buttonSave = _driver.FindElement(Setting_WindowXPaths.ButtonSaveNewPassword);
+            buttonSave.Click();
+        }
+
+        [Then(@"Check that the password has changed")]
+        public void ThenCheckThatThePasswordHasChanged()
+        {
+            var exit = _driver.FindElement(GroupAllFunctionalityXPath.ButtonExit);
+            exit.Click();
+            Thread.Sleep(300);
+            LoginRequestModel emailAndPassword = (LoginRequestModel)ScenarioContext.Current["emailAndPassword"];
+            LoginRequestModel newPassword = (LoginRequestModel)ScenarioContext.Current["newPassword"];
+            IOHelper.CheckAuth(_driver, emailAndPassword.Email, newPassword.Password);
+        }
+
+        // new Scenario - click cancel in window update password
+
+        [When(@"Button click cancel in window update password")]
+        public void WhenButtonClickCancelInWindowUpdatePassword()
+        {
+            var buttonCancel = _driver.FindElement(Setting_WindowXPaths.ButtonCancelNewPassword);
+            buttonCancel.Click();
+        }
+
+        [Then(@"Check that the password don't has changed and moved to the last window")]
+        public void ThenCheckThatThePasswordDontHasChangedAndMovedToTheLastWindow()
+        {
+           string urlActual = _driver.Url;
+           string urlExpected = UrlStorage.SettingWindow;
+           Assert.AreEqual(urlExpected, urlActual);
+        }
+
 
 
         // new Scenario - save new or update photo
@@ -181,10 +238,22 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
             js.ExecuteScript("document.querySelector('.modal-window input[type=\"file\"]').setAttribute('style','display:inline;')");
-            _driver.FindElement(By.CssSelector(".modal-window input[type=\"file\"]")).SendKeys(@"C:\photo_2021-12-08_02-45-49.jpg");
+            _driver.FindElement(By.CssSelector(".modal-window input[type=\"file\"]")).SendKeys(@"C:\Harry.jpg");
             Thread.Sleep(1000);
             _driver.FindElement(By.CssSelector(".modal-window input[type=\"submit\"]")).Click();
             Thread.Sleep(1000);
+        }
+
+        [Then(@"Photo should be changed")]
+        public void ThenPhotoShouldBeChanged()
+        {
+            _driver.Navigate().Refresh();
+            Thread.Sleep(1000);
+            var uploadPhoto = _driver.FindElement(By.XPath(@"//img[@class='avatar-photo']"));
+            string actual = uploadPhoto.GetAttribute("src");
+            string unexpected = _userPhotosSrc;
+            Assert.AreNotEqual(unexpected, actual);
+            _driver.Close();
         }
 
         // new Scenario - cancel save phot
@@ -199,23 +268,12 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Then(@"The message box for choosing a photo should close")]
         public void ThenTheMessageBoxForChoosingAPhotoShouldClose()
         {
-            bool actual = _driver.FindElement(Setting_WindowXPaths.TextAboutPhoto).Enabled;
-            //Assert.Throws<>;
+            Assert.Throws<NoSuchElementException>(() => _driver.FindElement(Setting_WindowXPaths.TextAboutPhoto));
             _driver.Close();
         }
 
 
-        [Then(@"Photo should be changed")]
-        public void ThenPhotoShouldBeChanged()
-        {
-            _driver.Navigate().Refresh();
-            Thread.Sleep(1000);
-            var uploadPhoto = _driver.FindElement(By.XPath(@"//img[@class='avatar-photo']"));
-            string actual = uploadPhoto.GetAttribute("src");
-            string unexpected = _userPhotosSrc;
-
-            Assert.AreNotEqual(unexpected, actual);
-        }
+        
 
     }
 }
