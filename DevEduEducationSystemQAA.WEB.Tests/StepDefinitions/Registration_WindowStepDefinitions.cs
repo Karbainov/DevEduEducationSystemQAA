@@ -22,8 +22,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             _driver = new ChromeDriver();
             _driver.Navigate().GoToUrl(UrlStorage.RegistrationWindow);
-            _driver.Manage().Window.Position = new Point(0, 0);
-            _driver.Manage().Window.Size = new Size(oneSize, secondSize);
+            _driver.Manage().Window.Maximize();
+            //_driver.Manage().Window.Size = new Size(oneSize, secondSize);
             var buttonRegisterByWindowLogin = _driver.FindElement(Registration_WindowXPaths.buttonRegisterByWindowLogin);
             buttonRegisterByWindowLogin.Click();
         }
@@ -33,6 +33,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void GivenIAmAUserFillInAllRequiredFields(Table table)
         {
             RegistrationRequestModel user = table.CreateSet<RegistrationRequestModel>().ToList().First();
+            FeatureContext.Current["Register User"] = user;
             IWebElement inputSurname = _driver.FindElement(Registration_WindowXPaths.InputSurname);
             inputSurname.SendKeys(user.Surname);
             var inputName = _driver.FindElement(Registration_WindowXPaths.InputName);
@@ -55,6 +56,34 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             inputPhone.SendKeys(user.Phone);
         }
 
+        [Then(@"When the Privacy Policy checkbox is unchecked, the Register button should be inactive")]
+        public void ThenWhenThePrivacyPolicyCheckboxIsUncheckedTheRegisterButtonShouldBeInactive()
+        {
+            RegistrationRequestModel user = (RegistrationRequestModel)FeatureContext.Current["Register User"];
+            _driver.Navigate().GoToUrl(UrlStorage.EnterWindow);
+            var inputEmail = _driver.FindElement(Enter_WindowXPaths.InputLogin);
+            inputEmail.SendKeys(user.Email);
+            var inputPassword = _driver.FindElement(Enter_WindowXPaths.InputPassword);
+            inputPassword.Clear();
+            inputPassword.SendKeys(user.Password);
+            var buttonEnter = _driver.FindElement(Enter_WindowXPaths.ButtonEnter);
+            buttonEnter.Click();
+            Thread.Sleep(500);
+            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
+            string actual = _driver.Url;
+            string expected = UrlStorage.EnterWindow;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Given(@"Click checkbox on the privacy policy")]
+        public void GivenClickCheckboxOnThePrivacyPolicy()
+        {
+            var checkBox = _driver.FindElement(Registration_WindowXPaths.ChecBoxPrivacyPolicy);
+            // этот кусок кода имитирует мышку
+            Actions build = new Actions(_driver);
+            build.MoveToElement(checkBox).MoveByOffset(0, -5).Click().Build().Perform();
+        }
+
         [When(@"Click on register button")]
         public void WhenClickOnRegisterButton()
         {
@@ -62,31 +91,27 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             buttonReister.Click();
         }
 
-        //[Then(@"When the Privacy Policy checkbox is unchecked, the Register button should be inactive")]
-        //public void ThenWhenThePrivacyPolicyCheckboxIsUncheckedTheRegisterButtonShouldBeInactive()
-        //{
-        //    Assert.Pass();
-        //    // я не понимаю, как тут сравнивать
-           
-        //}
 
-
-        //[Given(@"Click checkbox on the privacy policy")]
-        //public void GivenClickCheckboxOnThePrivacyPolicy()
-        //{
-        //    var checkBox = _driver.FindElement(Registration_WindowXPaths.ChecBoxPrivacyPolicy);
-        //// этот кусок кода имитирует мышку
-        //Actions build = new Actions(_driver);
-        //build.MoveToElement(checkBox).MoveByOffset(0,-5).Click().Build().Perform();
-        //}
-
-
-        [Then(@"A notification should appear with the text You have successfully registered!")]
-        public void ThenANotificationShouldAppearWithTheTextYouHaveSuccessfullyRegistered()
+        [Then(@"Сheck that a registered user will log into the application")]
+        public void ThenСheckThatARegisteredUserWillLogIntoTheApplication()
         {
-            // тут жду мне нужен XPath на текст, хотя могу написать его и так , но на всякий случай
-            Assert.Pass();
+            RegistrationRequestModel user = (RegistrationRequestModel)FeatureContext.Current["Register User"];
+            _driver.Navigate().GoToUrl(UrlStorage.EnterWindow);
+            var inputEmail = _driver.FindElement(Enter_WindowXPaths.InputLogin);
+            inputEmail.SendKeys(user.Email);
+            var inputPassword = _driver.FindElement(Enter_WindowXPaths.InputPassword);
+            inputPassword.Clear();
+            inputPassword.SendKeys(user.Password);
+            var buttonEnter = _driver.FindElement(Enter_WindowXPaths.ButtonEnter);
+            buttonEnter.Click();
+            Thread.Sleep(500);
+            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
+            string actual = _driver.Url;
+            string expected = UrlStorage.BasePage;
+            Assert.AreEqual(expected, actual);
+            _driver.Close();
         }
+
 
 
         //[When(@"Click on the privacy policy link")]
@@ -108,7 +133,40 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Then(@"The registration window should return to the Login window\.")]
         public void ThenTheRegistrationWindowShouldReturnToTheLoginWindow_()
         {
-            // тут опять же не знаю как сравнивать по очищению если только
+            string actual = _driver.Url;
+            string expected = UrlStorage.EnterWindow;
+            Assert.AreEqual(expected, actual);
+        }
+
+        // negative - test ( invalid data phone, birthday and email
+
+        [Then(@"The system should respond, the register button will be inactive")]
+        public void ThenTheSystemShouldRespondTheRegisterButtonWillBeInactive()
+        {
+            string birthdayExpected = "30.01.1800";
+            string getAttribute = "value";
+            RegistrationRequestModel user = (RegistrationRequestModel)FeatureContext.Current["Register User"];
+            string inputBirthday = _driver.FindElement(Registration_WindowXPaths.DatePicker).GetAttribute(getAttribute);
+            if (inputBirthday == birthdayExpected)
+            {
+                var textMessageBirthday = _driver.FindElement(Registration_WindowXPaths.TextMessageBirthday);
+                IOHelper.CheckAuthNegative(_driver, user.Email, user.Password);
+                _driver.Close();
+            }
+            string phoneExpected = "Чукча кушать хочет";
+            if(user.Phone == phoneExpected)
+            {
+                string inputPhone = _driver.FindElement(Registration_WindowXPaths.InputPhone).GetAttribute(getAttribute);
+                IOHelper.CheckAuthNegative(_driver, user.Email, user.Password);
+                _driver.Close();
+            }
+            string emailExpeted = "Я email";
+            if(user.Email == emailExpeted)
+            {
+                string inputEmail = _driver.FindElement(Registration_WindowXPaths.InputEmail).GetAttribute(getAttribute);
+                IOHelper.CheckAuthNegative(_driver, user.Email, user.Password);
+                _driver.Close();
+            }
         }
 
 
