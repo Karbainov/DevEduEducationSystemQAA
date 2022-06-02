@@ -13,5 +13,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support
         public const string SettingWindow = @"https://piter-education.ru:7074/settings";
         public const string EnterWindow = @"https://piter-education.ru:7074/login";
         public const string UpdatePassword = @"https://piter-education.ru:7074/change-password";
+        public const string JournalWindow = @"https://piter-education.ru:7074/journal";
     }
 }
