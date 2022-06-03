@@ -30,7 +30,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var buttonEnter = _driver.FindElement(Enter_WindowXPaths.ButtonEnter);
             buttonEnter.Click();
             Thread.Sleep(1500);
-            //_driver.Navigate().GoToUrl(UrlStorage.BasePage);
+            ScenarioContext.Current["Driver"] = _driver;
+            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
         }
 
         [Given(@"I click the button Setting")]

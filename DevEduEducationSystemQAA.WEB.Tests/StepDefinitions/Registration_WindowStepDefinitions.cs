@@ -112,8 +112,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             _driver.Close();
         }
 
-
-
         //[When(@"Click on the privacy policy link")]
         //public void WhenClickOnThePrivacyPolicyLink()
         //{

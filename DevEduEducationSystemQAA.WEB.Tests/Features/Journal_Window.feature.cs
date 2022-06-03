@@ -74,10 +74,10 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a teacher, I want to keep a journal for my group")]
+        [NUnit.Framework.DescriptionAttribute("As a teacher, I want to sort by last name")]
         [NUnit.Framework.CategoryAttribute("JournalWindow")]
         [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
-        public virtual void AsATeacherIWantToKeepAJournalForMyGroup(string length, string width, string[] exampleTags)
+        public virtual void AsATeacherIWantToSortByLastName(string length, string width, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "JournalWindow"};
@@ -89,7 +89,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, I want to keep a journal for my group", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a teacher, I want to sort by last name", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -117,11 +117,43 @@ this.ScenarioInitialize(scenarioInfo);
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 7
- testRunner.Given(string.Format("I logged in as a teacher and went to the journal window with the window size {0} " +
-                            "and {1}", length, width), ((string)(null)), table6, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table6, "Given ");
 #line hidden
 #line 10
+ testRunner.And("I click button Journal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 11
  testRunner.Then("Check that you have entered the Journal window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 12
+ testRunner.Given("Select group in window Journal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 13
+ testRunner.When("Click on filter rating down", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("Checking that the rating order has changed in ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 15
+ testRunner.When("Click on filter rating up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 16
+ testRunner.Then("Checking that the rating order has changed in descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 17
+ testRunner.Given("Horizontal scroll", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 18
+ testRunner.Then("Checking the class date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 19
+ testRunner.Then("Verify that the desired attendance item is selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 20
+ testRunner.When("Click to sort by last name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 21
+ testRunner.Then("The list of students should be sorted by last name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
