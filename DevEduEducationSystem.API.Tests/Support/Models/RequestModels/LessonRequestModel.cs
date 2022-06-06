@@ -30,5 +30,13 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.RequestModels
 
         [JsonPropertyName("isPublished")]
         public bool IsPublished { get; set; }
+        public override bool Equals(object? obj)
+        {
+            return obj is LessonRequestModel model &&
+                   Date == model.Date &&
+                   AdditionalMaterials == model.AdditionalMaterials &&
+                   Name == model.Name &&
+                   LinkToRecord == model.LinkToRecord;
+        }
     }
 }

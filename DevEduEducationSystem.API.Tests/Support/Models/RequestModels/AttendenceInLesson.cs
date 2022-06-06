@@ -10,6 +10,6 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.RequestModels
     {
         public string Email { get; set; }
 
-        public string AttendenceType { get; set; }
+        public string AttendanceType { get; set; }
     }
 }

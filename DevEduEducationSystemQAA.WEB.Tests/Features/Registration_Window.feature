@@ -42,10 +42,10 @@ Scenario: As a user, I want to register
 	When Click on register button
 	Then The system should respond, the register button will be inactive
 	Examples: 
-	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email         | Phone              | length | width |
-	| Джеймс  | Гарри | Поттер     | 30.01.1800 | HarryPotter | HarryPotter    | Harry@mail.ru | +79211234567       | 1920   | 1080  |
-	| Джеймс  | Гарри | Поттер     | 31.07.1998 | HarryPotter | HarryPotter    | Harry@mail.ru | Чукча кушать хочет | 1920   | 1080  |
-	| Джеймс  | Гарри | Поттер     | 31.07.1998 | HarryPotter | HarryPotter    | Я email       | +79211234567       | 1920   | 1080  |
+	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email          | Phone              | length | width |
+	| Джеймс  | Гарри | Поттер     | 30.01.1800 | HarryPotter | HarryPotter    | Harry1@mail.ru | +79211234567       | 1920   | 1080  |
+	| Джеймс  | Гарри | Поттер     | 31.07.1998 | HarryPotter | HarryPotter    | Harry2@mail.ru | Чукча кушать хочет | 1920   | 1080  |
+	| Джеймс  | Гарри | Поттер     | 31.07.1998 | HarryPotter | HarryPotter    | Я email        | +79211234567       | 1920   | 1080  |
 	
 	 
 	

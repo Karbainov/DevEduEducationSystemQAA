@@ -44,7 +44,7 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.ResponseModels
             return obj is LessonTeacherResponseModel model &&
                    Id == model.Id &&
                    Date == model.Date &&
-                   Name == model.Name &&
+                   Name == model.Name &&                    
                    AdditionalMaterials == model.AdditionalMaterials &&
                    LinkToRecord == model.LinkToRecord &&
                    Number == model.Number &&

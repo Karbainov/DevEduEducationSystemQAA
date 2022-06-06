@@ -110,19 +110,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table11.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 7
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table11, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table16, "Given ");
 #line hidden
 #line 10
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -132,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Phone",
                             "LinkByGitHub"});
-                table12.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "Ignatov",
                             "Ignat",
                             "Ignatovich",
@@ -143,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89990089090",
                             "https://github.com/"});
 #line 11
- testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table12, "And ");
+ testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table17, "And ");
 #line hidden
 #line 14
  testRunner.When("Button click save in window setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -192,19 +192,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table13.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 22
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table13, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table18, "Given ");
 #line hidden
 #line 25
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -214,7 +214,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Phone",
                             "LinkByGitHub"});
-                table14.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "James",
                             "Harry",
                             "Potter",
@@ -225,7 +225,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89211234567",
                             "https://github.com/"});
 #line 26
- testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table14, "And ");
+ testRunner.And("I enter data in the fields that I want to change", ((string)(null)), table19, "And ");
 #line hidden
 #line 29
  testRunner.When("Button click cancel in window setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -233,7 +233,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 30
  testRunner.Then("Should return to the notification window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -243,7 +243,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Phone",
                             "LinkByGitHub"});
-                table15.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "Ignatov",
                             "Ignat",
                             "Ignatovich",
@@ -254,7 +254,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89990089090",
                             "https://github.com/"});
 #line 31
- testRunner.Then("Check that the changes are not saved", ((string)(null)), table15, "Then ");
+ testRunner.Then("Check that the changes are not saved", ((string)(null)), table20, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -297,14 +297,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table16.AddRow(new string[] {
+                table21.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 40
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table16, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table21, "Given ");
 #line hidden
 #line 43
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -312,12 +312,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 44
  testRunner.When("Click on the pencil", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "Password"});
-                table17.AddRow(new string[] {
+                table22.AddRow(new string[] {
                             "ignatignat"});
 #line 45
- testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table17, "Given ");
+ testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table22, "Given ");
 #line hidden
 #line 48
  testRunner.When("Button click save in window update password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -366,14 +366,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table18.AddRow(new string[] {
+                table23.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 56
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table18, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table23, "Given ");
 #line hidden
 #line 59
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -381,12 +381,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 60
  testRunner.When("Click on the pencil", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
                             "Password"});
-                table19.AddRow(new string[] {
+                table24.AddRow(new string[] {
                             "ignatignat"});
 #line 61
- testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table19, "Given ");
+ testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table24, "Given ");
 #line hidden
 #line 64
  testRunner.When("Button click back in window update password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -435,14 +435,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table20.AddRow(new string[] {
+                table25.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 72
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table20, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table25, "Given ");
 #line hidden
 #line 75
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -450,12 +450,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 76
  testRunner.When("Click on the pencil", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
                             "Password"});
-                table21.AddRow(new string[] {
+                table26.AddRow(new string[] {
                             "ignatignat"});
 #line 77
- testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table21, "Given ");
+ testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table26, "Given ");
 #line hidden
 #line 80
  testRunner.When("Button click cancel in window update password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -504,14 +504,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table22.AddRow(new string[] {
+                table27.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 88
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table22, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table27, "Given ");
 #line hidden
 #line 91
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -569,14 +569,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table23.AddRow(new string[] {
+                table28.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 102
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table23, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table28, "Given ");
 #line hidden
 #line 105
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -631,19 +631,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table24.AddRow(new string[] {
+                table29.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 115
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table24, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table29, "Given ");
 #line hidden
 #line 118
  testRunner.And("I click the button Setting", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -653,7 +653,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Phone",
                             "LinkByGitHub"});
-                table25.AddRow(new string[] {
+                table30.AddRow(new string[] {
                             "Ignatov",
                             "Ignat",
                             "Ignatovich",
@@ -664,7 +664,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89990089090",
                             "https://github.com/"});
 #line 119
- testRunner.When("I clean and new enter email that I want to change", ((string)(null)), table25, "When ");
+ testRunner.When("I clean and new enter email that I want to change", ((string)(null)), table30, "When ");
 #line hidden
 #line 122
  testRunner.Then("Check that the email field is not cleared", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

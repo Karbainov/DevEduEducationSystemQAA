@@ -33,8 +33,9 @@ namespace DevEduEducationSystem.API.Tests.StepDefinitions
             AddRoleUsers.AddRole(role, (int)ScenarioContext.Current["idNewUser"], tokenAdmin);
             ScenarioContext.Current["TokenAdmin"] = tokenAdmin;
             RegistrationRequestModel userModelForTokinMethodist = (RegistrationRequestModel)ScenarioContext.Current["NewUser"];
-            string tokenMethodist = AuthClient.AuthUser(userModelForTokinMethodist.Email, userModelForTokinMethodist.Password);
-            ScenarioContext.Current["TokenMethodist"] = tokenMethodist;
+            string token = AuthClient.AuthUser(userModelForTokinMethodist.Email, userModelForTokinMethodist.Password);
+            ScenarioContext.Current["TokenMethodist"] = token;
+            ScenarioContext.Current["TokenTeacher"] = token;
         }
 
         [When(@"I login as an Methodist and create new course")]

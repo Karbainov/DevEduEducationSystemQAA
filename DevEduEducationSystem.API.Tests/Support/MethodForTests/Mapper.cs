@@ -36,9 +36,9 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             };
         }
 
-        public static CourseResponseModel MapCourseRequestModelToCourseResponseModel(CourseRequestModel model)
+        public static CourseRequestModel MapCourseRequestModelToCourseResponseModel(CourseResponseModel model)
         {
-            return new CourseResponseModel()
+            return new CourseRequestModel()
             {
                 Name = model.Name,
                 Description = model.Description
@@ -104,6 +104,8 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
         {
             return new LessonRequestModel()
             {
+                //GroupId???хорошо бы сравнить, но респонс модель не возвращает
+                Name = lessonTeacherResponseModel.Name,
                 Date = lessonTeacherResponseModel.Date,
                 AdditionalMaterials = lessonTeacherResponseModel.AdditionalMaterials,
                 LinkToRecord = lessonTeacherResponseModel.LinkToRecord
@@ -114,6 +116,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
         {
             return new LessonRequestModel()
             {
+                Name = lessonGroupResponseModel.Name,
                 Date = lessonGroupResponseModel.Date,
                 AdditionalMaterials = lessonGroupResponseModel.AdditionalMaterials,
                 LinkToRecord = lessonGroupResponseModel.LinkToRecord

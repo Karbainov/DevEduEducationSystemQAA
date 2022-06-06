@@ -66,7 +66,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.MockListStudent
 
             for (int j = 0; j < students.Count; j++)
             {
-                List<string> total = students[0].Ball;
+                List<string> total = students[j].Ball;
                 List<double> list = new List<double>();
                 for (int i = 0; i < total.Count; i++)
                 {
@@ -75,13 +75,17 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.MockListStudent
                     list.Add(aa);
                 }
                 students[j].Total = list;
-            } 
-            // тут я не могу додумать как на автомат поставить(
-            for(int i = 0; i < students[0].Total.Count; i++)
-            {
-                allTotal.Add(students[0].Total[i] + students[1].Total[i] + students[2].Total[i]);
             }
-
+            // тут я не могу додумать как на автомат поставить(
+            for (int j = 0; j < students[0].Total.Count; j++)
+            {
+                double sum = 0;
+                for (int i = 0; i < students.Count; i++)
+                {
+                    sum += students[i].Total[j];
+                }
+                allTotal.Add(sum);
+            }
             return students;
         }
     }
