@@ -272,8 +272,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var buttonSave = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSaveAfterUpdate);
             buttonSave.Click();
             Thread.Sleep(1500);
-
         }
+
         // остановилась тут значит данные измененные не сохранились.Ввести вручную через базу, продолжить писать сравнение измененного дз с заданными полями
         [Then(@"I can see new HomeWork with new field in list HomeWorks new Groups")]
         public void ThenICanSeeNewHomeWorkWithNewFieldInListHomeWorksNewGroups()
@@ -311,6 +311,98 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             foreach (IWebElement href in listActualHrefs)
             {
                 Assert.IsTrue(listExpectedHrefs.Contains(href.Text));
+            }
+        }
+
+        // As I Teacher I can delete publish HomeWork
+
+        [Given(@"I go to the task card and click the edit button")]
+        public void GivenIGoToTheTaskCardAndClickTheEditButton()
+        {
+            var tabHomeWork = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TabHomeWork);
+            tabHomeWork.Click();
+
+            var groupNameBeforeUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupInListHomeworksBeforeUpdate);
+            groupNameBeforeUpdate.Click();
+            Thread.Sleep(5000);
+
+            var buttonUpdateHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.NewHomeWorkInList);
+            buttonUpdateHomework.Click();
+
+            var buttonUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonUpdateInCard);
+            buttonUpdate.Click();
+        }
+
+        [When(@"In card of HomeWork I click in Button Delete task")]
+        public void WhenInCardOfHomeWorkIClickInButtonDeleteTask()
+        {
+            var buttonDeleteTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonDeleteTask);
+            buttonDeleteTask.Click();           
+
+            var buttonAcceptDelete = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonAccepteDeleteInPopUpWindowAfterClickDeleteTask);
+            buttonAcceptDelete.Click();
+        }
+
+        [Then(@"I can see message about HomeWork is Deleted")]
+        public void ThenICanSeeMessageAboutHomeWorkIsDeleted()
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            IWebElement windowAcceptDelete = wait.Until(e => e.FindElement(HomeWorkWindowForAllUsersXPath.WindowsWithMessageAboutOnSuccessfulRemoval));
+            Assert.IsNotNull(windowAcceptDelete);
+
+            var buttonOKInWindowsWithMessage = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonOKInWindowsWithMessage);
+            buttonOKInWindowsWithMessage.Click();
+        }
+
+        [Then(@"I don't can see HomeWork in list HomeWorks of Groups")]
+        public void ThenIDontCanSeeHomeWorkInListHomeWorksOfGroups()
+        {
+            var buttonHomeWorks = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TabHomeWork);
+            buttonHomeWorks.Click();
+
+            var groupNameBeforeUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupInListHomeworksBeforeUpdate);
+            groupNameBeforeUpdate.Click();
+
+            AddHomeWorkModel homeWork = (AddHomeWorkModel)ScenarioContext.Current["HomeWork"];
+
+            var listAllTasks = _driver.FindElements(HomeWorkWindowForAllUsersXPath.ListAllHomeworks).ToList();
+
+            foreach (IWebElement nameOfTask in listAllTasks)
+            {
+                Assert.AreNotEqual(homeWork.Name, nameOfTask.Text);
+            }
+        }
+
+        //As I Teacher I can cancel delete publish HomeWork after moment then I click in button delete
+
+        [When(@"In card of HomeWork I click in Button cancel Delete task")]
+        public void WhenInCardOfHomeWorkIClickInButtonCancelDeleteTask()
+        {
+            var buttonDeleteTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonDeleteTask);
+            buttonDeleteTask.Click();
+
+            var buttonCancelDelete = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonCancelDeleteInPopUpWindowAfterClickDeleteTask);
+            buttonCancelDelete.Click();
+            Thread.Sleep(1000);
+
+        }
+
+        [Then(@"I can see new HomeWork in list HomeWorks of Groups")]
+        public void ThenICanSeeNewHomeWorkInListHomeWorksOfGroups()
+        {
+            var buttonHomeWorks = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TabHomeWork);
+            buttonHomeWorks.Click();
+
+            var groupNameBeforeUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupInListHomeworksBeforeUpdate);
+            groupNameBeforeUpdate.Click();
+
+            AddHomeWorkModel homeWork = (AddHomeWorkModel)ScenarioContext.Current["HomeWork"];
+
+            var listAllTasks = _driver.FindElements(HomeWorkWindowForAllUsersXPath.ListAllHomeworks).ToList();
+
+            foreach (IWebElement nameOfTask in listAllTasks)
+            {
+                Assert.AreEqual(homeWork.Name, nameOfTask.Text);
             }
         }
     }
