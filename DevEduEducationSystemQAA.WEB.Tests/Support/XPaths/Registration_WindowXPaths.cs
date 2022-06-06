@@ -21,5 +21,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By ChecBoxPrivacyPolicy = By.XPath(@"//label[@class='custom-checkbox']");
         public static By ButtonRegister = By.XPath(@"//*[text()='Зарегистрироваться']");
         public static By ButtonCancel = By.XPath(@"//*[text()='Отмена']");
+        public static By ButtonEnter = By.XPath(@"//a[@class='auth-link active-auth-link']");
+        public static By TextMessageBirthday = By.XPath(@"//*[text()='Введите корректную дату']");
     }
 }

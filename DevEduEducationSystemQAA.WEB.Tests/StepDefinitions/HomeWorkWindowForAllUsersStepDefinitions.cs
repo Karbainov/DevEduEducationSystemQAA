@@ -313,5 +313,77 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
                 Assert.IsTrue(listExpectedHrefs.Contains(href.Text));
             }
         }
+
+        // new Scenario - Role Student . As a student , I want to hand in my homework 
+
+        [Given(@"I click on the homework button")]
+        public void GivenIClickOnTheHomeworkButton()
+        {
+            _driver = (IWebDriver)ScenarioContext.Current["Driver"];
+            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
+            Thread.Sleep(500);
+            var buttonHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TabHomeWork);
+            buttonHomework.Click();
+            string actual = _driver.Url;
+            string expected = UrlStorage.HomeworkWindow;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Given(@"I choose a course")]
+        public void GivenIChooseACourse()
+        {
+            var buttonCourse = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonCourse);
+            buttonCourse.Click();
+        }
+
+        [Given(@"I click on the task tab")]
+        public void GivenIClickOnTheTaskTab()
+        {
+            try
+            {
+                var buttonToTheTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonToTheTask);
+                buttonToTheTask.Click();
+            }
+            catch (StaleElementReferenceException ex)
+            {
+                var buttonToTheTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonToTheTask);
+                buttonToTheTask.Click();
+            }
+            string actual = _driver.Url;
+            string expected = @"https://piter-education.ru:7074/homeworks/2334/new";
+            Assert.AreEqual(expected,actual);
+        }
+
+        [Given(@"I leave a link to the completed task ""([^""]*)""")]
+        public void GivenILeaveALinkToTheCompletedTask(string studentHomework)
+        {
+            WebDriverWait a = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            a.Until<IWebElement>(d => d.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework));
+            var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
+            inputMyHomework.SendKeys(studentHomework);
+            ScenarioContext.Current["Link My Homework"] = studentHomework;
+        }
+
+        [When(@"I click on the submit homework button")]
+        public void WhenIClickOnTheSubmitHomeworkButton()
+        {
+            var buttonSendHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework);
+            buttonSendHomework.Click();
+            Thread.Sleep(100);
+        }
+
+        [Then(@"I refresh the page and check that my homework link is saved")]
+        public void ThenIRefreshThePageAndCheckThatMyHomeworkLinkIsSaved()
+        {
+            string getAttribute = "value";
+            _driver.Navigate().Refresh();
+            WebDriverWait a = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            a.Until<IWebElement>(d => d.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework));
+            var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
+            string actual = inputMyHomework.GetAttribute(getAttribute);
+            string expected = (string)ScenarioContext.Current["Link My Homework"];
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
