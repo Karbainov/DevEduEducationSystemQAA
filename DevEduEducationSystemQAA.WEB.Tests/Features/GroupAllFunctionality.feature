@@ -20,7 +20,6 @@ Scenario: I as user can login and log out
 Scenario: I as manager can cancel create Group
  Given I open Google Chrome browser
  And I login as an manager and enter in my account
- And I choose role for next step
 	When I fill in the fields pages of create group and click on the button Cancel
     |  Name   |
 	| Group 1 |
@@ -29,7 +28,6 @@ Scenario: I as manager can cancel create Group
 Scenario: I as manager can create Group without students
  Given I open Google Chrome browser
  And I login as an manager and enter in my account
-  And I choose role for next step
 	When I fill all fields pages of create group <Name> and click on the button Save
 	|  Name   |
 	| Group 1 |

@@ -45,14 +45,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             ScenarioContext.Current["Driver"] = _driver;
         }
 
-        [Given(@"I choose role for next step")]
-        public void GivenIChooseRoleForNextStep()
-        {
-            IWebElement changeRole = _driver.FindElement(GroupAllFunctionalityXPath.ChangeRole);
-            changeRole.Click();
-            IWebElement selectRole = _driver.FindElement(GroupAllFunctionalityXPath.RoleSelection);
-            selectRole.Click();
-        }
 
         [When(@"I click on the button Exit")]
         public void WhenIClickOnTheButtonExit()
@@ -93,7 +85,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Actions action = new Actions(_driver);
             action.MoveToElement(teacher).MoveByOffset(-teacher.Size.Width / 2 - 8, 0).Click().Build().Perform();
             Thread.Sleep(1000);
-            By SearchTutor = By.XPath("//span[text()='Сын Блудный']");
+            By SearchTutor = By.XPath("//span[text()='Макар Океанов']");
             IWebElement tutor = _driver.FindElement(SearchTutor);
             Actions actionFindTutor = new Actions(_driver);
             actionFindTutor.MoveToElement(tutor).MoveByOffset(-tutor.Size.Width / 2 - 8, 0).Click().Build().Perform();
@@ -133,7 +125,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Actions action = new Actions(_driver);
             action.MoveToElement(teacher).MoveByOffset(-teacher.Size.Width / 2 - 8, 0).Click().Build().Perform();
             Thread.Sleep(1000);
-            By SearchTutor = By.XPath("//span[text()='Сын Блудный']");
+            By SearchTutor = By.XPath("//span[@class = 'custom-checkbox-text' and text() = 'Макар Океанов']");
             IWebElement tutor = _driver.FindElement(SearchTutor);
             Actions actionFindTutor = new Actions(_driver);
             actionFindTutor.MoveToElement(tutor).MoveByOffset(-tutor.Size.Width / 2 - 8, 0).Click().Build().Perform();
@@ -145,7 +137,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void ThenICanSeeNewGroupInTheListAllGroups()
         {
             //ищем вкладку "группы" переходим на нее
-            //ищем элемент, содержащий XPath с названием нащей группы по тексту
+            //ищем элемент, содержащий XPath с названием нашей группы по тексту
             //проверяем что поля равны тем,которые мы передали при создании
             _driver.Close();
         }
