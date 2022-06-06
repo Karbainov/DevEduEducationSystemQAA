@@ -59,6 +59,16 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By DateOfDeadlineInCardOfHomeWork = By.XPath("//span[text()= 'Срок сдачи'] //following::span");
         public static By FieldName = By.XPath("//span[@class='homework-title']");
         public static By DescriptionInCard = By.XPath("//p[@class = 'homework-card__description']");
+        // выбор курса
+        public static By ButtonCourse = By.XPath(@"//*[text()='QA Automation']");
+        //переход к заданию
+        public static By ButtonToTheTask = By.XPath(@"//a[@class='link-arrow']");
+        // input for link student homework
+        public static By InputStudentHomework = By.XPath(@"//input[@name='answer']");
+        // send homework
+        public static By ButtonSendHomework = By.XPath(@"//button[@class='button-fly']");
+
+
     }
 }
 

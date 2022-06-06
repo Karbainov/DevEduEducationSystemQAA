@@ -166,7 +166,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             fieldNewLink.SendKeys(homeWork.AddLink);
             addLink = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonAddLink);
             addLink.Click();
-            addLink.Click();// костыль. баг заведен
+            addLink.Click();// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Thread.Sleep(1000);
 
             var buttonPublish = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonPublish);
@@ -194,7 +194,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
             AddHomeWorkModel homeWork = (AddHomeWorkModel)ScenarioContext.Current["HomeWork"];
 
-            //изменение группы не сохраняется заведен баг
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
             //var radioButtonForMarkGroup = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupUpdate);
             //radioButtonForMarkGroup.Click();
@@ -203,7 +203,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var dateIssueActual = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfIssue).GetAttribute("value");
             Assert.AreEqual(dateIssueActual, dateIssueExpected);
 
-            //Замену дат пока не делаю так как заведен баг на исправление дат (не сохраняется ДЗ с измененными датами)
+            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
 
             //var inputDate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfIssue);
             //inputDate.Click();
@@ -216,7 +216,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var dateDeadLineActual = _driver.FindElement(HomeWorkWindowForAllUsersXPath.Deadline).GetAttribute("value");
             Assert.AreEqual(dateDeadLineExpected, dateDeadLineActual);
 
-            //Замену дат пока не делаю так как заведен баг на исправление дат (не сохраняется ДЗ с измененными датами)
+            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
 
             //inputDate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.Deadline);
             //inputDate.Click();
@@ -274,14 +274,14 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Thread.Sleep(1500);
         }
 
-        // остановилась тут значит данные измененные не сохранились.Ввести вручную через базу, продолжить писать сравнение измененного дз с заданными полями
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         [Then(@"I can see new HomeWork with new field in list HomeWorks new Groups")]
         public void ThenICanSeeNewHomeWorkWithNewFieldInListHomeWorksNewGroups()
         {
             var tabHomeWork = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TabHomeWork);
             tabHomeWork.Click();
 
-            //выбор группы Frontend, потом после исправления бага заменить на Бэкенд
+            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Frontend, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             var groupNameBeforeUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupInListHomeworksBeforeUpdate);
             groupNameBeforeUpdate.Click();
             Thread.Sleep(5000);
@@ -313,6 +313,78 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
                 Assert.IsTrue(listExpectedHrefs.Contains(href.Text));
             }
         }
+
+        // new Scenario - Role Student . As a student , I want to hand in my homework 
+
+        [Given(@"I click on the homework button")]
+        public void GivenIClickOnTheHomeworkButton()
+        {
+            _driver = (IWebDriver)ScenarioContext.Current["Driver"];
+            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
+            Thread.Sleep(500);
+            var buttonHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TabHomeWork);
+            buttonHomework.Click();
+            string actual = _driver.Url;
+            string expected = UrlStorage.HomeworkWindow;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Given(@"I choose a course")]
+        public void GivenIChooseACourse()
+        {
+            var buttonCourse = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonCourse);
+            buttonCourse.Click();
+        }
+
+        [Given(@"I click on the task tab")]
+        public void GivenIClickOnTheTaskTab()
+        {
+            try
+            {
+                var buttonToTheTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonToTheTask);
+                buttonToTheTask.Click();
+            }
+            catch (StaleElementReferenceException ex)
+            {
+                var buttonToTheTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonToTheTask);
+                buttonToTheTask.Click();
+            }
+            string actual = _driver.Url;
+            string expected = @"https://piter-education.ru:7074/homeworks/2334/new";
+            Assert.AreEqual(expected,actual);
+        }
+
+        [Given(@"I leave a link to the completed task ""([^""]*)""")]
+        public void GivenILeaveALinkToTheCompletedTask(string studentHomework)
+        {
+            WebDriverWait a = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            a.Until<IWebElement>(d => d.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework));
+            var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
+            inputMyHomework.SendKeys(studentHomework);
+            ScenarioContext.Current["Link My Homework"] = studentHomework;
+        }
+
+        [When(@"I click on the submit homework button")]
+        public void WhenIClickOnTheSubmitHomeworkButton()
+        {
+            var buttonSendHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework);
+            buttonSendHomework.Click();
+            Thread.Sleep(100);
+        }
+
+        [Then(@"I refresh the page and check that my homework link is saved")]
+        public void ThenIRefreshThePageAndCheckThatMyHomeworkLinkIsSaved()
+        {
+            string getAttribute = "value";
+            _driver.Navigate().Refresh();
+            WebDriverWait a = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            a.Until<IWebElement>(d => d.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework));
+            var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
+            string actual = inputMyHomework.GetAttribute(getAttribute);
+            string expected = (string)ScenarioContext.Current["Link My Homework"];
+            Assert.AreEqual(expected, actual);
+        }
+
 
         // As I Teacher I can delete publish HomeWork
 
