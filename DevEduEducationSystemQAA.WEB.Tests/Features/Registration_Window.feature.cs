@@ -113,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
     testRunner.Given(string.Format("I enter the registration window with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -122,7 +122,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone"});
-                table6.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "Джеймс",
                             "Гарри",
                             "Поттер",
@@ -132,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "+79211234567"});
 #line 8
- testRunner.And("I am a user fill in all required fields", ((string)(null)), table6, "And ");
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table10, "And ");
 #line hidden
 #line 11
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -176,7 +176,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 24
  testRunner.Given("I enter the registration window with the window size <length> and <width>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -185,7 +185,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone"});
-                table7.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Джеймс",
                             "Гарри",
                             "Поттер",
@@ -195,7 +195,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "+79211234567"});
 #line 25
- testRunner.And("I am a user fill in all required fields", ((string)(null)), table7, "And ");
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table11, "And ");
 #line hidden
 #line 28
  testRunner.And("Click checkbox on the privacy policy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -260,7 +260,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 35
  testRunner.Given(string.Format("I enter the registration window with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -269,7 +269,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone"});
-                table8.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             string.Format("{0}", surname),
                             string.Format("{0}", name),
                             string.Format("{0}", patronymic),
@@ -279,7 +279,7 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", email),
                             string.Format("{0}", phone)});
 #line 36
- testRunner.And("I am a user fill in all required fields", ((string)(null)), table8, "And ");
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table12, "And ");
 #line hidden
 #line 39
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

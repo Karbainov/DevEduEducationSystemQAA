@@ -10,14 +10,25 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
     {
         private IWebDriver _driver;
 
-        [Given(@"I login as an manager and enter in my account")]
-        public void GivenILoginAsAnManagerAndEnterInMyAccount()
-        {            
-            _driver = new ChromeDriver();
+        [Given(@"I open Google Chrome browser")]
+        public void GivenIOpenGoogleChromeBrowser()
+        {
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.PageLoadStrategy = PageLoadStrategy.Normal;
+            _driver = new ChromeDriver(chromeOptions);            
             _driver.Navigate().GoToUrl(UrlStorage.EnterWindow);
             _driver.Manage().Window.Position = new Point(0, 0);
-            _driver.Manage().Window.Size = new Size(1024, 1000);
-            Thread.Sleep(10000);
+            _driver.Manage().Window.Maximize();
+            //((IJavaScriptExecutor)_driver).ExecuteScript("document.body.style.zoom='70%'");
+            //Thread.Sleep(3000);
+            //неявное ожидание
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
+           
+        }
+
+        [Given(@"I login as an manager and enter in my account")]
+        public void GivenILoginAsAnManagerAndEnterInMyAccount()
+        {  
             LoginRequestModel adminEnterRequestModel = new LoginRequestModel()
             {
                 Email = "PopovAS@example.com",
@@ -30,7 +41,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             inputPassword.SendKeys(adminEnterRequestModel.Password);
             IWebElement authUser = _driver.FindElement(Enter_WindowXPaths.ButtonEnter);
             authUser.Click();
-            _driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 0, 0, 3, 0);                
+            _driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 0, 0, 3, 0);
+            ScenarioContext.Current["Driver"] = _driver;
         }
 
         [Given(@"I choose role for next step")]
@@ -137,5 +149,12 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             //проверяем что поля равны тем,которые мы передали при создании
             _driver.Close();
         }
+
+        [When(@"I can add students in Group")]
+        public void WhenICanAddStudentsInGroup()
+        {
+            throw new PendingStepException();
+        }
+
     }
 }

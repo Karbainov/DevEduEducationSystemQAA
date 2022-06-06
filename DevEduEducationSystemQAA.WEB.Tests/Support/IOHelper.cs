@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
+namespace DevEduEducationSystemQAA.WEB.Tests.Support
 {
-    public class WindowsAddTask
+    public class IOHelper
     {
-
     }
 }

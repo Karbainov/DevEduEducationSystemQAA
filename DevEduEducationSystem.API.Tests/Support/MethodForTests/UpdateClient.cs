@@ -166,7 +166,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
             };
             HttpResponseMessage response = client.Send(request);
             string s = response.Content.ReadAsStringAsync().Result;
-            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode expected = HttpStatusCode.NoContent;
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
         }
