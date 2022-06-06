@@ -23,5 +23,14 @@ namespace DevEduEducationSystem.API.Tests.Support.Models.ResponseModels
 
         [JsonPropertyName("absenceReason")]
         public string AbsenceReason { get; set; }
+        public override bool Equals(object? obj)
+        {
+            return obj is StudentResponseModelForLesson model &&
+                   Id == model.Id &&
+                   EqualityComparer<UserResponseModel>.Default.Equals(Student, model.Student) &&
+                   Feedback == model.Feedback &&
+                   AttendanceType == model.AttendanceType &&
+                   AbsenceReason == model.AbsenceReason;  
+        }
     }
 }

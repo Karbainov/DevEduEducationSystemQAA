@@ -367,7 +367,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
         public static List<LessonTeacherResponseModel> GetAllLessonsTeachers (int teacherId, string token)
         {
-            string url = $"https://piter-education.ru:7072/by-teacherId/{teacherId}";
+            string url = $"https://piter-education.ru:7072/api/Lessons/by-teacherId/{teacherId}";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -386,7 +386,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
         public static List<LessonGroupeResponseModel> GetAllLessonsGroup(int groupId, string token)
         {
-            string url = $"https://piter-education.ru:7072/by-groupId/{groupId}";
+            string url = $"https://piter-education.ru:7072/api/Lessons/by-groupId/{groupId}";
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
