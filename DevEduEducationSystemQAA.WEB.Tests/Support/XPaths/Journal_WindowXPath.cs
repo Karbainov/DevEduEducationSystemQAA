@@ -39,6 +39,11 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By DropdownElement0_0_5 = By.XPath(@"//li[@class='drop-down-filter__element ']");
         // XPath drop down element выбранный который
         public static By DropdownElement_1 = By.XPath(@"//li[@class='drop-down-filter__element selected']");
+        //XPath List всех отметок посещаемости 
+        public static By AllBall = By.XPath(@"//div[@class='swiper-wrapper']");
+        public static By Ball = By.XPath(@"//div[@class='drop-down-filter  ']");
+        // Total summ
+        public static By Total = By.XPath(@"//div[@class='swiper swiper-initialized swiper-horizontal swiper-pointer-events']/div[@class='swiper-wrapper']/*/child::div[@class='one-block']");
 
     }
 }

@@ -22,4 +22,15 @@ Scenario: As a teacher, I want to sort by last name
 	Examples: 
 	| length | width |
 	| 1920   | 1080  |
-	
+
+	@JournalWindow
+	Scenario: Checking that the log is filled out correctly
+	Given I log in to the system  with the window size <length> and <width>
+    | Email                       | Password        |
+    | userTestStudent@example.com | userTestStudent |
+	And I click button Journal
+	And Select group in window Journal
+	Then We check that the student corresponds to the element of attendance and the date of the lesson
+	Examples: 
+	| length | width |
+	| 1920   | 1080  |

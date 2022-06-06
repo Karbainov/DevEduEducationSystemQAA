@@ -35,6 +35,7 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
 
         public static void UpdateGroup(int idGroup, GroupRequestModel groupUpdate, string token)
         {
+            groupUpdate.GroupStatusId = "1";
             string url = $"https://piter-education.ru:7072/api/Groups/{idGroup}";
             string json = JsonSerializer.Serialize(groupUpdate);
             HttpClient client = new HttpClient();

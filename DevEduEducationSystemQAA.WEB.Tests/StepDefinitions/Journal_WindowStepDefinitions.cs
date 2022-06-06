@@ -70,8 +70,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void ThenCheckingThatTheRatingOrderHasChangedInDescendingOrder()
         {
             var generalRating = _driver.FindElement(Journal_WindowXPath.GeniralListRatingPercent);
-            List<IWebElement> ratingActual = generalRating.FindElement(Journal_WindowXPath.ListRatingStudent)
-                                                          .FindElements(Journal_WindowXPath.ListRatingStudent).ToList();
+            List<IWebElement> ratingActual = generalRating.FindElements(Journal_WindowXPath.ListRatingStudent).ToList();
             List<GridJournalModel> students = JournalStudentMock.GetStudent();
             int countExpected = students.Count + 2;
             Assert.AreEqual(countExpected, ratingActual.Count);
@@ -94,9 +93,9 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string getAttribute = "value";
             List<IWebElement> dateClass = _driver.FindElements(Journal_WindowXPath.DateClass).ToList();
             List<GridJournalModel> students = JournalStudentMock.GetStudent();
-            Assert.AreEqual(students[0].DateEmployment, dateClass[0].GetAttribute(getAttribute));
-            Assert.AreEqual(students[1].DateEmployment, dateClass[0].GetAttribute(getAttribute));
-            Assert.AreEqual(students[2].DateEmployment, dateClass[0].GetAttribute(getAttribute));
+            Assert.AreEqual(students[0].DateEmployment[0], dateClass[0].GetAttribute(getAttribute));
+            Assert.AreEqual(students[1].DateEmployment[0], dateClass[0].GetAttribute(getAttribute));
+            Assert.AreEqual(students[2].DateEmployment[0], dateClass[0].GetAttribute(getAttribute));
         }
 
         [Then(@"Verify that the desired attendance item is selected")]
@@ -104,7 +103,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             var attendanceStudent = _driver.FindElements(Journal_WindowXPath.GeneralListAttendance)[1];
             var listClass = attendanceStudent.FindElements(By.XPath(@"//div[@class='one-block journal-filter-item']")).ToList();
-            List<GridJournalModel> students = JournalStudentMock.GetStudent();
             listClass[0].Click();
             List<IWebElement> dropdownElement0_05 = _driver.FindElements(Journal_WindowXPath.DropdownElement0_0_5).ToList();
             dropdownElement0_05[0].Click();
@@ -148,6 +146,71 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Assert.AreEqual(students[2].Name, listStudentActual[4].Text);    
         }
 
+        // new Scenario проверяем, что сценарий отображается корректно
 
+        [Then(@"We check that the student corresponds to the element of attendance and the date of the lesson")]
+        public void ThenWeCheckThatTheStudentCorrespondsToTheElementOfAttendanceAndTheDateOfTheLesson()
+        {
+            string getAttribute = "value";
+            string getAttributeId = "data-lesson-id";
+            // лист с датами
+            List <IWebElement> dateClass = _driver.FindElements(Journal_WindowXPath.DateClass).ToList();
+            // это моковые данные
+            List<GridJournalModel> students = JournalStudentMock.GetStudent();
+            // это циферка 1 или 0 или 0.5
+            List<IWebElement> simpleBall = _driver.FindElements(Journal_WindowXPath.Ball).ToList();
+            // фамилии студента начинается с 2 
+            var generalListStudent = _driver.FindElement(Journal_WindowXPath.GeneralListStudent);
+            List<IWebElement> listStudentActual = generalListStudent.FindElements(Journal_WindowXPath.ListAllStudentsFIO).ToList();
+            // проценты у студента
+            var generalRating = _driver.FindElement(Journal_WindowXPath.GeniralListRatingPercent);
+            List<IWebElement> ratingActual = generalRating.FindElements(Journal_WindowXPath.ListRatingStudent).ToList();
+            // собираем модель для сравнения актуальную, чтобы потом сравнить быстро и легко
+            List<GridJournalModel> actualListJornalModel = new List<GridJournalModel>();
+            // циклы первый цикл собирает модели и добавляет их в лист 
+            // модель в себя включает фамилию имя студента, его посещаемость и рейтинг в процентах
+            // кол-во актуальных студентов 6 реальное 3 (3 будет заниматьсь графа ФИО и сортировка и Всего)
+            //List<double> allTotalExpected = JournalStudentMock.GetAllTotal();
+            int i = 0;
+            int count = 0;
+            for (int j = 2; j < listStudentActual.Count-1; j++) // count 6
+            {
+                List<string> ballStudent = new List<string>();
+                while (i < simpleBall.Count)
+                {
+                    ballStudent.Add(simpleBall[i].GetAttribute(getAttributeId));
+                    i = i + students.Count;
+                }
+                count++;
+                i = count;
+                actualListJornalModel.Add(new GridJournalModel() 
+                { 
+                    Ball = ballStudent,
+                    Name = listStudentActual[j].Text,
+                    Percent = ratingActual[j-1].Text 
+                });
+            }
+
+            // этот цикл добавляет в модели дату занятия к каждому студенту
+
+            for (int j = 0; j < actualListJornalModel.Count; j++)
+            {
+                List<string> date = new List<string>();
+                for (i = 0; i < dateClass.Count; i++)
+                {
+                    date.Add(dateClass[i].GetAttribute(getAttribute));
+                }
+                actualListJornalModel[j].DateEmployment = date;
+            }
+            Assert.AreEqual(students.Count, actualListJornalModel.Count);
+            for (i = 0; i < students.Count; i++)
+            {
+                Assert.AreEqual(students[i], actualListJornalModel[i]);
+            }
+
+            // дальше пойдет проверка , что считает колонку всего правильно 
+            
+            
+        }
     }
 }
