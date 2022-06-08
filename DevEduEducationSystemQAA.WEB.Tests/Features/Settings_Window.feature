@@ -59,8 +59,8 @@ Scenario: As a user, I want to change my details and save them
 	And I click the button Setting
 	When Click on the pencil
 	Given Fill in the fields with data to change the password
-	| Password   |
-	| ignatignat |
+	| Password        |
+	| userTestStudent |
 	When Button click back in window update password
 	Then Back to settings window
 	Examples: 

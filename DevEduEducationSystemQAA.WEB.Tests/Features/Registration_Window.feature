@@ -9,11 +9,12 @@ Scenario: As a user, I want to register
 	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email         | Phone        |
 	| Джеймс  | Гарри | Поттер     | 31.07.1998 | HarryPotter | HarryPotter    | Harry@mail.ru | +79211234567 |
 	When Click on register button
-	Then When the Privacy Policy checkbox is unchecked, the Register button should be inactive
+	#Then When the Privacy Policy checkbox is unchecked, the Register button should be inactive
 	Given Click checkbox on the privacy policy 
 	#When Click on the privacy policy link - оставлено до лучших времен - возможно вынесу в другой сценарий
 	When Click on register button
 	Then Сheck that a registered user will log into the application
+	And Delete User
 	Examples: 
 	| length | width |
 	| 1920   | 1080  |

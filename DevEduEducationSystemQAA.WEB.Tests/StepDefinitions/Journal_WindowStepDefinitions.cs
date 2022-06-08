@@ -154,7 +154,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string getAttribute = "value";
             string getAttributeId = "data-lesson-id";
             // лист с датами
-            List <IWebElement> dateClass = _driver.FindElements(Journal_WindowXPath.DateClass).ToList();
+            List<IWebElement> dateClass = _driver.FindElements(Journal_WindowXPath.DateClass).ToList();
             // это моковые данные
             List<GridJournalModel> students = JournalStudentMock.GetStudent();
             // это циферка 1 или 0 или 0.5
@@ -173,7 +173,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             //List<double> allTotalExpected = JournalStudentMock.GetAllTotal();
             int i = 0;
             int count = 0;
-            for (int j = 2; j < listStudentActual.Count-1; j++) // count 6
+            for (int j = 2; j < listStudentActual.Count - 1; j++) // count 6
             {
                 List<string> ballStudent = new List<string>();
                 while (i < simpleBall.Count)
@@ -183,11 +183,11 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
                 }
                 count++;
                 i = count;
-                actualListJornalModel.Add(new GridJournalModel() 
-                { 
+                actualListJornalModel.Add(new GridJournalModel()
+                {
                     Ball = ballStudent,
                     Name = listStudentActual[j].Text,
-                    Percent = ratingActual[j-1].Text 
+                    Percent = ratingActual[j - 1].Text
                 });
             }
 
@@ -210,8 +210,20 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
             // дальше пойдет проверка , что считает колонку всего правильно 
 
-
-            
+            List<double> allTotalExpected = JournalStudentMock.GetAllTotal();
+            List<IWebElement> totalActual = _driver.FindElements(By.XPath(@"//div[@class='swiper swiper-initialized swiper-horizontal swiper-pointer-events']/div[@class='swiper-wrapper']/*/child::*[text()]")).ToList();
+            List<string> actualTotal = new List<string>();
+            string s = totalActual[1].Text;
+            for (int bb = 0; bb < totalActual.Count; bb++)
+            {
+                string a = totalActual[bb].Text; 
+                actualTotal.Add(a);
+            }
+            for(i = 0; i < allTotalExpected.Count; i++)
+            {
+                Assert.AreEqual(allTotalExpected[i], actualTotal[i]);
+            }
+           
             
         }
     }

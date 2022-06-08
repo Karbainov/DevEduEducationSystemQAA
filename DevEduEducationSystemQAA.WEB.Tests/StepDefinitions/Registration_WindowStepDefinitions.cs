@@ -56,24 +56,24 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             inputPhone.SendKeys(user.Phone);
         }
 
-        [Then(@"When the Privacy Policy checkbox is unchecked, the Register button should be inactive")]
-        public void ThenWhenThePrivacyPolicyCheckboxIsUncheckedTheRegisterButtonShouldBeInactive()
-        {
-            RegistrationRequestModel user = (RegistrationRequestModel)FeatureContext.Current["Register User"];
-            _driver.Navigate().GoToUrl(UrlStorage.EnterWindow);
-            var inputEmail = _driver.FindElement(Enter_WindowXPaths.InputLogin);
-            inputEmail.SendKeys(user.Email);
-            var inputPassword = _driver.FindElement(Enter_WindowXPaths.InputPassword);
-            inputPassword.Clear();
-            inputPassword.SendKeys(user.Password);
-            var buttonEnter = _driver.FindElement(Enter_WindowXPaths.ButtonEnter);
-            buttonEnter.Click();
-            Thread.Sleep(500);
-            _driver.Navigate().GoToUrl(UrlStorage.BasePage);
-            string actual = _driver.Url;
-            string expected = UrlStorage.EnterWindow;
-            Assert.AreEqual(expected, actual);
-        }
+        //[Then(@"When the Privacy Policy checkbox is unchecked, the Register button should be inactive")]
+        //public void ThenWhenThePrivacyPolicyCheckboxIsUncheckedTheRegisterButtonShouldBeInactive()
+        //{
+        //    RegistrationRequestModel user = (RegistrationRequestModel)FeatureContext.Current["Register User"];
+        //    _driver.Navigate().GoToUrl(UrlStorage.EnterWindow);
+        //    var inputEmail = _driver.FindElement(Enter_WindowXPaths.InputLogin);
+        //    inputEmail.SendKeys(user.Email);
+        //    var inputPassword = _driver.FindElement(Enter_WindowXPaths.InputPassword);
+        //    inputPassword.Clear();
+        //    inputPassword.SendKeys(user.Password);
+        //    var buttonEnter = _driver.FindElement(Enter_WindowXPaths.ButtonEnter);
+        //    buttonEnter.Click();
+        //    Thread.Sleep(500);
+        //    _driver.Navigate().GoToUrl(UrlStorage.BasePage);
+        //    string actual = _driver.Url;
+        //    string expected = UrlStorage.EnterWindow;
+        //    Assert.AreEqual(expected, actual);
+        //}
 
         [Given(@"Click checkbox on the privacy policy")]
         public void GivenClickCheckboxOnThePrivacyPolicy()
@@ -111,6 +111,16 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Assert.AreEqual(expected, actual);
             _driver.Close();
         }
+
+        [Then(@"Delete User")]
+        public void ThenDeleteUser()
+        {
+            RegistrationRequestModel user = (RegistrationRequestModel)FeatureContext.Current["Register User"];
+            string token = IOHelper.AuthUser(user.Email, user.Password);
+            UserModel userModel = IOHelper.GetUserByToken(token);
+            IOHelper.DeleteUser(userModel.Id);
+        }
+
 
         //[When(@"Click on the privacy policy link")]
         //public void WhenClickOnThePrivacyPolicyLink()
