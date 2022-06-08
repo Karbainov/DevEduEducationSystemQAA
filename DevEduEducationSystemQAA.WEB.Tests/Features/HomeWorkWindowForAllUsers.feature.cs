@@ -353,12 +353,8 @@ testRunner.And("I login as an manager and enter in my account", ((string)(null))
 testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
-                            "DateOfIssue",
-                            "DeliveryDate",
-                            "Name",
-                            "Description",
-                            "Link",
-                            "AddLink"});
+                            "Email",
+                            "Password"});
                 table10.AddRow(new string[] {
                             "04.07.2022",
                             "06.07.2022",

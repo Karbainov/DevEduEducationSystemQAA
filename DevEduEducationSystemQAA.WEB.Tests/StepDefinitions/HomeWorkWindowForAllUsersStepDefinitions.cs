@@ -73,7 +73,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Thread.Sleep(5000);
             var buttonPublish = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonPublish);
             buttonPublish.Click();
-            buttonPublish.Click();//костыль потому что иначе не сработает кнопка
+            buttonPublish.Click();//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         }
 
         [Then(@"I can see new HomeWork in list HomeWorks new Groups")]
@@ -353,10 +353,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             _driver.Quit();
         }
 
-<<<<<<< HEAD
-        //Scenario: As I Teacher I can delete publish HomeWork
-        //Тест валится потому что при создании HomeWork два раза создается (баг заведен)
-=======
         // new Scenario - Role Student . As a student , I want to hand in my homework 
 
         [Given(@"I click on the homework button")]
@@ -682,7 +678,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
             AddTaskModel task = (AddTaskModel)ScenarioContext.Current["Task"];
 
-            //изменение группы не сохраняется заведен баг
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
             //var radioButtonForMarkGroup = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupUpdate);
             //radioButtonForMarkGroup.Click();
@@ -758,7 +754,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var tabHomeWork = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TabHomeWork);
             tabHomeWork.Click();
 
-            //выбор группы Frontend, потом после исправления бага заменить на Бэкенд
+            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Frontend, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             var groupNameBeforeUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupInListHomeworksBeforeUpdate);
             groupNameBeforeUpdate.Click();
 
