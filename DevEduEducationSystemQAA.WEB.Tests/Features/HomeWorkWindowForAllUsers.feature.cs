@@ -75,11 +75,11 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As I Teacher I can add HomeWork for Students of my Group")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
+        [NUnit.Framework.CategoryAttribute("HomeWorksTeacherCreate")]
         public virtual void AsITeacherICanAddHomeWorkForStudentsOfMyGroup()
         {
             string[] tagsOfScenario = new string[] {
-                    "tag1"};
+                    "HomeWorksTeacherCreate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As I Teacher I can add HomeWork for Students of my Group", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
@@ -137,12 +137,14 @@ testRunner.Then("I can see new HomeWork in list HomeWorks new Groups", ((string)
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As I Teacher I can add unpublish Task for my Group")]
+        [NUnit.Framework.CategoryAttribute("HomeWorksTeacherCreate")]
         public virtual void AsITeacherICanAddUnpublishTaskForMyGroup()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "HomeWorksTeacherCreate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As I Teacher I can add unpublish Task for my Group", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 15
+#line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -162,13 +164,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 17
 testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
+#line 18
 testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 19
 testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -185,10 +187,10 @@ testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTa
                             "DescriptionHomeWork2",
                             "https://www.awesomeandrew.ru/",
                             "https://drive.google.com/"});
-#line 19
+#line 20
 testRunner.When("I fill all fields pages of create Task and click on the button SaveAsDraft", ((string)(null)), table7, "When ");
 #line hidden
-#line 22
+#line 23
 testRunner.Then("I can see new HomeWork in the list of saved homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -197,12 +199,14 @@ testRunner.Then("I can see new HomeWork in the list of saved homework", ((string
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As I Teacher I can add publish HomeWork for my Group and update this HomeWork")]
+        [NUnit.Framework.CategoryAttribute("HomeWorksTeacherCreateAndUpdate")]
         public virtual void AsITeacherICanAddPublishHomeWorkForMyGroupAndUpdateThisHomeWork()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "HomeWorksTeacherCreateAndUpdate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As I Teacher I can add publish HomeWork for my Group and update this HomeWork", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 24
+#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -222,13 +226,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 25
+#line 27
 testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 26
+#line 28
 testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 27
+#line 29
 testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
@@ -245,7 +249,7 @@ testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTa
                             "DescriptionHomeWork3",
                             "https://www.figma.com/",
                             "https://metanit.com/"});
-#line 28
+#line 30
 testRunner.And("I fill all fields pages of create Task and click on the button Publish", ((string)(null)), table8, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
@@ -262,10 +266,10 @@ testRunner.And("I fill all fields pages of create Task and click on the button P
                             "DescriptionHomeWork3.1",
                             "https://piter-education.ru:7074/homeworks",
                             "https://function-x.ru/"});
-#line 31
+#line 33
 testRunner.When("I update new HomeWork", ((string)(null)), table9, "When ");
 #line hidden
-#line 34
+#line 36
 testRunner.Then("I can see new HomeWork with new field in list HomeWorks new Groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -274,12 +278,14 @@ testRunner.Then("I can see new HomeWork with new field in list HomeWorks new Gro
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As I Teacher I can delete publish HomeWork")]
+        [NUnit.Framework.CategoryAttribute("HomeWorksTeacherDelete")]
         public virtual void AsITeacherICanDeletePublishHomeWork()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "HomeWorksTeacherDelete"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As I Teacher I can delete publish HomeWork", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 36
+#line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -299,13 +305,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 37
+#line 40
 testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 38
+#line 41
 testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 39
+#line 42
 testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
@@ -318,23 +324,23 @@ testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTa
                 table10.AddRow(new string[] {
                             "04.07.2022",
                             "06.07.2022",
-                            "HomeWork 3",
+                            "HomeWork 7",
                             "DescriptionHomeWork3",
                             "https://www.figma.com/",
                             "https://metanit.com/"});
-#line 40
+#line 43
 testRunner.And("I fill all fields pages of create Task and click on the button Publish", ((string)(null)), table10, "And ");
 #line hidden
-#line 43
+#line 46
 testRunner.And("I go to the task card and click the edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 44
+#line 47
 testRunner.When("In card of HomeWork I click in Button Delete task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 45
+#line 48
 testRunner.Then("I can see message about HomeWork is Deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 46
+#line 49
 testRunner.And("I don\'t can see HomeWork in list HomeWorks of Groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -344,13 +350,15 @@ testRunner.And("I don\'t can see HomeWork in list HomeWorks of Groups", ((string
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As I Teacher I can cancel delete publish HomeWork after moment then I click in bu" +
             "tton delete")]
+        [NUnit.Framework.CategoryAttribute("HomeWorksTeacherDelete")]
         public virtual void AsITeacherICanCancelDeletePublishHomeWorkAfterMomentThenIClickInButtonDelete()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "HomeWorksTeacherDelete"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As I Teacher I can cancel delete publish HomeWork after moment then I click in bu" +
                     "tton delete", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 48
+#line 52
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -370,13 +378,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 49
+#line 53
 testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 50
+#line 54
 testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 51
+#line 55
 testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
@@ -389,21 +397,174 @@ testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTa
                 table11.AddRow(new string[] {
                             "04.07.2022",
                             "06.07.2022",
-                            "HomeWork 3",
+                            "HomeWork 7",
                             "DescriptionHomeWork3",
                             "https://www.figma.com/",
                             "https://metanit.com/"});
-#line 52
+#line 56
 testRunner.And("I fill all fields pages of create Task and click on the button Publish", ((string)(null)), table11, "And ");
 #line hidden
-#line 55
+#line 59
 testRunner.And("I go to the task card and click the edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 56
+#line 60
 testRunner.When("In card of HomeWork I click in Button cancel Delete task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 57
+#line 61
 testRunner.Then("I can see new HomeWork in list HomeWorks of Groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As I Teacher I can delete unpublish Task")]
+        [NUnit.Framework.CategoryAttribute("HomeWorksTeacherDelete")]
+        public virtual void AsITeacherICanDeleteUnpublishTask()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "HomeWorksTeacherDelete"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As I Teacher I can delete unpublish Task", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 64
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 65
+testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 66
+testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 67
+testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "DateOfIssue",
+                            "DeliveryDate",
+                            "Name",
+                            "Description",
+                            "Link",
+                            "AddLink"});
+                table12.AddRow(new string[] {
+                            "04.07.2022",
+                            "05.07.2022",
+                            "HomeWork 8",
+                            "DescriptionHomeWork8",
+                            "https://www.awesomeandrew.ru/",
+                            "https://drive.google.com/"});
+#line 68
+testRunner.And("I fill all fields pages of create Task and click on the button SaveAsDraft", ((string)(null)), table12, "And ");
+#line hidden
+#line 71
+testRunner.And("I go to the task card in list saved Tasks and click the edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 72
+testRunner.When("In card of Task I click in Button Delete task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 73
+testRunner.Then("I can see message about HomeWork is Deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 74
+testRunner.And("I don\'t can see Task in list Tasks of Group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("As I Teacher I can update unpublish Tasks of my Group and published them")]
+        [NUnit.Framework.CategoryAttribute("HomeWorksTeacherCreateAndUpdate")]
+        public virtual void AsITeacherICanUpdateUnpublishTasksOfMyGroupAndPublishedThem()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "HomeWorksTeacherCreateAndUpdate"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As I Teacher I can update unpublish Tasks of my Group and published them", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 77
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 78
+testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 79
+testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 80
+testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description",
+                            "Link",
+                            "AddLink"});
+                table13.AddRow(new string[] {
+                            "HomeWork 8",
+                            "DescriptionHomeWork8",
+                            "https://www.figma.com/",
+                            "https://metanit.com/"});
+#line 81
+testRunner.And("I fill all fields pages of create Task and click on the button SaveAsDraft for Ta" +
+                        "sk", ((string)(null)), table13, "And ");
+#line hidden
+#line 84
+testRunner.And("I go to the task card in list saved Tasks and click the edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                            "DateOfIssue",
+                            "DeliveryDate",
+                            "Name",
+                            "Description",
+                            "Link",
+                            "AddLink"});
+                table14.AddRow(new string[] {
+                            "04.07.2022",
+                            "05.07.2022",
+                            "HomeWork 4",
+                            "DescriptionHomeWork4",
+                            "https://www.awesomeandrew.ru/",
+                            "https://drive.google.com/"});
+#line 85
+testRunner.When("I update Task and publish it", ((string)(null)), table14, "When ");
+#line hidden
+#line 88
+testRunner.Then("I can see publish HomeWork in list HomeWorks of Groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 89
+testRunner.And("I don\'t can see publish HomeWork in list saved Tasks of Group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

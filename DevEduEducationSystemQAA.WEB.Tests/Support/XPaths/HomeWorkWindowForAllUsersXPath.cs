@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
 {
     public class HomeWorkWindowForAllUsersXPath
-    {        
+    {
         public static string groupNameBeforeUpdate = "Frontend React";
         public static string groupNameAfterUpdate = "Group 1 BaseC#";
 
@@ -43,12 +43,18 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By ButtonAccepteDeleteInPopUpWindowAfterClickDeleteTask = By.XPath("//button[@class = 'sc-bczRLJ iJvUkY btn btn-fill flex-container' and text() = 'Удалить']");
         public static By ButtonCancelDeleteInPopUpWindowAfterClickDeleteTask = By.XPath("//div[@class = 'modal-window']//div[@class = 'buttons-group']//button[text() = 'Отмена']");
         public static By WindowsWithMessageAboutOnSuccessfulRemoval = By.XPath("//div[@class = 'modal-content' and text() = 'Задание успешно удалено.']");
-        public static By ButtonOKInWindowsWithMessage = By.XPath("//button[@class = 'sc-bczRLJ iJvUkY btn btn-fill flex-container']");
+        public static By ButtonOKInWindowsWithMessage = By.XPath("//div[@class = 'modal-window']//div[@class = 'buttons-group']//button[text() = 'Ок']");       
+        public static By ButtonUpdateInListOfAllUnpublishTask = By.XPath("//span[text()= 'HomeWork 2'] / following-sibling::a");
+        public static By ButtonUpdateInListOfAllUnpublishTask8 = By.XPath("//span[text()= 'HomeWork 8'] / following-sibling::a");
         //Списки ДЗ
         public static By NewHomeWorkInList = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 3'] / following-sibling::a");
+        public static By NewHomeWorkInListHomeWork7 = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 7'] / following-sibling::a");
+        public static By NewHomeWorkInListForTestCreate = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 1'] / following-sibling::a");
+        public static By NewHomeWorkInListForSavedTask = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 2'] / following-sibling::a");
+        public static By HomeWorkInListAfterPublish = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 4'] / following-sibling::a");
         public static By ButtonNewAfterUpdateHomeWork = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 3.1'] / following-sibling::a");
         public static By UpdatedHomeWorkInList = By.XPath("//span[@class='homework-title' and text()= 'HomeWork 3.1'] / following-sibling::a");
-        public static By ListAllHomeworks = By.XPath("//span[@class = 'homework-title']");
+        public static By ListAllHomeworksOrTasks = By.XPath("//span[@class = 'homework-title']");
         //Поиск сохраненных элементов
         public static By ButtonDeleteFirstLink = By.XPath("//div[@class='form-input_link__container'] //following::div");
         public static By ButtonDeleteSecondLink = By.XPath("//a[@href='https://metanit.com/'] //following::div");
