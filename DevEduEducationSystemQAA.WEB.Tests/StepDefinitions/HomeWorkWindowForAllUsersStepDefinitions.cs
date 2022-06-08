@@ -318,7 +318,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Thread.Sleep(1500);
         }
 
-        // ������������ ��� ������ ������ ���������� �� �����������.������ ������� ����� ����, ���������� ������ ��������� ����������� �� � ��������� ������
         [Then(@"I can see new HomeWork with new field in list HomeWorks new Groups")]
         public void ThenICanSeeNewHomeWorkWithNewFieldInListHomeWorksNewGroups()
         {
