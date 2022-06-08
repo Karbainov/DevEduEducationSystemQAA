@@ -1,7 +1,7 @@
 ﻿Feature: HomeWorkWindowForAllUsers
 
-A short summary of the feature
-Как студент, я хочу отправить свое домашнее задание на проверку преподавателю
+Checking the creation, editing and deletion of Task and HomeWork
+Сhecking the sending of homework to students for verification to the teacher
 
 @HomeWorksTeacherCreate
 Scenario: As I Teacher I can add HomeWork for Students of my Group
@@ -30,11 +30,12 @@ And I login as an manager and enter in my account
 And I choose role Teacher for next step
 And I fill all fields pages of create Task and click on the button Publish
 | DateOfIssue | DeliveryDate | Name       | Description          | Link                   | AddLink              |
-| 04.07.2022  | 06.07.2022   | HomeWork 3 | DescriptionHomeWork3 | https://www.figma.com/ | https://metanit.com/ |
+| 04.07.2022  | 15.07.2022   | HomeWork 3 | DescriptionHomeWork3 | https://www.figma.com/ | https://metanit.com/ |
 When I update new HomeWork 
 | DateOfIssue | DeliveryDate | Name         | Description            | Link                                      | AddLink                |
 | 09.07.2022  | 12.07.2022   | HomeWork 3.1 | DescriptionHomeWork3.1 | https://piter-education.ru:7074/homeworks | https://function-x.ru/ |
 Then I can see new HomeWork with new field in list HomeWorks new Groups
+#And I don't can see HomeWork in List of HomeWorks First Group
 
 @HomeWorksTeacherDelete
 Scenario: As I Teacher I can delete publish HomeWork
@@ -88,10 +89,6 @@ When I update Task and publish it
 | 04.07.2022  | 05.07.2022   | HomeWork 4 | DescriptionHomeWork4 | https://www.awesomeandrew.ru/ | https://drive.google.com/ |
 Then I can see publish HomeWork in list HomeWorks of Groups
 And I don't can see publish HomeWork in list saved Tasks of Group
-
-# Role student 
-
-
 
 # Role student 
 

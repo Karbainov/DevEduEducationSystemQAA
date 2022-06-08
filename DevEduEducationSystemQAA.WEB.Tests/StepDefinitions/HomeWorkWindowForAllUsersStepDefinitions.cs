@@ -73,7 +73,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Thread.Sleep(5000);
             var buttonPublish = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonPublish);
             buttonPublish.Click();
-            buttonPublish.Click();//������� ������ ��� ����� �� ��������� ������
+            buttonPublish.Click();//костыль для прохождения теста потому что иначе тест проходить не будет баг заведен
         }
 
         [Then(@"I can see new HomeWork in list HomeWorks new Groups")]
@@ -174,38 +174,46 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
             var buttonIssueHomeWorks = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonIssuingHomeWorks);
             buttonIssueHomeWorks.Click();
+
             var radioButtonForMarkGroup = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroup);
             radioButtonForMarkGroup.Click();
+
             var inputDate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfIssue);
             inputDate.Click();
+
             Actions action = new Actions(_driver);
             action.DoubleClick(inputDate).Build().Perform();
             inputDate.SendKeys(Keys.Backspace);
             inputDate.SendKeys(homeWork.DateOfIssue);
+
             inputDate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.Deadline);
             inputDate.Click();
             Actions newAction = new Actions(_driver);
             newAction.DoubleClick(inputDate).Build().Perform();
             inputDate.SendKeys(Keys.Backspace);
             inputDate.SendKeys(homeWork.DeliveryDate);
+
             var nameHomeWork = _driver.FindElement(HomeWorkWindowForAllUsersXPath.NameOfHomeWork);
             nameHomeWork.Click();
             nameHomeWork.SendKeys(homeWork.Name);
+
             var descriptionHomeWork = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DescriptionOfHomeWork);
             descriptionHomeWork.Click();
             descriptionHomeWork.SendKeys(homeWork.Description);
+
             var link = _driver.FindElement(HomeWorkWindowForAllUsersXPath.Link);
             link.Click();
             link.SendKeys(homeWork.Link);
+
             var addLink = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonAddLink);
             addLink.Click();
+
             var fieldNewLink = _driver.FindElement(HomeWorkWindowForAllUsersXPath.Link);
             fieldNewLink.Click();
             fieldNewLink.SendKeys(homeWork.AddLink);
+
             addLink = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonAddLink);
-            addLink.Click();
-            addLink.Click();// �������. ��� �������
-            Thread.Sleep(1000);
+            addLink.Click();         
 
             var buttonPublish = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonPublish);
             buttonPublish.Click();
@@ -232,7 +240,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
             AddHomeWorkModel homeWork = (AddHomeWorkModel)ScenarioContext.Current["HomeWork"];
 
-            //��������� ������ �� ����������� ������� ���
+            //В шаге изменения группы группу не изменяем до тех пор, пока она не будет корректно сохранятся при изменении. баг заведен
 
             //var radioButtonForMarkGroup = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupUpdate);
             //radioButtonForMarkGroup.Click();
@@ -241,27 +249,25 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var dateIssueActual = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfIssue).GetAttribute("value");
             Assert.AreEqual(dateIssueActual, dateIssueExpected);
 
-            //������ ��� ���� �� ����� ��� ��� ������� ��� �� ����������� ��� (�� ����������� �� � ����������� ������)
+            //Изменение даты занятия в настоящее время реализовано, но с валидацией, что дата может быть изменена в пределах изначально устанолвенных дат. Баг заведен.
 
-            //var inputDate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfIssue);
-            //inputDate.Click();
-            //Actions action = new Actions(_driver);
-            //action.DoubleClick(inputDate).Build().Perform();
-            //inputDate.SendKeys(Keys.Backspace);
-            //inputDate.SendKeys(newHomeWork.DateOfIssue);
+            var inputDate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfIssue);
+            inputDate.Click();
+            Actions action = new Actions(_driver);
+            action.DoubleClick(inputDate).Build().Perform();
+            inputDate.SendKeys(Keys.Backspace);
+            inputDate.SendKeys(newHomeWork.DateOfIssue);
 
             var dateDeadLineExpected = homeWork.DeliveryDate;
             var dateDeadLineActual = _driver.FindElement(HomeWorkWindowForAllUsersXPath.Deadline).GetAttribute("value");
             Assert.AreEqual(dateDeadLineExpected, dateDeadLineActual);
 
-            //������ ��� ���� �� ����� ��� ��� ������� ��� �� ����������� ��� (�� ����������� �� � ����������� ������)
-
-            //inputDate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.Deadline);
-            //inputDate.Click();
-            //Actions newAction = new Actions(_driver);
-            //newAction.DoubleClick(inputDate).Build().Perform();
-            //inputDate.SendKeys(Keys.Backspace);
-            //inputDate.SendKeys(newHomeWork.DeliveryDate);
+            inputDate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.Deadline);
+            inputDate.Click();
+            Actions newAction = new Actions(_driver);
+            newAction.DoubleClick(inputDate).Build().Perform();
+            inputDate.SendKeys(Keys.Backspace);
+            inputDate.SendKeys(newHomeWork.DeliveryDate);
 
             var nameExpected = homeWork.Name;
             var nameActual = _driver.FindElement(HomeWorkWindowForAllUsersXPath.NameOfHomeWork).GetAttribute("value");
@@ -319,10 +325,10 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var tabHomeWork = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TabHomeWork);
             tabHomeWork.Click();
 
-            //����� ������ Frontend, ����� ����� ����������� ���� �������� �� ������
+            //Когда будет исправлено сохранение группы, тогда эту строчку нужно заменить на другой XPATH
+            //и в Then добавить проверку,что группа удалена из списка занятий предыдущей группы.
             var groupNameBeforeUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupInListHomeworksBeforeUpdate);
             groupNameBeforeUpdate.Click();
-            Thread.Sleep(5000);
 
             var buttonUpdateHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.UpdatedHomeWorkInList);
             buttonUpdateHomework.Click();
@@ -330,11 +336,11 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             AddHomeWorkModel newHomeWork = (AddHomeWorkModel)ScenarioContext.Current["NewHomeWork"];
             var expectedDateOfIssue = newHomeWork.DateOfIssue;
             var actualDateOfIssue = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfIssueInCardOfHomeWork).Text;
-            //Assert.AreEqual(expectedDateOfIssue, actualDateOfIssue);
+            Assert.AreEqual(expectedDateOfIssue, actualDateOfIssue);
 
             var expectedDateOfDeadline = newHomeWork.DeliveryDate;
-            var actualDateOfDeadline = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfIssueInCardOfHomeWork).Text;
-            //Assert.AreEqual(expectedDateOfDeadline, actualDateOfDeadline);
+            var actualDateOfDeadline = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DateOfDeadlineInCardOfHomeWork).Text;
+            Assert.AreEqual(expectedDateOfDeadline, actualDateOfDeadline);
 
             var expectedDescription = newHomeWork.Description;
             var actualDescription = _driver.FindElement(HomeWorkWindowForAllUsersXPath.DescriptionInCard).Text;
@@ -353,7 +359,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             _driver.Quit();
         }
 
-        // As I Teacher I can delete publish HomeWork
+        // Scenario: As I Teacher I can delete publish HomeWork
 
         [Given(@"I go to the task card and click the edit button")]
         public void GivenIGoToTheTaskCardAndClickTheEditButton()
