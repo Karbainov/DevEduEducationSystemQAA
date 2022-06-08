@@ -113,7 +113,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
     testRunner.Given(string.Format("I enter the registration window with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+<<<<<<< HEAD
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+=======
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+>>>>>>> ContinueWorkWithFeatureHomeWork
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -122,7 +126,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone"});
+<<<<<<< HEAD
                 table15.AddRow(new string[] {
+=======
+                table13.AddRow(new string[] {
+>>>>>>> ContinueWorkWithFeatureHomeWork
                             "Джеймс",
                             "Гарри",
                             "Поттер",
@@ -132,13 +140,27 @@ this.ScenarioInitialize(scenarioInfo);
                             "Harry@mail.ru",
                             "+79211234567"});
 #line 8
+<<<<<<< HEAD
  testRunner.And("I am a user fill in all required fields", ((string)(null)), table15, "And ");
+=======
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table13, "And ");
+>>>>>>> ContinueWorkWithFeatureHomeWork
 #line hidden
 #line 11
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 12
+ testRunner.Then("When the Privacy Policy checkbox is unchecked, the Register button should be inac" +
+                        "tive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 13
+ testRunner.Given("Click checkbox on the privacy policy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 15
+ testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 16
- testRunner.Then("A notification should appear with the text You have successfully registered!", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Сheck that a registered user will log into the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -147,13 +169,21 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As a user when registering, I want to click on the \"Cancel\" button")]
         [NUnit.Framework.CategoryAttribute("RegistrationWindow")]
-        public virtual void AsAUserWhenRegisteringIWantToClickOnTheCancelButton()
+        [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
+        public virtual void AsAUserWhenRegisteringIWantToClickOnTheCancelButton(string length, string width, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "RegistrationWindow"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("length", length);
+            argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user when registering, I want to click on the \"Cancel\" button", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 23
+#line 22
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -173,10 +203,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 24
- testRunner.Given("I enter the registration window with the window size <length> and <width>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 23
+ testRunner.Given(string.Format("I enter the registration window with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+<<<<<<< HEAD
                 TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+=======
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+>>>>>>> ContinueWorkWithFeatureHomeWork
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -185,7 +219,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone"});
+<<<<<<< HEAD
                 table16.AddRow(new string[] {
+=======
+                table14.AddRow(new string[] {
+>>>>>>> ContinueWorkWithFeatureHomeWork
                             "Джеймс",
                             "Гарри",
                             "Поттер",
@@ -194,16 +232,21 @@ this.ScenarioInitialize(scenarioInfo);
                             "HarryPotter",
                             "Harry@mail.ru",
                             "+79211234567"});
+<<<<<<< HEAD
 #line 25
  testRunner.And("I am a user fill in all required fields", ((string)(null)), table16, "And ");
+=======
+#line 24
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table14, "And ");
+>>>>>>> ContinueWorkWithFeatureHomeWork
 #line hidden
-#line 28
+#line 27
  testRunner.And("Click checkbox on the privacy policy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 29
+#line 28
  testRunner.When("Click on \"Cancel\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 30
+#line 29
  testRunner.Then("The registration window should return to the Login window.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -213,8 +256,8 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As a user, I want to register.Negative")]
         [NUnit.Framework.CategoryAttribute("Negative")]
-        [NUnit.Framework.TestCaseAttribute("Джеймс", "Гарри", "Поттер", "30.01.1800", "HarryPotter", "HarryPotter", "Harry@mail.ru", "+79211234567", "1920", "1080", null)]
-        [NUnit.Framework.TestCaseAttribute("Джеймс", "Гарри", "Поттер", "31.07.1998", "HarryPotter", "HarryPotter", "Harry@mail.ru", "Чукча кушать хочет", "1920", "1080", null)]
+        [NUnit.Framework.TestCaseAttribute("Джеймс", "Гарри", "Поттер", "30.01.1800", "HarryPotter", "HarryPotter", "Harry1@mail.ru", "+79211234567", "1920", "1080", null)]
+        [NUnit.Framework.TestCaseAttribute("Джеймс", "Гарри", "Поттер", "31.07.1998", "HarryPotter", "HarryPotter", "Harry2@mail.ru", "Чукча кушать хочет", "1920", "1080", null)]
         [NUnit.Framework.TestCaseAttribute("Джеймс", "Гарри", "Поттер", "31.07.1998", "HarryPotter", "HarryPotter", "Я email", "+79211234567", "1920", "1080", null)]
         public virtual void AsAUserIWantToRegister_Negative(string surname, string name, string patronymic, string birthDate, string password, string repeatPassword, string email, string phone, string length, string width, string[] exampleTags)
         {
@@ -237,7 +280,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a user, I want to register.Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 34
+#line 36
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -257,10 +300,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 35
+#line 37
  testRunner.Given(string.Format("I enter the registration window with the window size {0} and {1}", length, width), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+<<<<<<< HEAD
                 TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+=======
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+>>>>>>> ContinueWorkWithFeatureHomeWork
                             "Surname",
                             "Name",
                             "Patronymic",
@@ -269,7 +316,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "Phone"});
+<<<<<<< HEAD
                 table17.AddRow(new string[] {
+=======
+                table15.AddRow(new string[] {
+>>>>>>> ContinueWorkWithFeatureHomeWork
                             string.Format("{0}", surname),
                             string.Format("{0}", name),
                             string.Format("{0}", patronymic),
@@ -278,14 +329,22 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", repeatPassword),
                             string.Format("{0}", email),
                             string.Format("{0}", phone)});
+<<<<<<< HEAD
 #line 36
  testRunner.And("I am a user fill in all required fields", ((string)(null)), table17, "And ");
+=======
+#line 38
+ testRunner.And("I am a user fill in all required fields", ((string)(null)), table15, "And ");
 #line hidden
-#line 39
+#line 41
+ testRunner.And("Click checkbox on the privacy policy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+>>>>>>> ContinueWorkWithFeatureHomeWork
+#line hidden
+#line 42
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 40
- testRunner.Then("#получаю сообщение типа , что вы ввели дату не корректно", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 43
+ testRunner.Then("The system should respond, the register button will be inactive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

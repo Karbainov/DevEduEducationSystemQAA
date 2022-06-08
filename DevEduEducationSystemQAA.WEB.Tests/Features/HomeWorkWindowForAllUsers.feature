@@ -1,6 +1,7 @@
 ﻿Feature: HomeWorkWindowForAllUsers
 
 A short summary of the feature
+Как студент, я хочу отправить свое домашнее задание на проверку преподавателю
 
 @HomeWorksTeacherCreate
 Scenario: As I Teacher I can add HomeWork for Students of my Group
@@ -91,3 +92,19 @@ And I don't can see publish HomeWork in list saved Tasks of Group
 
 
 
+# Role student 
+
+@HomeworkStudentWindow
+Scenario: As a student i want to hand in my homework
+    Given I log in to the system  with the window size <length> and <width>
+       | Email                       | Password        |
+       | userTestStudent@example.com | userTestStudent |
+    And I click on the homework button
+    And I choose a course
+    And I click on the task tab
+    And I leave a link to the completed task "https://piter-education.ru:7074/homeworks/2334/new"
+    When I click on the submit homework button 
+    #Then I refresh the page and check that my homework link is saved
+    Examples: 
+	| length | width |
+	| 1920   | 1080  |
