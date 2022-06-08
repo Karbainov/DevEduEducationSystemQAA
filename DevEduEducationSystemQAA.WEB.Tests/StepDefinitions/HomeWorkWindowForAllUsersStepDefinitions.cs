@@ -316,27 +316,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
         // new Scenario - Role Student . As a student , I want to hand in my homework 
 
-        [Given(@"Delete My homework ""([^""]*)""")]
-        public void GivenDeleteMyHomework(string forDelete)
-        {
-            string email = "userTestStudent@example.com";
-            string password = "userTestStudent";
-            string token = IOHelper.AuthUser(email, password);
-            UserModel user = IOHelper.GetUserByToken(token);
-            List<StudentHomework> listAnswer = IOHelper.GetAllStudenHomeworkById(user.Id, token);
-            int idStudentHomework = -1;
-            for(int i = 0; i < listAnswer.Count; i++)
-            {
-                if(listAnswer[i].Answer == forDelete)
-                {
-                    idStudentHomework = listAnswer[i].Id;
-                    break;
-                }
-            }
-            IOHelper.DeleteStudentHomework(idStudentHomework);
-        }
-
-
         [Given(@"I click on the homework button")]
         public void GivenIClickOnTheHomeworkButton()
         {
@@ -348,6 +327,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string actual = _driver.Url;
             string expected = UrlStorage.HomeworkWindow;
             Assert.AreEqual(expected, actual);
+            Hooks.forDelete = "https://piter-education.ru:7074/";
+            Hooks.isCheck = true;
         }
 
         [Given(@"I choose a course")]
@@ -384,6 +365,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
             inputMyHomework.SendKeys(studentHomework);
             ScenarioContext.Current["Link My Homework"] = studentHomework;
+            Hooks.forDelete = studentHomework;
+            Hooks.isCheck = true;
         }
 
         [Given(@"I click on the submit homework button")]
@@ -395,26 +378,20 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             Thread.Sleep(100);
         }
 
-        //[Then(@"I refresh the page and check that my homework link is saved")]
-        //public void ThenIRefreshThePageAndCheckThatMyHomeworkLinkIsSaved()
-        //{
-        //    string getAttribute = "value";
-        //    _driver.Navigate().Refresh();
-        //    Thread.Sleep(500);
-        //    var textMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TextSendHomework);
-        //    textMyHomework.Click();
-        //    Thread.Sleep(5000);
-        //    //string expected = (string)ScenarioContext.Current["Link My Homework"];
-        //    var aa = _driver.CurrentWindowHandle;
-        //    _driver.SwitchTo().Window(aa);
-        //    Thread.Sleep(5000);
-
-        //    string url = _driver.Url;
-        //string bb = _driver.CurrentWindowHandle;
-        //_driver.SwitchTo().Window(bb);
-        //url = _driver.Url;
-        // Assert.AreEqual(expected, actual);
-        //}
+        [Then(@"I refresh the page and check that my homework link is saved")]
+        public void ThenIRefreshThePageAndCheckThatMyHomeworkLinkIsSaved()
+        {
+            _driver.Navigate().Refresh();
+            Thread.Sleep(500);
+            var textMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TextSendHomework);
+            textMyHomework.Click();
+            Thread.Sleep(100);
+            _driver.SwitchTo().Window(_driver.WindowHandles[1]);
+            string expected = (string)ScenarioContext.Current["Link My Homework"];
+            string actual = _driver.Url;
+            Assert.AreEqual(expected, actual);
+            _driver.Close();
+        }
 
         // new Scenario edit
 
@@ -436,6 +413,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             inputAnswer.SendKeys(myNewHomework);
             var buttonSend = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework);
             buttonSend.Click();
+            ScenarioContext.Current["New link"] = myNewHomework;
         }
 
         [Then(@"I clicking on the back button and I check, the link should change")]
@@ -445,19 +423,11 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             buttonGoToBack.Click();
             var buttonMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.TextSendHomework);
             buttonMyHomework.Click();
-            string url = _driver.Url;
-            var url1 = _driver.CurrentWindowHandle;
-            _driver.SwitchTo().Window(url1);
-            var url2 = _driver.CurrentWindowHandle;
-            _driver.SwitchTo().Window(url2);
-            string f = _driver.Url;
-            
-        }
-
-        [When(@"Delete student homework")]
-        public void WhenDeleteStudentHomework()
-        {
-            
+            _driver.SwitchTo().Window(_driver.WindowHandles[1]);
+            string actual = _driver.Url;
+            string expected = (string)ScenarioContext.Current["New link"];
+            Assert.AreEqual(expected, actual);
+            _driver.Close();
         }
 
         // new Scenario - negative (empty link and "Hellow I am link")
@@ -485,6 +455,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
             Assert.Throws<NoSuchElementException>(() => _driver.FindElement(HomeWorkWindowForAllUsersXPath.TextSendHomework));
+            _driver.Close();
         }
 
         // new Scenario negativ edit 
@@ -515,16 +486,9 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string actual = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework).GetAttribute(getAttribute);
             string expected = (string)ScenarioContext.Current["linkHomework"];
             Assert.AreEqual(expected, actual);
+            Hooks.forDelete = "123 I am sexy —сылка!!!";
+            Hooks.isCheck = true;
+            _driver.Close();
         }
-
-
-        //[TearDown]
-        //public void DeleteHomework()
-        //{
-        //    string answer = (string)ScenarioContext.Current["Answer"];
-        //    IOHelper.DeleteStudentHomework(answer);
-        //}
-
-
     }
 }

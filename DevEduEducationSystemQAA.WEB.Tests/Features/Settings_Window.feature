@@ -43,8 +43,8 @@ Scenario: As a user, I want to change my details and save them
 	And I click the button Setting
 	When Click on the pencil
 	Given Fill in the fields with data to change the password
-	| Password   |
-	| ignatignat |
+	| Password        |
+	| userTestStudent |
 	When Button click save in window update password
 	Then Check that the password has changed
 	Examples: 
@@ -75,8 +75,8 @@ Scenario: As a user, I want to change my details and save them
 	And I click the button Setting
 	When Click on the pencil
 	Given Fill in the fields with data to change the password
-	| Password   |
-	| ignatignat |
+	| Password        |
+	| userTestStudent |
 	When Button click cancel in window update password
 	Then Check that the password don't has changed and moved to the last window
 	Examples: 

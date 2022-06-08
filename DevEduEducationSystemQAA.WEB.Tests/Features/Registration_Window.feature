@@ -42,6 +42,7 @@ Scenario: As a user, I want to register
 	And Click checkbox on the privacy policy 
 	When Click on register button
 	Then The system should respond, the register button will be inactive
+	And Delete users
 	Examples: 
 	| Surname | Name  | Patronymic | BirthDate  | Password    | RepeatPassword | Email          | Phone              | length | width |
 	| Джеймс  | Гарри | Поттер     | 30.01.1800 | HarryPotter | HarryPotter    | Harry1@mail.ru | +79211234567       | 1920   | 1080  |

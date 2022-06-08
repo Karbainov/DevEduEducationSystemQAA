@@ -315,7 +315,7 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "Password"});
                 table25.AddRow(new string[] {
-                            "ignatignat"});
+                            "userTestStudent"});
 #line 45
  testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table25, "Given ");
 #line hidden
@@ -453,7 +453,7 @@ this.ScenarioInitialize(scenarioInfo);
                 TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
                             "Password"});
                 table29.AddRow(new string[] {
-                            "ignatignat"});
+                            "userTestStudent"});
 #line 77
  testRunner.Given("Fill in the fields with data to change the password", ((string)(null)), table29, "Given ");
 #line hidden

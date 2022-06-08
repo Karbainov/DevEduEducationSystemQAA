@@ -143,7 +143,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             List<GridJournalModel> students = JournalStudentMock.GetStudent();
             Assert.AreEqual(students[0].Name, listStudentActual[2].Text);
             Assert.AreEqual(students[1].Name, listStudentActual[3].Text);
-            Assert.AreEqual(students[2].Name, listStudentActual[4].Text);    
+            Assert.AreEqual(students[2].Name, listStudentActual[4].Text);
+            _driver.Close();
         }
 
         // new Scenario проверяем, что сценарий отображается корректно
@@ -167,10 +168,11 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             List<IWebElement> ratingActual = generalRating.FindElements(Journal_WindowXPath.ListRatingStudent).ToList();
             // собираем модель для сравнения актуальную, чтобы потом сравнить быстро и легко
             List<GridJournalModel> actualListJornalModel = new List<GridJournalModel>();
+
             // циклы первый цикл собирает модели и добавляет их в лист 
             // модель в себя включает фамилию имя студента, его посещаемость и рейтинг в процентах
             // кол-во актуальных студентов 6 реальное 3 (3 будет заниматьсь графа ФИО и сортировка и Всего)
-            //List<double> allTotalExpected = JournalStudentMock.GetAllTotal();
+
             int i = 0;
             int count = 0;
             for (int j = 2; j < listStudentActual.Count - 1; j++) // count 6
@@ -212,19 +214,18 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
             List<double> allTotalExpected = JournalStudentMock.GetAllTotal();
             List<IWebElement> totalActual = _driver.FindElements(By.XPath(@"//div[@class='swiper swiper-initialized swiper-horizontal swiper-pointer-events']/div[@class='swiper-wrapper']/*/child::*[text()]")).ToList();
-            List<string> actualTotal = new List<string>();
-            string s = totalActual[1].Text;
+            List<double> actualTotal = new List<double>();
+            string s = totalActual[0].GetAttribute("innerText");
             for (int bb = 0; bb < totalActual.Count; bb++)
             {
-                string a = totalActual[bb].Text; 
-                actualTotal.Add(a);
+                string a = totalActual[bb].GetAttribute("innerText"); 
+                actualTotal.Add(Convert.ToDouble(a));
             }
             for(i = 0; i < allTotalExpected.Count; i++)
             {
                 Assert.AreEqual(allTotalExpected[i], actualTotal[i]);
             }
-           
-            
+            _driver.Close();  
         }
     }
 }

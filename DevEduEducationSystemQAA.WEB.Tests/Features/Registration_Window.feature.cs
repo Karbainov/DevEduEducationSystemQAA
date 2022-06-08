@@ -307,6 +307,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 44
  testRunner.Then("The system should respond, the register button will be inactive", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 45
+ testRunner.And("Delete users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

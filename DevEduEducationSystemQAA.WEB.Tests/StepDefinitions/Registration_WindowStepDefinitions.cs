@@ -23,7 +23,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             _driver = new ChromeDriver();
             _driver.Navigate().GoToUrl(UrlStorage.RegistrationWindow);
             _driver.Manage().Window.Maximize();
-            //_driver.Manage().Window.Size = new Size(oneSize, secondSize);
             var buttonRegisterByWindowLogin = _driver.FindElement(Registration_WindowXPaths.buttonRegisterByWindowLogin);
             buttonRegisterByWindowLogin.Click();
         }
@@ -178,5 +177,18 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         }
 
 
+        [Then(@"Delete users")]
+        public void ThenDeleteUsers()
+        {
+            RegistrationRequestModel user = (RegistrationRequestModel)FeatureContext.Current["Register User"];
+            string email = "ß email"; 
+            if (user.Email == email)
+            {
+                string myEmail = "Harry2@mail.ru";
+                string token = IOHelper.AuthUser(myEmail, user.Password);
+                UserModel deleteUser = IOHelper.GetUserByToken(token);
+                IOHelper.DeleteUser(deleteUser.Id);
+            }
+        }
     }
 }
