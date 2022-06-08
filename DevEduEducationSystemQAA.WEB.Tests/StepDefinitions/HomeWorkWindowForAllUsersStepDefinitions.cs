@@ -669,7 +669,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
             var buttonPublish = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonPublish);
             buttonPublish.Click();
-            buttonPublish.Click();
             Thread.Sleep(1500);
         }
 
@@ -724,20 +723,9 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var groupNameBeforeUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ChoiceGroupInListHomeworksBeforeUpdate);
             groupNameBeforeUpdate.Click();
 
-            Boolean isPresent = _driver.FindElements(HomeWorkWindowForAllUsersXPath.NewHomeWorkInListForSavedTask).Count() > 0;
+            Boolean isPresent = _driver.FindElements(HomeWorkWindowForAllUsersXPath.HomeWorkInListBeforePublish).Count() == 0;
             Assert.IsTrue(isPresent);
-            _driver.Quit();
-
-            AddTaskModel task = (AddTaskModel)ScenarioContext.Current["Task"];
-
-            Thread.Sleep(1000);
-
-            var listAllTasks = _driver.FindElements(HomeWorkWindowForAllUsersXPath.ListAllHomeworksOrTasks).ToList();
-
-            foreach (IWebElement nameOfTask in listAllTasks)
-            {
-                Assert.AreNotEqual(task.Name, nameOfTask.Text);
-            }
+            
             _driver.Quit();
         }
 
