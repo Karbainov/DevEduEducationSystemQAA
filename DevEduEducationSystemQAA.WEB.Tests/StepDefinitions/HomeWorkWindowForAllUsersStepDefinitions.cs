@@ -316,6 +316,27 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
         // new Scenario - Role Student . As a student , I want to hand in my homework 
 
+        [Given(@"Delete My homework ""([^""]*)""")]
+        public void GivenDeleteMyHomework(string forDelete)
+        {
+            string email = "userTestStudent@example.com";
+            string password = "userTestStudent";
+            string token = IOHelper.AuthUser(email, password);
+            UserModel user = IOHelper.GetUserByToken(token);
+            List<StudentHomework> listAnswer = IOHelper.GetAllStudenHomeworkById(user.Id, token);
+            int idStudentHomework = -1;
+            for(int i = 0; i < listAnswer.Count; i++)
+            {
+                if(listAnswer[i].Answer == forDelete)
+                {
+                    idStudentHomework = listAnswer[i].Id;
+                    break;
+                }
+            }
+            IOHelper.DeleteStudentHomework(idStudentHomework);
+        }
+
+
         [Given(@"I click on the homework button")]
         public void GivenIClickOnTheHomeworkButton()
         {
@@ -339,6 +360,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Given(@"I click on the task tab")]
         public void GivenIClickOnTheTaskTab()
         {
+            Thread.Sleep(250);
             try
             {
                 var buttonToTheTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonToTheTask);
@@ -364,6 +386,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             ScenarioContext.Current["Link My Homework"] = studentHomework;
         }
 
+        [Given(@"I click on the submit homework button")]
         [When(@"I click on the submit homework button")]
         public void WhenIClickOnTheSubmitHomeworkButton()
         {
@@ -443,6 +466,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Given(@"I leave a link to the completed task empty link ""([^""]*)""")]
         public void GivenILeaveALinkToTheCompletedTaskEmptyLink(string LinkHomework)
         {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            wait.Until<IWebElement>(d => d.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework));
             var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
             inputMyHomework.SendKeys(LinkHomework);
             ScenarioContext.Current["Answer"] = LinkHomework;
@@ -464,16 +489,32 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
         // new Scenario negativ edit 
 
-        [Given(@"When I clear the input and insert a new empty link ""([^""]*)"" and click on the send button twice")]
-        public void GivenWhenIClearTheInputAndInsertANewEmptyLinkAndClickOnTheSendButtonTwice(string p0)
+        [When(@"I clear the input and insert a new empty link ""([^""]*)"" and click on the send button twice")]
+        public void GivenWhenIClearTheInputAndInsertANewEmptyLinkAndClickOnTheSendButtonTwice(string homework)
         {
-            throw new PendingStepException();
+            string getAttribute = "value";
+            var inputHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
+            string actualHomework = inputHomework.GetAttribute(getAttribute);
+            inputHomework.Clear();
+            inputHomework.SendKeys(homework);
+            var buttonSend = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework);
+            buttonSend.Click();
+            Thread.Sleep(500);
+            //WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+            //wait.Until<IWebElement>(b => b.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework));
+            buttonSend = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework);
+            buttonSend.Click();
+            ScenarioContext.Current["linkHomework"] = actualHomework;
         }
 
         [Then(@"I refresh the page and see that the link hasn't changed")]
         public void ThenIRefreshThePageAndSeeThatTheLinkHasntChanged()
         {
-            throw new PendingStepException();
+            _driver.Navigate().Refresh();
+            string getAttribute = "value";
+            string actual = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework).GetAttribute(getAttribute);
+            string expected = (string)ScenarioContext.Current["linkHomework"];
+            Assert.AreEqual(expected, actual);
         }
 
 

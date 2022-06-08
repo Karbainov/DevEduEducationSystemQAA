@@ -113,6 +113,25 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support
             return JsonSerializer.Deserialize<UserModel>(s);
         }
 
+        public static List<StudentHomework> GetAllStudenHomeworkById(int idUser, string token)
+        {
+            string url = $"https://piter-education.ru:7070/api/student-homeworks/by-user/{idUser}";
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+            HttpResponseMessage response = client.Send(request);
+            string s = response.Content.ReadAsStringAsync().Result;
+            HttpStatusCode expected = HttpStatusCode.OK;
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+            return JsonSerializer.Deserialize<List<StudentHomework>>(s);
+        }
+
         public static void DeleteUser(int id)
         {
             string connectionString = @"Data Source=80.78.240.16;Initial Catalog = DevEdu; Persist Security Info=True;User ID = student;Password=qwe!23;";
@@ -131,7 +150,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support
             }
         }
 
-        public static void DeleteStudentHomework(string answer)
+        public static void DeleteStudentHomework(int id)
         {
             string connectionString = @"Data Source=80.78.240.16;Initial Catalog = DevEdu; Persist Security Info=True;User ID = student;Password=qwe!23;";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -139,7 +158,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support
                 connection.Open();
 
                 SqlCommand command = new SqlCommand();
-                command.CommandText = $"delete from dbo.[Student_Homework] where Answer = {answer} LIMIT 1";
+                command.CommandText = $"delete from dbo.[Student_Homework] where Id = {id}";
                 command.Connection = connection;
                 var i = command.ExecuteNonQuery();
             }
@@ -193,6 +212,63 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support
 
         [JsonPropertyName("phoneNumber")]
         public string PhoneNumber { get; set; }
+    }
+
+    public class Homework
+    {
+        [JsonPropertyName("task")]
+        public Task Task { get; set; }
+
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("startDate")]
+        public string StartDate { get; set; }
+
+        [JsonPropertyName("endDate")]
+        public string EndDate { get; set; }
+    }
+
+    public class StudentHomework
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("answer")]
+        public string Answer { get; set; }
+
+        [JsonPropertyName("completedDate")]
+        public object CompletedDate { get; set; }
+
+        [JsonPropertyName("status")]
+        public string Status { get; set; }
+
+        [JsonPropertyName("homework")]
+        public Homework Homework { get; set; }
+
+        [JsonPropertyName("isDeleted")]
+        public bool IsDeleted { get; set; }
+    }
+
+    public class Task
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+        [JsonPropertyName("links")]
+        public object Links { get; set; }
+
+        [JsonPropertyName("isRequired")]
+        public bool IsRequired { get; set; }
+
+        [JsonPropertyName("isDeleted")]
+        public bool IsDeleted { get; set; }
     }
 
 

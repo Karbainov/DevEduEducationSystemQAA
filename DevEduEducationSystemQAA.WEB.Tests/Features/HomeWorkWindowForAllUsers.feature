@@ -47,6 +47,7 @@ Then I can see new HomeWork with new field in list HomeWorks new Groups
 
 @HomeworkStudentWindow
 Scenario: As a student, I want to hand in my homework
+    Given Delete My homework "123 I am sexy Ссылка!!!"
     Given I log in to the system  with the window size <length> and <width>
        | Email                       | Password        |
        | userTestStudent@example.com | userTestStudent |
@@ -68,10 +69,11 @@ Scenario: As a student, I want to edit my homework
     And I click on the homework button
     And I choose a course
     And I click on the task tab
+    And I leave a link to the completed task "https://piter-education.ru:7074/"
+    And I click on the submit homework button 
     And I click on the edit button in window homework 
     When I clear the input and insert a new link "https://trello.com/b/YNep1Ge3/marvelous-frontend" and click on the send button
     #Then I clicking on the back button and I check, the link should change
-    And Delete student homework
     Examples: 
     | length | width |
     | 1920   | 1080  |
@@ -90,6 +92,7 @@ Scenario: As a student, I want to edit my homework
     Given I leave a link to the completed task "Hellow 123, I am Ссылка !"
     When I click on the submit homework button
     Then Check if the submit button is disabled and delete student homework
+    Given Delete homework 
      Examples: 
     | length | width |
     | 1920   | 1080  |
@@ -105,7 +108,9 @@ Scenario: As a student, I want to edit my homework
     And I choose a course
     And I click on the task tab
     And I click on the edit button in window homework 
-    And  When I clear the input and insert a new empty link "" and click on the send button twice
+    When I clear the input and insert a new empty link "" and click on the send button twice
+    Then I refresh the page and see that the link hasn't changed
+    When I clear the input and insert a new empty link "123 I am sexy Ссылка!!!" and click on the send button twice
     Then I refresh the page and see that the link hasn't changed
     Examples: 
     | length | width |
