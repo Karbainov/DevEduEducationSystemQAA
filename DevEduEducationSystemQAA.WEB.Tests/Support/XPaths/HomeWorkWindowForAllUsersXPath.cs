@@ -50,6 +50,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         //Списки ДЗ
         public static By NewHomeWorkInList = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 3'] / following-sibling::a");
         public static By NewHomeWorkInListHomeWork7 = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 7'] / following-sibling::a");
+        public static By NewHomeWorkInListHomeWork11 = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 11'] / following-sibling::a");
         public static By NewHomeWorkInListForTestCreate = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 1'] / following-sibling::a");
         public static By NewHomeWorkInListForSavedTask = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 2'] / following-sibling::a");
         public static By HomeWorkInListAfterPublish = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 4'] / following-sibling::a");
