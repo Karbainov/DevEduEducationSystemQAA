@@ -213,7 +213,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             // дальше пойдет проверка , что считает колонку всего правильно 
 
             List<double> allTotalExpected = JournalStudentMock.GetAllTotal();
-            List<IWebElement> totalActual = _driver.FindElements(By.XPath(@"//div[@class='swiper swiper-initialized swiper-horizontal swiper-pointer-events']/div[@class='swiper-wrapper']/*/child::*[text()]")).ToList();
+            List<IWebElement> totalActual = _driver.FindElements(Journal_WindowXPath.Total).ToList();
             List<double> actualTotal = new List<double>();
             string s = totalActual[0].GetAttribute("innerText");
             for (int bb = 0; bb < totalActual.Count; bb++)
