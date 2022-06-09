@@ -74,7 +74,12 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By InputStudentHomework = By.XPath(@"//input[@name='answer']");
         // send homework
         public static By ButtonSendHomework = By.XPath(@"//button[@class='button-fly']");
+        public static By TextSendHomework = By.XPath(@"//*[text()='Выполненное задание']");
 
+        // Edit homework student
+        // button edit window homework , role - student
+        public static By ButtonEdit = By.XPath(@"//a[@class='link-with-text-decoration']");
+        public static By ButtonGoToBack = By.XPath(@"//*[text()='Назад']");
 
     }
 }

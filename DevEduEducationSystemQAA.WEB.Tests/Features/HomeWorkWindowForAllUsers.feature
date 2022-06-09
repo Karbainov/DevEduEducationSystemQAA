@@ -93,16 +93,70 @@ And I don't can see publish HomeWork in list saved Tasks of Group
 # Role student 
 
 @HomeworkStudentWindow
-Scenario: As a student i want to hand in my homework
+Scenario: As a student, I want to hand in my homework
     Given I log in to the system  with the window size <length> and <width>
        | Email                       | Password        |
        | userTestStudent@example.com | userTestStudent |
     And I click on the homework button
     And I choose a course
     And I click on the task tab
-    And I leave a link to the completed task "https://piter-education.ru:7074/homeworks/2334/new"
+    And I leave a link to the completed task "https://piter-education.ru:7074/"
     When I click on the submit homework button 
-    #Then I refresh the page and check that my homework link is saved
+    Then I refresh the page and check that my homework link is saved
     Examples: 
 	| length | width |
 	| 1920   | 1080  |
+
+@HomeworkStudentWindow
+Scenario: As a student, I want to edit my homework
+    Given I log in to the system  with the window size <length> and <width>
+       | Email                       | Password        |
+       | userTestStudent@example.com | userTestStudent |
+    And I click on the homework button
+    And I choose a course
+    And I click on the task tab
+    And I leave a link to the completed task "https://piter-education.ru:7074/"
+    And I click on the submit homework button 
+    And I click on the edit button in window homework 
+    When I clear the input and insert a new link "https://trello.com/b/YNep1Ge3/marvelous-frontend" and click on the send button
+    Then I clicking on the back button and I check, the link should change
+    Examples: 
+    | length | width |
+    | 1920   | 1080  |
+
+ @Negative
+ Scenario: As a student, I want to hand in my homework.Negative
+    Given I log in to the system  with the window size <length> and <width>
+       | Email                       | Password        |
+       | userTestStudent@example.com | userTestStudent |
+    And I click on the homework button
+    And I choose a course
+    And I click on the task tab
+    And I leave a link to the completed task empty link ""
+    When I click on the submit homework button
+    Then Check if the submit button is disabled
+    Given I leave a link to the completed task "Hellow 123, I am Ссылка !"
+    When I click on the submit homework button
+    Then Check if the submit button is disabled and delete student homework
+     Examples: 
+    | length | width |
+    | 1920   | 1080  |
+
+    # негативный сценарий окна редактирования домашнего задания - роль студента
+
+   @Negative
+   Scenario: As a student, I want to edit my homework.Negative
+   Given I log in to the system  with the window size <length> and <width>
+       | Email                       | Password        |
+       | userTestStudent@example.com | userTestStudent |
+    And I click on the homework button
+    And I choose a course
+    And I click on the task tab
+    And I click on the edit button in window homework 
+    When I clear the input and insert a new empty link "" and click on the send button twice
+    Then I refresh the page and see that the link hasn't changed
+    When I clear the input and insert a new empty link "123 I am sexy Ссылка!!!" and click on the send button twice
+    Then I refresh the page and see that the link hasn't changed
+    Examples: 
+    | length | width |
+    | 1920   | 1080  |

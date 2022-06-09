@@ -47,7 +47,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string inputPassword = _driver.FindElement(Enter_WindowXPaths.InputPassword).GetAttribute(attributeType);
             string passwordExpected = "password";
             Assert.AreEqual(loginEcpected, inputEmailActual);
-            Assert.AreEqual(passwordExpected, inputPassword);      
+            Assert.AreEqual(passwordExpected, inputPassword);
+            _driver.Close();
         }
 
         // New Scenario - click on button enter
@@ -68,18 +69,17 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string expected = UrlStorage.BasePage;
             string actual = _driver.Url;
             Assert.AreEqual(expected, actual);
+            _driver.Close();
         }
 
         // new Scenario negative test - not valid Login and password
         [Then(@"There should be a message with the text - Incorrect login or password and the url won't change")]
         public void ThenThereShouldBeAMessageWithTheText_IncorrectLoginOrPasswordAndTheUrlWontChange()
         {
-            // как будет текст 
-
-            // проверка на урлу
             string expected = UrlStorage.EnterWindow;
             string actual = _driver.Url;
             Assert.AreEqual(expected, actual);
+            _driver.Close();
         }
 
 

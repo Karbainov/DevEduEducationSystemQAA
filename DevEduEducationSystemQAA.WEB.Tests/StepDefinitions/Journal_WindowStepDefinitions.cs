@@ -143,7 +143,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             List<GridJournalModel> students = JournalStudentMock.GetStudent();
             Assert.AreEqual(students[0].Name, listStudentActual[2].Text);
             Assert.AreEqual(students[1].Name, listStudentActual[3].Text);
-            Assert.AreEqual(students[2].Name, listStudentActual[4].Text);    
+            Assert.AreEqual(students[2].Name, listStudentActual[4].Text);
+            _driver.Close();
         }
 
         // new Scenario проверяем, что сценарий отображается корректно
@@ -154,7 +155,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string getAttribute = "value";
             string getAttributeId = "data-lesson-id";
             // лист с датами
-            List <IWebElement> dateClass = _driver.FindElements(Journal_WindowXPath.DateClass).ToList();
+            List<IWebElement> dateClass = _driver.FindElements(Journal_WindowXPath.DateClass).ToList();
             // это моковые данные
             List<GridJournalModel> students = JournalStudentMock.GetStudent();
             // это циферка 1 или 0 или 0.5
@@ -167,13 +168,14 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             List<IWebElement> ratingActual = generalRating.FindElements(Journal_WindowXPath.ListRatingStudent).ToList();
             // собираем модель для сравнения актуальную, чтобы потом сравнить быстро и легко
             List<GridJournalModel> actualListJornalModel = new List<GridJournalModel>();
+
             // циклы первый цикл собирает модели и добавляет их в лист 
             // модель в себя включает фамилию имя студента, его посещаемость и рейтинг в процентах
             // кол-во актуальных студентов 6 реальное 3 (3 будет заниматьсь графа ФИО и сортировка и Всего)
-            //List<double> allTotalExpected = JournalStudentMock.GetAllTotal();
+
             int i = 0;
             int count = 0;
-            for (int j = 2; j < listStudentActual.Count-1; j++) // count 6
+            for (int j = 2; j < listStudentActual.Count - 1; j++) // count 6
             {
                 List<string> ballStudent = new List<string>();
                 while (i < simpleBall.Count)
@@ -183,11 +185,11 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
                 }
                 count++;
                 i = count;
-                actualListJornalModel.Add(new GridJournalModel() 
-                { 
+                actualListJornalModel.Add(new GridJournalModel()
+                {
                     Ball = ballStudent,
                     Name = listStudentActual[j].Text,
-                    Percent = ratingActual[j-1].Text 
+                    Percent = ratingActual[j - 1].Text
                 });
             }
 
@@ -210,9 +212,20 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
 
             // дальше пойдет проверка , что считает колонку всего правильно 
 
-
-            
-            
+            List<double> allTotalExpected = JournalStudentMock.GetAllTotal();
+            List<IWebElement> totalActual = _driver.FindElements(Journal_WindowXPath.Total).ToList();
+            List<double> actualTotal = new List<double>();
+            string s = totalActual[0].GetAttribute("innerText");
+            for (int bb = 0; bb < totalActual.Count; bb++)
+            {
+                string a = totalActual[bb].GetAttribute("innerText"); 
+                actualTotal.Add(Convert.ToDouble(a));
+            }
+            for(i = 0; i < allTotalExpected.Count; i++)
+            {
+                Assert.AreEqual(allTotalExpected[i], actualTotal[i]);
+            }
+            _driver.Close();  
         }
     }
 }

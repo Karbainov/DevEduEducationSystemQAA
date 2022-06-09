@@ -12,7 +12,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         private IWebDriver _driver;
         private string _userPhotosSrc;
 
-
         [Given(@"I log in to the system  with the window size (.*) and (.*)")]
         public void GivenILogInToTheSystemWithTheWindowSizeAnd(int oneSize, int twoSize, Table table)
         {

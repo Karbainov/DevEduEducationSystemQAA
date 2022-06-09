@@ -42,8 +42,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         //XPath List всех отметок посещаемости 
         public static By AllBall = By.XPath(@"//div[@class='swiper-wrapper']");
         public static By Ball = By.XPath(@"//div[@class='drop-down-filter  ']");
-        // Total summ
-        public static By Total = By.XPath(@"//div[@class='swiper swiper-initialized swiper-horizontal swiper-pointer-events']/div[@class='swiper-wrapper']/*/child::div[@class='one-block']");
+        // Total ball
+        public static By Total = By.XPath(@"//div[@class='swiper swiper-initialized swiper-horizontal swiper-pointer-events']/div[@class='swiper-wrapper']/*/child::*[text()]");
 
     }
 }
