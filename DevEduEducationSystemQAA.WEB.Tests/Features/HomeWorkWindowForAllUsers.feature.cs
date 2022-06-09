@@ -83,7 +83,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Features
                     "HomeWorksTeacherCreate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As I Teacher I can add HomeWork for Students of my Group", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 10
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -103,13 +103,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
+#line 8
 testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
+#line 9
 testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 13
+#line 10
 testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -126,10 +126,10 @@ testRunner.And("I choose role Teacher for next step", ((string)(null)), ((TechTa
                             "DescriptionHomeWork",
                             "https://function-x.ru/",
                             "https://piter-education.ru:7074/new-homework"});
-#line 14
+#line 11
 testRunner.When("I fill all fields pages of create Task and click on the button Publish", ((string)(null)), table6, "When ");
 #line hidden
-#line 17
+#line 14
 testRunner.Then("I can see new HomeWork in list HomeWorks new Groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -572,7 +572,7 @@ testRunner.And("I don\'t can see publish HomeWork in list saved Tasks of Group",
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a student i want to hand in my homework")]
+        [NUnit.Framework.DescriptionAttribute("As a student, I want to hand in my homework")]
         [NUnit.Framework.CategoryAttribute("HomeworkStudentWindow")]
         [NUnit.Framework.TestCaseAttribute("1920", "1080", null)]
         public virtual void AsAStudentIWantToHandInMyHomework(string length, string width, string[] exampleTags)
@@ -587,7 +587,7 @@ testRunner.And("I don\'t can see publish HomeWork in list saved Tasks of Group",
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a student i want to hand in my homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a student, I want to hand in my homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 96
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -627,13 +627,12 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.And("I click on the task tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 103
-    testRunner.And("I leave a link to the completed task \"https://piter-education.ru:7074/homeworks/2" +
-                        "334/new\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("I leave a link to the completed task \"https://piter-education.ru:7074/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 104
     testRunner.When("I click on the submit homework button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 58
+#line 105
     testRunner.Then("I refresh the page and check that my homework link is saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -657,7 +656,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a student, I want to edit my homework", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 64
+#line 111
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -677,38 +676,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table11.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
-#line 65
-    testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table11, "Given ");
+#line 112
+    testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table16, "Given ");
 #line hidden
-#line 68
+#line 115
     testRunner.And("I click on the homework button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 69
+#line 116
     testRunner.And("I choose a course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 70
+#line 117
     testRunner.And("I click on the task tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 71
+#line 118
     testRunner.And("I leave a link to the completed task \"https://piter-education.ru:7074/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 72
+#line 119
     testRunner.And("I click on the submit homework button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 73
+#line 120
     testRunner.And("I click on the edit button in window homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 74
+#line 121
     testRunner.When("I clear the input and insert a new link \"https://trello.com/b/YNep1Ge3/marvelous-" +
                         "frontend\" and click on the send button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 75
+#line 122
     testRunner.Then("I clicking on the back button and I check, the link should change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -732,7 +731,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a student, I want to hand in my homework.Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 81
+#line 128
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -752,40 +751,40 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table12.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
-#line 82
-    testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table12, "Given ");
+#line 129
+    testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table17, "Given ");
 #line hidden
-#line 85
+#line 132
     testRunner.And("I click on the homework button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 86
+#line 133
     testRunner.And("I choose a course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 87
+#line 134
     testRunner.And("I click on the task tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 88
+#line 135
     testRunner.And("I leave a link to the completed task empty link \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 89
+#line 136
     testRunner.When("I click on the submit homework button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 90
+#line 137
     testRunner.Then("Check if the submit button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 91
+#line 138
     testRunner.Given("I leave a link to the completed task \"Hellow 123, I am Ссылка !\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 92
+#line 139
     testRunner.When("I click on the submit homework button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 93
+#line 140
     testRunner.Then("Check if the submit button is disabled and delete student homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -809,7 +808,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("length", length);
             argumentsOfScenario.Add("width", width);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a student, I want to edit my homework.Negative", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 101
+#line 148
    this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -829,39 +828,39 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table13.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
-#line 102
-   testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table13, "Given ");
+#line 149
+   testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table18, "Given ");
 #line hidden
-#line 105
+#line 152
     testRunner.And("I click on the homework button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 106
+#line 153
     testRunner.And("I choose a course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 107
+#line 154
     testRunner.And("I click on the task tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 108
+#line 155
     testRunner.And("I click on the edit button in window homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 109
+#line 156
     testRunner.When("I clear the input and insert a new empty link \"\" and click on the send button twi" +
                         "ce", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 110
+#line 157
     testRunner.Then("I refresh the page and see that the link hasn\'t changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 111
+#line 158
     testRunner.When("I clear the input and insert a new empty link \"123 I am sexy Ссылка!!!\" and click" +
                         " on the send button twice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 112
+#line 159
     testRunner.Then("I refresh the page and see that the link hasn\'t changed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -767,14 +767,18 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
                 var buttonToTheTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonToTheTask);
                 buttonToTheTask.Click();
             }
-            catch (StaleElementReferenceException ex)
+            catch 
             {
                 var buttonToTheTask = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonToTheTask);
                 buttonToTheTask.Click();
             }
             string actual = _driver.Url;
-            string expected = @"https://piter-education.ru:7074/homeworks/2334/new";
-            Assert.AreEqual(expected, actual);
+            List<string> expecteds = new List<string>()
+            {
+                @"https://piter-education.ru:7074/homeworks/2334",
+                @"https://piter-education.ru:7074/homeworks/2334/new"
+            };
+            CollectionAssert.Contains(expecteds, actual);
         }
 
         [Given(@"I leave a link to the completed task ""([^""]*)""")]
@@ -810,7 +814,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string expected = (string)ScenarioContext.Current["Link My Homework"];
             string actual = _driver.Url;
             Assert.AreEqual(expected, actual);
-            _driver.Close();
         }
 
         // new Scenario edit
@@ -818,7 +821,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         [Given(@"I click on the edit button in window homework")]
         public void GivenIClickOnTheEditButtonInWindowHomework()
         {
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             var buttonEdit = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonEdit);
             buttonEdit.Click();
         }
@@ -847,7 +850,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string actual = _driver.Url;
             string expected = (string)ScenarioContext.Current["New link"];
             Assert.AreEqual(expected, actual);
-            _driver.Close();
         }
 
         // new Scenario - negative (empty link and "Hellow I am link")
@@ -861,6 +863,8 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
             inputMyHomework.SendKeys(LinkHomework);
             ScenarioContext.Current["Answer"] = LinkHomework;
+            Hooks.forDelete = LinkHomework;
+            Hooks.isCheck = true;
         }
 
         [Then(@"Check if the submit button is disabled")]
@@ -875,7 +879,6 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             var inputMyHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework);
             Assert.Throws<NoSuchElementException>(() => _driver.FindElement(HomeWorkWindowForAllUsersXPath.TextSendHomework));
-            _driver.Close();
         }
 
         // new Scenario negativ edit 
@@ -891,24 +894,23 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             var buttonSend = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework);
             buttonSend.Click();
             Thread.Sleep(500);
-            //WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-            //wait.Until<IWebElement>(b => b.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework));
             buttonSend = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonSendHomework);
             buttonSend.Click();
             ScenarioContext.Current["linkHomework"] = actualHomework;
+            ScenarioContext.Current["Edit link"] = homework;
         }
 
         [Then(@"I refresh the page and see that the link hasn't changed")]
         public void ThenIRefreshThePageAndSeeThatTheLinkHasntChanged()
         {
+            Hooks.forDelete = (string)ScenarioContext.Current["Edit link"];
+            Hooks.isCheck = true;
             _driver.Navigate().Refresh();
             string getAttribute = "value";
+            Thread.Sleep(500);
             string actual = _driver.FindElement(HomeWorkWindowForAllUsersXPath.InputStudentHomework).GetAttribute(getAttribute);
             string expected = (string)ScenarioContext.Current["linkHomework"];
             Assert.AreEqual(expected, actual);
-            Hooks.forDelete = "123 I am sexy ������!!!";
-            Hooks.isCheck = true;
-            _driver.Close();
         }
     }
 }

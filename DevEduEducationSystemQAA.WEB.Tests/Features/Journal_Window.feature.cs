@@ -110,14 +110,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table16.AddRow(new string[] {
+                table19.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 7
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table16, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table19, "Given ");
 #line hidden
 #line 10
  testRunner.And("I click button Journal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -196,14 +196,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table17.AddRow(new string[] {
+                table20.AddRow(new string[] {
                             "userTestStudent@example.com",
                             "userTestStudent"});
 #line 28
- testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table17, "Given ");
+ testRunner.Given(string.Format("I log in to the system  with the window size {0} and {1}", length, width), ((string)(null)), table20, "Given ");
 #line hidden
 #line 31
  testRunner.And("I click button Journal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

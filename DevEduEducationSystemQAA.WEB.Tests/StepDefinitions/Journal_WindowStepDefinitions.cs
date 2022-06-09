@@ -16,11 +16,16 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             _driver.Navigate().GoToUrl(UrlStorage.BasePage);
             Thread.Sleep(500);
             var dropdownRole = _driver.FindElement(Journal_WindowXPath.DropDownRoles);
+            Thread.Sleep(500);
             dropdownRole.Click();
+            Thread.Sleep(500);
             var dropdownRoleTeacher = _driver.FindElement(Journal_WindowXPath.DropDownRoleTeacher);
+            Thread.Sleep(500);
             dropdownRoleTeacher.Click();
+            Thread.Sleep(500);
             var buttonJournal = _driver.FindElement(Journal_WindowXPath.ButtonJournal);
             buttonJournal.Click();
+            Thread.Sleep(500);
         }
 
         [Then(@"Check that you have entered the Journal window")]
@@ -35,14 +40,18 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void GivenSelectGroupInWindowJournal()
         {
             var buttonSelectGroup = _driver.FindElement(Journal_WindowXPath.ButtonGroup);
+            Thread.Sleep(500);
             buttonSelectGroup.Click();
+            Thread.Sleep(500);
         }
 
         [When(@"Click on filter rating down")]
         public void WhenClickOnFilterRatingDown()
         {
             var filter = _driver.FindElement(Journal_WindowXPath.FilterDown);
+            Thread.Sleep(500);
             filter.Click();
+            Thread.Sleep(500);
         }
 
         [Then(@"Checking that the rating order has changed in ascending order")]
@@ -63,7 +72,9 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void WhenClickOnFilterRatingUp()
         {
             var filter = _driver.FindElement(Journal_WindowXPath.FilterUp);
+            Thread.Sleep(500);
             filter.Click();
+            Thread.Sleep(500);
         }
 
         [Then(@"Checking that the rating order has changed in descending order")]
@@ -84,7 +95,9 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             var horizontalScroll = _driver.FindElement(Journal_WindowXPath.HorizontalScroll);
             Actions build = new Actions(_driver);
+            Thread.Sleep(500);
             build.DragAndDropToOffset(horizontalScroll,-125,0).Build().Perform();
+            Thread.Sleep(200);
         }
 
         [Then(@"Checking the class date")]
@@ -103,23 +116,37 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         {
             var attendanceStudent = _driver.FindElements(Journal_WindowXPath.GeneralListAttendance)[1];
             var listClass = attendanceStudent.FindElements(By.XPath(@"//div[@class='one-block journal-filter-item']")).ToList();
+            Thread.Sleep(500);
             listClass[0].Click();
+            Thread.Sleep(500);
             List<IWebElement> dropdownElement0_05 = _driver.FindElements(Journal_WindowXPath.DropdownElement0_0_5).ToList();
+            Thread.Sleep(500);
             dropdownElement0_05[0].Click();
+            Thread.Sleep(500);
             var text = _driver.FindElement(By.XPath(@"//*[text()='Журнал посещаемости']"));
+            Thread.Sleep(500);
             text.Click();
+            Thread.Sleep(500);
             //check for 0
             Assert.AreEqual("0", listClass[0].Text);
+            Thread.Sleep(500);
             //check for 0.5
             listClass[0].Click();
+            Thread.Sleep(500);
             List<IWebElement> dropdownElement0_05_05 = _driver.FindElements(Journal_WindowXPath.DropdownElement0_0_5).ToList();
+            Thread.Sleep(500);
             dropdownElement0_05_05[1].Click();
+            Thread.Sleep(500);
             text.Click();
             Assert.AreEqual("0.5", listClass[0].Text);
+            Thread.Sleep(500);
             //check for 1
             listClass[0].Click();
+            Thread.Sleep(500);
             List<IWebElement> dropdownElement0_05_1 = _driver.FindElements(Journal_WindowXPath.DropdownElement0_0_5).ToList();
+            Thread.Sleep(500);
             dropdownElement0_05_1[1].Click();
+            Thread.Sleep(500);
             text.Click();
             Assert.AreEqual("1", listClass[0].Text);
         }
@@ -129,6 +156,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
         public void WhenClickToSortByLastName()
         {
             var sortingFIO = _driver.FindElement(Journal_WindowXPath.SortingFIO);
+            Thread.Sleep(500);
             sortingFIO.Click();
         }
 
