@@ -75,14 +75,14 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I as user can login and log out")]
-        [NUnit.Framework.CategoryAttribute("tag1")]
+        [NUnit.Framework.CategoryAttribute("ManagerExitOutAccount")]
         public virtual void IAsUserCanLoginAndLogOut()
         {
             string[] tagsOfScenario = new string[] {
-                    "tag1"};
+                    "ManagerExitOutAccount"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I as user can login and log out", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 14
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,16 +102,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
+#line 7
  testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 16
+#line 8
  testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 9
  testRunner.When("I click on the button Exit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 18
+#line 10
  testRunner.Then("I go to the login tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -120,12 +120,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I as manager can cancel create Group")]
+        [NUnit.Framework.CategoryAttribute("GroupManagerCreate")]
         public virtual void IAsManagerCanCancelCreateGroup()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "GroupManagerCreate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I as manager can cancel create Group", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 20
+#line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -145,23 +147,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 21
+#line 14
  testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 22
+#line 15
  testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 23
- testRunner.And("I choose role for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name"});
                 table4.AddRow(new string[] {
                             "Group 1"});
-#line 24
+#line 16
  testRunner.When("I fill in the fields pages of create group and click on the button Cancel", ((string)(null)), table4, "When ");
 #line hidden
-#line 27
+#line 19
  testRunner.Then("I go to the notifications tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -170,12 +169,14 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("I as manager can create Group without students")]
+        [NUnit.Framework.CategoryAttribute("GroupManagerCreate")]
         public virtual void IAsManagerCanCreateGroupWithoutStudents()
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = new string[] {
+                    "GroupManagerCreate"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("I as manager can create Group without students", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 29
+#line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -195,23 +196,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 30
+#line 23
  testRunner.Given("I open Google Chrome browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 31
+#line 24
  testRunner.And("I login as an manager and enter in my account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 32
-  testRunner.And("I choose role for next step", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name"});
                 table5.AddRow(new string[] {
                             "Group 1"});
-#line 33
+#line 25
  testRunner.When("I fill all fields pages of create group <Name> and click on the button Save", ((string)(null)), table5, "When ");
 #line hidden
-#line 36
+#line 28
  testRunner.Then("I can see new group in the list all groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -26,7 +26,6 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 PhoneNumber = model.PhoneNumber
             };
         }
-
         public static CourseRequestModel MapCourseResponseModelToCourseRequestModel(CourseResponseModel model)
         {
             return new CourseRequestModel()
@@ -48,21 +47,18 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
         public static List<TopicRequestModel> MapCourseRequestAndTopicRequestModelToCourseResponseModel(CourseResponseFullModel modelCourseRequest)
         {
             List<TopicRequestModel> listTopics = new List<TopicRequestModel>();
-            
+
             foreach (TopicResponseModel a in modelCourseRequest.Topics)
             {
-
                 listTopics.Add(new TopicRequestModel() { Duration = a.Duration, Name = a.Name });
             }
             return listTopics;
-        }      
-
-
+        }
 
         public static GroupRequestModel MapGroupResponseModelToGroupRequestModel(GroupResponseModel model)
         {
             //TODO
-            if(model.GroupStatus == "0")
+            if (model.GroupStatus == "0")
             {
                 model.GroupStatus = "1";
             }
@@ -109,6 +105,15 @@ namespace DevEduEducationSystem.API.Tests.Support.MethodForTests
                 Date = lessonTeacherResponseModel.Date,
                 AdditionalMaterials = lessonTeacherResponseModel.AdditionalMaterials,
                 LinkToRecord = lessonTeacherResponseModel.LinkToRecord
+            };
+        }
+        public static LessonUpdateRequestModel MapLessonFullResponseModelToLessonRequestModel(LessonResponseFullModelWithStudents lessonResponseModel)
+        {
+            return new LessonUpdateRequestModel()
+            {
+                Date = lessonResponseModel.Date,
+                AdditionalMaterials = lessonResponseModel.AdditionalMaterials,
+                LinkToRecord = lessonResponseModel.LinkToRecord
             };
         }
 
