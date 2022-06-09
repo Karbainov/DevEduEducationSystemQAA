@@ -22,8 +22,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             //((IJavaScriptExecutor)_driver).ExecuteScript("document.body.style.zoom='70%'");
             //Thread.Sleep(3000);
             //неявное ожидание
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);
-           
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(4);           
         }
 
         [Given(@"I login as an manager and enter in my account")]
@@ -59,7 +58,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string expected = UrlStorage.EnterWindow;
             string actual = _driver.Url;
             Assert.AreEqual(expected, actual);
-            _driver.Close();
+            _driver.Quit();
         }
 
         [When(@"I fill in the fields pages of create group and click on the button Cancel")]
@@ -99,7 +98,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             string expected = UrlStorage.BasePage;
             string actual = _driver.Url;
             Assert.AreEqual(expected, actual);
-            _driver.Close();
+            _driver.Quit();
         }
 
         [When(@"I fill all fields pages of create group <Name> and click on the button Save")]
@@ -139,7 +138,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             //ищем вкладку "группы" переходим на нее
             //ищем элемент, содержащий XPath с названием нашей группы по тексту
             //проверяем что поля равны тем,которые мы передали при создании
-            _driver.Close();
+            _driver.Quit();
         }
 
         [When(@"I can add students in Group")]

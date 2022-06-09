@@ -1,22 +1,15 @@
 ﻿Feature: GroupAllFunctionality
 
 A short summary of the feature
-#And I create new users Teacher Tutor and Students
-#| LastName  | FirstName |            | Patronymic          | Email     | Username  | Password        | City       | BirthDate     | GitHubAccount          | PhoneNumber     | Role  |
-#| Петров    | Роман     | Степанович | PetrovRS@mail.ru    | PetrovRS  | Qwerty123 | Dnipro          | 12.03.1996 | GitHubAccount | https://www.figma.com/ | +79568746594521 |Teacher|
-#| Kravcov   | Sergey    | Sergeevich | KravcovSS@mail.ru   | KravcovSS | Qwerty123 | SaintPetersburg | 10.03.1996 | GitHubAccount | https://www.figma.com/ | +79568746894522 |Tutor  |
-#| Stepanova | Olga      | Glebovna   | StepanovaOG@mail.ru | PetrovRS  | Qwerty123 | Kyiv            | 28.03.1996 | GitHubAccount | https://www.figma.com/ | +79568746594523 |Student|
-#| Kim       | Anton     | Petrovich  | KimAP@mail.ru       | KravcovSS | Qwerty123 | SaintPetersburg | 10.03.1996 | GitHubAccount | https://www.figma.com/ | +79568746894524 |Student|
-#| Лыкова    | Роман     | Степанович | Лыкова@yandex.ru    | PetrovRS  | Qwerty123 | Dnipro          | 01.03.1996 | GitHubAccount | https://www.figma.com/ | 89568746594528  |Student|
-#На этом шаге сохраняем в табличку пароль, email, role и ID
 
-@tag1
+@ManagerExitOutAccount
 Scenario: I as user can login and log out
  Given I open Google Chrome browser
  And I login as an manager and enter in my account
 	When I click on the button Exit
 	Then I go to the login tab
 
+@GroupManagerCreate
 Scenario: I as manager can cancel create Group
  Given I open Google Chrome browser
  And I login as an manager and enter in my account
@@ -25,6 +18,7 @@ Scenario: I as manager can cancel create Group
 	| Group 1 |
 	Then I go to the notifications tab
 
+@GroupManagerCreate
 Scenario: I as manager can create Group without students
  Given I open Google Chrome browser
  And I login as an manager and enter in my account
