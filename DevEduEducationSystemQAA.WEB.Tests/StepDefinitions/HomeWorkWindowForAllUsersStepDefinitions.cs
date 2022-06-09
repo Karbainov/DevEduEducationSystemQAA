@@ -370,7 +370,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.StepDefinitions
             groupNameBeforeUpdate.Click();
             Thread.Sleep(5000);
 
-            var buttonUpdateHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.NewHomeWorkInListHomeWork7);
+            var buttonUpdateHomework = _driver.FindElement(HomeWorkWindowForAllUsersXPath.NewHomeWorkInListHomeWork11);
             buttonUpdateHomework.Click();
 
             var buttonUpdate = _driver.FindElement(HomeWorkWindowForAllUsersXPath.ButtonUpdateInCard);

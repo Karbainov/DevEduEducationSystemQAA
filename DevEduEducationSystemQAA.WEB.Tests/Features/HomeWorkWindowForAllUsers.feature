@@ -43,8 +43,8 @@ Given I open Google Chrome browser
 And I login as an manager and enter in my account
 And I choose role Teacher for next step
 And I fill all fields pages of create Task and click on the button Publish
-| DateOfIssue | DeliveryDate | Name       | Description          | Link                   | AddLink              |
-| 04.07.2022  | 06.07.2022   | HomeWork 7 | DescriptionHomeWork3 | https://www.figma.com/ | https://metanit.com/ |
+| DateOfIssue | DeliveryDate | Name        | Description          | Link                   | AddLink              |
+| 04.07.2022  | 06.07.2022   | HomeWork 11 | DescriptionHomeWork3 | https://www.figma.com/ | https://metanit.com/ |
 And I go to the task card and click the edit button 
 When In card of HomeWork I click in Button Delete task
 Then I can see message about HomeWork is Deleted

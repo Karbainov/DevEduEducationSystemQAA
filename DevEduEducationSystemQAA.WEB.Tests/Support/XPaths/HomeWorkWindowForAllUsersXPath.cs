@@ -31,6 +31,7 @@ namespace DevEduEducationSystemQAA.WEB.Tests.Support.XPaths
         public static By ButtonPublish = By.XPath("//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
         public static By ButtonSaveAsDraft = By.XPath("//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']");
         public static By ButtonCancel = By.XPath("//button[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']");
+        public static By NewHomeWorkInListHomeWork11 = By.XPath("//SPAN[@class='homework-title' and text() = 'HomeWork 11'] / following-sibling::a");
         //Редактирование
         public static By ButtonUpdateInCard = By.XPath("//a[@class='link-with-text-decoration' and text() = 'Редактировать']");
         public static By DateOfIssue = By.XPath("//div[text()='Дата выдачи задания']/child::div/child::div/child::div/child::input");
