@@ -106,8 +106,8 @@ Scenario: User in role Teacher can update lesson
 	| Name    | Duration |
 	| Thema 1 | 2        |
 	And Under login Lecturer I update Lesson by id
-	| Name    | Date       | AdditionalMaterials | linkToRecord                            |
-	| Lesson2 | 01.07.2022 | string              | https://translate.yandex.ru/?lang=en-ru |
+    | Date       | AdditionalMaterials | linkToRecord                            |
+    | 01.07.2022 | string              | https://translate.yandex.ru/?lang=en-ru |
 	Then I get full-info about Lesson and check that new returned model of Lesson contained updating field
 	Examples: 
 	| FirstName | LastName | Patronymic   | Email              | Username | Password  | City   | BirthDate  | GitHubAccount | PhoneNumber  | Name         | Description                       | Role    |

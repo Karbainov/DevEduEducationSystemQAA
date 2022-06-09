@@ -683,12 +683,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I create new list topics for update lesson", ((string)(null)), table174, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table175 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
                             "Date",
                             "AdditionalMaterials",
                             "linkToRecord"});
                 table175.AddRow(new string[] {
-                            "Lesson2",
                             "01.07.2022",
                             "string",
                             "https://translate.yandex.ru/?lang=en-ru"});
